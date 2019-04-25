@@ -1,31 +1,9 @@
-import * as React from 'react'
-import * as format from 'date-fns/format'
+import React from 'react'
+import format from 'date-fns/format'
 import { AxiosError, AxiosResponse } from 'axios'
 
-interface AddResourceStateInterface {
-    resource: any
-    form: any
-    errors: any
-    editing: boolean
-}
-
-interface AddResourcePropsInterface {
-    match: {
-        params: {
-            resource: string
-            primaryKey: string
-        }
-    }
-    history: {
-        push(path: string): void
-    }
-}
-
-class AddResource extends React.Component<
-    AddResourcePropsInterface,
-    AddResourceStateInterface
-> {
-    state: AddResourceStateInterface = {
+class AddResource extends React.Component {
+    state = {
         resource: this.getCurrentResource(),
         form: {},
         errors: {},
@@ -56,10 +34,10 @@ class AddResource extends React.Component<
      * @return {void}
      *
      */
-    private populateFields = (data: any = {}) => {
-        const form: any = {}
+    populateFields = (data = {}) => {
+        const form = {}
 
-        this.getCreationFields().forEach((field: any) => {
+        this.getCreationFields().forEach(field => {
             form[field.attribute] =
                 field.type === 'Date'
                     ? format(
@@ -70,7 +48,8 @@ class AddResource extends React.Component<
         })
 
         this.setState({
-            form
+            form,
+            errors: {}
         })
     }
 
@@ -79,11 +58,11 @@ class AddResource extends React.Component<
      * Get the current resource based on resource param
      *
      */
-    private getCurrentResource(
-        slug: string = this.props.match.params.resource
+    getCurrentResource(
+        slug = this.props.match.params.resource
     ) {
-        return (window as any).Pangaso.resources.find(
-            (resource: any) => resource.slug === slug
+        return Pangaso.resources.find(
+            resource => resource.slug === slug
         )
     }
 
@@ -92,8 +71,8 @@ class AddResource extends React.Component<
      * Fetch the resource to be edited
      *
      */
-    private fetchEditingResource() {
-        ;(window as any).Pangaso.request()
+    fetchEditingResource() {
+        Pangaso.request()
             .get(
                 `/resources/${this.state.resource.slug}/${
                     this.props.match.params.primaryKey
@@ -105,7 +84,7 @@ class AddResource extends React.Component<
              * Populate fields when resource is fetched from api
              *
              */
-            .then(({ data }: AxiosResponse) => {
+            .then(({ data }) => {
                 this.populateFields(data)
             })
 
@@ -116,7 +95,7 @@ class AddResource extends React.Component<
              *
              */
             .catch(() => {
-                ;(window as any).Pangaso.error('Failed fetching resource.')
+                Pangaso.error('Failed fetching resource.')
 
                 this.props.history.push(
                     `/resources/${this.state.resource.slug}`
@@ -131,20 +110,23 @@ class AddResource extends React.Component<
      * @return {void}
      *
      */
-    private postResource = (redirect: boolean = true) => {
-        ;(window as any).Pangaso.request()
+    postResource = (redirect = true) => {
+        Pangaso.request()
             .post(`resources/${this.state.resource.slug}`, this.state.form)
             .then(() => {
-                ;(window as any).Pangaso.success(
+                Pangaso.success(
                     `${this.state.resource.name} created !`
                 )
 
-                redirect &&
-                    this.props.history.push(
+                if (redirect) {
+                    return this.props.history.push(
                         `/resources/${this.state.resource.slug}`
                     )
+                }
+
+                this.populateFields()
             })
-            .catch(({ response }: AxiosError) => {
+            .catch(({ response }) => {
                 if (response.status === 422) {
                     this.setState({
                         errors: response.data
@@ -160,8 +142,8 @@ class AddResource extends React.Component<
      * @return {void}
      *
      */
-    private updateResource = (redirect: boolean = true) => {
-        ;(window as any).Pangaso.request()
+    updateResource = (redirect = true) => {
+        Pangaso.request()
             .put(
                 `resources/${this.state.resource.slug}/${
                     this.props.match.params.primaryKey
@@ -169,16 +151,17 @@ class AddResource extends React.Component<
                 this.state.form
             )
             .then(() => {
-                ;(window as any).Pangaso.success(
+                Pangaso.success(
                     `${this.state.resource.name} updated !`
                 )
 
-                redirect &&
-                    this.props.history.push(
+                if (redirect) {
+                    return this.props.history.push(
                         `/resources/${this.state.resource.slug}`
                     )
+                }
             })
-            .catch(({ response }: AxiosError) => {
+            .catch(({ response }) => {
                 if (response.status === 422) {
                     this.setState({
                         errors: response.data
@@ -192,7 +175,7 @@ class AddResource extends React.Component<
      * @return {void}
      *
      */
-    handleChange = (event: any) => {
+    handleChange = (event) => {
         /**
          *
          * Handle the date field case
@@ -232,7 +215,7 @@ class AddResource extends React.Component<
      * @return {string}
      *
      */
-    private getFormat = (field: any): string =>
+    getFormat = (field) =>
         `YYYY-MM-DD${field.enableTime ? ' mm:ss' : ''}`
 
     /**
@@ -242,9 +225,9 @@ class AddResource extends React.Component<
      * @return {array}
      *
      */
-    private getCreationFields = (): Array<any> =>
+    getCreationFields = () =>
         this.state.resource.fields.filter(
-            (field: any) => !field.hideOnCreationForm
+            field => !field.hideOnCreationForm
         )
 
     /**
@@ -254,17 +237,17 @@ class AddResource extends React.Component<
      * @return {array}
      *
      */
-    privateGetUpdateFields = (): Array<any> =>
+    privateGetUpdateFields = () =>
         this.state.resource.fields.filder(
-            (field: any) => !field.hideOnUpdateForm
+            field => !field.hideOnUpdateForm
         )
 
     /**
      *
      * Get a field from the component registry
      */
-    private getField = (component: string) =>
-        (window as any).Pangaso.fields[component]
+    getField = (component) =>
+        Pangaso.fields[component]
 
     /**
      *
@@ -273,7 +256,7 @@ class AddResource extends React.Component<
      */
     render() {
         const { editing, errors, form, resource } = this.state
-        const Button = (window as any).Pangaso.components['component-button']
+        const Button = Pangaso.components['component-button']
 
         return (
             <React.Fragment>
@@ -283,7 +266,7 @@ class AddResource extends React.Component<
 
                 <div className="w-full mt-6 bg-white rounded-lg">
                     {this.getCreationFields().map(
-                        (field: any, index: number) => {
+                        (field, index) => {
                             const Field = this.getField(field.component)
 
                             return Field ? (

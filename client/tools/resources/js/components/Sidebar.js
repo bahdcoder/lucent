@@ -1,7 +1,7 @@
-import * as React from 'react'
+import React from 'react'
 import classnames from 'classnames'
 
-const Sidebar: React.FunctionComponent = ({ Link, location }: any) => (
+const Sidebar = ({ Link, location }) => (
     <span className="w-full mb-8 text-white no-underline font-thin">
         <span className="flex items-center">
             <svg
@@ -16,7 +16,7 @@ const Sidebar: React.FunctionComponent = ({ Link, location }: any) => (
             </span>
         </span>
 
-        {(window as any).Pangaso.resources.map((resource: any) => (
+        {Pangaso.resources.map(resource => (
             <Link
                 key={resource.slug}
                 to={`/resources/${resource.slug}`}

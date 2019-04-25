@@ -22,25 +22,9 @@ class TailwindExtractor {
     }
 }
 
-mix.webpackConfig({
-    resolve: {
-        extensions: ['.ts', '.tsx'],
-        alias: {
-            '@': path.resolve(__dirname, 'client')
-        }
-    },
-    module: {
-        rules: [
-            {
-                test: /\.(ts,tsx)$/,
-                loader: 'awesome-typescript-loader'
-            }
-        ]
-    }
-})
-    .ts('client/index.tsx', 'public/app.js')
-    .ts(
-        'client/tools/resources/js/index.tsx',
+mix.react('client/index.js', 'public/app.js')
+    .react(
+        'client/tools/resources/js/index.js',
         'pangaso-resources/tools/resources.js'
     )
     .sass('client/styles/main.scss', 'public/app.css')
@@ -54,11 +38,11 @@ if (mix.inProduction()) {
     mix.webpackConfig({
         plugins: [
             new PurgecssPlugin({
-                paths: glob.sync([path.join(__dirname, 'client/**/*.tsx')]),
+                paths: glob.sync([path.join(__dirname, 'client/**/*.js')]),
                 extractors: [
                     {
                         extractor: TailwindExtractor,
-                        extensions: ['tsx']
+                        extensions: ['js']
                     }
                 ]
             })

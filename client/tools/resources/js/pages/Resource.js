@@ -1,35 +1,9 @@
-import * as Axios from 'axios'
-import * as React from 'react'
+import Axios from 'axios'
+import React from 'react'
 import classnames from 'classnames'
 
-interface ResourcePropsInterface {
-    match: {
-        params: {
-            resource: string
-        }
-    }
-    Link: React.FunctionComponent<{ to: string; className: string }>
-}
-
-interface ResourceStateInterface {
-    isFetching: boolean
-    data: {
-        total: number
-        data: Array<any>
-    }
-    selected: any[]
-    selectedAction: any
-    multiDeleting: boolean
-    resource: any
-    currentlyDeleting: string
-    runningAction: boolean
-}
-
-class Resource extends React.Component<
-    ResourcePropsInterface,
-    ResourceStateInterface
-> {
-    state: ResourceStateInterface = {
+class Resource extends React.Component {
+    state = {
         data: {
             total: 0,
             data: []
@@ -57,9 +31,9 @@ class Resource extends React.Component<
      * Get the current resource based on resource param
      *
      */
-    getCurrentResource(slug: string = this.props.match.params.resource) {
-        return (window as any).Pangaso.resources.find(
-            (resource: any) => resource.slug === slug
+    getCurrentResource(slug = this.props.match.params.resource) {
+        return Pangaso.resources.find(
+            resource => resource.slug === slug
         )
     }
 
@@ -68,7 +42,7 @@ class Resource extends React.Component<
      * Trigger multi delete confirm modal
      * 
      */
-    triggerMultiDelete = (currentlyDeleting?: string) =>
+    triggerMultiDelete = (currentlyDeleting = null) =>
         this.setState({
             currentlyDeleting,
             multiDeleting: !this.state.multiDeleting
@@ -90,9 +64,9 @@ class Resource extends React.Component<
      *
      */
     fetchData = () => {
-        ;(window as any).Pangaso.request()
+        Pangaso.request()
             .get(`resources/${this.props.match.params.resource}`)
-            .then(({ data }: Axios.AxiosResponse) => {
+            .then(({ data }) => {
                 this.setState({
                     data,
                     isFetching: false
@@ -108,7 +82,7 @@ class Resource extends React.Component<
      * @return {void}
      *
      */
-    componentWillReceiveProps(nextProps: ResourcePropsInterface) {
+    componentWillReceiveProps(nextProps) {
         if (
             nextProps.match.params.resource !== this.props.match.params.resource
         ) {
@@ -131,8 +105,8 @@ class Resource extends React.Component<
      * @param {React.SyntheticEvent} event
      *
      */
-    setSelectedAction = (event: React.SyntheticEvent) => {
-        const selectedAction = this.state.resource.actions.find((action: any) => action.id === (event.target as any).value)
+    setSelectedAction = (event) => {
+        const selectedAction = this.state.resource.actions.find(action => action.id === event.target.value)
 
         if (! selectedAction) return
 
@@ -146,7 +120,7 @@ class Resource extends React.Component<
      *
      */
     delete = () => {
-        ;(window as any).Pangaso.request()
+        Pangaso.request()
             .delete(`/resources/${this.state.resource.slug}`, {
                 data: {
                     resources: this.state.selected.length > 0 ? this.state.selected : [this.state.currentlyDeleting]
@@ -163,7 +137,7 @@ class Resource extends React.Component<
                     () => this.fetchData()
                 );
 
-                (window as any).Pangaso.success(`${this.state.resource.name}${this.state.selected.length > 1 ? 's' : ''} deleted !`)
+                Pangaso.success(`${this.state.resource.name}${this.state.selected.length > 1 ? 's' : ''} deleted !`)
             })
     }
 
@@ -172,13 +146,13 @@ class Resource extends React.Component<
      * Select all rows
      *
      */
-    private selectAll = () => {
+    selectAll = () => {
         this.setState({
             selected:
                 this.state.selected.length === this.state.data.data.length
                     ? []
                     : this.state.data.data.map(
-                          (item: any) => item[this.state.resource.primaryKey]
+                          item => item[this.state.resource.primaryKey]
                       )
         })
     }
@@ -189,8 +163,8 @@ class Resource extends React.Component<
      * on a resource
      * 
      */
-    private runAction = () => {
-        (window as any).Pangaso.request()
+    runAction = () => {
+        Pangaso.request()
             .post(`/resources/${this.state.resource.slug}/run-action`, {
                 resources: this.state.selected,
                 action: this.state.selectedAction.id
@@ -210,7 +184,7 @@ class Resource extends React.Component<
                     runningAction: false
                 });
 
-                (window as any).Pangaso.success('Action run !')
+                Pangaso.success('Action run !')
             })
     }
 
@@ -221,9 +195,9 @@ class Resource extends React.Component<
      * @return {array}
      *
      */
-    private getIndexFields = (): Array<any> =>
+    getIndexFields = () =>
         this.state.resource.fields.filter(
-            (field: any) => !field.hideOnIndexPage
+            field => !field.hideOnIndexPage
         )
 
     /**
@@ -231,22 +205,22 @@ class Resource extends React.Component<
      * Toggle select for an item
      *
      */
-    private toggleSelect = (item: any) => {
+    toggleSelect = item => {
         const { primaryKey } = this.state.resource
 
         this.setState({
             selected: this.state.selected.includes(item[primaryKey])
-                ? this.state.selected.filter((i: any) => i !== item[primaryKey])
+                ? this.state.selected.filter(i => i !== item[primaryKey])
                 : [...this.state.selected, item[primaryKey]]
         })
     }
 
     render() {
         const { Link } = this.props
-        const Modal = (window as any).Pangaso.components['component-modal']
-        const Table = (window as any).Pangaso.components['component-table']
-        const Button = (window as any).Pangaso.components['component-button']
-        const Loader = (window as any).Pangaso.components['component-loader']
+        const Modal = Pangaso.components['component-modal']
+        const Table = Pangaso.components['component-table']
+        const Button = Pangaso.components['component-button']
+        const Loader = Pangaso.components['component-loader']
         const { resource, data, selectedAction, selected, runningAction, multiDeleting } = this.state
 
         return (

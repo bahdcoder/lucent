@@ -1,22 +1,7 @@
-import * as React from 'react'
+import React from 'react'
 import classnames from 'classnames'
 
-interface TablePropsInterface {
-    items?: []
-    resource?: any
-    selectedAction?: any
-    setSelectedAction?(): void
-    selectAll?(): void
-    headers?: []
-    rows?: []
-    selected?: []
-    toggleSelect?(item: any): void
-    triggerMultiDelete?(): void
-    triggerRunAction?(): void
-    Link?: React.FunctionComponent<{ to: string; className: string }>
-}
-
-const Table: React.FunctionComponent<TablePropsInterface> = ({
+const Table = ({
     resource,
     selectedAction = '',
     setSelectedAction,
@@ -28,7 +13,7 @@ const Table: React.FunctionComponent<TablePropsInterface> = ({
     triggerMultiDelete,
     triggerRunAction,
     Link
-}: TablePropsInterface) => (
+}) => (
     <div className="w-full bg-white rounded-t-lg shadow mt-4">
         <div className="h-16 flex justify-between items-center">
             <div className="w-20 flex justify-center items-center">
@@ -50,7 +35,7 @@ const Table: React.FunctionComponent<TablePropsInterface> = ({
                             <option value="">
                                 Select an action
                             </option>
-                            {resource.actions.map((action: any) => (
+                            {resource.actions.map(action => (
                                 <option value={action.id} key={action.id}>
                                     {action.name}
                                 </option>
@@ -81,7 +66,7 @@ const Table: React.FunctionComponent<TablePropsInterface> = ({
                                     {
                                         enableBackground:
                                             'new 0 0 41.999 41.999'
-                                    } as any
+                                    }
                                 }
                                 xmlSpace="preserve"
                             >
@@ -122,7 +107,7 @@ const Table: React.FunctionComponent<TablePropsInterface> = ({
                 <tr className="bg-grey-lighter w-full font-bold text-xs text-left uppercase border-b-2 tracking-wide align-middle">
                     <React.Fragment>
                         <th className="py-3 w-20 px-0" />
-                        {headers.map((field: any, index: number) => (
+                        {headers.map((field, index) => (
                             <th className="py-3 px-0" key={index}>
                                 {field.name.toUpperCase()}
                             </th>
@@ -133,7 +118,7 @@ const Table: React.FunctionComponent<TablePropsInterface> = ({
             </thead>
 
             <tbody>
-                {rows.map((row: any) => (
+                {rows.map(row => (
                     <tr
                         key={row[resource.primaryKey]}
                         className="trans-30 border-b border-grey-light hover:bg-grey-lighter"
@@ -150,7 +135,7 @@ const Table: React.FunctionComponent<TablePropsInterface> = ({
                                     value={row[resource.primaryKey]}
                                 />
                             </td>
-                            {headers.map((field: any, index: number) => (
+                            {headers.map((field, index) => (
                                 <td className="text-left h-14" key={index}>
                                     {row[field.attribute]}
                                 </td>

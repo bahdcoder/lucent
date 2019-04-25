@@ -1,7 +1,7 @@
-import * as React from 'react'
+import Axios from 'axios'
+import React from 'react'
 import Toasted from 'toastedjs'
 import classnames from 'classnames'
-import Axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios'
 
 // components
 import Table from './components/Table'
@@ -21,58 +21,10 @@ class Form {}
 export class Pangaso {
     /**
      *
-     * Axios instance
-     *
-     */
-    public instance: AxiosInstance
-
-    /**
-     *
-     * Define the array of booting callbacks
-     */
-    public bootingCallbacks: Function[] = []
-
-    /**
-     *
-     * Register all available fields
-     *
-     */
-    public fields: any = {}
-
-    /**
-     *
-     * Define all resources on pangaso
-     *
-     */
-    public resources: [] = []
-
-    /**
-     *
-     * Register all available routes
-     *
-     */
-    public routes: any = []
-
-    /**
-     *
-     * Register all sidebar items
-     *
-     */
-    public sidebarItems: any = []
-
-    /**
-     *
-     * Define global components that can be used anywhere
-     *
-     */
-    public components: any = {}
-
-    /**
-     *
      * Initialize the pangaso instance
      *
      */
-    public constructor() {
+    constructor() {
         /**
          *
          * Create axios instance
@@ -82,23 +34,70 @@ export class Pangaso {
             baseURL: '/api/'
         })
 
+        /**
+         * 
+         * Initialize global fields
+         * 
+         */
+        this.fields = {}
+
+        /**
+         * 
+         * Initialize global component registry
+         * 
+         */
+        this.components = {}
+
+        /**
+         * 
+         * Initialize booting callbacks for all plugins/tools
+         * 
+         */
+        this.bootingCallbacks = []
+
+        /**
+         * 
+         * Define all routes
+         * 
+         */
+        this.routes = []
+
+
+        /**
+         * 
+         * Initialize all sidebar items
+         * 
+         */
+        this.sidebarItems = []
+
+        /**
+         * 
+         * Save an instance of the real `this`
+         * 
+         */
+        let _this = this
+
+        /**
+         * 
+         * Register an HTTP interceptor to format errors
+         * and flash default error.
+         * 
+         */
         this.instance.interceptors.response.use(
-            (response: AxiosResponse) => response,
-            (error: AxiosError) => {
-                console.log(error.response)
-
+            (response) => response,
+            (error) => {
                 if (error.response.status === 422) {
-                    const errors: any = {}
+                    const errors = {}
 
-                    error.response.data.forEach((error: any) => {
+                    error.response.data.forEach((error) => {
                         errors[error.field] = error.message
                     })
 
                     error.response.data = errors
 
-                    this.error('Validation errors. Please fix !')
+                    _this.error('Validation errors. Please fix !')
                 } else {
-                    this.error(error.response.data.message || 'An error occured !')
+                    _this.error(error.response.data.message || 'An error occured !')
                 }
 
                 return Promise.reject(error)
@@ -136,7 +135,7 @@ export class Pangaso {
      * @return {AxiosInstance}
      *
      */
-    public request(): AxiosInstance {
+    request = () => {
         return this.instance
     }
 
@@ -149,7 +148,7 @@ export class Pangaso {
      * @return {Toasted}
      *
      */
-    public toasted(options: any = {}) {
+    toasted = (options = {}) => {
         return new Toasted({
             duration: 4000,
             theme: 'bubble',
@@ -169,7 +168,7 @@ export class Pangaso {
      * @return {void}
      *
      */
-    public success(message: string) {
+    success = message => {
         return this.toasted({
             type: 'success'
         }).show(message)
@@ -182,7 +181,7 @@ export class Pangaso {
      * @return {void}
      *
      */
-    public error(message: string) {
+    error = message => {
         return this.toasted({
             type: 'error'
         }).show(message)
@@ -196,37 +195,43 @@ export class Pangaso {
      *
      */
 
-    public Form() {
+    Form() {
         return new Form()
     }
 
     /**
      *
      * Boot all tool callbacks
+     * 
+     * @param {Function} boot
      *
      * @return {void}
      *
      */
-    public booting(boot: Function) {
+    booting = boot => {
         this.bootingCallbacks.push(boot)
     }
 
     /**
      *
      * Boot all of the boot callbacks
+     * 
+     * @param {Array} resources
      *
      * @return {void}
      *
      */
-    public boot(resources: string) {
+    boot = (resources) => {
         this.resources = JSON.parse(resources)
 
-        this.bootingCallbacks.forEach((boot: Function) =>
+        let _this = this
+
+        this.bootingCallbacks.forEach((boot) =>
             boot({
-                route: this.route.bind(this),
-                field: this.field.bind(this),
-                sidebar: this.sidebar.bind(this),
-                component: this.component.bind(this)
+                route: _this.route.bind(_this),
+                field: _this.field.bind(_this),
+                sidebar: _this.sidebar.bind(_this),
+                component: _this.component.bind(_this)
             })
         )
     }
@@ -236,7 +241,7 @@ export class Pangaso {
      * Use this function to set state
      *
      */
-    public setState(data: any, callback?: Function) {}
+    setState(data, callback) {}
 
     /**
      *
@@ -245,8 +250,10 @@ export class Pangaso {
      * @return {void}
      *
      */
-    public field(name: string, component: any) {
+    field = (name, component) => {
         this.fields[name] = component
+
+        return this
     }
 
     /**
@@ -257,7 +264,7 @@ export class Pangaso {
      * @param {React.Component} component
      *
      */
-    public route(path: string, component: React.SFC) {
+    route = (path, component) => {
         this.routes.push({
             path,
             component
@@ -273,7 +280,7 @@ export class Pangaso {
      * @return {void}
      *
      */
-    public sidebar(Sidebar: React.SFC) {
+    sidebar = (Sidebar) => {
         this.sidebarItems.push(Sidebar)
 
         this.setState({ sidebarItems: this.sidebarItems })
@@ -290,7 +297,7 @@ export class Pangaso {
      * @return {void}
      *
      */
-    public component(key: string, component: React.SFC) {
+    component = (key, component) => {
         this.components[key] = component
     }
 }

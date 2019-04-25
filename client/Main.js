@@ -1,28 +1,14 @@
-import * as React from 'react'
+import React from 'react'
 import Pangaso from './Pangaso'
 import { Route, Link, withRouter } from 'react-router-dom'
 
-interface PangasoRoute {
-    path: string
-    component: React.FunctionComponent<{ Link: any }>
-}
-
-interface MainStateInterface {
-    routes: []
-    sidebarItems: React.FunctionComponent[]
-}
-
-interface MainPropsInterface {}
-
-export class Main extends React.Component<
-    MainPropsInterface,
-    MainStateInterface
-> {
+export class Main extends React.Component {
     /**
      *
      * Define component state
+     * 
      */
-    public state: MainStateInterface = {
+    state = {
         routes: [],
         sidebarItems: []
     }
@@ -43,7 +29,7 @@ export class Main extends React.Component<
      * @return {JSX}
      *
      */
-    public render() {
+    render() {
         return (
             <React.Fragment>
                 <div className="flex">
@@ -56,10 +42,10 @@ export class Main extends React.Component<
                             <div className="py-16 px-8">
                                 {this.state.sidebarItems.map(
                                     (
-                                        SidebarItem: React.FunctionComponent,
-                                        index: number
+                                        SidebarItem,
+                                        index
                                     ) => {
-                                        const SidebarItemWithRouter: any = withRouter(
+                                        const SidebarItemWithRouter = withRouter(
                                             SidebarItem
                                         )
 
@@ -90,8 +76,8 @@ export class Main extends React.Component<
                                     {
                                         path,
                                         component: Component
-                                    }: PangasoRoute,
-                                    index: number
+                                    },
+                                    index
                                 ) => (
                                     <Route
                                         exact

@@ -1,23 +1,12 @@
-import * as React from 'react'
-import * as ReactModal from 'react-modal'
+import React from 'react'
 
+// components
 import Button from './Button'
-
-interface ModalPropsInterface {
-    open: boolean
-    title: string
-    renderFooter?(): any
-    renderContent?(): any
-    action?: {
-        type: string
-        label: string
-    }
-    cancel?(): any
-}
+import ReactModal from 'react-modal'
 
 ReactModal.setAppElement('#app')
 
-const Modal: React.FunctionComponent<ModalPropsInterface> = ({
+const Modal = ({
     open = false,
     title = '',
     renderFooter,

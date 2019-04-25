@@ -1,12 +1,13 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 
 import { Main } from './Main'
 import Pangaso from './Pangaso'
-;(window as any).Pangaso = Pangaso
 
-const app: HTMLElement | null = document.getElementById('app')
+window.Pangaso = Pangaso
+
+const app = document.getElementById('app')
 
 ReactDOM.render(
     <BrowserRouter>

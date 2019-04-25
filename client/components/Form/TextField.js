@@ -1,22 +1,5 @@
-import * as React from 'react'
+import React from 'react'
 import classnames from 'classnames'
-
-export interface FieldPropsInterface {
-    className?: string
-    name?: string
-    placeholder?: string
-    value?: string
-    handler?(event?: any): void
-    type?: string
-    error?: string
-    textarea?: boolean
-    rows?: number
-    cols?: number
-    dateOptions?: {
-        enableTime?: boolean
-        defaultDate?: string
-    }
-}
 
 const TextField = ({
     className = '',
@@ -29,8 +12,8 @@ const TextField = ({
     cols,
     textarea = false,
     handler = () => {}
-}: FieldPropsInterface) => {
-    const Component: any = textarea ? 'textarea' : 'input'
+}) => {
+    const Component = textarea ? 'textarea' : 'input'
 
     return (
         <React.Fragment>

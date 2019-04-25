@@ -86,49 +86,111 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./client/Main.tsx":
-/*!*************************!*\
-  !*** ./client/Main.tsx ***!
-  \*************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./client/Main.js":
+/*!************************!*\
+  !*** ./client/Main.js ***!
+  \************************/
+/*! exports provided: Main */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Main", function() { return Main; });
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _Pangaso__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Pangaso */ "./client/Pangaso.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
+
+
+
+
+
+
+
+
+
+
+
+
+var Main =
+/*#__PURE__*/
+function (_React$Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default()(Main, _React$Component);
+
+  function Main() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, Main);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default()(this, (_getPrototypeOf2 = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default()(Main)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "state", {
+      routes: [],
+      sidebarItems: []
+      /**
+       *
+       * Pass setState to Pangaso instance
+       *
+       */
+
     });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const Pangaso_1 = __webpack_require__(/*! ./Pangaso */ "./client/Pangaso.ts");
-const react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-class Main extends React.Component {
-    constructor() {
-        super(...arguments);
-        /**
-         *
-         * Define component state
-         */
-        this.state = {
-            routes: [],
-            sidebarItems: []
-        };
-    }
-    /**
-     *
-     * Pass setState to Pangaso instance
-     *
-     */
-    componentDidMount() {
-        return __awaiter(this, void 0, void 0, function* () {
-            Pangaso_1.default.setState = this.setState.bind(this);
-        });
-    }
+
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default()(Main, [{
+    key: "componentDidMount",
+    value: function () {
+      var _componentDidMount = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _Pangaso__WEBPACK_IMPORTED_MODULE_11__["default"].setState = this.setState.bind(this);
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function componentDidMount() {
+        return _componentDidMount.apply(this, arguments);
+      }
+
+      return componentDidMount;
+    }()
     /**
      *
      * Render the main component
@@ -136,189 +198,315 @@ class Main extends React.Component {
      * @return {JSX}
      *
      */
-    render() {
-        return (React.createElement(React.Fragment, null,
-            React.createElement("div", { className: "flex" },
-                React.createElement("div", { className: "w-1/8 flex min-h-screen" },
-                    React.createElement("div", { className: "bg-indigo-darker w-full" },
-                        React.createElement("div", { className: "w-full text-white bg-indigo-darkest h-16 flex items-center justify-center text-lg" }, "Pangaso"),
-                        React.createElement("div", { className: "py-16 px-8" }, this.state.sidebarItems.map((SidebarItem, index) => {
-                            const SidebarItemWithRouter = react_router_dom_1.withRouter(SidebarItem);
-                            return (React.createElement(SidebarItemWithRouter, { Link: react_router_dom_1.Link, key: index }));
-                        })))),
-                React.createElement("div", { className: "w-full" },
-                    React.createElement("div", { className: "bg-white flex items-center shadow h-16 px-6" },
-                        React.createElement("input", { type: "text", placeholder: "Search", className: "text-grey-darkest w-1/4 border border-grey focus:outline-none rounded-lg py-2 px-6" })),
-                    React.createElement("div", { className: "p-12" }, this.state.routes.map(({ path, component: Component }, index) => (React.createElement(react_router_dom_1.Route, { exact: true, key: index, path: path, render: props => (React.createElement(Component, Object.assign({}, props, { Link: react_router_dom_1.Link }))) }))))))));
-    }
-}
-exports.Main = Main;
 
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_10___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: "flex"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: "w-1/8 flex min-h-screen"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: "bg-indigo-darker w-full"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: "w-full text-white bg-indigo-darkest h-16 flex items-center justify-center text-lg"
+      }, "Pangaso"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: "py-16 px-8"
+      }, this.state.sidebarItems.map(function (SidebarItem, index) {
+        var SidebarItemWithRouter = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_12__["withRouter"])(SidebarItem);
+        return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(SidebarItemWithRouter, {
+          Link: react_router_dom__WEBPACK_IMPORTED_MODULE_12__["Link"],
+          key: index
+        });
+      })))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: "w-full"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: "bg-white flex items-center shadow h-16 px-6"
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("input", {
+        type: "text",
+        placeholder: "Search",
+        className: "text-grey-darkest w-1/4 border border-grey focus:outline-none rounded-lg py-2 px-6"
+      })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+        className: "p-12"
+      }, this.state.routes.map(function (_ref, index) {
+        var path = _ref.path,
+            Component = _ref.component;
+        return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__["Route"], {
+          exact: true,
+          key: index,
+          path: path,
+          render: function render(props) {
+            return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Component, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, props, {
+              Link: react_router_dom__WEBPACK_IMPORTED_MODULE_12__["Link"]
+            }));
+          }
+        });
+      })))));
+    }
+  }]);
+
+  return Main;
+}(react__WEBPACK_IMPORTED_MODULE_10___default.a.Component);
 
 /***/ }),
 
-/***/ "./client/Pangaso.ts":
+/***/ "./client/Pangaso.js":
 /*!***************************!*\
-  !*** ./client/Pangaso.ts ***!
+  !*** ./client/Pangaso.js ***!
   \***************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: Pangaso, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Pangaso", function() { return Pangaso; });
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js");
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var toastedjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! toastedjs */ "./node_modules/toastedjs/src/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Table */ "./client/components/Table.js");
+/* harmony import */ var _components_Modal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Modal */ "./client/components/Modal.js");
+/* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Loader */ "./client/components/Loader.js");
+/* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Button */ "./client/components/Button.js");
+/* harmony import */ var _components_Form_NumField__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Form/NumField */ "./client/components/Form/NumField.js");
+/* harmony import */ var _components_Form_DateField__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Form/DateField */ "./client/components/Form/DateField.js");
+/* harmony import */ var _components_Form_TextField__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Form/TextField */ "./client/components/Form/TextField.js");
+/* harmony import */ var _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Form/TextareaField */ "./client/components/Form/TextareaField.js");
+/* harmony import */ var _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Form/PasswordField */ "./client/components/Form/PasswordField.js");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const toastedjs_1 = __webpack_require__(/*! toastedjs */ "./node_modules/toastedjs/src/index.js");
-const classnames_1 = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-const axios_1 = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-// components
-const Table_1 = __webpack_require__(/*! ./components/Table */ "./client/components/Table.tsx");
-const Modal_1 = __webpack_require__(/*! ./components/Modal */ "./client/components/Modal.tsx");
-const Loader_1 = __webpack_require__(/*! ./components/Loader */ "./client/components/Loader.tsx");
-const Button_1 = __webpack_require__(/*! ./components/Button */ "./client/components/Button.tsx");
-// fields
-const NumField_1 = __webpack_require__(/*! ./components/Form/NumField */ "./client/components/Form/NumField.tsx");
-const DateField_1 = __webpack_require__(/*! ./components/Form/DateField */ "./client/components/Form/DateField.tsx");
-const TextField_1 = __webpack_require__(/*! ./components/Form/TextField */ "./client/components/Form/TextField.tsx");
-const TextareaField_1 = __webpack_require__(/*! ./components/Form/TextareaField */ "./client/components/Form/TextareaField.tsx");
-const PasswordField_1 = __webpack_require__(/*! ./components/Form/PasswordField */ "./client/components/Form/PasswordField.tsx");
-class Form {
-}
-class Pangaso {
-    /**
-     *
-     * Initialize the pangaso instance
-     *
-     */
-    constructor() {
-        /**
-         *
-         * Define the array of booting callbacks
-         */
-        this.bootingCallbacks = [];
-        /**
-         *
-         * Register all available fields
-         *
-         */
-        this.fields = {};
-        /**
-         *
-         * Define all resources on pangaso
-         *
-         */
-        this.resources = [];
-        /**
-         *
-         * Register all available routes
-         *
-         */
-        this.routes = [];
-        /**
-         *
-         * Register all sidebar items
-         *
-         */
-        this.sidebarItems = [];
-        /**
-         *
-         * Define global components that can be used anywhere
-         *
-         */
-        this.components = {};
-        /**
-         *
-         * Create axios instance
-         *
-         */
-        this.instance = axios_1.default.create({
-            baseURL: '/api/'
+
+
+
+
+
+
+ // components
+
+
+
+
+ // fields
+
+
+
+
+
+
+
+var _Form = function Form() {
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, Form);
+};
+
+var Pangaso =
+/*#__PURE__*/
+function () {
+  /**
+   *
+   * Initialize the pangaso instance
+   *
+   */
+  function Pangaso() {
+    var _this3 = this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, Pangaso);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "request", function () {
+      return _this3.instance;
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "toasted", function () {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      return new toastedjs__WEBPACK_IMPORTED_MODULE_6__["default"](_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({
+        duration: 4000,
+        theme: 'bubble',
+        position: 'bottom-right',
+        className: classnames__WEBPACK_IMPORTED_MODULE_7___default()('shadow-lg rounded-lg text-white px-8 py-2', {
+          'bg-green': options.type === 'success',
+          'bg-red': options.type === 'error'
+        })
+      }, options));
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "success", function (message) {
+      return _this3.toasted({
+        type: 'success'
+      }).show(message);
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "error", function (message) {
+      return _this3.toasted({
+        type: 'error'
+      }).show(message);
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "booting", function (boot) {
+      _this3.bootingCallbacks.push(boot);
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "boot", function (resources) {
+      _this3.resources = JSON.parse(resources);
+      var _this = _this3;
+
+      _this3.bootingCallbacks.forEach(function (boot) {
+        return boot({
+          route: _this.route.bind(_this),
+          field: _this.field.bind(_this),
+          sidebar: _this.sidebar.bind(_this),
+          component: _this.component.bind(_this)
         });
-        this.instance.interceptors.response.use((response) => response, (error) => {
-            console.log(error.response);
-            if (error.response.status === 422) {
-                const errors = {};
-                error.response.data.forEach((error) => {
-                    errors[error.field] = error.message;
-                });
-                error.response.data = errors;
-                this.error('Validation errors. Please fix !');
-            }
-            else {
-                this.error(error.response.data.message || 'An error occured !');
-            }
-            return Promise.reject(error);
+      });
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "field", function (name, component) {
+      _this3.fields[name] = component;
+      return _this3;
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "route", function (path, component) {
+      _this3.routes.push({
+        path: path,
+        component: component
+      });
+
+      _this3.setState({
+        routes: _this3.routes
+      });
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "sidebar", function (Sidebar) {
+      _this3.sidebarItems.push(Sidebar);
+
+      _this3.setState({
+        sidebarItems: _this3.sidebarItems
+      });
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "component", function (key, component) {
+      _this3.components[key] = component;
+    });
+
+    /**
+     *
+     * Create axios instance
+     *
+     */
+    this.instance = axios__WEBPACK_IMPORTED_MODULE_4___default.a.create({
+      baseURL: '/api/'
+    });
+    /**
+     * 
+     * Initialize global fields
+     * 
+     */
+
+    this.fields = {};
+    /**
+     * 
+     * Initialize global component registry
+     * 
+     */
+
+    this.components = {};
+    /**
+     * 
+     * Initialize booting callbacks for all plugins/tools
+     * 
+     */
+
+    this.bootingCallbacks = [];
+    /**
+     * 
+     * Define all routes
+     * 
+     */
+
+    this.routes = [];
+    /**
+     * 
+     * Initialize all sidebar items
+     * 
+     */
+
+    this.sidebarItems = [];
+    /**
+     * 
+     * Save an instance of the real `this`
+     * 
+     */
+
+    var _this2 = this;
+    /**
+     * 
+     * Register an HTTP interceptor to format errors
+     * and flash default error.
+     * 
+     */
+
+
+    this.instance.interceptors.response.use(function (response) {
+      return response;
+    }, function (error) {
+      if (error.response.status === 422) {
+        var errors = {};
+        error.response.data.forEach(function (error) {
+          errors[error.field] = error.message;
         });
-        /**
-         *
-         * Here we'll register a bunch of fields that come
-         * by default with Pangaso
-         *
-         */
-        this.field('form-num', NumField_1.default);
-        this.field('form-text', TextField_1.default);
-        this.field('form-date', DateField_1.default);
-        this.field('form-password', PasswordField_1.default);
-        this.field('form-textarea', TextareaField_1.default);
-        /**
-         *
-         * Here we'll register components to the component
-         * registry
-         *
-         */
-        this.component('component-modal', Modal_1.default);
-        this.component('component-table', Table_1.default);
-        this.component('component-loader', Loader_1.default);
-        this.component('component-button', Button_1.default);
-    }
+        error.response.data = errors;
+
+        _this2.error('Validation errors. Please fix !');
+      } else {
+        _this2.error(error.response.data.message || 'An error occured !');
+      }
+
+      return Promise.reject(error);
+    });
     /**
      *
-     * Make an api request
-     *
-     * @return {AxiosInstance}
+     * Here we'll register a bunch of fields that come
+     * by default with Pangaso
      *
      */
-    request() {
-        return this.instance;
-    }
+
+    this.field('form-num', _components_Form_NumField__WEBPACK_IMPORTED_MODULE_12__["default"]);
+    this.field('form-text', _components_Form_TextField__WEBPACK_IMPORTED_MODULE_14__["default"]);
+    this.field('form-date', _components_Form_DateField__WEBPACK_IMPORTED_MODULE_13__["default"]);
+    this.field('form-password', _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_16__["default"]);
+    this.field('form-textarea', _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_15__["default"]);
     /**
      *
-     * Get a toasted instance
-     *
-     * @param {Object} options
-     *
-     * @return {Toasted}
+     * Here we'll register components to the component
+     * registry
      *
      */
-    toasted(options = {}) {
-        return new toastedjs_1.default(Object.assign({ duration: 4000, theme: 'bubble', position: 'bottom-right', className: classnames_1.default('shadow-lg rounded-lg text-white px-8 py-2', {
-                'bg-green': options.type === 'success',
-                'bg-red': options.type === 'error'
-            }) }, options));
-    }
-    /**
-     *
-     * Toast a success message
-     *
-     * @return {void}
-     *
-     */
-    success(message) {
-        return this.toasted({
-            type: 'success'
-        }).show(message);
-    }
-    /**
-     *
-     * Toast a error message
-     *
-     * @return {void}
-     *
-     */
-    error(message) {
-        return this.toasted({
-            type: 'error'
-        }).show(message);
-    }
+
+    this.component('component-modal', _components_Modal__WEBPACK_IMPORTED_MODULE_9__["default"]);
+    this.component('component-table', _components_Table__WEBPACK_IMPORTED_MODULE_8__["default"]);
+    this.component('component-loader', _components_Loader__WEBPACK_IMPORTED_MODULE_10__["default"]);
+    this.component('component-button', _components_Button__WEBPACK_IMPORTED_MODULE_11__["default"]);
+  }
+  /**
+   *
+   * Make an api request
+   *
+   * @return {AxiosInstance}
+   *
+   */
+
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Pangaso, [{
+    key: "Form",
+
     /**
      *
      * Get a form instance
@@ -326,41 +514,28 @@ class Pangaso {
      * @return {Form}
      *
      */
-    Form() {
-        return new Form();
+    value: function Form() {
+      return new _Form();
     }
     /**
      *
      * Boot all tool callbacks
+     * 
+     * @param {Function} boot
      *
      * @return {void}
      *
      */
-    booting(boot) {
-        this.bootingCallbacks.push(boot);
-    }
-    /**
-     *
-     * Boot all of the boot callbacks
-     *
-     * @return {void}
-     *
-     */
-    boot(resources) {
-        this.resources = JSON.parse(resources);
-        this.bootingCallbacks.forEach((boot) => boot({
-            route: this.route.bind(this),
-            field: this.field.bind(this),
-            sidebar: this.sidebar.bind(this),
-            component: this.component.bind(this)
-        }));
-    }
+
+  }, {
+    key: "setState",
+
     /**
      *
      * Use this function to set state
      *
      */
-    setState(data, callback) { }
+    value: function setState(data, callback) {}
     /**
      *
      * Register a field component.
@@ -368,328 +543,538 @@ class Pangaso {
      * @return {void}
      *
      */
-    field(name, component) {
-        this.fields[name] = component;
-    }
-    /**
-     * Define routes
-     *
-     * @param {string} path
-     *
-     * @param {React.Component} component
-     *
-     */
-    route(path, component) {
-        this.routes.push({
-            path,
-            component
-        });
-        this.setState({ routes: this.routes });
-    }
-    /**
-     *
-     * Set sidebar items
-     *
-     * @return {void}
-     *
-     */
-    sidebar(Sidebar) {
-        this.sidebarItems.push(Sidebar);
-        this.setState({ sidebarItems: this.sidebarItems });
-    }
-    /**
-     *
-     * Register global components
-     *
-     * @param {string} key
-     *
-     * @param {React.SFC} component
-     *
-     * @return {void}
-     *
-     */
-    component(key, component) {
-        this.components[key] = component;
-    }
-}
-exports.Pangaso = Pangaso;
-exports.default = new Pangaso();
 
+  }]);
+
+  return Pangaso;
+}();
+/* harmony default export */ __webpack_exports__["default"] = (new Pangaso());
 
 /***/ }),
 
-/***/ "./client/components/Button.tsx":
-/*!**************************************!*\
-  !*** ./client/components/Button.tsx ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./client/components/Button.js":
+/*!*************************************!*\
+  !*** ./client/components/Button.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const classnames_1 = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-const react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-const Button = ({ to, label = '', className = '', link = false, type = 'primary', handler }) => {
-    let ButtonElement = link ? react_router_dom_1.Link : 'button';
-    return (React.createElement(ButtonElement, { to: to, onClick: handler, className: classnames_1.default('trans-30 no-underline text-white rounded-lg px-8 h-9 flex items-center focus:outline-none', {
-            'bg-indigo hover:bg-indigo-dark': type === 'primary',
-            'bg-red-light hover:bg-red-dark': type === 'danger'
-        }, className) }, label));
+
+
+
+var Button = function Button(_ref) {
+  var to = _ref.to,
+      _ref$label = _ref.label,
+      label = _ref$label === void 0 ? '' : _ref$label,
+      _ref$className = _ref.className,
+      className = _ref$className === void 0 ? '' : _ref$className,
+      _ref$link = _ref.link,
+      link = _ref$link === void 0 ? false : _ref$link,
+      _ref$type = _ref.type,
+      type = _ref$type === void 0 ? 'primary' : _ref$type,
+      handler = _ref.handler;
+  var ButtonElement = link ? react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"] : 'button';
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ButtonElement, {
+    to: to,
+    onClick: handler,
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('trans-30 no-underline text-white rounded-lg px-8 h-9 flex items-center focus:outline-none', {
+      'bg-indigo hover:bg-indigo-dark': type === 'primary',
+      'bg-red-light hover:bg-red-dark': type === 'danger'
+    }, className)
+  }, label);
 };
-exports.default = Button;
 
+/* harmony default export */ __webpack_exports__["default"] = (Button);
 
 /***/ }),
 
-/***/ "./client/components/Form/DateField.tsx":
-/*!**********************************************!*\
-  !*** ./client/components/Form/DateField.tsx ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const classnames_1 = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-const react_flatpickr_1 = __webpack_require__(/*! react-flatpickr */ "./node_modules/react-flatpickr/build/index.js");
-__webpack_require__(/*! flatpickr/dist/themes/material_green.css */ "./node_modules/flatpickr/dist/themes/material_green.css");
-const DateField = (_a) => {
-    var { handler = () => { }, name = '', className, dateOptions, error } = _a, rest = __rest(_a, ["handler", "name", "className", "dateOptions", "error"]);
-    return (React.createElement(React.Fragment, null,
-        React.createElement(react_flatpickr_1.default, Object.assign({ onChange: date => handler({ name, date }), options: dateOptions, className: classnames_1.default('text-grey-darkest my-3 h-10 pr-3 pl-10 rounded-lg shadow border focus:outline-none focus:border-2', {
-                'border-grey focus:border-indigo': !error,
-                'border-red focus:border-red': error
-            }, className) }, rest)),
-        error && React.createElement("span", { className: "text-xs text-red font-thin" }, error)));
-};
-exports.default = DateField;
-
-
-/***/ }),
-
-/***/ "./client/components/Form/NumField.tsx":
+/***/ "./client/components/Form/DateField.js":
 /*!*********************************************!*\
-  !*** ./client/components/Form/NumField.tsx ***!
+  !*** ./client/components/Form/DateField.js ***!
   \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const TextField_1 = __webpack_require__(/*! ./TextField */ "./client/components/Form/TextField.tsx");
-const NumField = (props) => (React.createElement(TextField_1.default, Object.assign({ type: "number" }, props)));
-exports.default = NumField;
-
-
-/***/ }),
-
-/***/ "./client/components/Form/PasswordField.tsx":
-/*!**************************************************!*\
-  !*** ./client/components/Form/PasswordField.tsx ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const TextField_1 = __webpack_require__(/*! ./TextField */ "./client/components/Form/TextField.tsx");
-const PasswordField = (props) => (React.createElement(TextField_1.default, Object.assign({ type: "password" }, props)));
-exports.default = PasswordField;
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js");
+/* harmony import */ var _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_flatpickr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-flatpickr */ "./node_modules/react-flatpickr/build/index.js");
+/* harmony import */ var react_flatpickr__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_flatpickr__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var flatpickr_dist_themes_material_green_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flatpickr/dist/themes/material_green.css */ "./node_modules/flatpickr/dist/themes/material_green.css");
+/* harmony import */ var flatpickr_dist_themes_material_green_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flatpickr_dist_themes_material_green_css__WEBPACK_IMPORTED_MODULE_5__);
 
 
-/***/ }),
 
-/***/ "./client/components/Form/TextField.tsx":
-/*!**********************************************!*\
-  !*** ./client/components/Form/TextField.tsx ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const classnames_1 = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-const TextField = ({ className = '', name = '', placeholder = '', value = '', type = 'text', error, rows, cols, textarea = false, handler = () => { } }) => {
-    const Component = textarea ? 'textarea' : 'input';
-    return (React.createElement(React.Fragment, null,
-        React.createElement(Component, { className: classnames_1.default('border text-grey-darkest my-3 px-5 rounded-lg shadow focus:outline-none focus:border-2', {
-                'h-10': !textarea,
-                'border-grey focus:border-indigo': !error,
-                'border-red focus:border-red': error
-            }, className), rows: rows, cols: cols, name: name, type: type, value: value, onChange: handler, placeholder: placeholder || name }),
-        error && (React.createElement("span", { className: "text-xs text-red font-thin" }, error))));
+
+
+var DateField = function DateField(_ref) {
+  var _ref$handler = _ref.handler,
+      handler = _ref$handler === void 0 ? function () {} : _ref$handler,
+      _ref$name = _ref.name,
+      name = _ref$name === void 0 ? '' : _ref$name,
+      className = _ref.className,
+      dateOptions = _ref.dateOptions,
+      error = _ref.error,
+      rest = _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1___default()(_ref, ["handler", "name", "className", "dateOptions", "error"]);
+
+  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_flatpickr__WEBPACK_IMPORTED_MODULE_4___default.a, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({
+    onChange: function onChange(date) {
+      return handler({
+        name: name,
+        date: date
+      });
+    },
+    options: dateOptions,
+    className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('text-grey-darkest my-3 h-10 pr-3 pl-10 rounded-lg shadow border focus:outline-none focus:border-2', {
+      'border-grey focus:border-indigo': !error,
+      'border-red focus:border-red': error
+    }, className)
+  }, rest)), error && react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
+    className: "text-xs text-red font-thin"
+  }, error));
 };
-exports.default = TextField;
 
+/* harmony default export */ __webpack_exports__["default"] = (DateField);
 
 /***/ }),
 
-/***/ "./client/components/Form/TextareaField.tsx":
-/*!**************************************************!*\
-  !*** ./client/components/Form/TextareaField.tsx ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./client/components/Form/NumField.js":
+/*!********************************************!*\
+  !*** ./client/components/Form/NumField.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _TextField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TextField */ "./client/components/Form/TextField.js");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const TextField_1 = __webpack_require__(/*! ./TextField */ "./client/components/Form/TextField.tsx");
-const TextareaField = (props) => (React.createElement(TextField_1.default, Object.assign({ textarea: true }, props, { className: "py-4 h-auto", rows: 4, cols: 4 })));
-exports.default = TextareaField;
 
+
+
+var NumField = function NumField(props) {
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({
+    type: "number"
+  }, props));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (NumField);
 
 /***/ }),
 
-/***/ "./client/components/Loader.tsx":
-/*!**************************************!*\
-  !*** ./client/components/Loader.tsx ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./client/components/Form/PasswordField.js":
+/*!*************************************************!*\
+  !*** ./client/components/Form/PasswordField.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _TextField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TextField */ "./client/components/Form/TextField.js");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const Loader = () => React.createElement("span", null, "LOADING PAGE DETAILS ...");
-exports.default = Loader;
 
+
+
+var PasswordField = function PasswordField(props) {
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({
+    type: "password"
+  }, props));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PasswordField);
 
 /***/ }),
 
-/***/ "./client/components/Modal.tsx":
+/***/ "./client/components/Form/TextField.js":
+/*!*********************************************!*\
+  !*** ./client/components/Form/TextField.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var TextField = function TextField(_ref) {
+  var _ref$className = _ref.className,
+      className = _ref$className === void 0 ? '' : _ref$className,
+      _ref$name = _ref.name,
+      name = _ref$name === void 0 ? '' : _ref$name,
+      _ref$placeholder = _ref.placeholder,
+      placeholder = _ref$placeholder === void 0 ? '' : _ref$placeholder,
+      _ref$value = _ref.value,
+      value = _ref$value === void 0 ? '' : _ref$value,
+      _ref$type = _ref.type,
+      type = _ref$type === void 0 ? 'text' : _ref$type,
+      error = _ref.error,
+      rows = _ref.rows,
+      cols = _ref.cols,
+      _ref$textarea = _ref.textarea,
+      textarea = _ref$textarea === void 0 ? false : _ref$textarea,
+      _ref$handler = _ref.handler,
+      handler = _ref$handler === void 0 ? function () {} : _ref$handler;
+  var Component = textarea ? 'textarea' : 'input';
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('border text-grey-darkest my-3 px-5 rounded-lg shadow focus:outline-none focus:border-2', {
+      'h-10': !textarea,
+      'border-grey focus:border-indigo': !error,
+      'border-red focus:border-red': error
+    }, className),
+    rows: rows,
+    cols: cols,
+    name: name,
+    type: type,
+    value: value,
+    onChange: handler,
+    placeholder: placeholder || name
+  }), error && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-xs text-red font-thin"
+  }, error));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TextField);
+
+/***/ }),
+
+/***/ "./client/components/Form/TextareaField.js":
+/*!*************************************************!*\
+  !*** ./client/components/Form/TextareaField.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _TextField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TextField */ "./client/components/Form/TextField.js");
+
+
+
+
+var TextareaField = function TextareaField(props) {
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({
+    textarea: true
+  }, props, {
+    className: "py-4 h-auto",
+    rows: 4,
+    cols: 4
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TextareaField);
+
+/***/ }),
+
+/***/ "./client/components/Loader.js":
 /*!*************************************!*\
-  !*** ./client/components/Modal.tsx ***!
+  !*** ./client/components/Loader.js ***!
   \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const ReactModal = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
-const Button_1 = __webpack_require__(/*! ./Button */ "./client/components/Button.tsx");
-ReactModal.setAppElement('#app');
-const Modal = ({ open = false, title = '', renderFooter, renderContent, action, cancel }) => (React.createElement(ReactModal, { isOpen: open, className: "mx-auto mt-16 focus:outline-none justify-center w-full h-full", overlayClassName: "fixed pin-t pin-b pin-l pin-r bg-grey-darkest-modal" },
-    React.createElement("div", { className: "bg-white rounded-lg shadow w-full max-w-sm mx-auto" },
-        React.createElement("div", { className: "p-8" },
-            React.createElement("h4", { className: "font-thin text-xl mb-8" }, title),
-            renderContent && renderContent()),
-        React.createElement("footer", { className: "w-full flex bg-grey-lighter justify-end rounded-b-lg px-8 py-4" },
-            renderFooter && renderFooter(),
-            !renderFooter && (React.createElement(React.Fragment, null,
-                React.createElement("button", { onClick: cancel, className: "bg-transparent mr-6 text-grey-dark focus:outline-none" }, "Cancel"),
-                React.createElement(Button_1.default, Object.assign({}, action))))))));
-exports.default = Modal;
 
+var Loader = function Loader() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "LOADING PAGE DETAILS ...");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Loader);
 
 /***/ }),
 
-/***/ "./client/components/Table.tsx":
-/*!*************************************!*\
-  !*** ./client/components/Table.tsx ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./client/components/Modal.js":
+/*!************************************!*\
+  !*** ./client/components/Modal.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Button */ "./client/components/Button.js");
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_2__);
+ // components
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const classnames_1 = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-const Table = ({ resource, selectedAction = '', setSelectedAction, headers = [], rows = [], selected = [], selectAll, toggleSelect, triggerMultiDelete, triggerRunAction, Link }) => (React.createElement("div", { className: "w-full bg-white rounded-t-lg shadow mt-4" },
-    React.createElement("div", { className: "h-16 flex justify-between items-center" },
-        React.createElement("div", { className: "w-20 flex justify-center items-center" },
-            React.createElement("input", { type: "checkbox", onChange: selectAll, checked: selected.length === rows.length })),
-        React.createElement("div", { className: "flex items-center justify-end w-1/3" },
-            resource.actions.length > 0 && selected.length > 0 && (React.createElement(React.Fragment, null,
-                React.createElement("select", { value: selectedAction.id, onChange: setSelectedAction, className: "bg-white focus:outline-none text-grey-darkest my-3 border border-grey h-10 px-3 rounded-lg shadow focus:outline-none focus:border-indigo focus:border-2 w-2/4" },
-                    React.createElement("option", { value: "" }, "Select an action"),
-                    resource.actions.map((action) => (React.createElement("option", { value: action.id, key: action.id }, action.name)))),
-                React.createElement("button", { type: "button", onClick: triggerRunAction, className: classnames_1.default('ml-3 focus:outline-none cursor-pointer trans-30 h-10 flex items-center justify-center rounded-lg px-3', {
-                        'bg-indigo hover:bg-indigo-dark': selectedAction,
-                        'bg-indigo-lighter cursor-not-allowed': !selectedAction
-                    }) },
-                    React.createElement("svg", { width: 20, height: 20, className: "fill-current text-white font-bold h-10", xmlns: "http://www.w3.org/2000/svg", id: "Capa_1", x: "0px", y: "0px", viewBox: "0 0 41.999 41.999", style: {
-                            enableBackground: 'new 0 0 41.999 41.999'
-                        }, xmlSpace: "preserve" },
-                        React.createElement("g", null,
-                            React.createElement("path", { d: "M36.068,20.176l-29-20C6.761-0.035,6.363-0.057,6.035,0.114C5.706,0.287,5.5,0.627,5.5,0.999v40  c0,0.372,0.206,0.713,0.535,0.886c0.146,0.076,0.306,0.114,0.465,0.114c0.199,0,0.397-0.06,0.568-0.177l29-20  c0.271-0.187,0.432-0.494,0.432-0.823S36.338,20.363,36.068,20.176z M7.5,39.095V2.904l26.239,18.096L7.5,39.095z", className: "active-path" })),
-                        ' ')))),
-            selected.length > 0 && (React.createElement("div", { className: "w-16 flex items-center justify-center" },
-                React.createElement("svg", { width: "20", height: "20", viewBox: "0 0 20 20", role: "presentation", "aria-labelledby": "delete", onClick: triggerMultiDelete, className: "trans-30 fill-current text-grey cursor-pointer hover:text-indigo-dark" },
-                    React.createElement("path", { fillRule: "nonzero", d: "M6 4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2h5a1 1 0 0 1 0 2h-1v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6H1a1 1 0 1 1 0-2h5zM4 6v12h12V6H4zm8-2V2H8v2h4zM8 8a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1z" })))))),
-    React.createElement("table", { className: "w-full", cellSpacing: "0", cellPadding: "0" },
-        React.createElement("thead", { className: "w-full" },
-            React.createElement("tr", { className: "bg-grey-lighter w-full font-bold text-xs text-left uppercase border-b-2 tracking-wide align-middle" },
-                React.createElement(React.Fragment, null,
-                    React.createElement("th", { className: "py-3 w-20 px-0" }),
-                    headers.map((field, index) => (React.createElement("th", { className: "py-3 px-0", key: index }, field.name.toUpperCase()))),
-                    React.createElement("th", { className: "py-3 w-12 px-0" })))),
-        React.createElement("tbody", null, rows.map((row) => (React.createElement("tr", { key: row[resource.primaryKey], className: "trans-30 border-b border-grey-light hover:bg-grey-lighter" },
-            React.createElement(React.Fragment, null,
-                React.createElement("td", { className: "text-left flex justify-center items-center w-20 h-14" },
-                    React.createElement("input", { onChange: () => toggleSelect(row), checked: selected.includes(
-                        // @ts-ignore
-                        row[resource.primaryKey]), type: "checkbox", value: row[resource.primaryKey] })),
-                headers.map((field, index) => (React.createElement("td", { className: "text-left h-14", key: index }, row[field.attribute]))),
-                React.createElement("td", { className: "text-left pr-6" },
-                    React.createElement("span", { className: "flex items-center justify-end flex-grow" },
-                        React.createElement(Link, { to: `/resources/${resource.slug}/${row[resource.primaryKey]}/details`, className: "trans-30 text-grey cursor-pointer hover:text-indigo-dark" },
-                            React.createElement("svg", { width: "22", height: "18", role: "presentation", viewBox: "0 0 22 16", className: "fill-current", "aria-labelledby": "view", xmlns: "http://www.w3.org/2000/svg" },
-                                React.createElement("path", { d: "M16.56 13.66a8 8 0 0 1-11.32 0L.3 8.7a1 1 0 0 1 0-1.42l4.95-4.95a8 8 0 0 1 11.32 0l4.95 4.95a1 1 0 0 1 0 1.42l-4.95 4.95-.01.01zm-9.9-1.42a6 6 0 0 0 8.48 0L19.38 8l-4.24-4.24a6 6 0 0 0-8.48 0L2.4 8l4.25 4.24h.01zM10.9 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" }))),
-                        React.createElement(Link, { to: `/resources/${resource.slug}/${row[resource.primaryKey]}/edit`, className: "trans-30 text-grey ml-3 cursor-pointer hover:text-indigo-dark" },
-                            React.createElement("svg", { width: "20", height: "20", viewBox: "0 0 20 20", role: "presentation", className: "fill-current", "aria-labelledby": "edit", xmlns: "http://www.w3.org/2000/svg" },
-                                React.createElement("path", { d: "M4.3 10.3l10-10a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1 0 1.4l-10 10a1 1 0 0 1-.7.3H5a1 1 0 0 1-1-1v-4a1 1 0 0 1 .3-.7zM6 14h2.59l9-9L15 2.41l-9 9V14zm10-2a1 1 0 0 1 2 0v6a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h6a1 1 0 1 1 0 2H2v14h14v-6z" }))),
-                        React.createElement("svg", { width: "20", height: "20", viewBox: "0 0 20 20", role: "presentation", "aria-labelledby": "delete", xmlns: "http://www.w3.org/2000/svg", onClick: () => triggerMultiDelete(row[resource.primaryKey]), className: "fill-current text-grey ml-3 cursor-pointer hover:text-indigo-dark" },
-                            React.createElement("path", { fillRule: "nonzero", d: "M6 4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2h5a1 1 0 0 1 0 2h-1v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6H1a1 1 0 1 1 0-2h5zM4 6v12h12V6H4zm8-2V2H8v2h4zM8 8a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1z" }))))))))))));
-exports.default = Table;
 
+
+react_modal__WEBPACK_IMPORTED_MODULE_2___default.a.setAppElement('#app');
+
+var Modal = function Modal(_ref) {
+  var _ref$open = _ref.open,
+      open = _ref$open === void 0 ? false : _ref$open,
+      _ref$title = _ref.title,
+      title = _ref$title === void 0 ? '' : _ref$title,
+      renderFooter = _ref.renderFooter,
+      renderContent = _ref.renderContent,
+      action = _ref.action,
+      cancel = _ref.cancel;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    isOpen: open,
+    className: "mx-auto mt-16 focus:outline-none justify-center w-full h-full",
+    overlayClassName: "fixed pin-t pin-b pin-l pin-r bg-grey-darkest-modal"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-white rounded-lg shadow w-full max-w-sm mx-auto"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "p-8"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "font-thin text-xl mb-8"
+  }, title), renderContent && renderContent()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
+    className: "w-full flex bg-grey-lighter justify-end rounded-b-lg px-8 py-4"
+  }, renderFooter && renderFooter(), !renderFooter && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: cancel,
+    className: "bg-transparent mr-6 text-grey-dark focus:outline-none"
+  }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_1__["default"], action)))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Modal);
 
 /***/ }),
 
-/***/ "./client/index.tsx":
-/*!**************************!*\
-  !*** ./client/index.tsx ***!
-  \**************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./client/components/Table.js":
+/*!************************************!*\
+  !*** ./client/components/Table.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-const react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-const Main_1 = __webpack_require__(/*! ./Main */ "./client/Main.tsx");
-const Pangaso_1 = __webpack_require__(/*! ./Pangaso */ "./client/Pangaso.ts");
-window.Pangaso = Pangaso_1.default;
-const app = document.getElementById('app');
-ReactDOM.render(React.createElement(react_router_dom_1.BrowserRouter, null,
-    React.createElement(Main_1.Main, null)), app);
 
+
+var Table = function Table(_ref) {
+  var resource = _ref.resource,
+      _ref$selectedAction = _ref.selectedAction,
+      selectedAction = _ref$selectedAction === void 0 ? '' : _ref$selectedAction,
+      setSelectedAction = _ref.setSelectedAction,
+      _ref$headers = _ref.headers,
+      headers = _ref$headers === void 0 ? [] : _ref$headers,
+      _ref$rows = _ref.rows,
+      rows = _ref$rows === void 0 ? [] : _ref$rows,
+      _ref$selected = _ref.selected,
+      selected = _ref$selected === void 0 ? [] : _ref$selected,
+      selectAll = _ref.selectAll,
+      toggleSelect = _ref.toggleSelect,
+      triggerMultiDelete = _ref.triggerMultiDelete,
+      triggerRunAction = _ref.triggerRunAction,
+      Link = _ref.Link;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full bg-white rounded-t-lg shadow mt-4"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "h-16 flex justify-between items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-20 flex justify-center items-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "checkbox",
+    onChange: selectAll,
+    checked: selected.length === rows.length
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-end w-1/3"
+  }, resource.actions.length > 0 && selected.length > 0 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    value: selectedAction.id,
+    onChange: setSelectedAction,
+    className: "bg-white focus:outline-none text-grey-darkest my-3 border border-grey h-10 px-3 rounded-lg shadow focus:outline-none focus:border-indigo focus:border-2 w-2/4"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: ""
+  }, "Select an action"), resource.actions.map(function (action) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: action.id,
+      key: action.id
+    }, action.name);
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button",
+    onClick: triggerRunAction,
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('ml-3 focus:outline-none cursor-pointer trans-30 h-10 flex items-center justify-center rounded-lg px-3', {
+      'bg-indigo hover:bg-indigo-dark': selectedAction,
+      'bg-indigo-lighter cursor-not-allowed': !selectedAction
+    })
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    width: 20,
+    height: 20,
+    className: "fill-current text-white font-bold h-10",
+    xmlns: "http://www.w3.org/2000/svg",
+    id: "Capa_1",
+    x: "0px",
+    y: "0px",
+    viewBox: "0 0 41.999 41.999",
+    style: {
+      enableBackground: 'new 0 0 41.999 41.999'
+    },
+    xmlSpace: "preserve"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M36.068,20.176l-29-20C6.761-0.035,6.363-0.057,6.035,0.114C5.706,0.287,5.5,0.627,5.5,0.999v40  c0,0.372,0.206,0.713,0.535,0.886c0.146,0.076,0.306,0.114,0.465,0.114c0.199,0,0.397-0.06,0.568-0.177l29-20  c0.271-0.187,0.432-0.494,0.432-0.823S36.338,20.363,36.068,20.176z M7.5,39.095V2.904l26.239,18.096L7.5,39.095z",
+    className: "active-path"
+  })), ' '))), selected.length > 0 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-16 flex items-center justify-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    width: "20",
+    height: "20",
+    viewBox: "0 0 20 20",
+    role: "presentation",
+    "aria-labelledby": "delete",
+    onClick: triggerMultiDelete,
+    className: "trans-30 fill-current text-grey cursor-pointer hover:text-indigo-dark"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    fillRule: "nonzero",
+    d: "M6 4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2h5a1 1 0 0 1 0 2h-1v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6H1a1 1 0 1 1 0-2h5zM4 6v12h12V6H4zm8-2V2H8v2h4zM8 8a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1z"
+  }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    className: "w-full",
+    cellSpacing: "0",
+    cellPadding: "0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", {
+    className: "w-full"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+    className: "bg-grey-lighter w-full font-bold text-xs text-left uppercase border-b-2 tracking-wide align-middle"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    className: "py-3 w-20 px-0"
+  }), headers.map(function (field, index) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+      className: "py-3 px-0",
+      key: index
+    }, field.name.toUpperCase());
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    className: "py-3 w-12 px-0"
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, rows.map(function (row) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+      key: row[resource.primaryKey],
+      className: "trans-30 border-b border-grey-light hover:bg-grey-lighter"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+      className: "text-left flex justify-center items-center w-20 h-14"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      onChange: function onChange() {
+        return toggleSelect(row);
+      },
+      checked: selected.includes( // @ts-ignore
+      row[resource.primaryKey]),
+      type: "checkbox",
+      value: row[resource.primaryKey]
+    })), headers.map(function (field, index) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        className: "text-left h-14",
+        key: index
+      }, row[field.attribute]);
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+      className: "text-left pr-6"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "flex items-center justify-end flex-grow"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Link, {
+      to: "/resources/".concat(resource.slug, "/").concat(row[resource.primaryKey], "/details"),
+      className: "trans-30 text-grey cursor-pointer hover:text-indigo-dark"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+      width: "22",
+      height: "18",
+      role: "presentation",
+      viewBox: "0 0 22 16",
+      className: "fill-current",
+      "aria-labelledby": "view",
+      xmlns: "http://www.w3.org/2000/svg"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M16.56 13.66a8 8 0 0 1-11.32 0L.3 8.7a1 1 0 0 1 0-1.42l4.95-4.95a8 8 0 0 1 11.32 0l4.95 4.95a1 1 0 0 1 0 1.42l-4.95 4.95-.01.01zm-9.9-1.42a6 6 0 0 0 8.48 0L19.38 8l-4.24-4.24a6 6 0 0 0-8.48 0L2.4 8l4.25 4.24h.01zM10.9 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Link, {
+      to: "/resources/".concat(resource.slug, "/").concat(row[resource.primaryKey], "/edit"),
+      className: "trans-30 text-grey ml-3 cursor-pointer hover:text-indigo-dark"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+      width: "20",
+      height: "20",
+      viewBox: "0 0 20 20",
+      role: "presentation",
+      className: "fill-current",
+      "aria-labelledby": "edit",
+      xmlns: "http://www.w3.org/2000/svg"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M4.3 10.3l10-10a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1 0 1.4l-10 10a1 1 0 0 1-.7.3H5a1 1 0 0 1-1-1v-4a1 1 0 0 1 .3-.7zM6 14h2.59l9-9L15 2.41l-9 9V14zm10-2a1 1 0 0 1 2 0v6a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h6a1 1 0 1 1 0 2H2v14h14v-6z"
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+      width: "20",
+      height: "20",
+      viewBox: "0 0 20 20",
+      role: "presentation",
+      "aria-labelledby": "delete",
+      xmlns: "http://www.w3.org/2000/svg",
+      onClick: function onClick() {
+        return triggerMultiDelete(row[resource.primaryKey]);
+      },
+      className: "fill-current text-grey ml-3 cursor-pointer hover:text-indigo-dark"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      fillRule: "nonzero",
+      d: "M6 4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2h5a1 1 0 0 1 0 2h-1v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6H1a1 1 0 1 1 0-2h5zM4 6v12h12V6H4zm8-2V2H8v2h4zM8 8a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1z"
+    }))))));
+  }))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Table);
+
+/***/ }),
+
+/***/ "./client/index.js":
+/*!*************************!*\
+  !*** ./client/index.js ***!
+  \*************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _Main__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Main */ "./client/Main.js");
+/* harmony import */ var _Pangaso__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Pangaso */ "./client/Pangaso.js");
+
+
+
+
+
+window.Pangaso = _Pangaso__WEBPACK_IMPORTED_MODULE_4__["default"];
+var app = document.getElementById('app');
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Main__WEBPACK_IMPORTED_MODULE_3__["Main"], null)), app);
 
 /***/ }),
 
@@ -712,6 +1097,142 @@ ReactDOM.render(React.createElement(react_router_dom_1.BrowserRouter, null,
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+module.exports = _assertThisInitialized;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+        args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+
+      _next(undefined);
+    });
+  };
+}
+
+module.exports = _asyncToGenerator;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/classCallCheck.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/createClass.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/createClass.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+module.exports = _createClass;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
 
 /***/ }),
 
@@ -787,6 +1308,253 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
   return target;
 }
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/extends.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/extends.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _extends() {
+  module.exports = _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+module.exports = _extends;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+module.exports = _getPrototypeOf;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/inherits.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js");
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) setPrototypeOf(subClass, superClass);
+}
+
+module.exports = _inherits;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/objectSpread.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/objectSpread.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var defineProperty = __webpack_require__(/*! ./defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+module.exports = _objectSpread;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/objectWithoutProperties.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var objectWithoutPropertiesLoose = __webpack_require__(/*! ./objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js");
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = objectWithoutPropertiesLoose(source, excluded);
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutProperties;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutPropertiesLoose;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ../helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
+
+var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return assertThisInitialized(self);
+}
+
+module.exports = _possibleConstructorReturn;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+module.exports = _setPrototypeOf;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/typeof.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
+
+function _typeof(obj) {
+  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return _typeof2(obj);
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/regenerator/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+
 
 /***/ }),
 
@@ -2803,7 +3571,7 @@ module.exports = exports['default'];
 
 /***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/flatpickr/dist/themes/material_green.css":
 /*!***********************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ref--8-1!./node_modules/postcss-loader/src??ref--8-2!./node_modules/flatpickr/dist/themes/material_green.css ***!
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--7-1!./node_modules/postcss-loader/src??ref--7-2!./node_modules/flatpickr/dist/themes/material_green.css ***!
   \***********************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -5655,7 +6423,7 @@ module.exports = warning;
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../css-loader/dist/cjs.js??ref--8-1!../../../postcss-loader/src??ref--8-2!./material_green.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/flatpickr/dist/themes/material_green.css");
+var content = __webpack_require__(/*! !../../../css-loader/dist/cjs.js??ref--7-1!../../../postcss-loader/src??ref--7-2!./material_green.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/flatpickr/dist/themes/material_green.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -37150,6 +37918,743 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/regenerator-runtime/runtime.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var runtime = (function (exports) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  exports.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  exports.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  exports.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  exports.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  exports.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  exports.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return exports.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        // Note: ["return"] must be used for ES3 parsing compatibility.
+        if (delegate.iterator["return"]) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  exports.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  exports.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+
+  // Regardless of whether this script is executing as a CommonJS module
+  // or not, return the runtime object so that we can declare the variable
+  // regeneratorRuntime in the outer scope, which allows this module to be
+  // injected easily by `bin/regenerator --include-runtime script.js`.
+  return exports;
+
+}(
+  // If this script is executing as a CommonJS module, use module.exports
+  // as the regeneratorRuntime namespace. Otherwise create a new empty
+  // object. Either way, the resulting object will be used to initialize
+  // the regeneratorRuntime variable at the top of this file.
+   true ? module.exports : undefined
+));
+
+try {
+  regeneratorRuntime = runtime;
+} catch (accidentalStrictMode) {
+  // This module should not be running in strict mode, so the above
+  // assignment should always work unless something is misconfigured. Just
+  // in case runtime.js accidentally runs in strict mode, we can escape
+  // strict mode using a global Function call. This could conceivably fail
+  // if a Content Security Policy forbids using Function, but in that case
+  // the proper solution is to fix the accidental strict mode problem. If
+  // you've misconfigured your bundler to force strict mode and applied a
+  // CSP to forbid Function, and you're not willing to fix either of those
+  // problems, please detail your unique predicament in a GitHub issue.
+  Function("r", "regeneratorRuntime = r")(runtime);
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/resolve-pathname/index.js":
 /*!************************************************!*\
   !*** ./node_modules/resolve-pathname/index.js ***!
@@ -40539,13 +42044,13 @@ module.exports = function(originalModule) {
 /***/ }),
 
 /***/ 0:
-/*!*****************************************************************************************************!*\
-  !*** multi ./client/index.tsx ./client/styles/main.scss ./client/tools/resources/styles/index.scss ***!
-  \*****************************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** multi ./client/index.js ./client/styles/main.scss ./client/tools/resources/styles/index.scss ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/katifrantz/OpenSource/FullstackJs/pangaso/client/index.tsx */"./client/index.tsx");
+__webpack_require__(/*! /Users/katifrantz/OpenSource/FullstackJs/pangaso/client/index.js */"./client/index.js");
 __webpack_require__(/*! /Users/katifrantz/OpenSource/FullstackJs/pangaso/client/styles/main.scss */"./client/styles/main.scss");
 module.exports = __webpack_require__(/*! /Users/katifrantz/OpenSource/FullstackJs/pangaso/client/tools/resources/styles/index.scss */"./client/tools/resources/styles/index.scss");
 

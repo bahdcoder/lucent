@@ -1,17 +1,8 @@
-import * as React from 'react'
+import React from 'react'
 import classnames from 'classnames'
 import { Link } from 'react-router-dom'
 
-interface ButtonPropsInterface {
-    to?: string
-    link?: boolean
-    type?: string
-    label: string
-    className?: string
-    handler?(): any
-}
-
-const Button: React.FunctionComponent<ButtonPropsInterface> = ({
+const Button = ({
     to,
     label = '',
     className = '',

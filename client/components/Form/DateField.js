@@ -1,10 +1,8 @@
-import * as React from 'react'
+import React from 'react'
 import classnames from 'classnames'
 import FlatPickr from 'react-flatpickr'
 
 import 'flatpickr/dist/themes/material_green.css'
-
-import { FieldPropsInterface } from './TextField'
 
 const DateField = ({
     handler = () => {},
@@ -13,7 +11,7 @@ const DateField = ({
     dateOptions,
     error,
     ...rest
-}: FieldPropsInterface) => (
+}) => (
     <React.Fragment>
         <FlatPickr
             onChange={date => handler({ name, date })}
