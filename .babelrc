@@ -1,0 +1,23 @@
+{
+    "presets": [
+        "@babel/preset-env"
+    ],
+    "plugins": [
+        ["module-resolver", {
+            "root": "./src",
+            "alias": {
+                "@": "./src",
+                "@client": "./src/client",
+                "@fields": "./src/fields",
+                "@utils": "./src/client/utils",
+                "@store": "./src/client/store",
+                "@pages": "./src/client/pages",
+                "@mixins": "./src/fields/mixins",
+                "@shared": "./src/client/shared",
+                "@controllers": "./src/controllers"
+            }
+        }],
+        "@babel/plugin-transform-runtime",
+        "@babel/plugin-syntax-dynamic-import"
+    ]
+}
