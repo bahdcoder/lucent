@@ -163,6 +163,26 @@ export class Database {
             .collection(collection)
             .findOneAndUpdate({ _id: new ObjectID(primaryKey) }, { $set: data })
     }
+
+    /**
+     *
+     * Update many existing resources in collection
+     *
+     * @param collection
+     *
+     * @param primaryKey
+     *
+     * @param data
+     *
+     * @return {Promise}
+     *
+     */
+    public async bulkUpdate(collection: string, primaryKeys: Array<string>, data: object) {
+        // @ts-ignore
+        return this.get()
+            .collection(collection)
+            .updateMany({ _id: primaryKeys.map(key => new ObjectID(key)) }, { $set: data })
+    }
 }
 
 export const Connection = new Database()

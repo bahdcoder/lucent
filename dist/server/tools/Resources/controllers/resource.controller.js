@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -35,6 +46,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var bson_1 = require("bson");
 var ResourceController = /** @class */ (function () {
     function ResourceController() {
     }
@@ -74,9 +86,14 @@ var ResourceController = /** @class */ (function () {
             var resource;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, req.pangaso.database.find(req.params.slug, req.params.resource)];
+                    case 0: return [4 /*yield*/, req.pangaso.database.find(req.pangaso.resource.collection(), req.params.resource)];
                     case 1:
                         resource = _a.sent();
+                        if (!resource) {
+                            return [2 /*return*/, res.status(404).json({
+                                    message: 'Resource not found.'
+                                })];
+                        }
                         return [2 /*return*/, res.json(resource)];
                 }
             });
@@ -98,7 +115,7 @@ var ResourceController = /** @class */ (function () {
             var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, req.pangaso.database.fetch(req.params.slug, {
+                    case 0: return [4 /*yield*/, req.pangaso.database.fetch(req.pangaso.resource.collection(), {
                             limit: req.pangaso.resource.perPage(),
                             page: req.query.page || 1
                         })];
@@ -128,7 +145,7 @@ var ResourceController = /** @class */ (function () {
                     case 0: return [4 /*yield*/, req.pangaso.resource.beforeSave(req.body)];
                     case 1:
                         data = _a.sent();
-                        return [4 /*yield*/, req.pangaso.database.insert(req.params.slug, data)];
+                        return [4 /*yield*/, req.pangaso.database.insert(req.pangaso.resource.collection(), data)];
                     case 2:
                         resource = _a.sent();
                         return [2 /*return*/, res.json(resource)];
@@ -155,7 +172,7 @@ var ResourceController = /** @class */ (function () {
                     case 0: return [4 /*yield*/, req.pangaso.resource.beforeUpdate(req.body)];
                     case 1:
                         data = _a.sent();
-                        return [4 /*yield*/, req.pangaso.database.update(req.params.slug, req.params.resource, data)];
+                        return [4 /*yield*/, req.pangaso.database.update(req.pangaso.resource.collection(), req.params.resource, data)];
                     case 2:
                         resource = _a.sent();
                         return [2 /*return*/, res.json(resource)];
@@ -184,7 +201,7 @@ var ResourceController = /** @class */ (function () {
                         action = req.pangaso.resource
                             .actions()
                             .find(function (a) { return a.id === actionId; });
-                        return [4 /*yield*/, req.pangaso.database.fetchByIds(req.params.slug, resources)
+                        return [4 /*yield*/, req.pangaso.database.fetchByIds(req.pangaso.resource.collection(), resources)
                             /**
                              *
                              * Run the handle method on the action, passing in
@@ -202,7 +219,7 @@ var ResourceController = /** @class */ (function () {
                          * and collection of models
                          *
                          */
-                        return [4 /*yield*/, action.handle(req.pangaso.database.get().collection(req.params.slug), req, collection)
+                        return [4 /*yield*/, action.handle(req.pangaso.database.get().collection(req.pangaso.resource.collection()), req, collection.map(function (item) { return (__assign({}, item, { _id: new bson_1.ObjectID(item._id) })); }))
                             /**
                              *
                              * Resolve and return the message for this action.
@@ -250,7 +267,7 @@ var ResourceController = /** @class */ (function () {
             var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, req.pangaso.database.destroy(req.params.slug, req.body.resources)];
+                    case 0: return [4 /*yield*/, req.pangaso.database.destroy(req.pangaso.resource.collection(), req.body.resources)];
                     case 1:
                         data = _a.sent();
                         return [2 /*return*/, res.json(data)];

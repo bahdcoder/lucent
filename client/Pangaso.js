@@ -10,11 +10,22 @@ import Table from './components/Table'
 import Modal from './components/Modal'
 import Loader from './components/Loader'
 import Button from './components/Button'
+import Checkbox from './components/Checkbox'
+
+// details
+import IDDetail from './components/Detail/ID'
+import NumDetail from './components/Detail/Num'
+import TextDetail from './components/Detail/Text'
+import DateDetail from './components/Detail/Date'
+import BooleanDetail from './components/Detail/Boolean'
+import PasswordDetail from './components/Detail/Password'
+import TextareaDetail from './components/Detail/Textarea'
 
 // fields
 import NumField from './components/Form/NumField'
 import DateField from './components/Form/DateField'
 import TextField from './components/Form/TextField'
+import BooleanField from './components/Form/BooleanField'
 import TextareaField from './components/Form/TextareaField'
 import PasswordField from './components/Form/PasswordField'
 
@@ -63,6 +74,13 @@ export class Pangaso {
          *
          */
         this.routes = []
+
+        /**
+         *
+         * Define all detail components
+         *
+         */
+        this.details = {}
 
         /**
          *
@@ -116,8 +134,24 @@ export class Pangaso {
         this.field('form-num', NumField)
         this.field('form-text', TextField)
         this.field('form-date', DateField)
+        this.field('form-boolean', BooleanField)
         this.field('form-password', PasswordField)
         this.field('form-textarea', TextareaField)
+
+        /**
+         *
+         * Here we'll register a bunch of components to be used
+         * to display the details of resource fields on
+         * the details page
+         *
+         */
+        this.detail('detail-id', IDDetail)
+        this.detail('detail-num', NumDetail)
+        this.detail('detail-text', TextDetail)
+        this.detail('detail-date', DateDetail)
+        this.detail('detail-boolean', BooleanDetail)
+        this.detail('detail-textarea', TextareaDetail)
+        this.detail('detail-password', PasswordDetail)
 
         /**
          *
@@ -131,6 +165,7 @@ export class Pangaso {
         this.component('component-table', Table)
         this.component('component-loader', Loader)
         this.component('component-button', Button)
+        this.component('component-checkbox', Checkbox)
     }
 
     /**
@@ -304,6 +339,21 @@ export class Pangaso {
      */
     component = (key, component) => {
         this.components[key] = component
+    }
+
+    /**
+     *
+     * Register global detail components
+     *
+     * @param {string} key
+     *
+     * @param {React.SFC} component
+     *
+     * @return {void}
+     *
+     */
+    detail = (key, detail) => {
+        this.details[key] = detail
     }
 }
 

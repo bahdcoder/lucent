@@ -38,13 +38,22 @@ class AddResource extends React.Component {
         const form = {}
 
         this.getCreationFields().forEach(field => {
-            form[field.attribute] =
-                field.type === 'Date'
-                    ? format(
-                          data[field.attribute] || new Date(),
-                          this.getFormat(field)
-                      )
-                    : data[field.attribute] || ''
+            if (field.type === 'Date') {
+                form[field.attribute] = format(
+                    data[field.attribute] || new Date(),
+                    this.getFormat(field)
+                )
+
+                return
+            }
+
+            if (field.type === 'Boolean') {
+                form[field.attribute] = !!data[field.attribute] || false
+
+                return
+            }
+
+            form[field.attribute] = data[field.attribute] || ''
         })
 
         this.setState({
@@ -149,7 +158,7 @@ class AddResource extends React.Component {
 
                 if (redirect) {
                     return this.props.history.push(
-                        `/resources/${this.state.resource.slug}`
+                        `/resources/${this.state.resource.slug}/${this.props.match.params.primaryKey}/details`
                     )
                 }
             })
@@ -182,6 +191,15 @@ class AddResource extends React.Component {
                 errors: {
                     ...this.state.errors,
                     [event.name]: null
+                }
+            })
+        }
+
+        if (event.target.type === 'checkbox') {
+            return this.setState({
+                form: {
+                    ...this.state.form,
+                    [event.target.name]: !this.state.form[event.target.name]
                 }
             })
         }
@@ -266,10 +284,12 @@ class AddResource extends React.Component {
                                 <div className="w-2/4 flex flex-col">
                                     <Field
                                         className="w-full"
+                                        id={field.attribute}
                                         name={field.attribute}
                                         placeholder={field.name}
                                         handler={this.handleChange}
                                         value={form[field.attribute]}
+                                        checked={form[field.attribute]}
                                         dateOptions={{
                                             enableTime: field.enableTime
                                         }}

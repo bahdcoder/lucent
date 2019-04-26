@@ -95,5 +95,19 @@ export declare class Database {
      *
      */
     update(collection: string, primaryKey: string, data: object): Promise<import("mongodb").FindAndModifyWriteOpResultObject<any>>;
+    /**
+     *
+     * Update many existing resources in collection
+     *
+     * @param collection
+     *
+     * @param primaryKey
+     *
+     * @param data
+     *
+     * @return {Promise}
+     *
+     */
+    bulkUpdate(collection: string, primaryKeys: Array<string>, data: object): Promise<import("mongodb").UpdateWriteOpResult>;
 }
 export declare const Connection: Database;

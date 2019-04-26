@@ -42,18 +42,19 @@ class ResourceDetails extends React.Component {
     }
 
     /**
-     * 
+     *
      * Trigger the delete modal
-     * 
+     *
      */
-    triggerDelete = () => this.setState({
-        deleting: !this.state.deleting
-    })
+    triggerDelete = () =>
+        this.setState({
+            deleting: !this.state.deleting
+        })
 
     /**
-     * 
+     *
      * Delete a resource
-     * 
+     *
      */
     delete = () => {
         const { data, resource } = this.state
@@ -66,11 +67,18 @@ class ResourceDetails extends React.Component {
             .then(() => {
                 this.props.history.push(`/resources/${resource.slug}`)
 
-                Pangaso.success(
-                    `${resource.name} deleted !`
-                )
+                Pangaso.success(`${resource.name} deleted !`)
             })
     }
+
+    /**
+     *
+     * Get detail field
+     *
+     * @return {React.Component}
+     *
+     */
+    getDetailField = detail => Pangaso.details[detail]
 
     /**
      *
@@ -81,7 +89,7 @@ class ResourceDetails extends React.Component {
      */
     render() {
         const { resource, data, deleting } = this.state
-
+        
         const Svg = Pangaso.components['component-svg']
         const Link = Pangaso.components['component-link']
         const Modal = Pangaso.components['component-modal']
@@ -94,7 +102,11 @@ class ResourceDetails extends React.Component {
                     </h1>
 
                     <div>
-                        <Link to={`/resources/${resource.slug}/${data[resource.primaryKey]}/edit`}>
+                        <Link
+                            to={`/resources/${resource.slug}/${
+                                data[resource.primaryKey]
+                            }/edit`}
+                        >
                             <span className="bg-white trans-30 p-3 mr-3 shadow-md cursor-pointer rounded-lg">
                                 <Svg
                                     icon="pencil"
@@ -102,26 +114,44 @@ class ResourceDetails extends React.Component {
                                 />
                             </span>
                         </Link>
-                        <span onClick={this.triggerDelete} className="bg-indigo p-3 trans-30 shadow-md cursor-pointer hover:bg-indigo-light rounded-lg">
+                        <span
+                            onClick={this.triggerDelete}
+                            className="bg-indigo p-3 trans-30 shadow-md cursor-pointer hover:bg-indigo-light rounded-lg"
+                        >
                             <Svg icon="trash" className="text-white" />
                         </span>
                     </div>
                 </div>
 
-                <div className="mt-6 bg-white rounded-lg w-full py-3 px-12">
-                    {resource.fields.map((field, index) => (
-                        <div key={index} className={classnames('w-full py-4 flex items-center', {
-                            'border-b border-grey-light ': index !== resource.fields.length - 1
-                        })}>
-                            <label className='w-1/4 text-lg font-thin text-grey-dark'>
-                                {field.name}
-                            </label>
+                <div className="mt-6 bg-white rounded-lg w-full py-4 px-8">
+                    {resource.fields.map((field, index) => {
+                        const DetailField = this.getDetailField(field.detail)
 
-                            <div className='w-2/4 flex flex-col'>
-                                {data[field.attribute]}
+                        return DetailField ? (
+                            <div
+                                key={index}
+                                className={classnames(
+                                    'w-full py-4 flex items-center',
+                                    {
+                                        'border-b border-grey-light ':
+                                            index !== resource.fields.length - 1
+                                    }
+                                )}
+                            >
+                                <label className="w-1/4 text-lg font-thin text-grey-dark">
+                                    {field.name}
+                                </label>
+
+                                <div className="w-2/4 flex flex-col text-grey-darkest leading-normal tracking-normal">
+                                    <DetailField
+                                        dateFormat={field.dateFormat}
+                                        checked={data[field.attribute]}
+                                        content={data[field.attribute]}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ) : null
+                    })}
                 </div>
 
                 <Modal

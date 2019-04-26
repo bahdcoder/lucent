@@ -56,5 +56,5 @@ router.post('/api/resources/:slug', set_resource_1.SetResourceMiddleware, create
  * Define the route for deleting all specified records for a specific resource
  *
  */
-router.delete('/api/resources/:slug', AsyncWrapper(resource_controller_1.Resource.delete));
+router.delete('/api/resources/:slug', set_resource_1.SetResourceMiddleware, AsyncWrapper(resource_controller_1.Resource.delete));
 exports.default = router;

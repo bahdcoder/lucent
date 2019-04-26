@@ -6,15 +6,19 @@ import { CreateResourceValidator } from './middleware/create-resource'
 const router = Express.Router()
 
 /**
- * 
+ *
  * Async wrapper to catch all async errors
- * 
+ *
  * @param {Function} Fn
- * 
+ *
  * @return {Function}
- * 
+ *
  */
-const AsyncWrapper = (Fn: Function) => (req: Express.Request, res: Express.Response, next: Express.NextFunction) => Fn(req, res, next).catch(next)
+const AsyncWrapper = (Fn: Function) => (
+    req: Express.Request,
+    res: Express.Response,
+    next: Express.NextFunction
+) => Fn(req, res, next).catch(next)
 
 /**
  *
@@ -28,7 +32,11 @@ router.get('/api/resources', AsyncWrapper(Resource.index))
  * Define the route for fetching all database records for a specific resource
  *
  */
-router.get('/api/resources/:slug', SetResourceMiddleware, AsyncWrapper(Resource.fetch))
+router.get(
+    '/api/resources/:slug',
+    SetResourceMiddleware,
+    AsyncWrapper(Resource.fetch)
+)
 
 /**
  *
@@ -80,6 +88,6 @@ router.post(
  * Define the route for deleting all specified records for a specific resource
  *
  */
-router.delete('/api/resources/:slug', AsyncWrapper(Resource.delete))
+router.delete('/api/resources/:slug', SetResourceMiddleware, AsyncWrapper(Resource.delete))
 
 export default router

@@ -1,4 +1,5 @@
 import React from 'react'
+import QueryString from 'query-string'
 
 class Resource extends React.Component {
     state = {
@@ -6,6 +7,9 @@ class Resource extends React.Component {
             total: 0,
             data: []
         },
+        page: QueryString.parse(
+            this.props.location.search
+        ).page || 1,
         selected: [],
         isFetching: true,
         selectedAction: {},
@@ -21,7 +25,9 @@ class Resource extends React.Component {
      *
      */
     async componentDidMount() {
-        this.fetchData()
+        this.fetchData(QueryString.parse(
+            this.props.location.search
+        ).page || 1)
     }
 
     /**
@@ -59,15 +65,33 @@ class Resource extends React.Component {
      * Fetch the data for a specific resource
      *
      */
-    fetchData = () => {
+    fetchData = (page = 1) => {
         Pangaso.request()
-            .get(`resources/${this.props.match.params.resource}`)
+            .get(`resources/${this.props.match.params.resource}?page=${page}`)
             .then(({ data }) => {
                 this.setState({
                     data,
                     isFetching: false
                 })
             })
+    }
+
+    /**
+     * 
+     * Handle page change
+     * 
+     */
+    handlePageChange = ({ selected }) => {
+        const { history } = this.props
+
+        const page = selected + 1
+
+        history.push(`${history.location.pathname}?page=${page}`)
+
+        this.setState({
+            page,
+            isFetching: true
+        }, () => this.fetchData(page))
     }
 
     /**
@@ -185,11 +209,18 @@ class Resource extends React.Component {
             .then(() => {
                 this.setState({
                     selected: [],
+                    isFetching: true,
                     selectedAction: '',
-                    runningAction: false
-                })
+                    runningAction: false,
+                }, () => this.fetchData(this.state.page))
 
                 Pangaso.success('Action run !')
+            })
+
+            .catch(() => {
+                this.setState({
+                    runningAction: false
+                })
             })
     }
 
@@ -226,12 +257,13 @@ class Resource extends React.Component {
         const Button = Pangaso.components['component-button']
         const Loader = Pangaso.components['component-loader']
         const {
-            resource,
             data,
-            selectedAction,
+            page,
+            resource,
             selected,
             runningAction,
-            multiDeleting
+            multiDeleting,
+            selectedAction,
         } = this.state
 
         return (
@@ -262,14 +294,17 @@ class Resource extends React.Component {
                     <Loader />
                 ) : (
                     <Table
+                        page={page}
                         Link={Link}
                         rows={data.data}
+                        total={data.total}
                         resource={resource}
                         selected={selected}
                         selectAll={this.selectAll}
                         headers={this.getIndexFields()}
                         selectedAction={selectedAction}
                         toggleSelect={this.toggleSelect}
+                        onPageChange={this.handlePageChange}
                         triggerRunAction={this.triggerRunAction}
                         setSelectedAction={this.setSelectedAction}
                         triggerMultiDelete={this.triggerMultiDelete}

@@ -12,6 +12,15 @@ export class Date extends Field {
 
     /**
      *
+     * Define the format for this date
+     *
+     * @type {String}
+     *
+     */
+    public dateFormat: string = 'YYYY-MM-DD mm:ss'
+
+    /**
+     *
      * Define a property to check if this date
      * field should have time
      *
@@ -48,6 +57,19 @@ export class Date extends Field {
      */
     public withTime(): Date {
         this.enableTime = true
+
+        return this
+    }
+
+    /**
+     *
+     * Define the format used for this field
+     *
+     * @return {Date}
+     *
+     */
+    public format(format: string): Date {
+        this.dateFormat = format
 
         return this
     }

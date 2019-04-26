@@ -219,6 +219,29 @@ var Database = /** @class */ (function () {
             });
         });
     };
+    /**
+     *
+     * Update many existing resources in collection
+     *
+     * @param collection
+     *
+     * @param primaryKey
+     *
+     * @param data
+     *
+     * @return {Promise}
+     *
+     */
+    Database.prototype.bulkUpdate = function (collection, primaryKeys, data) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                // @ts-ignore
+                return [2 /*return*/, this.get()
+                        .collection(collection)
+                        .updateMany({ _id: primaryKeys.map(function (key) { return new mongodb_1.ObjectID(key); }) }, { $set: data })];
+            });
+        });
+    };
     return Database;
 }());
 exports.Database = Database;

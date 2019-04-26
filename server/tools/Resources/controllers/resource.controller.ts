@@ -1,5 +1,6 @@
 import * as Express from 'express'
 import { IResource } from '../../../index.d'
+import { ObjectID } from 'bson';
 
 class ResourceController {
     /**
@@ -34,9 +35,15 @@ class ResourceController {
      */
     public async show(req: Express.Request, res: Express.Response) {
         const resource = await req.pangaso.database.find(
-            req.params.slug,
+            req.pangaso.resource.collection(),
             req.params.resource
         )
+
+        if (! resource) {
+            return res.status(404).json({
+                message: 'Resource not found.'
+            })
+        }
 
         return res.json(resource)
     }
@@ -53,7 +60,7 @@ class ResourceController {
      *
      */
     public async fetch(req: Express.Request, res: Express.Response) {
-        const data = await req.pangaso.database.fetch(req.params.slug, {
+        const data = await req.pangaso.database.fetch(req.pangaso.resource.collection(), {
             limit: req.pangaso.resource.perPage(),
             page: req.query.page || 1
         })
@@ -76,7 +83,7 @@ class ResourceController {
         const data = await req.pangaso.resource.beforeSave(req.body)
 
         const resource = await req.pangaso.database.insert(
-            req.params.slug,
+            req.pangaso.resource.collection(),
             data
         )
 
@@ -98,7 +105,7 @@ class ResourceController {
         const data = await req.pangaso.resource.beforeUpdate(req.body)
 
         const resource = await req.pangaso.database.update(
-            req.params.slug,
+            req.pangaso.resource.collection(),
             req.params.resource,
             data
         )
@@ -140,7 +147,7 @@ class ResourceController {
          *
          */
         const collection = await req.pangaso.database.fetchByIds(
-            req.params.slug,
+            req.pangaso.resource.collection(),
             resources
         )
 
@@ -152,9 +159,9 @@ class ResourceController {
          *
          */
         await action.handle(
-            req.pangaso.database.get().collection(req.params.slug),
+            req.pangaso.database.get().collection(req.pangaso.resource.collection()),
             req,
-            collection
+            collection.map((item: any) => ({ ...item, _id: new ObjectID(item._id) }))
         )
 
         /**
@@ -181,7 +188,7 @@ class ResourceController {
      */
     public async delete(req: Express.Request, res: Express.Response) {
         const data = await req.pangaso.database.destroy(
-            req.params.slug,
+            req.pangaso.resource.collection(),
             req.body.resources
         )
 

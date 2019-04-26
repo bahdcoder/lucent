@@ -29,6 +29,13 @@ var Field = /** @class */ (function () {
          */
         this.component = "form-" + ChangeCase.lowerCase(this.constructor.name);
         /**
+         * Define the detail component
+         *
+         * @var {string}
+         *
+         */
+        this.detail = "detail-" + ChangeCase.lowerCase(this.constructor.name);
+        /**
          *
          * Define the name of this field.
          *

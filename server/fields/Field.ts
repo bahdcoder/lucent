@@ -33,6 +33,16 @@ export class Field {
     )}`
 
     /**
+     * Define the detail component
+     *
+     * @var {string}
+     *
+     */
+    public detail: string = `detail-${ChangeCase.lowerCase(
+        this.constructor.name
+    )}`
+
+    /**
      *
      * Define the name of this field.
      *

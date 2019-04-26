@@ -6,6 +6,7 @@ export { Date } from './fields/Date';
 export { Num } from './fields/Number';
 export { Action } from './actions/Action';
 export { HasMany } from './fields/HasMany';
+export { Boolean } from './fields/Boolean';
 export { Textarea } from './fields/Textarea';
 export { Password } from './fields/Password';
 export { BelongsTo } from './fields/BelongsTo';

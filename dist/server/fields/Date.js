@@ -28,6 +28,14 @@ var Date = /** @class */ (function (_super) {
         _this.type = 'Date';
         /**
          *
+         * Define the format for this date
+         *
+         * @type {String}
+         *
+         */
+        _this.dateFormat = 'YYYY-MM-DD mm:ss';
+        /**
+         *
          * Define a property to check if this date
          * field should have time
          *
@@ -59,6 +67,17 @@ var Date = /** @class */ (function (_super) {
      */
     Date.prototype.withTime = function () {
         this.enableTime = true;
+        return this;
+    };
+    /**
+     *
+     * Define the format used for this field
+     *
+     * @return {Date}
+     *
+     */
+    Date.prototype.format = function (format) {
+        this.dateFormat = format;
         return this;
     };
     return Date;

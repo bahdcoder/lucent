@@ -86,6 +86,468 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "../../../node_modules/decode-uri-component/index.js":
+/*!********************************************************************!*\
+  !*** /Users/katifrantz/node_modules/decode-uri-component/index.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var token = '%[a-f0-9]{2}';
+var singleMatcher = new RegExp(token, 'gi');
+var multiMatcher = new RegExp('(' + token + ')+', 'gi');
+
+function decodeComponents(components, split) {
+	try {
+		// Try to decode the entire string first
+		return decodeURIComponent(components.join(''));
+	} catch (err) {
+		// Do nothing
+	}
+
+	if (components.length === 1) {
+		return components;
+	}
+
+	split = split || 1;
+
+	// Split the array in 2 parts
+	var left = components.slice(0, split);
+	var right = components.slice(split);
+
+	return Array.prototype.concat.call([], decodeComponents(left), decodeComponents(right));
+}
+
+function decode(input) {
+	try {
+		return decodeURIComponent(input);
+	} catch (err) {
+		var tokens = input.match(singleMatcher);
+
+		for (var i = 1; i < tokens.length; i++) {
+			input = decodeComponents(tokens, i).join('');
+
+			tokens = input.match(singleMatcher);
+		}
+
+		return input;
+	}
+}
+
+function customDecodeURIComponent(input) {
+	// Keep track of all the replacements and prefill the map with the `BOM`
+	var replaceMap = {
+		'%FE%FF': '\uFFFD\uFFFD',
+		'%FF%FE': '\uFFFD\uFFFD'
+	};
+
+	var match = multiMatcher.exec(input);
+	while (match) {
+		try {
+			// Decode as big chunks as possible
+			replaceMap[match[0]] = decodeURIComponent(match[0]);
+		} catch (err) {
+			var result = decode(match[0]);
+
+			if (result !== match[0]) {
+				replaceMap[match[0]] = result;
+			}
+		}
+
+		match = multiMatcher.exec(input);
+	}
+
+	// Add `%C2` at the end of the map to make sure it does not replace the combinator before everything else
+	replaceMap['%C2'] = '\uFFFD';
+
+	var entries = Object.keys(replaceMap);
+
+	for (var i = 0; i < entries.length; i++) {
+		// Replace all decoded components
+		var key = entries[i];
+		input = input.replace(new RegExp(key, 'g'), replaceMap[key]);
+	}
+
+	return input;
+}
+
+module.exports = function (encodedURI) {
+	if (typeof encodedURI !== 'string') {
+		throw new TypeError('Expected `encodedURI` to be of type `string`, got `' + typeof encodedURI + '`');
+	}
+
+	try {
+		encodedURI = encodedURI.replace(/\+/g, ' ');
+
+		// Try the built in decoder first
+		return decodeURIComponent(encodedURI);
+	} catch (err) {
+		// Fallback to a more advanced decoder
+		return customDecodeURIComponent(encodedURI);
+	}
+};
+
+
+/***/ }),
+
+/***/ "../../../node_modules/object-assign/index.js":
+/*!*************************************************************!*\
+  !*** /Users/katifrantz/node_modules/object-assign/index.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+
+/* eslint-disable no-unused-vars */
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+function toObject(val) {
+	if (val === null || val === undefined) {
+		throw new TypeError('Object.assign cannot be called with null or undefined');
+	}
+
+	return Object(val);
+}
+
+function shouldUseNative() {
+	try {
+		if (!Object.assign) {
+			return false;
+		}
+
+		// Detect buggy property enumeration order in older V8 versions.
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		test1[5] = 'de';
+		if (Object.getOwnPropertyNames(test1)[0] === '5') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test2 = {};
+		for (var i = 0; i < 10; i++) {
+			test2['_' + String.fromCharCode(i)] = i;
+		}
+		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+			return test2[n];
+		});
+		if (order2.join('') !== '0123456789') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test3 = {};
+		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+			test3[letter] = letter;
+		});
+		if (Object.keys(Object.assign({}, test3)).join('') !==
+				'abcdefghijklmnopqrst') {
+			return false;
+		}
+
+		return true;
+	} catch (err) {
+		// We don't expect any of the above to throw, but better to be safe.
+		return false;
+	}
+}
+
+module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+	var from;
+	var to = toObject(target);
+	var symbols;
+
+	for (var s = 1; s < arguments.length; s++) {
+		from = Object(arguments[s]);
+
+		for (var key in from) {
+			if (hasOwnProperty.call(from, key)) {
+				to[key] = from[key];
+			}
+		}
+
+		if (getOwnPropertySymbols) {
+			symbols = getOwnPropertySymbols(from);
+			for (var i = 0; i < symbols.length; i++) {
+				if (propIsEnumerable.call(from, symbols[i])) {
+					to[symbols[i]] = from[symbols[i]];
+				}
+			}
+		}
+	}
+
+	return to;
+};
+
+
+/***/ }),
+
+/***/ "../../../node_modules/query-string/index.js":
+/*!************************************************************!*\
+  !*** /Users/katifrantz/node_modules/query-string/index.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var strictUriEncode = __webpack_require__(/*! strict-uri-encode */ "../../../node_modules/strict-uri-encode/index.js");
+var objectAssign = __webpack_require__(/*! object-assign */ "../../../node_modules/object-assign/index.js");
+var decodeComponent = __webpack_require__(/*! decode-uri-component */ "../../../node_modules/decode-uri-component/index.js");
+
+function encoderForArrayFormat(opts) {
+	switch (opts.arrayFormat) {
+		case 'index':
+			return function (key, value, index) {
+				return value === null ? [
+					encode(key, opts),
+					'[',
+					index,
+					']'
+				].join('') : [
+					encode(key, opts),
+					'[',
+					encode(index, opts),
+					']=',
+					encode(value, opts)
+				].join('');
+			};
+
+		case 'bracket':
+			return function (key, value) {
+				return value === null ? encode(key, opts) : [
+					encode(key, opts),
+					'[]=',
+					encode(value, opts)
+				].join('');
+			};
+
+		default:
+			return function (key, value) {
+				return value === null ? encode(key, opts) : [
+					encode(key, opts),
+					'=',
+					encode(value, opts)
+				].join('');
+			};
+	}
+}
+
+function parserForArrayFormat(opts) {
+	var result;
+
+	switch (opts.arrayFormat) {
+		case 'index':
+			return function (key, value, accumulator) {
+				result = /\[(\d*)\]$/.exec(key);
+
+				key = key.replace(/\[\d*\]$/, '');
+
+				if (!result) {
+					accumulator[key] = value;
+					return;
+				}
+
+				if (accumulator[key] === undefined) {
+					accumulator[key] = {};
+				}
+
+				accumulator[key][result[1]] = value;
+			};
+
+		case 'bracket':
+			return function (key, value, accumulator) {
+				result = /(\[\])$/.exec(key);
+				key = key.replace(/\[\]$/, '');
+
+				if (!result) {
+					accumulator[key] = value;
+					return;
+				} else if (accumulator[key] === undefined) {
+					accumulator[key] = [value];
+					return;
+				}
+
+				accumulator[key] = [].concat(accumulator[key], value);
+			};
+
+		default:
+			return function (key, value, accumulator) {
+				if (accumulator[key] === undefined) {
+					accumulator[key] = value;
+					return;
+				}
+
+				accumulator[key] = [].concat(accumulator[key], value);
+			};
+	}
+}
+
+function encode(value, opts) {
+	if (opts.encode) {
+		return opts.strict ? strictUriEncode(value) : encodeURIComponent(value);
+	}
+
+	return value;
+}
+
+function keysSorter(input) {
+	if (Array.isArray(input)) {
+		return input.sort();
+	} else if (typeof input === 'object') {
+		return keysSorter(Object.keys(input)).sort(function (a, b) {
+			return Number(a) - Number(b);
+		}).map(function (key) {
+			return input[key];
+		});
+	}
+
+	return input;
+}
+
+function extract(str) {
+	var queryStart = str.indexOf('?');
+	if (queryStart === -1) {
+		return '';
+	}
+	return str.slice(queryStart + 1);
+}
+
+function parse(str, opts) {
+	opts = objectAssign({arrayFormat: 'none'}, opts);
+
+	var formatter = parserForArrayFormat(opts);
+
+	// Create an object with no prototype
+	// https://github.com/sindresorhus/query-string/issues/47
+	var ret = Object.create(null);
+
+	if (typeof str !== 'string') {
+		return ret;
+	}
+
+	str = str.trim().replace(/^[?#&]/, '');
+
+	if (!str) {
+		return ret;
+	}
+
+	str.split('&').forEach(function (param) {
+		var parts = param.replace(/\+/g, ' ').split('=');
+		// Firefox (pre 40) decodes `%3D` to `=`
+		// https://github.com/sindresorhus/query-string/pull/37
+		var key = parts.shift();
+		var val = parts.length > 0 ? parts.join('=') : undefined;
+
+		// missing `=` should be `null`:
+		// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+		val = val === undefined ? null : decodeComponent(val);
+
+		formatter(decodeComponent(key), val, ret);
+	});
+
+	return Object.keys(ret).sort().reduce(function (result, key) {
+		var val = ret[key];
+		if (Boolean(val) && typeof val === 'object' && !Array.isArray(val)) {
+			// Sort object keys, not values
+			result[key] = keysSorter(val);
+		} else {
+			result[key] = val;
+		}
+
+		return result;
+	}, Object.create(null));
+}
+
+exports.extract = extract;
+exports.parse = parse;
+
+exports.stringify = function (obj, opts) {
+	var defaults = {
+		encode: true,
+		strict: true,
+		arrayFormat: 'none'
+	};
+
+	opts = objectAssign(defaults, opts);
+
+	if (opts.sort === false) {
+		opts.sort = function () {};
+	}
+
+	var formatter = encoderForArrayFormat(opts);
+
+	return obj ? Object.keys(obj).sort(opts.sort).map(function (key) {
+		var val = obj[key];
+
+		if (val === undefined) {
+			return '';
+		}
+
+		if (val === null) {
+			return encode(key, opts);
+		}
+
+		if (Array.isArray(val)) {
+			var result = [];
+
+			val.slice().forEach(function (val2) {
+				if (val2 === undefined) {
+					return;
+				}
+
+				result.push(formatter(key, val2, result.length));
+			});
+
+			return result.join('&');
+		}
+
+		return encode(key, opts) + '=' + encode(val, opts);
+	}).filter(function (x) {
+		return x.length > 0;
+	}).join('&') : '';
+};
+
+exports.parseUrl = function (str, opts) {
+	return {
+		url: str.split('?')[0] || '',
+		query: parse(extract(str), opts)
+	};
+};
+
+
+/***/ }),
+
+/***/ "../../../node_modules/strict-uri-encode/index.js":
+/*!*****************************************************************!*\
+  !*** /Users/katifrantz/node_modules/strict-uri-encode/index.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+module.exports = function (str) {
+	return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+		return '%' + c.charCodeAt(0).toString(16).toUpperCase();
+	});
+};
+
+
+/***/ }),
+
 /***/ "./client/tools/resources/js/components/Sidebar.js":
 /*!*********************************************************!*\
   !*** ./client/tools/resources/js/components/Sidebar.js ***!
@@ -280,7 +742,17 @@ function (_React$Component) {
       var form = {};
 
       _this.getCreationFields().forEach(function (field) {
-        form[field.attribute] = field.type === 'Date' ? date_fns_format__WEBPACK_IMPORTED_MODULE_9___default()(data[field.attribute] || new Date(), _this.getFormat(field)) : data[field.attribute] || '';
+        if (field.type === 'Date') {
+          form[field.attribute] = date_fns_format__WEBPACK_IMPORTED_MODULE_9___default()(data[field.attribute] || new Date(), _this.getFormat(field));
+          return;
+        }
+
+        if (field.type === 'Boolean') {
+          form[field.attribute] = !!data[field.attribute] || false;
+          return;
+        }
+
+        form[field.attribute] = data[field.attribute] || '';
       });
 
       _this.setState({
@@ -316,7 +788,7 @@ function (_React$Component) {
         Pangaso.success("".concat(_this.state.resource.name, " updated !"));
 
         if (redirect) {
-          return _this.props.history.push("/resources/".concat(_this.state.resource.slug));
+          return _this.props.history.push("/resources/".concat(_this.state.resource.slug, "/").concat(_this.props.match.params.primaryKey, "/details"));
         }
       })["catch"](function (_ref2) {
         var response = _ref2.response;
@@ -339,6 +811,12 @@ function (_React$Component) {
         return _this.setState({
           form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.name, event.date)),
           errors: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.name, null))
+        });
+      }
+
+      if (event.target.type === 'checkbox') {
+        return _this.setState({
+          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.target.name, !_this.state.form[event.target.name]))
         });
       }
 
@@ -479,10 +957,12 @@ function (_React$Component) {
           className: "w-2/4 flex flex-col"
         }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Field, {
           className: "w-full",
+          id: field.attribute,
           name: field.attribute,
           placeholder: field.name,
           handler: _this3.handleChange,
           value: form[field.attribute],
+          checked: form[field.attribute],
           dateOptions: {
             enableTime: field.enableTime
           },
@@ -544,6 +1024,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! query-string */ "../../../node_modules/query-string/index.js");
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_11__);
+
 
 
 
@@ -579,6 +1062,7 @@ function (_React$Component) {
         total: 0,
         data: []
       },
+      page: query_string__WEBPACK_IMPORTED_MODULE_11___default.a.parse(_this.props.location.search).page || 1,
       selected: [],
       isFetching: true,
       selectedAction: {},
@@ -609,13 +1093,28 @@ function (_React$Component) {
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "fetchData", function () {
-      Pangaso.request().get("resources/".concat(_this.props.match.params.resource)).then(function (_ref) {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      Pangaso.request().get("resources/".concat(_this.props.match.params.resource, "?page=").concat(page)).then(function (_ref) {
         var data = _ref.data;
 
         _this.setState({
           data: data,
           isFetching: false
         });
+      });
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "handlePageChange", function (_ref2) {
+      var selected = _ref2.selected;
+      var history = _this.props.history;
+      var page = selected + 1;
+      history.push("".concat(history.location.pathname, "?page=").concat(page));
+
+      _this.setState({
+        page: page,
+        isFetching: true
+      }, function () {
+        return _this.fetchData(page);
       });
     });
 
@@ -673,11 +1172,18 @@ function (_React$Component) {
       .then(function () {
         _this.setState({
           selected: [],
+          isFetching: true,
           selectedAction: '',
           runningAction: false
+        }, function () {
+          return _this.fetchData(_this.state.page);
         });
 
         Pangaso.success('Action run !');
+      })["catch"](function () {
+        _this.setState({
+          runningAction: false
+        });
       });
     });
 
@@ -710,7 +1216,7 @@ function (_React$Component) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                this.fetchData();
+                this.fetchData(query_string__WEBPACK_IMPORTED_MODULE_11___default.a.parse(this.props.location.search).page || 1);
 
               case 1:
               case "end":
@@ -787,12 +1293,13 @@ function (_React$Component) {
       var Button = Pangaso.components['component-button'];
       var Loader = Pangaso.components['component-loader'];
       var _this$state = this.state,
-          resource = _this$state.resource,
           data = _this$state.data,
-          selectedAction = _this$state.selectedAction,
+          page = _this$state.page,
+          resource = _this$state.resource,
           selected = _this$state.selected,
           runningAction = _this$state.runningAction,
-          multiDeleting = _this$state.multiDeleting;
+          multiDeleting = _this$state.multiDeleting,
+          selectedAction = _this$state.selectedAction;
       return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_10___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("h1", {
         className: "font-thin text-3xl mb-2"
       }, resource.title), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
@@ -811,14 +1318,17 @@ function (_React$Component) {
         label: "Create ".concat(resource.name),
         to: "/resources/".concat(resource.slug, "/new")
       })), this.state.isFetching ? react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Loader, null) : react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Table, {
+        page: page,
         Link: Link,
         rows: data.data,
+        total: data.total,
         resource: resource,
         selected: selected,
         selectAll: this.selectAll,
         headers: this.getIndexFields(),
         selectedAction: selectedAction,
         toggleSelect: this.toggleSelect,
+        onPageChange: this.handlePageChange,
         triggerRunAction: this.triggerRunAction,
         setSelectedAction: this.setSelectedAction,
         triggerMultiDelete: this.triggerMultiDelete
@@ -949,6 +1459,10 @@ function (_React$Component) {
       });
     });
 
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "getDetailField", function (detail) {
+      return Pangaso.details[detail];
+    });
+
     return _this;
   }
 
@@ -982,9 +1496,9 @@ function (_React$Component) {
       });
     }
     /**
-     * 
+     *
      * Trigger the delete modal
-     * 
+     *
      */
 
   }, {
@@ -998,6 +1512,8 @@ function (_React$Component) {
      *
      */
     value: function render() {
+      var _this3 = this;
+
       var _this$state2 = this.state,
           resource = _this$state2.resource,
           data = _this$state2.data,
@@ -1023,9 +1539,11 @@ function (_React$Component) {
         icon: "trash",
         className: "text-white"
       })))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-        className: "mt-6 bg-white rounded-lg w-full py-3 px-12"
+        className: "mt-6 bg-white rounded-lg w-full py-4 px-8"
       }, resource.fields.map(function (field, index) {
-        return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        var DetailField = _this3.getDetailField(field.detail);
+
+        return DetailField ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
           key: index,
           className: classnames__WEBPACK_IMPORTED_MODULE_8___default()('w-full py-4 flex items-center', {
             'border-b border-grey-light ': index !== resource.fields.length - 1
@@ -1033,8 +1551,12 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("label", {
           className: "w-1/4 text-lg font-thin text-grey-dark"
         }, field.name), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-          className: "w-2/4 flex flex-col"
-        }, data[field.attribute]));
+          className: "w-2/4 flex flex-col text-grey-darkest leading-normal tracking-normal"
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(DetailField, {
+          dateFormat: field.dateFormat,
+          checked: data[field.attribute],
+          content: data[field.attribute]
+        }))) : null;
       })), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Modal, {
         open: deleting,
         action: {

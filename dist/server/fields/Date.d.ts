@@ -9,6 +9,14 @@ export declare class Date extends Field {
     type: string;
     /**
      *
+     * Define the format for this date
+     *
+     * @type {String}
+     *
+     */
+    dateFormat: string;
+    /**
+     *
      * Define a property to check if this date
      * field should have time
      *
@@ -34,4 +42,12 @@ export declare class Date extends Field {
      *
      */
     withTime(): Date;
+    /**
+     *
+     * Define the format used for this field
+     *
+     * @return {Date}
+     *
+     */
+    format(format: string): Date;
 }

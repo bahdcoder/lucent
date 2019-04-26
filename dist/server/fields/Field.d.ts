@@ -24,6 +24,13 @@ export declare class Field {
      */
     component: string;
     /**
+     * Define the detail component
+     *
+     * @var {string}
+     *
+     */
+    detail: string;
+    /**
      *
      * Define the name of this field.
      *
