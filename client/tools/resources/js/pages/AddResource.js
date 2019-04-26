@@ -58,12 +58,8 @@ class AddResource extends React.Component {
      * Get the current resource based on resource param
      *
      */
-    getCurrentResource(
-        slug = this.props.match.params.resource
-    ) {
-        return Pangaso.resources.find(
-            resource => resource.slug === slug
-        )
+    getCurrentResource(slug = this.props.match.params.resource) {
+        return Pangaso.resources.find(resource => resource.slug === slug)
     }
 
     /**
@@ -114,9 +110,7 @@ class AddResource extends React.Component {
         Pangaso.request()
             .post(`resources/${this.state.resource.slug}`, this.state.form)
             .then(() => {
-                Pangaso.success(
-                    `${this.state.resource.name} created !`
-                )
+                Pangaso.success(`${this.state.resource.name} created !`)
 
                 if (redirect) {
                     return this.props.history.push(
@@ -151,9 +145,7 @@ class AddResource extends React.Component {
                 this.state.form
             )
             .then(() => {
-                Pangaso.success(
-                    `${this.state.resource.name} updated !`
-                )
+                Pangaso.success(`${this.state.resource.name} updated !`)
 
                 if (redirect) {
                     return this.props.history.push(
@@ -175,7 +167,7 @@ class AddResource extends React.Component {
      * @return {void}
      *
      */
-    handleChange = (event) => {
+    handleChange = event => {
         /**
          *
          * Handle the date field case
@@ -215,8 +207,7 @@ class AddResource extends React.Component {
      * @return {string}
      *
      */
-    getFormat = (field) =>
-        `YYYY-MM-DD${field.enableTime ? ' mm:ss' : ''}`
+    getFormat = field => `YYYY-MM-DD${field.enableTime ? ' mm:ss' : ''}`
 
     /**
      *
@@ -226,9 +217,7 @@ class AddResource extends React.Component {
      *
      */
     getCreationFields = () =>
-        this.state.resource.fields.filter(
-            field => !field.hideOnCreationForm
-        )
+        this.state.resource.fields.filter(field => !field.hideOnCreationForm)
 
     /**
      *
@@ -238,16 +227,13 @@ class AddResource extends React.Component {
      *
      */
     privateGetUpdateFields = () =>
-        this.state.resource.fields.filder(
-            field => !field.hideOnUpdateForm
-        )
+        this.state.resource.fields.filder(field => !field.hideOnUpdateForm)
 
     /**
      *
      * Get a field from the component registry
      */
-    getField = (component) =>
-        Pangaso.fields[component]
+    getField = component => Pangaso.fields[component]
 
     /**
      *
@@ -265,36 +251,34 @@ class AddResource extends React.Component {
                 </h1>
 
                 <div className="w-full mt-6 bg-white rounded-lg">
-                    {this.getCreationFields().map(
-                        (field, index) => {
-                            const Field = this.getField(field.component)
+                    {this.getCreationFields().map((field, index) => {
+                        const Field = this.getField(field.component)
 
-                            return Field ? (
-                                <div
-                                    key={index}
-                                    className="w-full border-b flex items-center border-grey-light py-6 px-12"
-                                >
-                                    <label className="w-1/4 text-lg font-thin text-grey-dark">
-                                        {field.name}
-                                    </label>
+                        return Field ? (
+                            <div
+                                key={index}
+                                className="w-full border-b flex items-center border-grey-light py-6 px-12"
+                            >
+                                <label className="w-1/4 text-lg font-thin text-grey-dark">
+                                    {field.name}
+                                </label>
 
-                                    <div className="w-2/4 flex flex-col">
-                                        <Field
-                                            className="w-full"
-                                            name={field.attribute}
-                                            placeholder={field.name}
-                                            handler={this.handleChange}
-                                            value={form[field.attribute]}
-                                            dateOptions={{
-                                                enableTime: field.enableTime
-                                            }}
-                                            error={errors[field.attribute]}
-                                        />
-                                    </div>
+                                <div className="w-2/4 flex flex-col">
+                                    <Field
+                                        className="w-full"
+                                        name={field.attribute}
+                                        placeholder={field.name}
+                                        handler={this.handleChange}
+                                        value={form[field.attribute]}
+                                        dateOptions={{
+                                            enableTime: field.enableTime
+                                        }}
+                                        error={errors[field.attribute]}
+                                    />
                                 </div>
-                            ) : null
-                        }
-                    )}
+                            </div>
+                        ) : null
+                    })}
                 </div>
 
                 <div className="p-8 flex justify-end bg-grey-lighter shadow">

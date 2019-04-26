@@ -116,7 +116,10 @@ var Sidebar = function Sidebar(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-5.6-4.29a9.95 9.95 0 0 1 11.2 0 8 8 0 1 0-11.2 0zm6.12-7.64l3.02-3.02 1.41 1.41-3.02 3.02a2 2 0 1 1-1.41-1.41z"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "text-lg text-indigo-lighter font-thin"
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('trans-30 text-lg font-thin', {
+      'text-indigo-lighter': !location.pathname.match(/resources/),
+      'text-white': location.pathname.match(/resources/)
+    })
   }, "Resources")), Pangaso.resources.map(function (resource) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Link, {
       key: resource.slug,
@@ -149,6 +152,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Resource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pages/Resource */ "./client/tools/resources/js/pages/Resource.js");
 /* harmony import */ var _components_Sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Sidebar */ "./client/tools/resources/js/components/Sidebar.js");
 /* harmony import */ var _pages_AddResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/AddResource */ "./client/tools/resources/js/pages/AddResource.js");
+/* harmony import */ var _pages_ResourceDetails__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/ResourceDetails */ "./client/tools/resources/js/pages/ResourceDetails.js");
+
 
 
 
@@ -157,32 +162,39 @@ Pangaso.booting(function (_ref) {
       sidebar = _ref.sidebar;
 
   /**
-   * 
+   *
    * Define the sidebar items
-   * 
+   *
    */
   sidebar(_components_Sidebar__WEBPACK_IMPORTED_MODULE_1__["default"]);
   /**
-   * 
+   *
    * Define the route for displaying a resource
-   * 
+   *
    */
 
   route('/resources/:resource', _pages_Resource__WEBPACK_IMPORTED_MODULE_0__["default"]);
   /**
-   * 
+   *
    * Define a route for adding a resource
-   * 
+   *
    */
 
   route('/resources/:resource/new', _pages_AddResource__WEBPACK_IMPORTED_MODULE_2__["default"]);
   /**
-   * 
-   * Define the endpoint for editing a resource
-   * 
+   *
+   * Define the route for editing a resource
+   *
    */
 
   route('/resources/:resource/:primaryKey/edit', _pages_AddResource__WEBPACK_IMPORTED_MODULE_2__["default"]);
+  /**
+   *
+   * Define the route for displaying the details of a resource
+   *
+   */
+
+  route('/resources/:resource/:primaryKey/details', _pages_ResourceDetails__WEBPACK_IMPORTED_MODULE_3__["default"]);
 });
 
 /***/ }),
@@ -530,14 +542,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_12__);
-
-
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
 
 
 
@@ -658,11 +664,11 @@ function (_React$Component) {
         action: _this.state.selectedAction.id
       })
       /**
-       * 
+       *
        * Once action has be successfully run,
        * empty the selected list, and
        * the selectedAction
-       * 
+       *
        */
       .then(function () {
         _this.setState({
@@ -735,9 +741,9 @@ function (_React$Component) {
       });
     }
     /**
-     *  
+     *
      * Trigger multi delete confirm modal
-     * 
+     *
      */
 
   }, {
@@ -775,6 +781,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var Link = this.props.Link;
+      var Svg = Pangaso.components['component-svg'];
       var Modal = Pangaso.components['component-modal'];
       var Table = Pangaso.components['component-table'];
       var Button = Pangaso.components['component-button'];
@@ -786,32 +793,24 @@ function (_React$Component) {
           selected = _this$state.selected,
           runningAction = _this$state.runningAction,
           multiDeleting = _this$state.multiDeleting;
-      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_11___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("h1", {
+      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_10___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("h1", {
         className: "font-thin text-3xl mb-2"
-      }, resource.title), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+      }, resource.title), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
         className: "flex justify-between items-center"
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
         className: "w-1/5 flex items-center"
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("svg", {
-        className: "absolute ml-3 z-5 text-grey fill-current",
-        xmlns: "http://www.w3.org/2000/svg",
-        width: "20",
-        height: "20",
-        viewBox: "0 0 20 20",
-        "aria-labelledby": "search",
-        role: "presentation"
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("path", {
-        fillRule: "nonzero",
-        d: "M14.32 12.906l5.387 5.387a1 1 0 0 1-1.414 1.414l-5.387-5.387a8 8 0 1 1 1.414-1.414zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
-      })), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Svg, {
+        icon: "lens",
+        className: "absolute ml-3 z-5 text-grey"
+      }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("input", {
         type: "text",
         placeholder: "Search",
         className: "w-full text-grey-darkest my-3 h-10 pr-3 pl-10 rounded-lg shadow focus:outline-none focus:border-indigo focus:border-2"
-      })), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Button, {
+      })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Button, {
         link: true,
         label: "Create ".concat(resource.name),
         to: "/resources/".concat(resource.slug, "/new")
-      })), this.state.isFetching ? react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Loader, null) : react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Table, {
+      })), this.state.isFetching ? react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Loader, null) : react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Table, {
         Link: Link,
         rows: data.data,
         resource: resource,
@@ -823,7 +822,7 @@ function (_React$Component) {
         triggerRunAction: this.triggerRunAction,
         setSelectedAction: this.setSelectedAction,
         triggerMultiDelete: this.triggerMultiDelete
-      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Modal, {
+      }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Modal, {
         open: multiDeleting,
         action: {
           type: 'danger',
@@ -831,13 +830,13 @@ function (_React$Component) {
           handler: this["delete"]
         },
         renderContent: function renderContent() {
-          return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("p", {
+          return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("p", {
             className: "text-grey-dark"
           }, "Are you sure you want to delete ".concat(selected.length > 1 || '' ? selected.length : 'this', " resource").concat(selected.length > 1 ? 's' : '', "?"));
         },
         title: "Delete Resource",
         cancel: this.triggerMultiDelete
-      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Modal, {
+      }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Modal, {
         open: runningAction,
         action: {
           label: 'Run Action',
@@ -845,7 +844,7 @@ function (_React$Component) {
           type: selectedAction.isDestructive ? 'danger' : 'primary'
         },
         renderContent: function renderContent() {
-          return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("p", {
+          return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("p", {
             className: "text-grey-dark"
           }, "Are you sure you want to run this action on ".concat(selected.length, " resource").concat(selected.length > 1 ? 's' : '', "?"));
         },
@@ -856,9 +855,208 @@ function (_React$Component) {
   }]);
 
   return Resource;
-}(react__WEBPACK_IMPORTED_MODULE_11___default.a.Component);
+}(react__WEBPACK_IMPORTED_MODULE_10___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Resource);
+
+/***/ }),
+
+/***/ "./client/tools/resources/js/pages/ResourceDetails.js":
+/*!************************************************************!*\
+  !*** ./client/tools/resources/js/pages/ResourceDetails.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_8__);
+
+
+
+
+
+
+
+
+
+
+var ResourceDetails =
+/*#__PURE__*/
+function (_React$Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default()(ResourceDetails, _React$Component);
+
+  function ResourceDetails() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, ResourceDetails);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, (_getPrototypeOf2 = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(ResourceDetails)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "state", {
+      data: {},
+      deleting: false,
+      resource: _this.getCurrentResource()
+      /**
+       *
+       * Fetch the current resource details
+       *
+       */
+
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "triggerDelete", function () {
+      return _this.setState({
+        deleting: !_this.state.deleting
+      });
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "delete", function () {
+      var _this$state = _this.state,
+          data = _this$state.data,
+          resource = _this$state.resource;
+      Pangaso.request()["delete"]("/resources/".concat(resource.slug), {
+        data: {
+          resources: [data[resource.primaryKey]]
+        }
+      }).then(function () {
+        _this.props.history.push("/resources/".concat(resource.slug));
+
+        Pangaso.success("".concat(resource.name, " deleted !"));
+      });
+    });
+
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(ResourceDetails, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      Pangaso.request().get("/resources/".concat(this.state.resource.slug, "/").concat(this.props.match.params.primaryKey)).then(function (_ref) {
+        var data = _ref.data;
+
+        _this2.setState({
+          data: data
+        });
+      })["catch"](function () {
+        _this2.props.history.push("/resources/".concat(_this2.state.resource.slug));
+      });
+    }
+    /**
+     *
+     * Get the current resource based on resource param
+     *
+     */
+
+  }, {
+    key: "getCurrentResource",
+    value: function getCurrentResource() {
+      var slug = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props.match.params.resource;
+      return Pangaso.resources.find(function (resource) {
+        return resource.slug === slug;
+      });
+    }
+    /**
+     * 
+     * Trigger the delete modal
+     * 
+     */
+
+  }, {
+    key: "render",
+
+    /**
+     *
+     * Render the JSX for component
+     *
+     * @return {JSX}
+     *
+     */
+    value: function render() {
+      var _this$state2 = this.state,
+          resource = _this$state2.resource,
+          data = _this$state2.data,
+          deleting = _this$state2.deleting;
+      var Svg = Pangaso.components['component-svg'];
+      var Link = Pangaso.components['component-link'];
+      var Modal = Pangaso.components['component-modal'];
+      return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        className: "flex justify-between items-center"
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("h1", {
+        className: "font-thin text-3xl mb-2"
+      }, resource.name, " Details"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Link, {
+        to: "/resources/".concat(resource.slug, "/").concat(data[resource.primaryKey], "/edit")
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("span", {
+        className: "bg-white trans-30 p-3 mr-3 shadow-md cursor-pointer rounded-lg"
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Svg, {
+        icon: "pencil",
+        className: "text-indigo hover:text-indigo-light"
+      }))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("span", {
+        onClick: this.triggerDelete,
+        className: "bg-indigo p-3 trans-30 shadow-md cursor-pointer hover:bg-indigo-light rounded-lg"
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Svg, {
+        icon: "trash",
+        className: "text-white"
+      })))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        className: "mt-6 bg-white rounded-lg w-full py-3 px-12"
+      }, resource.fields.map(function (field, index) {
+        return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          key: index,
+          className: classnames__WEBPACK_IMPORTED_MODULE_8___default()('w-full py-4 flex items-center', {
+            'border-b border-grey-light ': index !== resource.fields.length - 1
+          })
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("label", {
+          className: "w-1/4 text-lg font-thin text-grey-dark"
+        }, field.name), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          className: "w-2/4 flex flex-col"
+        }, data[field.attribute]));
+      })), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Modal, {
+        open: deleting,
+        action: {
+          type: 'danger',
+          label: 'Delete',
+          handler: this["delete"]
+        },
+        renderContent: function renderContent() {
+          return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("p", {
+            className: "text-grey-dark"
+          }, "Are you sure you want to delete this resource?");
+        },
+        title: "Delete Resource",
+        cancel: this.triggerDelete
+      }));
+    }
+  }]);
+
+  return ResourceDetails;
+}(react__WEBPACK_IMPORTED_MODULE_7___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (ResourceDetails);
 
 /***/ }),
 

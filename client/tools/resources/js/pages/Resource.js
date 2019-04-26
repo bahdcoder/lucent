@@ -1,6 +1,4 @@
-import Axios from 'axios'
 import React from 'react'
-import classnames from 'classnames'
 
 class Resource extends React.Component {
     state = {
@@ -32,15 +30,13 @@ class Resource extends React.Component {
      *
      */
     getCurrentResource(slug = this.props.match.params.resource) {
-        return Pangaso.resources.find(
-            resource => resource.slug === slug
-        )
+        return Pangaso.resources.find(resource => resource.slug === slug)
     }
 
     /**
-     *  
+     *
      * Trigger multi delete confirm modal
-     * 
+     *
      */
     triggerMultiDelete = (currentlyDeleting = null) =>
         this.setState({
@@ -49,7 +45,7 @@ class Resource extends React.Component {
         })
 
     /**
-     * 
+     *
      * Trigger confirmation to run an action
      *
      */
@@ -105,10 +101,12 @@ class Resource extends React.Component {
      * @param {React.SyntheticEvent} event
      *
      */
-    setSelectedAction = (event) => {
-        const selectedAction = this.state.resource.actions.find(action => action.id === event.target.value)
+    setSelectedAction = event => {
+        const selectedAction = this.state.resource.actions.find(
+            action => action.id === event.target.value
+        )
 
-        if (! selectedAction) return
+        if (!selectedAction) return
 
         this.setState({
             selectedAction
@@ -123,7 +121,10 @@ class Resource extends React.Component {
         Pangaso.request()
             .delete(`/resources/${this.state.resource.slug}`, {
                 data: {
-                    resources: this.state.selected.length > 0 ? this.state.selected : [this.state.currentlyDeleting]
+                    resources:
+                        this.state.selected.length > 0
+                            ? this.state.selected
+                            : [this.state.currentlyDeleting]
                 }
             })
             .then(() => {
@@ -135,9 +136,13 @@ class Resource extends React.Component {
                         currentlyDeleting: ''
                     },
                     () => this.fetchData()
-                );
+                )
 
-                Pangaso.success(`${this.state.resource.name}${this.state.selected.length > 1 ? 's' : ''} deleted !`)
+                Pangaso.success(
+                    `${this.state.resource.name}${
+                        this.state.selected.length > 1 ? 's' : ''
+                    } deleted !`
+                )
             })
     }
 
@@ -158,10 +163,10 @@ class Resource extends React.Component {
     }
 
     /**
-     * 
+     *
      * Make API call to run a specific action
      * on a resource
-     * 
+     *
      */
     runAction = () => {
         Pangaso.request()
@@ -171,18 +176,18 @@ class Resource extends React.Component {
             })
 
             /**
-             * 
+             *
              * Once action has be successfully run,
              * empty the selected list, and
              * the selectedAction
-             * 
+             *
              */
             .then(() => {
                 this.setState({
                     selected: [],
                     selectedAction: '',
                     runningAction: false
-                });
+                })
 
                 Pangaso.success('Action run !')
             })
@@ -196,9 +201,7 @@ class Resource extends React.Component {
      *
      */
     getIndexFields = () =>
-        this.state.resource.fields.filter(
-            field => !field.hideOnIndexPage
-        )
+        this.state.resource.fields.filter(field => !field.hideOnIndexPage)
 
     /**
      *
@@ -217,11 +220,19 @@ class Resource extends React.Component {
 
     render() {
         const { Link } = this.props
+        const Svg = Pangaso.components['component-svg']
         const Modal = Pangaso.components['component-modal']
         const Table = Pangaso.components['component-table']
         const Button = Pangaso.components['component-button']
         const Loader = Pangaso.components['component-loader']
-        const { resource, data, selectedAction, selected, runningAction, multiDeleting } = this.state
+        const {
+            resource,
+            data,
+            selectedAction,
+            selected,
+            runningAction,
+            multiDeleting
+        } = this.state
 
         return (
             <React.Fragment>
@@ -229,20 +240,10 @@ class Resource extends React.Component {
 
                 <div className="flex justify-between items-center">
                     <div className="w-1/5 flex items-center">
-                        <svg
-                            className="absolute ml-3 z-5 text-grey fill-current"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
-                            viewBox="0 0 20 20"
-                            aria-labelledby="search"
-                            role="presentation"
-                        >
-                            <path
-                                fillRule="nonzero"
-                                d="M14.32 12.906l5.387 5.387a1 1 0 0 1-1.414 1.414l-5.387-5.387a8 8 0 1 1 1.414-1.414zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
-                            />
-                        </svg>
+                        <Svg
+                            icon="lens"
+                            className="absolute ml-3 z-5 text-grey"
+                        />
                         <input
                             type="text"
                             placeholder="Search"
@@ -284,7 +285,9 @@ class Resource extends React.Component {
                     renderContent={() => (
                         <p className="text-grey-dark">
                             {`Are you sure you want to delete ${
-                                (selected.length > 1 || '') ? selected.length : 'this'
+                                selected.length > 1 || ''
+                                    ? selected.length
+                                    : 'this'
                             } resource${selected.length > 1 ? 's' : ''}?`}
                         </p>
                     )}
@@ -296,11 +299,15 @@ class Resource extends React.Component {
                     action={{
                         label: 'Run Action',
                         handler: this.runAction,
-                        type: selectedAction.isDestructive ? 'danger' : 'primary'
+                        type: selectedAction.isDestructive
+                            ? 'danger'
+                            : 'primary'
                     }}
                     renderContent={() => (
                         <p className="text-grey-dark">
-                            {`Are you sure you want to run this action on ${selected.length} resource${selected.length > 1 ? 's' : ''}?`}
+                            {`Are you sure you want to run this action on ${
+                                selected.length
+                            } resource${selected.length > 1 ? 's' : ''}?`}
                         </p>
                     )}
                     title={selectedAction.name}

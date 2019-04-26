@@ -2,8 +2,10 @@ import Axios from 'axios'
 import React from 'react'
 import Toasted from 'toastedjs'
 import classnames from 'classnames'
+import { Link } from 'react-router-dom'
 
 // components
+import Svg from './components/Svg'
 import Table from './components/Table'
 import Modal from './components/Modal'
 import Loader from './components/Loader'
@@ -35,61 +37,60 @@ export class Pangaso {
         })
 
         /**
-         * 
+         *
          * Initialize global fields
-         * 
+         *
          */
         this.fields = {}
 
         /**
-         * 
+         *
          * Initialize global component registry
-         * 
+         *
          */
         this.components = {}
 
         /**
-         * 
+         *
          * Initialize booting callbacks for all plugins/tools
-         * 
+         *
          */
         this.bootingCallbacks = []
 
         /**
-         * 
+         *
          * Define all routes
-         * 
+         *
          */
         this.routes = []
 
-
         /**
-         * 
+         *
          * Initialize all sidebar items
-         * 
+         *
          */
         this.sidebarItems = []
 
         /**
-         * 
+         *
          * Save an instance of the real `this`
-         * 
+         *
          */
         let _this = this
 
         /**
-         * 
+         *
          * Register an HTTP interceptor to format errors
          * and flash default error.
-         * 
+         *
          */
         this.instance.interceptors.response.use(
-            (response) => response,
-            (error) => {
+            response => response,
+            error => {
                 if (error.response.status === 422) {
                     const errors = {}
 
-                    error.response.data.forEach((error) => {
+                    error.response.data.forEach(error => {
                         errors[error.field] = error.message
                     })
 
@@ -97,7 +98,9 @@ export class Pangaso {
 
                     _this.error('Validation errors. Please fix !')
                 } else {
-                    _this.error(error.response.data.message || 'An error occured !')
+                    _this.error(
+                        error.response.data.message || 'An error occured !'
+                    )
                 }
 
                 return Promise.reject(error)
@@ -122,6 +125,8 @@ export class Pangaso {
          * registry
          *
          */
+        this.component('component-svg', Svg)
+        this.component('component-link', Link)
         this.component('component-modal', Modal)
         this.component('component-table', Table)
         this.component('component-loader', Loader)
@@ -202,7 +207,7 @@ export class Pangaso {
     /**
      *
      * Boot all tool callbacks
-     * 
+     *
      * @param {Function} boot
      *
      * @return {void}
@@ -215,18 +220,18 @@ export class Pangaso {
     /**
      *
      * Boot all of the boot callbacks
-     * 
+     *
      * @param {Array} resources
      *
      * @return {void}
      *
      */
-    boot = (resources) => {
+    boot = resources => {
         this.resources = JSON.parse(resources)
 
         let _this = this
 
-        this.bootingCallbacks.forEach((boot) =>
+        this.bootingCallbacks.forEach(boot =>
             boot({
                 route: _this.route.bind(_this),
                 field: _this.field.bind(_this),
@@ -280,7 +285,7 @@ export class Pangaso {
      * @return {void}
      *
      */
-    sidebar = (Sidebar) => {
+    sidebar = Sidebar => {
         this.sidebarItems.push(Sidebar)
 
         this.setState({ sidebarItems: this.sidebarItems })

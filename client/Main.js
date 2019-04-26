@@ -6,7 +6,7 @@ export class Main extends React.Component {
     /**
      *
      * Define component state
-     * 
+     *
      */
     state = {
         routes: [],
@@ -41,10 +41,7 @@ export class Main extends React.Component {
                             {/** Register all sidebar items for tools */}
                             <div className="py-16 px-8">
                                 {this.state.sidebarItems.map(
-                                    (
-                                        SidebarItem,
-                                        index
-                                    ) => {
+                                    (SidebarItem, index) => {
                                         const SidebarItemWithRouter = withRouter(
                                             SidebarItem
                                         )
@@ -72,13 +69,7 @@ export class Main extends React.Component {
                         {/** Loop through all registered tools and display them here. */}
                         <div className="p-12">
                             {this.state.routes.map(
-                                (
-                                    {
-                                        path,
-                                        component: Component
-                                    },
-                                    index
-                                ) => (
+                                ({ path, component: Component }, index) => (
                                     <Route
                                         exact
                                         key={index}
