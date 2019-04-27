@@ -121,6 +121,15 @@ export class Field {
 
     /**
      *
+     * Determine if field should be hidden on detail page
+     *
+     * @var {boolean}
+     *
+     */
+    public hideOnDetailPage: boolean = false
+
+    /**
+     *
      * Define validation rules to be used for creation
      * for this field.
      *
@@ -225,6 +234,19 @@ export class Field {
      */
     public hideOnIndex() {
         this.hideOnIndexPage = true
+
+        return this
+    }
+
+    /**
+     *
+     * Hide a field on detail
+     *
+     * @return {Field}
+     *
+     */
+    public hideOnDetail() {
+        this.hideOnDetailPage = true
 
         return this
     }

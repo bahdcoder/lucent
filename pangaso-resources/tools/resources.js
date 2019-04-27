@@ -723,9 +723,9 @@ function (_React$Component) {
     _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, (_getPrototypeOf2 = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(AddResource)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "state", {
-      resource: _this.getCurrentResource(),
       form: {},
       errors: {},
+      resource: _this.getCurrentResource(),
       editing: !!_this.props.match.params.primaryKey
       /**
        *
@@ -752,7 +752,7 @@ function (_React$Component) {
           return;
         }
 
-        form[field.attribute] = data[field.attribute] || '';
+        form[field.attribute] = data[field.attribute] || _this.getDefaultFieldValue(field);
       });
 
       _this.setState({
@@ -802,6 +802,8 @@ function (_React$Component) {
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "handleChange", function (event) {
+      var embedded = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
       /**
        *
        * Handle the date field case
@@ -809,20 +811,26 @@ function (_React$Component) {
        */
       if (event.name && event.date) {
         return _this.setState({
-          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.name, event.date)),
+          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, embedded ? embedded : event.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.name, event.date)) : event.date)),
           errors: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.name, null))
         });
       }
 
       if (event.target.type === 'checkbox') {
         return _this.setState({
-          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.target.name, !_this.state.form[event.target.name]))
+          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.target.name, !_this.state.form[embedded][event.target.name])) : !_this.state.form[event.target.name]))
         });
       }
 
       _this.setState({
-        form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.target.name, event.target.value)),
+        form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.target.name, event.target.value)) : event.target.value)),
         errors: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.target.name, null))
+      });
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "getEmbeddedFields", function () {
+      return _this.state.resource.fields.filter(function (field) {
+        return ['HasOneEmbedded', 'HasManyEmbedded'].includes(field.type);
       });
     });
 
@@ -836,8 +844,8 @@ function (_React$Component) {
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "privateGetUpdateFields", function () {
-      return _this.state.resource.fields.filder(function (field) {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "getUpdateFields", function () {
+      return _this.state.resource.fields.filter(function (field) {
         return !field.hideOnUpdateForm;
       });
     });
@@ -869,13 +877,46 @@ function (_React$Component) {
      */
 
   }, {
-    key: "getCurrentResource",
+    key: "getDefaultFieldValue",
 
+    /**
+     *
+     * Get the default for a field
+     *
+     * @param {object} field
+     *
+     * @return {}
+     *
+     */
+    value: function getDefaultFieldValue(field) {
+      var _this2 = this;
+
+      if (field.type === 'HasOneEmbedded') {
+        var attributes = {};
+        field.fields.forEach(function (field) {
+          attributes[field.attribute] = _this2.getDefaultFieldValue(field);
+        });
+        return attributes;
+      }
+
+      if (field.type === 'Date') {
+        return new Date();
+      }
+
+      if (field.type === 'Boolean') {
+        return false;
+      }
+
+      return '';
+    }
     /**
      *
      * Get the current resource based on resource param
      *
      */
+
+  }, {
+    key: "getCurrentResource",
     value: function getCurrentResource() {
       var slug = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props.match.params.resource;
       return Pangaso.resources.find(function (resource) {
@@ -891,7 +932,7 @@ function (_React$Component) {
   }, {
     key: "fetchEditingResource",
     value: function fetchEditingResource() {
-      var _this2 = this;
+      var _this3 = this;
 
       Pangaso.request().get("/resources/".concat(this.state.resource.slug, "/").concat(this.props.match.params.primaryKey))
       /**
@@ -902,7 +943,7 @@ function (_React$Component) {
       .then(function (_ref3) {
         var data = _ref3.data;
 
-        _this2.populateFields(data);
+        _this3.populateFields(data);
       })
       /**
        *
@@ -913,7 +954,7 @@ function (_React$Component) {
       ["catch"](function () {
         Pangaso.error('Failed fetching resource.');
 
-        _this2.props.history.push("/resources/".concat(_this2.state.resource.slug));
+        _this3.props.history.push("/resources/".concat(_this3.state.resource.slug));
       });
     }
     /**
@@ -933,7 +974,7 @@ function (_React$Component) {
      *
      */
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var _this$state = this.state,
           editing = _this$state.editing,
@@ -941,12 +982,16 @@ function (_React$Component) {
           form = _this$state.form,
           resource = _this$state.resource;
       var Button = Pangaso.components['component-button'];
-      return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_8___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h1", {
+      var Loader = Pangaso.components['component-loader'];
+      var embeddableFields = this.getEmbeddedFields();
+      var formFields = editing ? this.getUpdateFields() : this.getCreationFields(); // Only render the form once the form has been populated
+
+      return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_8___default.a.Fragment, null, Object.keys(form).length === 0 ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Loader, null) : react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_8___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h1", {
         className: "font-thin text-3xl mb-2"
       }, "".concat(editing ? 'Edit' : 'New'), " ", resource.name), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "w-full mt-6 bg-white rounded-lg"
-      }, this.getCreationFields().map(function (field, index) {
-        var Field = _this3.getField(field.component);
+      }, formFields.map(function (field, index) {
+        var Field = _this4.getField(field.component);
 
         return Field ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
           key: index,
@@ -960,7 +1005,7 @@ function (_React$Component) {
           id: field.attribute,
           name: field.attribute,
           placeholder: field.name,
-          handler: _this3.handleChange,
+          handler: _this4.handleChange,
           value: form[field.attribute],
           checked: form[field.attribute],
           dateOptions: {
@@ -968,13 +1013,48 @@ function (_React$Component) {
           },
           error: errors[field.attribute]
         }))) : null;
-      })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: "p-8 flex justify-end bg-grey-lighter shadow"
+      })), embeddableFields.map(function (embeddableField, index) {
+        var formFields = embeddableField.fields;
+        return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+          key: index,
+          className: "mt-8"
+        }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h3", {
+          className: "font-thin text-2xl"
+        }, embeddableField.name), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+          className: "w-full mt-6 bg-white rounded-lg"
+        }, formFields.map(function (field, index) {
+          var Field = _this4.getField(field.component);
+
+          return Field ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+            key: index,
+            className: "w-full border-b flex items-center border-grey-light py-6 px-12"
+          }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
+            className: "w-1/4 text-lg font-thin text-grey-dark"
+          }, field.name), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+            className: "w-2/4 flex flex-col"
+          }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Field, {
+            className: "w-full",
+            id: field.attribute,
+            name: field.attribute,
+            placeholder: field.name,
+            handler: function handler(e) {
+              return _this4.handleChange(e, embeddableField.attribute);
+            },
+            value: form[embeddableField.attribute][field.attribute],
+            checked: form[embeddableField.attribute][field.attribute],
+            dateOptions: {
+              enableTime: field.enableTime
+            },
+            error: errors[field.attribute]
+          }))) : null;
+        })));
+      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: "p-8 flex justify-end bg-grey-lighter shadow mt-8"
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Button, {
         handler: editing ? function () {
-          return _this3.updateResource(false);
+          return _this4.updateResource(false);
         } : function () {
-          return _this3.postResource(false);
+          return _this4.postResource(false);
         },
         label: editing ? 'Updated & Continue editing' : 'Create & Add another',
         className: "mr-6"
@@ -982,7 +1062,7 @@ function (_React$Component) {
         className: "mr-6",
         handler: editing ? this.updateResource : this.postResource,
         label: "".concat(editing ? 'Update' : 'Create', " ").concat(resource.name)
-      })));
+      }))));
     }
   }]);
 
@@ -1463,6 +1543,18 @@ function (_React$Component) {
       return Pangaso.details[detail];
     });
 
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "getDetailFields", function () {
+      return _this.state.resource.fields.filter(function (field) {
+        return !field.hideOnDetailPage;
+      });
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "getEmbeddedFields", function () {
+      return _this.state.resource.fields.filter(function (field) {
+        return ['HasOneEmbedded', 'HasManyEmbedded'].includes(field.type);
+      });
+    });
+
     return _this;
   }
 
@@ -1521,32 +1613,33 @@ function (_React$Component) {
       var Svg = Pangaso.components['component-svg'];
       var Link = Pangaso.components['component-link'];
       var Modal = Pangaso.components['component-modal'];
+      var Button = Pangaso.components['component-button'];
+      var fields = this.getDetailFields();
+      var embeddedFields = this.getEmbeddedFields();
       return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
         className: "flex justify-between items-center"
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("h1", {
         className: "font-thin text-3xl mb-2"
-      }, resource.name, " Details"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Link, {
+      }, resource.name, " Details"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        className: "flex"
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Button, {
+        link: true,
+        label: 'Edit',
+        className: "mr-1",
         to: "/resources/".concat(resource.slug, "/").concat(data[resource.primaryKey], "/edit")
-      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("span", {
-        className: "bg-white trans-30 p-3 mr-3 shadow-md cursor-pointer rounded-lg"
-      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Svg, {
-        icon: "pencil",
-        className: "text-indigo hover:text-indigo-light"
-      }))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("span", {
-        onClick: this.triggerDelete,
-        className: "bg-indigo p-3 trans-30 shadow-md cursor-pointer hover:bg-indigo-light rounded-lg"
-      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Svg, {
-        icon: "trash",
-        className: "text-white"
-      })))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Button, {
+        handler: this.triggerDelete,
+        label: 'Delete',
+        type: "danger"
+      }))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
         className: "mt-6 bg-white rounded-lg w-full py-4 px-8"
-      }, resource.fields.map(function (field, index) {
+      }, fields.map(function (field, index) {
         var DetailField = _this3.getDetailField(field.detail);
 
         return DetailField ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
           key: index,
           className: classnames__WEBPACK_IMPORTED_MODULE_8___default()('w-full py-4 flex items-center', {
-            'border-b border-grey-light ': index !== resource.fields.length - 1
+            'border-b border-grey-light ': index !== fields.length - 1
           })
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("label", {
           className: "w-1/4 text-lg font-thin text-grey-dark"
@@ -1557,7 +1650,35 @@ function (_React$Component) {
           checked: data[field.attribute],
           content: data[field.attribute]
         }))) : null;
-      })), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Modal, {
+      })), embeddedFields.map(function (embeddableField, index) {
+        return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          key: index,
+          className: "w-full mt-12"
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("h3", {
+          className: "font-thin text-2xl mb-2"
+        }, embeddableField.name), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          className: "mt-6 bg-white rounded-lg w-full py-4 px-8"
+        }, embeddableField.fields.map(function (field, index) {
+          var embeddableFieldData = data[embeddableField.attribute] || {};
+
+          var DetailField = _this3.getDetailField(field.detail);
+
+          return DetailField ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+            key: index,
+            className: classnames__WEBPACK_IMPORTED_MODULE_8___default()('w-full py-4 flex items-center', {
+              'border-b border-grey-light ': index !== embeddableField.fields.length - 1
+            })
+          }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("label", {
+            className: "w-1/4 text-lg font-thin text-grey-dark"
+          }, field.name), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+            className: "w-2/4 flex flex-col text-grey-darkest leading-normal tracking-normal"
+          }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(DetailField, {
+            dateFormat: field.dateFormat,
+            checked: embeddableFieldData[field.attribute],
+            content: embeddableFieldData[field.attribute]
+          }))) : null;
+        })));
+      }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Modal, {
         open: deleting,
         action: {
           type: 'danger',

@@ -7,9 +7,7 @@ class Resource extends React.Component {
             total: 0,
             data: []
         },
-        page: QueryString.parse(
-            this.props.location.search
-        ).page || 1,
+        page: QueryString.parse(this.props.location.search).page || 1,
         selected: [],
         isFetching: true,
         selectedAction: {},
@@ -25,9 +23,7 @@ class Resource extends React.Component {
      *
      */
     async componentDidMount() {
-        this.fetchData(QueryString.parse(
-            this.props.location.search
-        ).page || 1)
+        this.fetchData(QueryString.parse(this.props.location.search).page || 1)
     }
 
     /**
@@ -77,9 +73,9 @@ class Resource extends React.Component {
     }
 
     /**
-     * 
+     *
      * Handle page change
-     * 
+     *
      */
     handlePageChange = ({ selected }) => {
         const { history } = this.props
@@ -88,10 +84,13 @@ class Resource extends React.Component {
 
         history.push(`${history.location.pathname}?page=${page}`)
 
-        this.setState({
-            page,
-            isFetching: true
-        }, () => this.fetchData(page))
+        this.setState(
+            {
+                page,
+                isFetching: true
+            },
+            () => this.fetchData(page)
+        )
     }
 
     /**
@@ -207,12 +206,15 @@ class Resource extends React.Component {
              *
              */
             .then(() => {
-                this.setState({
-                    selected: [],
-                    isFetching: true,
-                    selectedAction: '',
-                    runningAction: false,
-                }, () => this.fetchData(this.state.page))
+                this.setState(
+                    {
+                        selected: [],
+                        isFetching: true,
+                        selectedAction: '',
+                        runningAction: false
+                    },
+                    () => this.fetchData(this.state.page)
+                )
 
                 Pangaso.success('Action run !')
             })
@@ -263,7 +265,7 @@ class Resource extends React.Component {
             selected,
             runningAction,
             multiDeleting,
-            selectedAction,
+            selectedAction
         } = this.state
 
         return (

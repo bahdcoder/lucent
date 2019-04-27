@@ -4,9 +4,9 @@ import { AxiosError, AxiosResponse } from 'axios'
 
 class AddResource extends React.Component {
     state = {
-        resource: this.getCurrentResource(),
         form: {},
         errors: {},
+        resource: this.getCurrentResource(),
         editing: !!this.props.match.params.primaryKey
     }
 
@@ -53,13 +53,45 @@ class AddResource extends React.Component {
                 return
             }
 
-            form[field.attribute] = data[field.attribute] || ''
+            form[field.attribute] =
+                data[field.attribute] || this.getDefaultFieldValue(field)
         })
 
         this.setState({
             form,
             errors: {}
         })
+    }
+
+    /**
+     *
+     * Get the default for a field
+     *
+     * @param {object} field
+     *
+     * @return {}
+     *
+     */
+    getDefaultFieldValue(field) {
+        if (field.type === 'HasOneEmbedded') {
+            let attributes = {}
+
+            field.fields.forEach(field => {
+                attributes[field.attribute] = this.getDefaultFieldValue(field)
+            })
+
+            return attributes
+        }
+
+        if (field.type === 'Date') {
+            return new Date()
+        }
+
+        if (field.type === 'Boolean') {
+            return false
+        }
+
+        return ''
     }
 
     /**
@@ -158,7 +190,9 @@ class AddResource extends React.Component {
 
                 if (redirect) {
                     return this.props.history.push(
-                        `/resources/${this.state.resource.slug}/${this.props.match.params.primaryKey}/details`
+                        `/resources/${this.state.resource.slug}/${
+                            this.props.match.params.primaryKey
+                        }/details`
                     )
                 }
             })
@@ -176,7 +210,7 @@ class AddResource extends React.Component {
      * @return {void}
      *
      */
-    handleChange = event => {
+    handleChange = (event, embedded = null) => {
         /**
          *
          * Handle the date field case
@@ -186,7 +220,10 @@ class AddResource extends React.Component {
             return this.setState({
                 form: {
                     ...this.state.form,
-                    [event.name]: event.date
+                    [embedded ? embedded : event.name]: embedded ? {
+                        ...this.state.form[embedded],
+                        [event.name]: event.date
+                    } : event.date,
                 },
                 errors: {
                     ...this.state.errors,
@@ -199,7 +236,10 @@ class AddResource extends React.Component {
             return this.setState({
                 form: {
                     ...this.state.form,
-                    [event.target.name]: !this.state.form[event.target.name]
+                    [embedded ? embedded : event.target.name]: embedded ? {
+                        ...this.state.form[embedded],
+                        [event.target.name]: !this.state.form[embedded][event.target.name]
+                    }: !this.state.form[event.target.name]
                 }
             })
         }
@@ -207,7 +247,10 @@ class AddResource extends React.Component {
         this.setState({
             form: {
                 ...this.state.form,
-                [event.target.name]: event.target.value
+                [embedded ? embedded : event.target.name]: embedded ? {
+                    ...this.state.form[embedded],
+                    [event.target.name]: event.target.value
+                }: event.target.value
             },
             errors: {
                 ...this.state.errors,
@@ -215,6 +258,18 @@ class AddResource extends React.Component {
             }
         })
     }
+
+    /**
+     *
+     * Get the embedded fields
+     *
+     * @return {array}
+     *
+     */
+    getEmbeddedFields = () =>
+        this.state.resource.fields.filter(field =>
+            ['HasOneEmbedded', 'HasManyEmbedded'].includes(field.type)
+        )
 
     /**
      *
@@ -244,8 +299,8 @@ class AddResource extends React.Component {
      * @return {array}
      *
      */
-    privateGetUpdateFields = () =>
-        this.state.resource.fields.filder(field => !field.hideOnUpdateForm)
+    getUpdateFields = () =>
+        this.state.resource.fields.filter(field => !field.hideOnUpdateForm)
 
     /**
      *
@@ -261,70 +316,133 @@ class AddResource extends React.Component {
     render() {
         const { editing, errors, form, resource } = this.state
         const Button = Pangaso.components['component-button']
+        const Loader = Pangaso.components['component-loader']
 
+        const embeddableFields = this.getEmbeddedFields()
+        const formFields = editing
+            ? this.getUpdateFields()
+            : this.getCreationFields()
+
+        // Only render the form once the form has been populated
         return (
             <React.Fragment>
-                <h1 className="font-thin text-3xl mb-2">
-                    {`${editing ? 'Edit' : 'New'}`} {resource.name}
-                </h1>
+                {Object.keys(form).length === 0 ? <Loader /> : (
+                    <React.Fragment>
+                        <h1 className="font-thin text-3xl mb-2">
+                            {`${editing ? 'Edit' : 'New'}`} {resource.name}
+                        </h1>
 
-                <div className="w-full mt-6 bg-white rounded-lg">
-                    {this.getCreationFields().map((field, index) => {
-                        const Field = this.getField(field.component)
+                        <div className="w-full mt-6 bg-white rounded-lg">
+                            {formFields.map((field, index) => {
+                                const Field = this.getField(field.component)
 
-                        return Field ? (
-                            <div
-                                key={index}
-                                className="w-full border-b flex items-center border-grey-light py-6 px-12"
-                            >
-                                <label className="w-1/4 text-lg font-thin text-grey-dark">
-                                    {field.name}
-                                </label>
+                                return Field ? (
+                                    <div
+                                        key={index}
+                                        className="w-full border-b flex items-center border-grey-light py-6 px-12"
+                                    >
+                                        <label className="w-1/4 text-lg font-thin text-grey-dark">
+                                            {field.name}
+                                        </label>
 
-                                <div className="w-2/4 flex flex-col">
-                                    <Field
-                                        className="w-full"
-                                        id={field.attribute}
-                                        name={field.attribute}
-                                        placeholder={field.name}
-                                        handler={this.handleChange}
-                                        value={form[field.attribute]}
-                                        checked={form[field.attribute]}
-                                        dateOptions={{
-                                            enableTime: field.enableTime
-                                        }}
-                                        error={errors[field.attribute]}
-                                    />
+                                        <div className="w-2/4 flex flex-col">
+                                            <Field
+                                                className="w-full"
+                                                id={field.attribute}
+                                                name={field.attribute}
+                                                placeholder={field.name}
+                                                handler={this.handleChange}
+                                                value={form[field.attribute]}
+                                                checked={form[field.attribute]}
+                                                dateOptions={{
+                                                    enableTime: field.enableTime
+                                                }}
+                                                error={errors[field.attribute]}
+                                            />
+                                        </div>
+                                    </div>
+                                ) : null
+                            })}
+                        </div>
+
+                        {embeddableFields.map((embeddableField, index) => {
+                            const formFields = embeddableField.fields
+
+                            return (
+                                <div key={index} className="mt-8">
+                                    <h3 className="font-thin text-2xl">
+                                        {embeddableField.name}
+                                    </h3>
+
+                                    <div className="w-full mt-6 bg-white rounded-lg">
+                                        {formFields.map((field, index) => {
+                                            const Field = this.getField(field.component)
+
+                                            return Field ? (
+                                                <div
+                                                    key={index}
+                                                    className="w-full border-b flex items-center border-grey-light py-6 px-12"
+                                                >
+                                                    <label className="w-1/4 text-lg font-thin text-grey-dark">
+                                                        {field.name}
+                                                    </label>
+
+                                                    <div className="w-2/4 flex flex-col">
+                                                        <Field
+                                                            className="w-full"
+                                                            id={field.attribute}
+                                                            name={field.attribute}
+                                                            placeholder={field.name}
+                                                            handler={e => this.handleChange(e, embeddableField.attribute)}
+                                                            value={
+                                                                form[embeddableField.attribute][field.attribute]
+                                                            }
+                                                            checked={
+                                                                form[embeddableField.attribute][field.attribute]
+                                                            }
+                                                            dateOptions={{
+                                                                enableTime:
+                                                                    field.enableTime
+                                                            }}
+                                                            error={
+                                                                errors[field.attribute]
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+                                            ) : null
+                                        })}
+                                    </div>
                                 </div>
-                            </div>
-                        ) : null
-                    })}
-                </div>
+                            )
+                        })}
 
-                <div className="p-8 flex justify-end bg-grey-lighter shadow">
-                    <Button
-                        handler={
-                            editing
-                                ? () => this.updateResource(false)
-                                : () => this.postResource(false)
-                        }
-                        label={
-                            editing
-                                ? 'Updated & Continue editing'
-                                : 'Create & Add another'
-                        }
-                        className="mr-6"
-                    />
-                    <Button
-                        className="mr-6"
-                        handler={
-                            editing ? this.updateResource : this.postResource
-                        }
-                        label={`${editing ? 'Update' : 'Create'} ${
-                            resource.name
-                        }`}
-                    />
-                </div>
+                        <div className="p-8 flex justify-end bg-grey-lighter shadow mt-8">
+                            <Button
+                                handler={
+                                    editing
+                                        ? () => this.updateResource(false)
+                                        : () => this.postResource(false)
+                                }
+                                label={
+                                    editing
+                                        ? 'Updated & Continue editing'
+                                        : 'Create & Add another'
+                                }
+                                className="mr-6"
+                            />
+                            <Button
+                                className="mr-6"
+                                handler={
+                                    editing ? this.updateResource : this.postResource
+                                }
+                                label={`${editing ? 'Update' : 'Create'} ${
+                                    resource.name
+                                }`}
+                            />
+                        </div>
+                    </React.Fragment>
+                )}
             </React.Fragment>
         )
     }

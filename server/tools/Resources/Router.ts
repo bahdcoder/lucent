@@ -88,6 +88,10 @@ router.post(
  * Define the route for deleting all specified records for a specific resource
  *
  */
-router.delete('/api/resources/:slug', SetResourceMiddleware, AsyncWrapper(Resource.delete))
+router.delete(
+    '/api/resources/:slug',
+    SetResourceMiddleware,
+    AsyncWrapper(Resource.delete)
+)
 
 export default router

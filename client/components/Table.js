@@ -20,7 +20,7 @@ const Table = ({
     setSelectedAction,
     triggerMultiDelete,
     selectedAction = '',
-    onPageChange,
+    onPageChange
 }) => {
     /**
      *
@@ -38,7 +38,7 @@ const Table = ({
      * @return {Number}
      *
      */
-    const currentPageStart =  resource.perPage * page - resource.perPage + 1
+    const currentPageStart = resource.perPage * page - resource.perPage + 1
 
     /**
      *
@@ -47,11 +47,10 @@ const Table = ({
      * @return {Number}
      *
      */
-    const currentPageEnd = Math.round(total - currentPageStart) <=
-        resource.perPage
-        ? total
-        : currentPageStart + resource.perPage - 1
-
+    const currentPageEnd =
+        Math.round(total - currentPageStart) <= resource.perPage
+            ? total
+            : currentPageStart + resource.perPage - 1
 
     return (
         <div className="w-full bg-white rounded-t-lg shadow mt-4">
@@ -63,7 +62,7 @@ const Table = ({
                         checked={selected.length === rows.length}
                     />
                 </div>
-    
+
                 <div className="flex items-center justify-end w-1/3">
                     {resource.actions.length > 0 && selected.length > 0 && (
                         <React.Fragment>
@@ -79,7 +78,7 @@ const Table = ({
                                     </option>
                                 ))}
                             </select>
-    
+
                             <button
                                 type="button"
                                 onClick={triggerRunAction}
@@ -101,7 +100,8 @@ const Table = ({
                                     y="0px"
                                     viewBox="0 0 41.999 41.999"
                                     style={{
-                                        enableBackground: 'new 0 0 41.999 41.999'
+                                        enableBackground:
+                                            'new 0 0 41.999 41.999'
                                     }}
                                     xmlSpace="preserve"
                                 >
@@ -115,15 +115,19 @@ const Table = ({
                             </button>
                         </React.Fragment>
                     )}
-    
+
                     {selected.length > 0 && (
                         <div className="w-16 flex items-center justify-center">
-                            <Svg icon="trash" onClick={triggerMultiDelete} className='text-grey hover:text-indigo-dark' />
+                            <Svg
+                                icon="trash"
+                                onClick={triggerMultiDelete}
+                                className="text-grey hover:text-indigo-dark"
+                            />
                         </div>
                     )}
                 </div>
             </div>
-    
+
             <table className="w-full" cellSpacing="0" cellPadding="0">
                 <thead className="w-full">
                     <tr className="bg-grey-lighter w-full font-bold text-xs text-left uppercase border-b-2 tracking-wide align-middle">
@@ -138,7 +142,7 @@ const Table = ({
                         </React.Fragment>
                     </tr>
                 </thead>
-    
+
                 <tbody>
                     {rows.map(row => (
                         <tr
@@ -153,15 +157,24 @@ const Table = ({
                                         checked={selected.includes(
                                             row[resource.primaryKey]
                                         )}
-                                        id={`table-item-${row[resource.primaryKey]}`}
+                                        id={`table-item-${
+                                            row[resource.primaryKey]
+                                        }`}
                                     />
                                 </td>
                                 {headers.map((field, index) => {
-                                    const DetailField = Pangaso.details[field.detail]
-    
+                                    const DetailField =
+                                        Pangaso.details[field.detail]
+
                                     return (
-                                        <td className="text-left h-14" key={index}>
-                                            <DetailField content={row[field.attribute]} checked={row[field.attribute]} />
+                                        <td
+                                            className="text-left h-14"
+                                            key={index}
+                                        >
+                                            <DetailField
+                                                content={row[field.attribute]}
+                                                checked={row[field.attribute]}
+                                            />
                                         </td>
                                     )
                                 })}
@@ -183,7 +196,7 @@ const Table = ({
                                         >
                                             <Svg icon="pencil" />
                                         </Link>
-    
+
                                         <Svg
                                             icon="trash"
                                             className="ml-3 text-grey hover:text-indigo-dark"
@@ -201,7 +214,7 @@ const Table = ({
                 </tbody>
             </table>
 
-            <div className='flex text-grey-dark w-full justify-between rounded-b-lg pr-6 bg-grey-lighter shadow'>
+            <div className="flex text-grey-dark w-full justify-between rounded-b-lg pr-6 bg-grey-lighter shadow">
                 <Paginate
                     nextLabel={'»'}
                     breakLabel={'...'}

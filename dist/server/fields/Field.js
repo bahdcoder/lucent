@@ -103,6 +103,14 @@ var Field = /** @class */ (function () {
          *
          */
         this.hideOnUpdateForm = false;
+        /**
+         *
+         * Determine if field should be hidden on detail page
+         *
+         * @var {boolean}
+         *
+         */
+        this.hideOnDetailPage = false;
     }
     /**
      *
@@ -197,6 +205,17 @@ var Field = /** @class */ (function () {
      */
     Field.prototype.hideOnIndex = function () {
         this.hideOnIndexPage = true;
+        return this;
+    };
+    /**
+     *
+     * Hide a field on detail
+     *
+     * @return {Field}
+     *
+     */
+    Field.prototype.hideOnDetail = function () {
+        this.hideOnDetailPage = true;
         return this;
     };
     /**

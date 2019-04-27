@@ -219,7 +219,9 @@ var ResourceController = /** @class */ (function () {
                          * and collection of models
                          *
                          */
-                        return [4 /*yield*/, action.handle(req.pangaso.database.get().collection(req.pangaso.resource.collection()), req, collection.map(function (item) { return (__assign({}, item, { _id: new bson_1.ObjectID(item._id) })); }))
+                        return [4 /*yield*/, action.handle(req.pangaso.database
+                                .get()
+                                .collection(req.pangaso.resource.collection()), req, collection.map(function (item) { return (__assign({}, item, { _id: new bson_1.ObjectID(item._id) })); }))
                             /**
                              *
                              * Resolve and return the message for this action.

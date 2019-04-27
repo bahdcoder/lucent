@@ -11,3 +11,4 @@ export { Textarea } from './fields/Textarea';
 export { Password } from './fields/Password';
 export { BelongsTo } from './fields/BelongsTo';
 export { BaseResource as Resource } from './Resource';
+export { HasOneEmbedded } from './fields/HasOneEmbedded';

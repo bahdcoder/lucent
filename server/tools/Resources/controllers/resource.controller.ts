@@ -1,6 +1,6 @@
 import * as Express from 'express'
 import { IResource } from '../../../index.d'
-import { ObjectID } from 'bson';
+import { ObjectID } from 'bson'
 
 class ResourceController {
     /**
@@ -39,7 +39,7 @@ class ResourceController {
             req.params.resource
         )
 
-        if (! resource) {
+        if (!resource) {
             return res.status(404).json({
                 message: 'Resource not found.'
             })
@@ -60,10 +60,13 @@ class ResourceController {
      *
      */
     public async fetch(req: Express.Request, res: Express.Response) {
-        const data = await req.pangaso.database.fetch(req.pangaso.resource.collection(), {
-            limit: req.pangaso.resource.perPage(),
-            page: req.query.page || 1
-        })
+        const data = await req.pangaso.database.fetch(
+            req.pangaso.resource.collection(),
+            {
+                limit: req.pangaso.resource.perPage(),
+                page: req.query.page || 1
+            }
+        )
 
         return res.json(data)
     }
@@ -159,9 +162,14 @@ class ResourceController {
          *
          */
         await action.handle(
-            req.pangaso.database.get().collection(req.pangaso.resource.collection()),
+            req.pangaso.database
+                .get()
+                .collection(req.pangaso.resource.collection()),
             req,
-            collection.map((item: any) => ({ ...item, _id: new ObjectID(item._id) }))
+            collection.map((item: any) => ({
+                ...item,
+                _id: new ObjectID(item._id)
+            }))
         )
 
         /**

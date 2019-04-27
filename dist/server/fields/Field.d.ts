@@ -100,6 +100,14 @@ export declare class Field {
     hideOnUpdateForm: boolean;
     /**
      *
+     * Determine if field should be hidden on detail page
+     *
+     * @var {boolean}
+     *
+     */
+    hideOnDetailPage: boolean;
+    /**
+     *
      * Define validation rules to be used for creation
      * for this field.
      *
@@ -169,6 +177,14 @@ export declare class Field {
      *
      */
     hideOnIndex(): this;
+    /**
+     *
+     * Hide a field on detail
+     *
+     * @return {Field}
+     *
+     */
+    hideOnDetail(): this;
     /**
      *
      * Hide a field on the creation form

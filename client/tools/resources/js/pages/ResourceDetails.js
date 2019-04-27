@@ -82,6 +82,28 @@ class ResourceDetails extends React.Component {
 
     /**
      *
+     * Get the fields to be displayed on details page
+     *
+     * @return {array}
+     *
+     */
+    getDetailFields = () =>
+        this.state.resource.fields.filter(field => !field.hideOnDetailPage)
+
+    /**
+     *
+     * Get the embedded fields
+     *
+     * @return {array}
+     *
+     */
+    getEmbeddedFields = () =>
+        this.state.resource.fields.filter(field =>
+            ['HasOneEmbedded', 'HasManyEmbedded'].includes(field.type)
+        )
+
+    /**
+     *
      * Render the JSX for component
      *
      * @return {JSX}
@@ -89,10 +111,14 @@ class ResourceDetails extends React.Component {
      */
     render() {
         const { resource, data, deleting } = this.state
-        
+
         const Svg = Pangaso.components['component-svg']
         const Link = Pangaso.components['component-link']
         const Modal = Pangaso.components['component-modal']
+        const Button = Pangaso.components['component-button']
+
+        const fields = this.getDetailFields()
+        const embeddedFields = this.getEmbeddedFields()
 
         return (
             <React.Fragment>
@@ -101,30 +127,25 @@ class ResourceDetails extends React.Component {
                         {resource.name} Details
                     </h1>
 
-                    <div>
-                        <Link
+                    <div className="flex">
+                        <Button
+                            link
+                            label={'Edit'}
+                            className="mr-1"
                             to={`/resources/${resource.slug}/${
                                 data[resource.primaryKey]
                             }/edit`}
-                        >
-                            <span className="bg-white trans-30 p-3 mr-3 shadow-md cursor-pointer rounded-lg">
-                                <Svg
-                                    icon="pencil"
-                                    className="text-indigo hover:text-indigo-light"
-                                />
-                            </span>
-                        </Link>
-                        <span
-                            onClick={this.triggerDelete}
-                            className="bg-indigo p-3 trans-30 shadow-md cursor-pointer hover:bg-indigo-light rounded-lg"
-                        >
-                            <Svg icon="trash" className="text-white" />
-                        </span>
+                        />
+                        <Button
+                            handler={this.triggerDelete}
+                            label={'Delete'}
+                            type="danger"
+                        />
                     </div>
                 </div>
 
                 <div className="mt-6 bg-white rounded-lg w-full py-4 px-8">
-                    {resource.fields.map((field, index) => {
+                    {fields.map((field, index) => {
                         const DetailField = this.getDetailField(field.detail)
 
                         return DetailField ? (
@@ -134,7 +155,7 @@ class ResourceDetails extends React.Component {
                                     'w-full py-4 flex items-center',
                                     {
                                         'border-b border-grey-light ':
-                                            index !== resource.fields.length - 1
+                                            index !== fields.length - 1
                                     }
                                 )}
                             >
@@ -154,6 +175,57 @@ class ResourceDetails extends React.Component {
                     })}
                 </div>
 
+                {embeddedFields.map((embeddableField, index) => (
+                    <div key={index} className="w-full mt-12">
+                        <h3 className="font-thin text-2xl mb-2">
+                            {embeddableField.name}
+                        </h3>
+
+                        <div className="mt-6 bg-white rounded-lg w-full py-4 px-8">
+                            {embeddableField.fields.map((field, index) => {
+                                const embeddableFieldData =
+                                    data[embeddableField.attribute] || {}
+
+                                const DetailField = this.getDetailField(
+                                    field.detail
+                                )
+
+                                return DetailField ? (
+                                    <div
+                                        key={index}
+                                        className={classnames(
+                                            'w-full py-4 flex items-center',
+                                            {
+                                                'border-b border-grey-light ':
+                                                    index !== embeddableField.fields.length - 1
+                                            }
+                                        )}
+                                    >
+                                        <label className="w-1/4 text-lg font-thin text-grey-dark">
+                                            {field.name}
+                                        </label>
+
+                                        <div className="w-2/4 flex flex-col text-grey-darkest leading-normal tracking-normal">
+                                            <DetailField
+                                                dateFormat={field.dateFormat}
+                                                checked={
+                                                    embeddableFieldData[
+                                                        field.attribute
+                                                    ]
+                                                }
+                                                content={
+                                                    embeddableFieldData[
+                                                        field.attribute
+                                                    ]
+                                                }
+                                            />
+                                        </div>
+                                    </div>
+                                ) : null
+                            })}
+                        </div>
+                    </div>
+                ))}
                 <Modal
                     open={deleting}
                     action={{

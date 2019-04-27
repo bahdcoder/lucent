@@ -177,11 +177,18 @@ export class Database {
      * @return {Promise}
      *
      */
-    public async bulkUpdate(collection: string, primaryKeys: Array<string>, data: object) {
+    public async bulkUpdate(
+        collection: string,
+        primaryKeys: Array<string>,
+        data: object
+    ) {
         // @ts-ignore
         return this.get()
             .collection(collection)
-            .updateMany({ _id: primaryKeys.map(key => new ObjectID(key)) }, { $set: data })
+            .updateMany(
+                { _id: primaryKeys.map(key => new ObjectID(key)) },
+                { $set: data }
+            )
     }
 }
 
