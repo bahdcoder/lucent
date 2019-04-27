@@ -50,19 +50,60 @@ var CreateResource = /** @class */ (function () {
      */
     CreateResource.handle = function (req, res, next) {
         return __awaiter(this, void 0, void 0, function () {
-            var resource, data, messages, rules;
-            return __generator(this, function (_a) {
-                resource = req.pangaso.resource;
-                data = req.body;
-                messages = CreateResource.customMessages();
-                rules = CreateResource.buildValidationRules(resource);
-                return [2 /*return*/, Indicative.validateAll(data, rules, messages)
-                        .then(function () {
-                        return next();
-                    })
-                        .catch(function (errors) {
-                        return res.status(422).json(errors);
-                    })];
+            var resource, data, messages, rules, errors, topLevelRules, _a, _b, _i, attribute, rule, nestedErrors_1, topLevelErrors_1;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        resource = req.pangaso.resource;
+                        data = req.body;
+                        messages = CreateResource.customMessages();
+                        rules = CreateResource.buildValidationRules(resource);
+                        errors = {};
+                        topLevelRules = {};
+                        _a = [];
+                        for (_b in rules)
+                            _a.push(_b);
+                        _i = 0;
+                        _c.label = 1;
+                    case 1:
+                        if (!(_i < _a.length)) return [3 /*break*/, 6];
+                        attribute = _a[_i];
+                        if (!rules.hasOwnProperty(attribute)) return [3 /*break*/, 5];
+                        rule = rules[attribute];
+                        if (!(typeof rule === 'string')) return [3 /*break*/, 2];
+                        topLevelRules[attribute] = rule;
+                        return [3 /*break*/, 5];
+                    case 2:
+                        _c.trys.push([2, 4, , 5]);
+                        return [4 /*yield*/, Indicative.validateAll(data[attribute], rule, messages)];
+                    case 3:
+                        _c.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        nestedErrors_1 = _c.sent();
+                        errors[attribute] = nestedErrors_1;
+                        return [3 /*break*/, 5];
+                    case 5:
+                        _i++;
+                        return [3 /*break*/, 1];
+                    case 6:
+                        _c.trys.push([6, 8, , 9]);
+                        return [4 /*yield*/, Indicative.validateAll(data, topLevelRules, messages)];
+                    case 7:
+                        _c.sent();
+                        return [3 /*break*/, 9];
+                    case 8:
+                        topLevelErrors_1 = _c.sent();
+                        errors.topLevelErrors = topLevelErrors_1;
+                        return [3 /*break*/, 9];
+                    case 9:
+                        if (Object.keys(errors).length === 0) {
+                            return [2 /*return*/, next()];
+                        }
+                        return [2 /*return*/, res.status(422).json({
+                                resourceErrors: errors
+                            })];
+                }
             });
         });
     };
@@ -81,6 +122,15 @@ var CreateResource = /** @class */ (function () {
             .fields()
             .filter(function (field) { return field.type !== 'ID'; })
             .forEach(function (field) {
+            if (field.type === 'HasOneEmbedded') {
+                rules[field.attribute] = {};
+                field.fields &&
+                    field.fields.forEach(function (embeddedField) {
+                        if (embeddedField.creationRules) {
+                            rules[field.attribute][embeddedField.attribute] = embeddedField.creationRules;
+                        }
+                    });
+            }
             if (field.creationRules) {
                 rules[field.attribute] = field.creationRules;
             }

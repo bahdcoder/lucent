@@ -24,13 +24,42 @@ class CreateResource {
         const messages = CreateResource.customMessages()
         const rules = CreateResource.buildValidationRules(resource)
 
-        return Indicative.validateAll(data, rules, messages)
-            .then(() => {
-                return next()
-            })
-            .catch((errors: any) => {
-                return res.status(422).json(errors)
-            })
+        let errors: any = {}
+        let topLevelRules: any = {}
+
+        for (const attribute in rules) {
+            if (rules.hasOwnProperty(attribute)) {
+                const rule = rules[attribute]
+
+                if (typeof rule === 'string') {
+                    topLevelRules[attribute] = rule
+                } else {
+                    try {
+                        await Indicative.validateAll(
+                            data[attribute],
+                            rule,
+                            messages
+                        )
+                    } catch (nestedErrors) {
+                        errors[attribute] = nestedErrors
+                    }
+                }
+            }
+        }
+
+        try {
+            await Indicative.validateAll(data, topLevelRules, messages)
+        } catch (topLevelErrors) {
+            errors.topLevelErrors = topLevelErrors
+        }
+
+        if (Object.keys(errors).length === 0) {
+            return next()
+        }
+
+        return res.status(422).json({
+            resourceErrors: errors
+        })
     }
 
     /**
@@ -49,6 +78,18 @@ class CreateResource {
             .fields()
             .filter((field: IField) => field.type !== 'ID')
             .forEach((field: IField) => {
+                if (field.type === 'HasOneEmbedded') {
+                    rules[field.attribute] = {}
+                    field.fields &&
+                        field.fields.forEach((embeddedField: IField) => {
+                            if (embeddedField.creationRules) {
+                                rules[field.attribute][
+                                    embeddedField.attribute
+                                ] = embeddedField.creationRules
+                            }
+                        })
+                }
+
                 if (field.creationRules) {
                     rules[field.attribute] = field.creationRules
                 }

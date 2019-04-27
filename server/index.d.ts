@@ -16,6 +16,8 @@ export interface IField {
     attribute: string
     creationRules: string
     type: string
+    fields?: IField[]
+    name: string
 }
 
 /**

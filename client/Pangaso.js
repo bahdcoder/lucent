@@ -105,20 +105,45 @@ export class Pangaso {
         this.instance.interceptors.response.use(
             response => response,
             error => {
-                if (error.response.status === 422) {
-                    const errors = {}
+                try {
+                    if (error.response.status === 422) {
+                        _this.error('Validation errors. Please fix !')
+                        const responseErrors = {}
+                        const { resourceErrors } = error.response.data
 
-                    error.response.data.forEach(error => {
-                        errors[error.field] = error.message
-                    })
+                        if (resourceErrors) {
+                            for (const resourceError in resourceErrors) {
+                                if (
+                                    resourceErrors.hasOwnProperty(resourceError)
+                                ) {
+                                    const errors = resourceErrors[resourceError]
 
-                    error.response.data = errors
+                                    if (resourceError === 'topLevelErrors') {
+                                        errors.forEach(error => {
+                                            responseErrors[error.field] =
+                                                error.message
+                                        })
+                                    } else {
+                                        responseErrors[resourceError] = {}
 
-                    _this.error('Validation errors. Please fix !')
-                } else {
-                    _this.error(
-                        error.response.data.message || 'An error occured !'
-                    )
+                                        errors.forEach(error => {
+                                            responseErrors[resourceError][
+                                                error.field
+                                            ] = error.message
+                                        })
+                                    }
+                                }
+                            }
+                        }
+
+                        error.response.data = responseErrors
+                    } else {
+                        _this.error(
+                            error.response.data.message || 'An error occured !'
+                        )
+                    }
+                } catch (e) {
+                    console.log(e)
                 }
 
                 return Promise.reject(error)

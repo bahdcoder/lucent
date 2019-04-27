@@ -491,16 +491,44 @@ function () {
     this.instance.interceptors.response.use(function (response) {
       return response;
     }, function (error) {
-      if (error.response.status === 422) {
-        var errors = {};
-        error.response.data.forEach(function (error) {
-          errors[error.field] = error.message;
-        });
-        error.response.data = errors;
+      try {
+        if (error.response.status === 422) {
+          (function () {
+            _this2.error('Validation errors. Please fix !');
 
-        _this2.error('Validation errors. Please fix !');
-      } else {
-        _this2.error(error.response.data.message || 'An error occured !');
+            var responseErrors = {};
+            var resourceErrors = error.response.data.resourceErrors;
+
+            if (resourceErrors) {
+              var _loop = function _loop(resourceError) {
+                if (resourceErrors.hasOwnProperty(resourceError)) {
+                  var errors = resourceErrors[resourceError];
+
+                  if (resourceError === 'topLevelErrors') {
+                    errors.forEach(function (error) {
+                      responseErrors[error.field] = error.message;
+                    });
+                  } else {
+                    responseErrors[resourceError] = {};
+                    errors.forEach(function (error) {
+                      responseErrors[resourceError][error.field] = error.message;
+                    });
+                  }
+                }
+              };
+
+              for (var resourceError in resourceErrors) {
+                _loop(resourceError);
+              }
+            }
+
+            error.response.data = responseErrors;
+          })();
+        } else {
+          _this2.error(error.response.data.message || 'An error occured !');
+        }
+      } catch (e) {
+        console.log(e);
       }
 
       return Promise.reject(error);

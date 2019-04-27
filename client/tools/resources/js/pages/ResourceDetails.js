@@ -197,7 +197,10 @@ class ResourceDetails extends React.Component {
                                             'w-full py-4 flex items-center',
                                             {
                                                 'border-b border-grey-light ':
-                                                    index !== embeddableField.fields.length - 1
+                                                    index !==
+                                                    embeddableField.fields
+                                                        .length -
+                                                        1
                                             }
                                         )}
                                     >

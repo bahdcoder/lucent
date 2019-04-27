@@ -36,6 +36,7 @@ class AddResource extends React.Component {
      */
     populateFields = (data = {}) => {
         const form = {}
+        const errors = {}
 
         this.getCreationFields().forEach(field => {
             if (field.type === 'Date') {
@@ -43,14 +44,20 @@ class AddResource extends React.Component {
                     data[field.attribute] || new Date(),
                     this.getFormat(field)
                 )
+                errors[field.attribute] = null
 
                 return
             }
 
             if (field.type === 'Boolean') {
                 form[field.attribute] = !!data[field.attribute] || false
+                errors[field.attribute] = null
 
                 return
+            }
+
+            if (field.type === 'HasOneEmbedded') {
+                errors[field.attribute] = {}
             }
 
             form[field.attribute] =
@@ -59,7 +66,7 @@ class AddResource extends React.Component {
 
         this.setState({
             form,
-            errors: {}
+            errors
         })
     }
 
@@ -220,10 +227,12 @@ class AddResource extends React.Component {
             return this.setState({
                 form: {
                     ...this.state.form,
-                    [embedded ? embedded : event.name]: embedded ? {
-                        ...this.state.form[embedded],
-                        [event.name]: event.date
-                    } : event.date,
+                    [embedded ? embedded : event.name]: embedded
+                        ? {
+                              ...this.state.form[embedded],
+                              [event.name]: event.date
+                          }
+                        : event.date
                 },
                 errors: {
                     ...this.state.errors,
@@ -236,10 +245,14 @@ class AddResource extends React.Component {
             return this.setState({
                 form: {
                     ...this.state.form,
-                    [embedded ? embedded : event.target.name]: embedded ? {
-                        ...this.state.form[embedded],
-                        [event.target.name]: !this.state.form[embedded][event.target.name]
-                    }: !this.state.form[event.target.name]
+                    [embedded ? embedded : event.target.name]: embedded
+                        ? {
+                              ...this.state.form[embedded],
+                              [event.target.name]: !this.state.form[embedded][
+                                  event.target.name
+                              ]
+                          }
+                        : !this.state.form[event.target.name]
                 }
             })
         }
@@ -247,10 +260,12 @@ class AddResource extends React.Component {
         this.setState({
             form: {
                 ...this.state.form,
-                [embedded ? embedded : event.target.name]: embedded ? {
-                    ...this.state.form[embedded],
-                    [event.target.name]: event.target.value
-                }: event.target.value
+                [embedded ? embedded : event.target.name]: embedded
+                    ? {
+                          ...this.state.form[embedded],
+                          [event.target.name]: event.target.value
+                      }
+                    : event.target.value
             },
             errors: {
                 ...this.state.errors,
@@ -326,7 +341,9 @@ class AddResource extends React.Component {
         // Only render the form once the form has been populated
         return (
             <React.Fragment>
-                {Object.keys(form).length === 0 ? <Loader /> : (
+                {Object.keys(form).length === 0 ? (
+                    <Loader />
+                ) : (
                     <React.Fragment>
                         <h1 className="font-thin text-3xl mb-2">
                             {`${editing ? 'Edit' : 'New'}`} {resource.name}
@@ -376,7 +393,9 @@ class AddResource extends React.Component {
 
                                     <div className="w-full mt-6 bg-white rounded-lg">
                                         {formFields.map((field, index) => {
-                                            const Field = this.getField(field.component)
+                                            const Field = this.getField(
+                                                field.component
+                                            )
 
                                             return Field ? (
                                                 <div
@@ -391,21 +410,48 @@ class AddResource extends React.Component {
                                                         <Field
                                                             className="w-full"
                                                             id={field.attribute}
-                                                            name={field.attribute}
-                                                            placeholder={field.name}
-                                                            handler={e => this.handleChange(e, embeddableField.attribute)}
+                                                            name={
+                                                                field.attribute
+                                                            }
+                                                            placeholder={
+                                                                field.name
+                                                            }
+                                                            handler={e =>
+                                                                this.handleChange(
+                                                                    e,
+                                                                    embeddableField.attribute
+                                                                )
+                                                            }
                                                             value={
-                                                                form[embeddableField.attribute][field.attribute]
+                                                                form[
+                                                                    embeddableField
+                                                                        .attribute
+                                                                ][
+                                                                    field
+                                                                        .attribute
+                                                                ]
                                                             }
                                                             checked={
-                                                                form[embeddableField.attribute][field.attribute]
+                                                                form[
+                                                                    embeddableField
+                                                                        .attribute
+                                                                ][
+                                                                    field
+                                                                        .attribute
+                                                                ]
                                                             }
                                                             dateOptions={{
                                                                 enableTime:
                                                                     field.enableTime
                                                             }}
                                                             error={
-                                                                errors[field.attribute]
+                                                                errors[
+                                                                    embeddableField
+                                                                        .attribute
+                                                                ][
+                                                                    field
+                                                                        .attribute
+                                                                ]
                                                             }
                                                         />
                                                     </div>
@@ -434,7 +480,9 @@ class AddResource extends React.Component {
                             <Button
                                 className="mr-6"
                                 handler={
-                                    editing ? this.updateResource : this.postResource
+                                    editing
+                                        ? this.updateResource
+                                        : this.postResource
                                 }
                                 label={`${editing ? 'Update' : 'Create'} ${
                                     resource.name

@@ -35,11 +35,9 @@ const Sidebar = ({ Link, location }) => (
                         'hover:text-white trans-30 font-normal cursor-pointer',
                         {
                             'text-white':
-                                location.pathname ===
-                                `/resources/${resource.slug}`,
+                                !location.pathname.match(`/resources/${resource.slug}`),
                             'text-indigo-lighter':
-                                location.pathname !==
-                                `/resources/${resource.slug}`
+                                !location.pathname.match(`/resources/${resource.slug}`)
                         }
                     )}
                 >

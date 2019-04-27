@@ -591,8 +591,8 @@ var Sidebar = function Sidebar(_ref) {
       className: "w-5 h-5 mr-5"
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('hover:text-white trans-30 font-normal cursor-pointer', {
-        'text-white': location.pathname === "/resources/".concat(resource.slug),
-        'text-indigo-lighter': location.pathname !== "/resources/".concat(resource.slug)
+        'text-white': !location.pathname.match("/resources/".concat(resource.slug)),
+        'text-indigo-lighter': !location.pathname.match("/resources/".concat(resource.slug))
       })
     }, resource.title));
   }));
@@ -740,16 +740,23 @@ function (_React$Component) {
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "populateFields", function () {
       var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var form = {};
+      var errors = {};
 
       _this.getCreationFields().forEach(function (field) {
         if (field.type === 'Date') {
           form[field.attribute] = date_fns_format__WEBPACK_IMPORTED_MODULE_9___default()(data[field.attribute] || new Date(), _this.getFormat(field));
+          errors[field.attribute] = null;
           return;
         }
 
         if (field.type === 'Boolean') {
           form[field.attribute] = !!data[field.attribute] || false;
+          errors[field.attribute] = null;
           return;
+        }
+
+        if (field.type === 'HasOneEmbedded') {
+          errors[field.attribute] = {};
         }
 
         form[field.attribute] = data[field.attribute] || _this.getDefaultFieldValue(field);
@@ -757,7 +764,7 @@ function (_React$Component) {
 
       _this.setState({
         form: form,
-        errors: {}
+        errors: errors
       });
     });
 
@@ -1045,7 +1052,7 @@ function (_React$Component) {
             dateOptions: {
               enableTime: field.enableTime
             },
-            error: errors[field.attribute]
+            error: errors[embeddableField.attribute][field.attribute]
           }))) : null;
         })));
       }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
