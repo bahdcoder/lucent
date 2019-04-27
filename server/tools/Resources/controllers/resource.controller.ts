@@ -1,5 +1,5 @@
 import * as Express from 'express'
-import { IResource } from '../../../index.d'
+import { IResource, IField } from '../../../index.d'
 import { ObjectID } from 'bson'
 
 class ResourceController {
@@ -33,19 +33,44 @@ class ResourceController {
      * @return {Express.Response}
      *
      */
-    public async show(req: Express.Request, res: Express.Response) {
+    public show = async (
+        req: Express.Request,
+        res: Express.Response,
+        expectsJson = true
+    ) => {
         const resource = await req.pangaso.database.find(
             req.pangaso.resource.collection(),
             req.params.resource
         )
 
         if (!resource) {
-            return res.status(404).json({
-                message: 'Resource not found.'
-            })
+            return expectsJson
+                ? res.status(404).json({
+                      message: 'Resource not found.'
+                  })
+                : null
         }
 
-        return res.json(resource)
+        return expectsJson ? res.json(resource) : resource
+    }
+
+    /**
+     *
+     * Fetch all data from specific resource collection
+     *
+     * @param {Express.Request} req
+     *
+     * @param {Express.Response} res
+     *
+     * @return {Express.Response}
+     *
+     */
+    public async fetchAll(req: Express.Request, res: Express.Response) {
+        const data = await req.pangaso.database.fetchAll(
+            req.pangaso.resource.collection()
+        )
+
+        return res.json(data)
     }
 
     /**
@@ -69,6 +94,50 @@ class ResourceController {
         )
 
         return res.json(data)
+    }
+
+    /**
+     *
+     * Fetch a record for a has one relationship
+     *
+     * @param {Express.Request} req
+     *
+     * @param {Express.Response} res
+     *
+     * @return {Express.Response}
+     *
+     */
+    public fetchHasOne = async (
+        req: Express.Request,
+        res: Express.Response
+    ) => {
+        // we need the resource
+        const resource = await this.show(req, res, false)
+
+        if (!resource) {
+            return res.status(404).json({
+                message: 'Resource not found.'
+            })
+        }
+
+        // using the resource, let's find it's related resource
+
+        // plan
+        const relatedField = req.pangaso.resource
+            .fields()
+            .find((field: IField) => field.attribute === req.params.relation)
+
+        //
+        const relatedResource = req.pangaso.resources.find(
+            (r: IResource) => r.name() === relatedField.resource
+        )
+
+        const record = await req.pangaso.database.find(
+            relatedResource.collection(),
+            resource[relatedField.attribute]
+        )
+
+        return res.json(record || {})
     }
 
     /**

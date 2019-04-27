@@ -44,6 +44,17 @@ export declare class Database {
      *
      * @param {string} collection
      *
+     * @param {string} primaryKey
+     *
+     * @return {Promise}
+     *
+     */
+    fetchAll(collection: string): Promise<any>;
+    /**
+     * Fetch all data from a collection, with pagination and limits
+     *
+     * @param {string} collection
+     *
      * @param {Object} params
      *
      * @return {Promise}

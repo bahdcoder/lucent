@@ -49,6 +49,73 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var bson_1 = require("bson");
 var ResourceController = /** @class */ (function () {
     function ResourceController() {
+        var _this = this;
+        /**
+         *
+         * Get a single record of a resource
+         *
+         * @param {Express.Request} req
+         *
+         * @param {Express.Response} res
+         *
+         * @return {Express.Response}
+         *
+         */
+        this.show = function (req, res, expectsJson) {
+            if (expectsJson === void 0) { expectsJson = true; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var resource;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, req.pangaso.database.find(req.pangaso.resource.collection(), req.params.resource)];
+                        case 1:
+                            resource = _a.sent();
+                            if (!resource) {
+                                return [2 /*return*/, expectsJson
+                                        ? res.status(404).json({
+                                            message: 'Resource not found.'
+                                        })
+                                        : null];
+                            }
+                            return [2 /*return*/, expectsJson ? res.json(resource) : resource];
+                    }
+                });
+            });
+        };
+        /**
+         *
+         * Fetch a record for a has one relationship
+         *
+         * @param {Express.Request} req
+         *
+         * @param {Express.Response} res
+         *
+         * @return {Express.Response}
+         *
+         */
+        this.fetchHasOne = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var resource, relatedField, relatedResource, record;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.show(req, res, false)];
+                    case 1:
+                        resource = _a.sent();
+                        if (!resource) {
+                            return [2 /*return*/, res.status(404).json({
+                                    message: 'Resource not found.'
+                                })];
+                        }
+                        relatedField = req.pangaso.resource
+                            .fields()
+                            .find(function (field) { return field.attribute === req.params.relation; });
+                        relatedResource = req.pangaso.resources.find(function (r) { return r.name() === relatedField.resource; });
+                        return [4 /*yield*/, req.pangaso.database.find(relatedResource.collection(), resource[relatedField.attribute])];
+                    case 2:
+                        record = _a.sent();
+                        return [2 /*return*/, res.json(record || {})];
+                }
+            });
+        }); };
     }
     /**
      *
@@ -72,7 +139,7 @@ var ResourceController = /** @class */ (function () {
     };
     /**
      *
-     * Get a single record of a resource
+     * Fetch all data from specific resource collection
      *
      * @param {Express.Request} req
      *
@@ -81,20 +148,15 @@ var ResourceController = /** @class */ (function () {
      * @return {Express.Response}
      *
      */
-    ResourceController.prototype.show = function (req, res) {
+    ResourceController.prototype.fetchAll = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var resource;
+            var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, req.pangaso.database.find(req.pangaso.resource.collection(), req.params.resource)];
+                    case 0: return [4 /*yield*/, req.pangaso.database.fetchAll(req.pangaso.resource.collection())];
                     case 1:
-                        resource = _a.sent();
-                        if (!resource) {
-                            return [2 /*return*/, res.status(404).json({
-                                    message: 'Resource not found.'
-                                })];
-                        }
-                        return [2 /*return*/, res.json(resource)];
+                        data = _a.sent();
+                        return [2 /*return*/, res.json(data)];
                 }
             });
         });

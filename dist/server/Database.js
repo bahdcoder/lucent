@@ -96,6 +96,27 @@ var Database = /** @class */ (function () {
      *
      * @param {string} collection
      *
+     * @param {string} primaryKey
+     *
+     * @return {Promise}
+     *
+     */
+    Database.prototype.fetchAll = function (collection) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                // @ts-ignore
+                return [2 /*return*/, this.get()
+                        .collection(collection)
+                        .find({})
+                        .toArray()];
+            });
+        });
+    };
+    /**
+     * Fetch all data from a collection, with pagination and limits
+     *
+     * @param {string} collection
+     *
      * @param {Object} params
      *
      * @return {Promise}

@@ -40,6 +40,17 @@ router.get(
 
 /**
  *
+ * Define the route for fetching all database records for a specific resource
+ *
+ */
+router.get(
+    '/api/resources/:slug/all',
+    SetResourceMiddleware,
+    AsyncWrapper(Resource.fetchAll)
+)
+
+/**
+ *
  * Define the route for fetching a single database record for a specific collection/resource
  *
  */
@@ -47,6 +58,17 @@ router.get(
     '/api/resources/:slug/:resource',
     SetResourceMiddleware,
     AsyncWrapper(Resource.show)
+)
+
+/**
+ *
+ * Define the route for fetching a single database record related to a specific resource
+ *
+ */
+router.get(
+    '/api/resources/:slug/:resource/has-one/:relation',
+    SetResourceMiddleware,
+    AsyncWrapper(Resource.fetchHasOne)
 )
 
 /**

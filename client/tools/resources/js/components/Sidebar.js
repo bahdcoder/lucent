@@ -34,10 +34,12 @@ const Sidebar = ({ Link, location }) => (
                     className={classnames(
                         'hover:text-white trans-30 font-normal cursor-pointer',
                         {
-                            'text-white':
-                                !location.pathname.match(`/resources/${resource.slug}`),
-                            'text-indigo-lighter':
-                                !location.pathname.match(`/resources/${resource.slug}`)
+                            'text-white': !location.pathname.match(
+                                `/resources/${resource.slug}`
+                            ),
+                            'text-indigo-lighter': !location.pathname.match(
+                                `/resources/${resource.slug}`
+                            )
                         }
                     )}
                 >

@@ -10,6 +10,7 @@ import Table from './components/Table'
 import Modal from './components/Modal'
 import Loader from './components/Loader'
 import Button from './components/Button'
+import Select from './components/Select'
 import Checkbox from './components/Checkbox'
 
 // details
@@ -17,6 +18,7 @@ import IDDetail from './components/Detail/ID'
 import NumDetail from './components/Detail/Num'
 import TextDetail from './components/Detail/Text'
 import DateDetail from './components/Detail/Date'
+import SelectDetail from './components/Detail/Select'
 import BooleanDetail from './components/Detail/Boolean'
 import PasswordDetail from './components/Detail/Password'
 import TextareaDetail from './components/Detail/Textarea'
@@ -25,6 +27,7 @@ import TextareaDetail from './components/Detail/Textarea'
 import NumField from './components/Form/NumField'
 import DateField from './components/Form/DateField'
 import TextField from './components/Form/TextField'
+import SelectField from './components/Form/SelectField'
 import BooleanField from './components/Form/BooleanField'
 import TextareaField from './components/Form/TextareaField'
 import PasswordField from './components/Form/PasswordField'
@@ -159,6 +162,7 @@ export class Pangaso {
         this.field('form-num', NumField)
         this.field('form-text', TextField)
         this.field('form-date', DateField)
+        this.field('form-select', SelectField)
         this.field('form-boolean', BooleanField)
         this.field('form-password', PasswordField)
         this.field('form-textarea', TextareaField)
@@ -174,6 +178,7 @@ export class Pangaso {
         this.detail('detail-num', NumDetail)
         this.detail('detail-text', TextDetail)
         this.detail('detail-date', DateDetail)
+        this.detail('detail-select', SelectDetail)
         this.detail('detail-boolean', BooleanDetail)
         this.detail('detail-textarea', TextareaDetail)
         this.detail('detail-password', PasswordDetail)
@@ -190,6 +195,7 @@ export class Pangaso {
         this.component('component-table', Table)
         this.component('component-loader', Loader)
         this.component('component-button', Button)
+        this.component('component-select', Select)
         this.component('component-checkbox', Checkbox)
     }
 

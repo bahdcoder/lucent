@@ -146,7 +146,8 @@ var CreateResource = /** @class */ (function () {
      */
     CreateResource.customMessages = function () {
         return {
-            required: 'The {{ field }} is required.'
+            required: 'The {{ field }} is required.',
+            email: 'The {{ field }} must be a valid email.'
         };
     };
     return CreateResource;

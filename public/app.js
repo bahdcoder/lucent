@@ -281,20 +281,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Modal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Modal */ "./client/components/Modal.js");
 /* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Loader */ "./client/components/Loader.js");
 /* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Button */ "./client/components/Button.js");
-/* harmony import */ var _components_Checkbox__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Checkbox */ "./client/components/Checkbox.js");
-/* harmony import */ var _components_Detail_ID__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Detail/ID */ "./client/components/Detail/ID.js");
-/* harmony import */ var _components_Detail_Num__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Detail/Num */ "./client/components/Detail/Num.js");
-/* harmony import */ var _components_Detail_Text__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Detail/Text */ "./client/components/Detail/Text.js");
-/* harmony import */ var _components_Detail_Date__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Detail/Date */ "./client/components/Detail/Date.js");
-/* harmony import */ var _components_Detail_Boolean__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Detail/Boolean */ "./client/components/Detail/Boolean.js");
-/* harmony import */ var _components_Detail_Password__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Detail/Password */ "./client/components/Detail/Password.js");
-/* harmony import */ var _components_Detail_Textarea__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Detail/Textarea */ "./client/components/Detail/Textarea.js");
-/* harmony import */ var _components_Form_NumField__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Form/NumField */ "./client/components/Form/NumField.js");
-/* harmony import */ var _components_Form_DateField__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Form/DateField */ "./client/components/Form/DateField.js");
-/* harmony import */ var _components_Form_TextField__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Form/TextField */ "./client/components/Form/TextField.js");
-/* harmony import */ var _components_Form_BooleanField__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Form/BooleanField */ "./client/components/Form/BooleanField.js");
-/* harmony import */ var _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Form/TextareaField */ "./client/components/Form/TextareaField.js");
-/* harmony import */ var _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Form/PasswordField */ "./client/components/Form/PasswordField.js");
+/* harmony import */ var _components_Select__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Select */ "./client/components/Select.js");
+/* harmony import */ var _components_Checkbox__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Checkbox */ "./client/components/Checkbox.js");
+/* harmony import */ var _components_Detail_ID__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Detail/ID */ "./client/components/Detail/ID.js");
+/* harmony import */ var _components_Detail_Num__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Detail/Num */ "./client/components/Detail/Num.js");
+/* harmony import */ var _components_Detail_Text__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Detail/Text */ "./client/components/Detail/Text.js");
+/* harmony import */ var _components_Detail_Date__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Detail/Date */ "./client/components/Detail/Date.js");
+/* harmony import */ var _components_Detail_Select__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Detail/Select */ "./client/components/Detail/Select.js");
+/* harmony import */ var _components_Detail_Boolean__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Detail/Boolean */ "./client/components/Detail/Boolean.js");
+/* harmony import */ var _components_Detail_Password__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Detail/Password */ "./client/components/Detail/Password.js");
+/* harmony import */ var _components_Detail_Textarea__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Detail/Textarea */ "./client/components/Detail/Textarea.js");
+/* harmony import */ var _components_Form_NumField__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Form/NumField */ "./client/components/Form/NumField.js");
+/* harmony import */ var _components_Form_DateField__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Form/DateField */ "./client/components/Form/DateField.js");
+/* harmony import */ var _components_Form_TextField__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Form/TextField */ "./client/components/Form/TextField.js");
+/* harmony import */ var _components_Form_SelectField__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Form/SelectField */ "./client/components/Form/SelectField.js");
+/* harmony import */ var _components_Form_BooleanField__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Form/BooleanField */ "./client/components/Form/BooleanField.js");
+/* harmony import */ var _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/Form/TextareaField */ "./client/components/Form/TextareaField.js");
+/* harmony import */ var _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/Form/PasswordField */ "./client/components/Form/PasswordField.js");
 
 
 
@@ -310,6 +313,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
  // details
 
 
@@ -318,7 +322,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
  // fields
+
 
 
 
@@ -540,12 +546,13 @@ function () {
      *
      */
 
-    this.field('form-num', _components_Form_NumField__WEBPACK_IMPORTED_MODULE_22__["default"]);
-    this.field('form-text', _components_Form_TextField__WEBPACK_IMPORTED_MODULE_24__["default"]);
-    this.field('form-date', _components_Form_DateField__WEBPACK_IMPORTED_MODULE_23__["default"]);
-    this.field('form-boolean', _components_Form_BooleanField__WEBPACK_IMPORTED_MODULE_25__["default"]);
-    this.field('form-password', _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_27__["default"]);
-    this.field('form-textarea', _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_26__["default"]);
+    this.field('form-num', _components_Form_NumField__WEBPACK_IMPORTED_MODULE_24__["default"]);
+    this.field('form-text', _components_Form_TextField__WEBPACK_IMPORTED_MODULE_26__["default"]);
+    this.field('form-date', _components_Form_DateField__WEBPACK_IMPORTED_MODULE_25__["default"]);
+    this.field('form-select', _components_Form_SelectField__WEBPACK_IMPORTED_MODULE_27__["default"]);
+    this.field('form-boolean', _components_Form_BooleanField__WEBPACK_IMPORTED_MODULE_28__["default"]);
+    this.field('form-password', _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_30__["default"]);
+    this.field('form-textarea', _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_29__["default"]);
     /**
      *
      * Here we'll register a bunch of components to be used
@@ -554,13 +561,14 @@ function () {
      *
      */
 
-    this.detail('detail-id', _components_Detail_ID__WEBPACK_IMPORTED_MODULE_15__["default"]);
-    this.detail('detail-num', _components_Detail_Num__WEBPACK_IMPORTED_MODULE_16__["default"]);
-    this.detail('detail-text', _components_Detail_Text__WEBPACK_IMPORTED_MODULE_17__["default"]);
-    this.detail('detail-date', _components_Detail_Date__WEBPACK_IMPORTED_MODULE_18__["default"]);
-    this.detail('detail-boolean', _components_Detail_Boolean__WEBPACK_IMPORTED_MODULE_19__["default"]);
-    this.detail('detail-textarea', _components_Detail_Textarea__WEBPACK_IMPORTED_MODULE_21__["default"]);
-    this.detail('detail-password', _components_Detail_Password__WEBPACK_IMPORTED_MODULE_20__["default"]);
+    this.detail('detail-id', _components_Detail_ID__WEBPACK_IMPORTED_MODULE_16__["default"]);
+    this.detail('detail-num', _components_Detail_Num__WEBPACK_IMPORTED_MODULE_17__["default"]);
+    this.detail('detail-text', _components_Detail_Text__WEBPACK_IMPORTED_MODULE_18__["default"]);
+    this.detail('detail-date', _components_Detail_Date__WEBPACK_IMPORTED_MODULE_19__["default"]);
+    this.detail('detail-select', _components_Detail_Select__WEBPACK_IMPORTED_MODULE_20__["default"]);
+    this.detail('detail-boolean', _components_Detail_Boolean__WEBPACK_IMPORTED_MODULE_21__["default"]);
+    this.detail('detail-textarea', _components_Detail_Textarea__WEBPACK_IMPORTED_MODULE_23__["default"]);
+    this.detail('detail-password', _components_Detail_Password__WEBPACK_IMPORTED_MODULE_22__["default"]);
     /**
      *
      * Here we'll register components to the component
@@ -574,7 +582,8 @@ function () {
     this.component('component-table', _components_Table__WEBPACK_IMPORTED_MODULE_10__["default"]);
     this.component('component-loader', _components_Loader__WEBPACK_IMPORTED_MODULE_12__["default"]);
     this.component('component-button', _components_Button__WEBPACK_IMPORTED_MODULE_13__["default"]);
-    this.component('component-checkbox', _components_Checkbox__WEBPACK_IMPORTED_MODULE_14__["default"]);
+    this.component('component-select', _components_Select__WEBPACK_IMPORTED_MODULE_14__["default"]);
+    this.component('component-checkbox', _components_Checkbox__WEBPACK_IMPORTED_MODULE_15__["default"]);
   }
   /**
    *
@@ -840,6 +849,33 @@ var Password = function Password(_ref) {
 
 /***/ }),
 
+/***/ "./client/components/Detail/Select.js":
+/*!********************************************!*\
+  !*** ./client/components/Detail/Select.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Select = function Select(_ref) {
+  var content = _ref.content,
+      _ref$options = _ref.options,
+      options = _ref$options === void 0 ? [] : _ref$options;
+  var option = options.find(function (o) {
+    return o.value === content;
+  });
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, option && option.label);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Select);
+
+/***/ }),
+
 /***/ "./client/components/Detail/Text.js":
 /*!******************************************!*\
   !*** ./client/components/Detail/Text.js ***!
@@ -1047,6 +1083,29 @@ var PasswordField = function PasswordField(props) {
 
 /***/ }),
 
+/***/ "./client/components/Form/SelectField.js":
+/*!***********************************************!*\
+  !*** ./client/components/Form/SelectField.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Select */ "./client/components/Select.js");
+
+
+
+var SelectField = function SelectField(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Select__WEBPACK_IMPORTED_MODULE_1__["default"], props);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SelectField);
+
+/***/ }),
+
 /***/ "./client/components/Form/TextField.js":
 /*!*********************************************!*\
   !*** ./client/components/Form/TextField.js ***!
@@ -1205,6 +1264,56 @@ var Modal = function Modal(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Modal);
+
+/***/ }),
+
+/***/ "./client/components/Select.js":
+/*!*************************************!*\
+  !*** ./client/components/Select.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var Select = function Select(_ref) {
+  var handler = _ref.handler,
+      value = _ref.value,
+      name = _ref.name,
+      error = _ref.error,
+      className = _ref.className,
+      _ref$placeholder = _ref.placeholder,
+      placeholder = _ref$placeholder === void 0 ? 'Select an option' : _ref$placeholder,
+      _ref$options = _ref.options,
+      options = _ref$options === void 0 ? [] : _ref$options;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    name: name,
+    value: value,
+    onChange: handler,
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('bg-white focus:outline-none text-grey-darkest my-3 border h-10 px-3 rounded-lg shadow focus:outline-none focus:border-2', {
+      'border-grey focus:border-indigo': !error,
+      'border-red focus:border-red': error
+    }, className)
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: ""
+  }, placeholder), options.map(function (option) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: option.value,
+      key: option.value
+    }, option.label);
+  })), error && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-xs text-red font-thin"
+  }, error));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Select);
 
 /***/ }),
 
@@ -1453,13 +1562,14 @@ var Table = function Table(_ref) {
       id: "table-item-".concat(row[resource.primaryKey])
     })), headers.map(function (field, index) {
       var DetailField = Pangaso.details[field.detail];
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+      return DetailField ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
         className: "text-left h-14",
         key: index
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DetailField, {
+        options: field.options,
         content: row[field.attribute],
         checked: row[field.attribute]
-      }));
+      })) : null;
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
       className: "text-left pr-6"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {

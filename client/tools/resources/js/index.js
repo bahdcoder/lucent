@@ -1,15 +1,23 @@
 import Resource from './pages/Resource'
 import Sidebar from './components/Sidebar'
 import AddResource from './pages/AddResource'
+import HasOneField from './components/Form/HasOne'
 import ResourceDetails from './pages/ResourceDetails'
 
-Pangaso.booting(({ route, sidebar }) => {
+Pangaso.booting(({ route, sidebar, field }) => {
     /**
      *
      * Define the sidebar items
      *
      */
     sidebar(Sidebar)
+
+    /**
+     *
+     * Register a new field component
+     *
+     */
+    field('form-hasone', HasOneField)
 
     /**
      *

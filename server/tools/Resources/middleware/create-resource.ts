@@ -107,7 +107,8 @@ class CreateResource {
      */
     public static customMessages(): object {
         return {
-            required: 'The {{ field }} is required.'
+            required: 'The {{ field }} is required.',
+            email: 'The {{ field }} must be a valid email.'
         }
     }
 }

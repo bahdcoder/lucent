@@ -166,17 +166,18 @@ const Table = ({
                                     const DetailField =
                                         Pangaso.details[field.detail]
 
-                                    return (
+                                    return DetailField ? (
                                         <td
                                             className="text-left h-14"
                                             key={index}
                                         >
                                             <DetailField
+                                                options={field.options}
                                                 content={row[field.attribute]}
                                                 checked={row[field.attribute]}
                                             />
                                         </td>
-                                    )
+                                    ) : null
                                 })}
                                 <td className="text-left pr-6">
                                     <span className="flex items-center justify-end flex-grow">

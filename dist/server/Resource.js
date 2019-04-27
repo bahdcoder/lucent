@@ -81,6 +81,14 @@ var BaseResource = /** @class */ (function () {
     };
     /**
      *
+     * Get the value to be used to display this resource
+     *
+     */
+    BaseResource.prototype.diplayValue = function () {
+        return '';
+    };
+    /**
+     *
      * Get all actions for this resource
      *
      * @return {Array}
@@ -204,6 +212,7 @@ var BaseResource = /** @class */ (function () {
             perPage: this.perPage(),
             primaryKey: this.primaryKey(),
             collection: this.collection(),
+            displayValue: this.diplayValue(),
             authorizedToView: this.authorizedToView(),
             authorizedToCreate: this.authorizedToCreate(),
             authorizedToUpdate: this.authorizedToUpdate(),

@@ -34,6 +34,12 @@ export declare class BaseResource implements IResource {
     fields(): never[];
     /**
      *
+     * Get the value to be used to display this resource
+     *
+     */
+    diplayValue(): string;
+    /**
+     *
      * Get all actions for this resource
      *
      * @return {Array}
@@ -127,6 +133,7 @@ export declare class BaseResource implements IResource {
         perPage: number;
         primaryKey: string;
         collection: string;
+        displayValue: string;
         authorizedToView: boolean;
         authorizedToCreate: boolean;
         authorizedToUpdate: boolean;

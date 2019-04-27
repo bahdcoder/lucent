@@ -1,6 +1,8 @@
 import React from 'react'
 import classnames from 'classnames'
 
+import HasOne from '../components/HasOne'
+
 class ResourceDetails extends React.Component {
     state = {
         data: {},
@@ -14,16 +16,27 @@ class ResourceDetails extends React.Component {
      *
      */
     componentDidMount() {
+        this.fetch(this.props.match.params.primaryKey)
+    }
+
+    fetch(primaryKey, push = true) {
         Pangaso.request()
-            .get(
-                `/resources/${this.state.resource.slug}/${
-                    this.props.match.params.primaryKey
-                }`
-            )
+            .get(`/resources/${this.state.resource.slug}/${primaryKey}`)
             .then(({ data }) => {
-                this.setState({
-                    data
-                })
+                this.setState(
+                    {
+                        data
+                    },
+                    () => {
+                        if (push) {
+                            this.props.history.push(
+                                `/resources/${
+                                    this.state.resource.slug
+                                }/${primaryKey}/details`
+                            )
+                        }
+                    }
+                )
             })
             .catch(() => {
                 this.props.history.push(
@@ -104,6 +117,32 @@ class ResourceDetails extends React.Component {
 
     /**
      *
+     * Get all HasOne relationships
+     *
+     * @return {array}
+     *
+     */
+    getHasOneFields = () =>
+        this.state.resource.fields.filter(field => field.type === 'HasOne')
+
+    /**
+     *
+     * This method navigates to another detail
+     *
+     */
+    viewChildResource = (resource, primaryKey) => {
+        this.setState(
+            {
+                data: {},
+                deleting: false,
+                resource: resource
+            },
+            () => this.fetch(primaryKey, true)
+        )
+    }
+
+    /**
+     *
      * Render the JSX for component
      *
      * @return {JSX}
@@ -112,12 +151,11 @@ class ResourceDetails extends React.Component {
     render() {
         const { resource, data, deleting } = this.state
 
-        const Svg = Pangaso.components['component-svg']
-        const Link = Pangaso.components['component-link']
         const Modal = Pangaso.components['component-modal']
         const Button = Pangaso.components['component-button']
 
         const fields = this.getDetailFields()
+        const hasOneFields = this.getHasOneFields()
         const embeddedFields = this.getEmbeddedFields()
 
         return (
@@ -165,6 +203,7 @@ class ResourceDetails extends React.Component {
 
                                 <div className="w-2/4 flex flex-col text-grey-darkest leading-normal tracking-normal">
                                     <DetailField
+                                        options={field.options}
                                         dateFormat={field.dateFormat}
                                         checked={data[field.attribute]}
                                         content={data[field.attribute]}
@@ -229,6 +268,16 @@ class ResourceDetails extends React.Component {
                         </div>
                     </div>
                 ))}
+                {Object.keys(data).length > 0 &&
+                    hasOneFields.map((hasOneField, index) => (
+                        <HasOne
+                            key={index}
+                            parentRecord={data}
+                            field={hasOneField}
+                            parentResource={resource}
+                            viewChildResource={this.viewChildResource}
+                        />
+                    ))}
                 <Modal
                     open={deleting}
                     action={{

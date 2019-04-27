@@ -39,7 +39,7 @@ export interface StartOptions {
  *
  */
 export interface IResource {
-    name?(): string
+    name(): string
     fields(): Array<any>
     schema?(): any
     slug(): string

@@ -1,6 +1,6 @@
 import React from 'react'
+import classnames from 'classnames'
 import format from 'date-fns/format'
-import { AxiosError, AxiosResponse } from 'axios'
 
 class AddResource extends React.Component {
     state = {
@@ -364,17 +364,26 @@ class AddResource extends React.Component {
 
                                         <div className="w-2/4 flex flex-col">
                                             <Field
+                                                field={field}
                                                 className="w-full"
+                                                resource={resource}
                                                 id={field.attribute}
                                                 name={field.attribute}
-                                                placeholder={field.name}
                                                 handler={this.handleChange}
                                                 value={form[field.attribute]}
                                                 checked={form[field.attribute]}
                                                 dateOptions={{
                                                     enableTime: field.enableTime
                                                 }}
+                                                options={field.options}
                                                 error={errors[field.attribute]}
+                                                placeholder={
+                                                    field.type === 'Select'
+                                                        ? `Select a ${
+                                                              field.name
+                                                          }`
+                                                        : field.name
+                                                }
                                             />
                                         </div>
                                     </div>
@@ -463,7 +472,14 @@ class AddResource extends React.Component {
                             )
                         })}
 
-                        <div className="p-8 flex justify-end bg-grey-lighter shadow mt-8">
+                        <div
+                            className={classnames(
+                                'p-8 flex justify-end bg-grey-lighter shadow',
+                                {
+                                    'mt-8': embeddableFields.length !== 0
+                                }
+                            )}
+                        >
                             <Button
                                 handler={
                                     editing

@@ -15,58 +15,44 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Field_1 = require("./Field");
 var ChangeCase = require("change-case");
-var HasOne = /** @class */ (function (_super) {
-    __extends(HasOne, _super);
+var Select = /** @class */ (function (_super) {
+    __extends(Select, _super);
     /**
+     * Initialize the Select field
      *
-     * Initialize a HasOneEmbedded instance
+     * @param {string} name
      *
-     * @param {String} relatedResource
-     *
-     * @return {null}
+     * @return {void}
      *
      */
-    function HasOne(name, attribute, resource) {
+    function Select(name, options, attribute) {
+        if (attribute === void 0) { attribute = ''; }
         var _this = _super.call(this) || this;
+        _this.name = name;
+        _this.options = options;
+        _this.attribute = attribute;
         /**
-         * Define a type for this field
+         * Define the type of this field
          *
          * @var {String}
          *
          */
-        _this.type = 'HasOne';
-        /**
-         *
-         * Declare the resource this field relates to
-         *
-         * @type {String}
-         *
-         */
-        _this.resource = null;
+        _this.type = 'Select';
         _this.name = name;
+        _this.options = options;
         _this.attribute = attribute || ChangeCase.camelCase(_this.name);
-        _this.resource = resource || ChangeCase.pascalCase(_this.attribute);
-        _this.hideOnIndex();
-        _this.hideOnDetail();
         return _this;
     }
     /**
-     * Make a HasOne Instance
      *
-     * @param {string} name the name of the relationship
+     * Make a Select
      *
-     * @param {string} attribute the name of the attribute on this resource
-     *
-     * @param {string} resource the name of the matching related resource
-     *
-     * @param  {...any} args
-     *
-     * @return {HasOne}
+     * @return {Select}
      *
      */
-    HasOne.make = function (name, attribute, resource) {
-        return new HasOne(name, attribute, resource);
+    Select.make = function (name, options, attribute) {
+        return new Select(name, options, attribute);
     };
-    return HasOne;
+    return Select;
 }(Field_1.Field));
-exports.HasOne = HasOne;
+exports.Select = Select;

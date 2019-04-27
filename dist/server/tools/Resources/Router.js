@@ -29,10 +29,22 @@ router.get('/api/resources', AsyncWrapper(resource_controller_1.Resource.index))
 router.get('/api/resources/:slug', set_resource_1.SetResourceMiddleware, AsyncWrapper(resource_controller_1.Resource.fetch));
 /**
  *
+ * Define the route for fetching all database records for a specific resource
+ *
+ */
+router.get('/api/resources/:slug/all', set_resource_1.SetResourceMiddleware, AsyncWrapper(resource_controller_1.Resource.fetchAll));
+/**
+ *
  * Define the route for fetching a single database record for a specific collection/resource
  *
  */
 router.get('/api/resources/:slug/:resource', set_resource_1.SetResourceMiddleware, AsyncWrapper(resource_controller_1.Resource.show));
+/**
+ *
+ * Define the route for fetching a single database record related to a specific resource
+ *
+ */
+router.get('/api/resources/:slug/:resource/has-one/:relation', set_resource_1.SetResourceMiddleware, AsyncWrapper(resource_controller_1.Resource.fetchHasOne));
 /**
  *
  * Define the route for running a specific action on a list of selected resources
