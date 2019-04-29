@@ -74,6 +74,18 @@ declare class ResourceController {
     store(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
     /**
      *
+     * Upload a file for a collection
+     *
+     * @param {Express.Request} req
+     *
+     * @param {Express.Response} res
+     *
+     * @return {Express.Response}
+     *
+     */
+    upload(req: Express.Request, res: Express.Response): Promise<void>;
+    /**
+     *
      * Update a record for a specific resource collection
      *
      * @param {Express.Request} req

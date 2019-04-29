@@ -1,6 +1,7 @@
+import { v4 } from 'uuid'
 import * as Express from 'express'
+import { ObjectID } from 'mongodb'
 import { IResource, IField } from '../../../index.d'
-import { ObjectID } from 'bson'
 
 class ResourceController {
     /**
@@ -160,6 +161,28 @@ class ResourceController {
         )
 
         return res.json(resource)
+    }
+
+    /**
+     *
+     * Upload a file for a collection
+     *
+     * @param {Express.Request} req
+     *
+     * @param {Express.Response} res
+     *
+     * @return {Express.Response}
+     *
+     */
+    public async upload(req: Express.Request, res: Express.Response) {
+        if (req.files && req.files.file) {
+            const file: any = req.files.file
+            const path = `${process.cwd()}/pangaso-storage/${v4()}.${file.name.split('.').pop()}`
+
+            file.mv(path, () => {
+                return res.json(`/pangaso-storage/${v4()}.${file.name.split('.').pop()}`)
+            })
+        }
     }
 
     /**

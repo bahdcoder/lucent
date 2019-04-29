@@ -17,6 +17,7 @@ var Router_1 = require("./Router");
 var Tool_1 = require("../Tool");
 var Express = require("express");
 var Root = require("app-root-path");
+var FileUpload = require("express-fileupload");
 var Resources = /** @class */ (function (_super) {
     __extends(Resources, _super);
     function Resources() {
@@ -35,6 +36,12 @@ var Resources = /** @class */ (function (_super) {
          *
          */
         app.use('/pangaso-resources', Express.static(Root.resolve('pangaso-resources')));
+        /**
+         *
+         * Define the file upload middleware
+         *
+         */
+        app.use(FileUpload());
         /**
          *
          * Register the routes for this tool

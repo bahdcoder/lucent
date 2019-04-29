@@ -24,6 +24,7 @@ const DateField = ({
                 },
                 className
             )}
+            readOnly
             {...rest}
         />
         {error && <span className="text-xs text-red font-thin">{error}</span>}

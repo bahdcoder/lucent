@@ -54,6 +54,7 @@
     "@types/body-parser": "^1.17.0",
     "@types/change-case": "^2.3.1",
     "@types/classnames": "^2.2.7",
+    "@types/express-fileupload": "^0.4.0",
     "@types/pluralize": "^0.0.29",
     "@types/react": "^16.8.13",
     "@types/react-dom": "^16.8.4",
@@ -62,6 +63,7 @@
     "@types/react-modal": "^3.8.2",
     "@types/react-router": "^4.4.5",
     "@types/react-router-dom": "^4.3.2",
+    "@types/uuid": "^3.4.4",
     "app-root-path": "^2.2.1",
     "body-parser": "^1.18.3",
     "change-case": "^3.1.0",
@@ -71,6 +73,7 @@
     "edge.js": "^1.1.4",
     "express": "^4.16.4",
     "express-edge": "^1.0.0",
+    "express-fileupload": "^1.1.4",
     "flatpickr": "^4.5.7",
     "indicative": "^5.0.8",
     "mongodb": "^3.2.3",
@@ -86,6 +89,7 @@
     "react-router-dom": "^5.0.0",
     "redux-axios-middleware": "^4.0.0",
     "toastedjs": "^0.0.2",
-    "ts-loader": "^5.3.3"
+    "ts-loader": "^5.3.3",
+    "uuid": "^3.3.2"
   }
 }

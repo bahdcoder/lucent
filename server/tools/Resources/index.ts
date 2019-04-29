@@ -2,6 +2,7 @@ import Router from './Router'
 import { Tool } from '../Tool'
 import * as Express from 'express'
 import * as Root from 'app-root-path'
+import * as FileUpload from 'express-fileupload'
 
 export class Resources extends Tool {
     /**
@@ -20,6 +21,13 @@ export class Resources extends Tool {
             '/pangaso-resources',
             Express.static(Root.resolve('pangaso-resources'))
         )
+
+        /**
+         * 
+         * Define the file upload middleware
+         * 
+         */
+        app.use(FileUpload())
 
         /**
          *

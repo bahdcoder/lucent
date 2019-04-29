@@ -46,7 +46,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var bson_1 = require("bson");
+var uuid_1 = require("uuid");
+var mongodb_1 = require("mongodb");
 var ResourceController = /** @class */ (function () {
     function ResourceController() {
         var _this = this;
@@ -217,6 +218,32 @@ var ResourceController = /** @class */ (function () {
     };
     /**
      *
+     * Upload a file for a collection
+     *
+     * @param {Express.Request} req
+     *
+     * @param {Express.Response} res
+     *
+     * @return {Express.Response}
+     *
+     */
+    ResourceController.prototype.upload = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var file_1, path;
+            return __generator(this, function (_a) {
+                if (req.files && req.files.file) {
+                    file_1 = req.files.file;
+                    path = process.cwd() + "/pangaso-storage/" + uuid_1.v4() + "." + file_1.name.split('.').pop();
+                    file_1.mv(path, function () {
+                        return res.json("/pangaso-storage/" + uuid_1.v4() + "." + file_1.name.split('.').pop());
+                    });
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    /**
+     *
      * Update a record for a specific resource collection
      *
      * @param {Express.Request} req
@@ -283,7 +310,7 @@ var ResourceController = /** @class */ (function () {
                          */
                         return [4 /*yield*/, action.handle(req.pangaso.database
                                 .get()
-                                .collection(req.pangaso.resource.collection()), req, collection.map(function (item) { return (__assign({}, item, { _id: new bson_1.ObjectID(item._id) })); }))
+                                .collection(req.pangaso.resource.collection()), req, collection.map(function (item) { return (__assign({}, item, { _id: new mongodb_1.ObjectID(item._id) })); }))
                             /**
                              *
                              * Resolve and return the message for this action.

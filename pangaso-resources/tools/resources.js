@@ -993,26 +993,35 @@ Pangaso.booting(function (_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js");
 /* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var date_fns_format__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! date-fns/format */ "./node_modules/date-fns/format/index.js");
-/* harmony import */ var date_fns_format__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(date_fns_format__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var date_fns_format__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! date-fns/format */ "./node_modules/date-fns/format/index.js");
+/* harmony import */ var date_fns_format__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(date_fns_format__WEBPACK_IMPORTED_MODULE_13__);
+
+
+
 
 
 
@@ -1028,24 +1037,25 @@ __webpack_require__.r(__webpack_exports__);
 var AddResource =
 /*#__PURE__*/
 function (_React$Component) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6___default()(AddResource, _React$Component);
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_9___default()(AddResource, _React$Component);
 
   function AddResource() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, AddResource);
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default()(this, AddResource);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, (_getPrototypeOf2 = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(AddResource)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default()(this, (_getPrototypeOf2 = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default()(AddResource)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "state", {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "state", {
       form: {},
       errors: {},
+      preparedForm: {},
       resource: _this.getCurrentResource(),
       editing: !!_this.props.match.params.primaryKey
       /**
@@ -1058,14 +1068,14 @@ function (_React$Component) {
 
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "populateFields", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "populateFields", function () {
       var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var form = {};
       var errors = {};
 
       _this.getCreationFields().forEach(function (field) {
         if (field.type === 'Date') {
-          form[field.attribute] = date_fns_format__WEBPACK_IMPORTED_MODULE_10___default()(data[field.attribute] || new Date(), _this.getFormat(field));
+          form[field.attribute] = date_fns_format__WEBPACK_IMPORTED_MODULE_13___default()(data[field.attribute] || new Date(), _this.getFormat(field));
           errors[field.attribute] = null;
           return;
         }
@@ -1089,47 +1099,246 @@ function (_React$Component) {
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "postResource", function () {
-      var redirect = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-      Pangaso.request().post("resources/".concat(_this.state.resource.slug), _this.state.form).then(function () {
-        Pangaso.success("".concat(_this.state.resource.name, " created !"));
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "postResource",
+    /*#__PURE__*/
+    _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3___default()(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee() {
+      var redirect,
+          _args = arguments;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              redirect = _args.length > 0 && _args[0] !== undefined ? _args[0] : true;
+              _context.t0 = Pangaso.request();
+              _context.t1 = "resources/".concat(_this.state.resource.slug);
+              _context.next = 5;
+              return _this.getFormData();
 
-        if (redirect) {
-          return _this.props.history.push("/resources/".concat(_this.state.resource.slug));
+            case 5:
+              _context.t2 = _context.sent;
+
+              _context.t3 = function () {
+                Pangaso.success("".concat(_this.state.resource.name, " created !"));
+
+                if (redirect) {
+                  return _this.props.history.push("/resources/".concat(_this.state.resource.slug));
+                }
+
+                _this.populateFields();
+              };
+
+              _context.t4 = function (_ref2) {
+                var response = _ref2.response;
+
+                if (response.status === 422) {
+                  _this.setState({
+                    errors: response.data
+                  });
+                }
+              };
+
+              _context.t0.post.call(_context.t0, _context.t1, _context.t2).then(_context.t3)["catch"](_context.t4);
+
+            case 9:
+            case "end":
+              return _context.stop();
+          }
         }
+      }, _callee);
+    })));
 
-        _this.populateFields();
-      })["catch"](function (_ref) {
-        var response = _ref.response;
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "getFormData",
+    /*#__PURE__*/
+    _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3___default()(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee2() {
+      var form, preparedForm, _i, _Object$keys, attribute, field, _i2, _Object$keys2, _nestedAttribute, _nestedField, path, _path;
 
-        if (response.status === 422) {
-          _this.setState({
-            errors: response.data
-          });
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              form = _this.state.form;
+              preparedForm = {};
+              _i = 0, _Object$keys = Object.keys(form);
+
+            case 3:
+              if (!(_i < _Object$keys.length)) {
+                _context2.next = 37;
+                break;
+              }
+
+              attribute = _Object$keys[_i];
+              field = form[attribute];
+              preparedForm[attribute] = field;
+
+              if (!(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(field) === 'object')) {
+                _context2.next = 26;
+                break;
+              }
+
+              preparedForm[attribute] = {};
+              _i2 = 0, _Object$keys2 = Object.keys(field);
+
+            case 10:
+              if (!(_i2 < _Object$keys2.length)) {
+                _context2.next = 24;
+                break;
+              }
+
+              _nestedAttribute = _Object$keys2[_i2];
+              _nestedField = field[_nestedAttribute];
+
+              if (!(_nestedField instanceof Blob)) {
+                _context2.next = 20;
+                break;
+              }
+
+              _context2.next = 16;
+              return _this.uploadFile(_nestedAttribute, _nestedField);
+
+            case 16:
+              path = _context2.sent;
+              preparedForm[attribute][_nestedAttribute] = path;
+              _context2.next = 21;
+              break;
+
+            case 20:
+              preparedForm[attribute][_nestedAttribute] = _nestedField;
+
+            case 21:
+              _i2++;
+              _context2.next = 10;
+              break;
+
+            case 24:
+              _context2.next = 34;
+              break;
+
+            case 26:
+              if (!(field instanceof Blob)) {
+                _context2.next = 33;
+                break;
+              }
+
+              _context2.next = 29;
+              return _this.uploadFile(nestedAttribute, nestedField);
+
+            case 29:
+              _path = _context2.sent;
+              preparedForm[attribute] = _path;
+              _context2.next = 34;
+              break;
+
+            case 33:
+              preparedForm[attribute] = field;
+
+            case 34:
+              _i++;
+              _context2.next = 3;
+              break;
+
+            case 37:
+              _this.setState({
+                preparedForm: preparedForm
+              });
+
+              return _context2.abrupt("return", preparedForm);
+
+            case 39:
+            case "end":
+              return _context2.stop();
+          }
         }
-      });
-    });
+      }, _callee2);
+    })));
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "updateResource", function () {
-      var redirect = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-      Pangaso.request().put("resources/".concat(_this.state.resource.slug, "/").concat(_this.props.match.params.primaryKey), _this.state.form).then(function () {
-        Pangaso.success("".concat(_this.state.resource.name, " updated !"));
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "uploadFile",
+    /*#__PURE__*/
+    function () {
+      var _ref4 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3___default()(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee3(attribute, file) {
+        var form, _ref5, data;
 
-        if (redirect) {
-          return _this.props.history.push("/resources/".concat(_this.state.resource.slug, "/").concat(_this.props.match.params.primaryKey, "/details"));
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                form = new FormData();
+                form.append('file', file);
+                _context3.next = 4;
+                return Pangaso.request().post("/resources/".concat(_this.state.resource.slug, "/upload-file"), form);
+
+              case 4:
+                _ref5 = _context3.sent;
+                data = _ref5.data;
+                return _context3.abrupt("return", data);
+
+              case 7:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      return function (_x, _x2) {
+        return _ref4.apply(this, arguments);
+      };
+    }());
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "updateResource",
+    /*#__PURE__*/
+    _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3___default()(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee4() {
+      var redirect,
+          _args4 = arguments;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              redirect = _args4.length > 0 && _args4[0] !== undefined ? _args4[0] : true;
+              _context4.t0 = Pangaso.request();
+              _context4.t1 = "resources/".concat(_this.state.resource.slug, "/").concat(_this.props.match.params.primaryKey);
+              _context4.next = 5;
+              return _this.getFormData();
+
+            case 5:
+              _context4.t2 = _context4.sent;
+
+              _context4.t3 = function () {
+                Pangaso.success("".concat(_this.state.resource.name, " updated !"));
+
+                if (redirect) {
+                  return _this.props.history.push("/resources/".concat(_this.state.resource.slug, "/").concat(_this.props.match.params.primaryKey, "/details"));
+                }
+              };
+
+              _context4.t4 = function (_ref7) {
+                var response = _ref7.response;
+
+                if (response.status === 422) {
+                  _this.setState({
+                    errors: response.data
+                  });
+                }
+              };
+
+              _context4.t0.put.call(_context4.t0, _context4.t1, _context4.t2).then(_context4.t3)["catch"](_context4.t4);
+
+            case 9:
+            case "end":
+              return _context4.stop();
+          }
         }
-      })["catch"](function (_ref2) {
-        var response = _ref2.response;
+      }, _callee4);
+    })));
 
-        if (response.status === 422) {
-          _this.setState({
-            errors: response.data
-          });
-        }
-      });
-    });
-
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "handleChange", function (event) {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "handleChange", function (event) {
       var embedded = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
       /**
@@ -1139,53 +1348,60 @@ function (_React$Component) {
        */
       if (event.name && event.date) {
         return _this.setState({
-          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, embedded ? embedded : event.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.name, event.date)) : event.date)),
-          errors: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.name, null))
+          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.name, event.date)) : event.date)),
+          errors: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.name, null)) : null))
         });
       }
 
       if (event.target.type === 'checkbox') {
         return _this.setState({
-          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.target.name, !_this.state.form[embedded][event.target.name])) : !_this.state.form[event.target.name]))
+          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.target.name, !_this.state.form[embedded][event.target.name])) : !_this.state.form[event.target.name]))
+        });
+      }
+
+      if (event.target.files) {
+        return _this.setState({
+          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.target.name, event.target.files[0])) : event.target.files[0])),
+          errors: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.target.name, null)) : null))
         });
       }
 
       _this.setState({
-        form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.target.name, event.target.value)) : event.target.value)),
-        errors: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()({}, event.target.name, null))
+        form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.target.name, event.target.value)) : event.target.value)),
+        errors: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.target.name, null)) : null))
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "getEmbeddedFields", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "getEmbeddedFields", function () {
       return _this.state.resource.fields.filter(function (field) {
         return ['HasOneEmbedded', 'HasManyEmbedded'].includes(field.type);
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "getFormat", function (field) {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "getFormat", function (field) {
       return "YYYY-MM-DD".concat(field.enableTime ? ' mm:ss' : '');
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "getCreationFields", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "getCreationFields", function () {
       return _this.state.resource.fields.filter(function (field) {
         return !field.hideOnCreationForm;
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "getUpdateFields", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "getUpdateFields", function () {
       return _this.state.resource.fields.filter(function (field) {
         return !field.hideOnUpdateForm;
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "getField", function (component) {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "getField", function (component) {
       return Pangaso.fields[component];
     });
 
     return _this;
   }
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(AddResource, [{
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default()(AddResource, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       if (this.state.editing) {
@@ -1268,8 +1484,8 @@ function (_React$Component) {
        * Populate fields when resource is fetched from api
        *
        */
-      .then(function (_ref3) {
-        var data = _ref3.data;
+      .then(function (_ref8) {
+        var data = _ref8.data;
 
         _this3.populateFields(data);
       })
@@ -1314,21 +1530,21 @@ function (_React$Component) {
       var embeddableFields = this.getEmbeddedFields();
       var formFields = editing ? this.getUpdateFields() : this.getCreationFields(); // Only render the form once the form has been populated
 
-      return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_8___default.a.Fragment, null, Object.keys(form).length === 0 ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Loader, null) : react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_8___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h1", {
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_11___default.a.Fragment, null, Object.keys(form).length === 0 ? react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Loader, null) : react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_11___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("h1", {
         className: "font-thin text-3xl mb-2"
-      }, "".concat(editing ? 'Edit' : 'New'), " ", resource.name), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+      }, "".concat(editing ? 'Edit' : 'New'), " ", resource.name), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: "w-full mt-6 bg-white rounded-lg"
       }, formFields.map(function (field, index) {
         var Field = _this4.getField(field.component);
 
-        return Field ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        return Field ? react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
           key: index,
           className: "w-full border-b flex items-center border-grey-light py-6 px-12"
-        }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
+        }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("label", {
           className: "w-1/4 text-lg font-thin text-grey-dark"
-        }, field.name), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        }, field.name), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
           className: "w-2/4 flex flex-col"
-        }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Field, {
+        }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Field, {
           field: field,
           className: "w-full",
           resource: resource,
@@ -1346,24 +1562,24 @@ function (_React$Component) {
         }))) : null;
       })), embeddableFields.map(function (embeddableField, index) {
         var formFields = embeddableField.fields;
-        return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
           key: index,
           className: "mt-8"
-        }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h3", {
+        }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("h3", {
           className: "font-thin text-2xl"
-        }, embeddableField.name), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        }, embeddableField.name), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
           className: "w-full mt-6 bg-white rounded-lg"
         }, formFields.map(function (field, index) {
           var Field = _this4.getField(field.component);
 
-          return Field ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+          return Field ? react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
             key: index,
             className: "w-full border-b flex items-center border-grey-light py-6 px-12"
-          }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
+          }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("label", {
             className: "w-1/4 text-lg font-thin text-grey-dark"
-          }, field.name), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+          }, field.name), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
             className: "w-2/4 flex flex-col"
-          }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Field, {
+          }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Field, {
             className: "w-full",
             id: field.attribute,
             name: field.attribute,
@@ -1379,11 +1595,11 @@ function (_React$Component) {
             error: errors[embeddableField.attribute][field.attribute]
           }))) : null;
         })));
-      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: classnames__WEBPACK_IMPORTED_MODULE_9___default()('p-8 flex justify-end bg-grey-lighter shadow', {
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+        className: classnames__WEBPACK_IMPORTED_MODULE_12___default()('p-8 flex justify-end bg-grey-lighter shadow', {
           'mt-8': embeddableFields.length !== 0
         })
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Button, {
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Button, {
         handler: editing ? function () {
           return _this4.updateResource(false);
         } : function () {
@@ -1391,7 +1607,7 @@ function (_React$Component) {
         },
         label: editing ? 'Updated & Continue editing' : 'Create & Add another',
         className: "mr-6"
-      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Button, {
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Button, {
         className: "mr-6",
         handler: editing ? this.updateResource : this.postResource,
         label: "".concat(editing ? 'Update' : 'Create', " ").concat(resource.name)
@@ -1400,7 +1616,7 @@ function (_React$Component) {
   }]);
 
   return AddResource;
-}(react__WEBPACK_IMPORTED_MODULE_8___default.a.Component);
+}(react__WEBPACK_IMPORTED_MODULE_11___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (AddResource);
 

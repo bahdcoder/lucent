@@ -3,6 +3,7 @@ export { Pangaso } from './index';
 export { Tool } from './tools/Tool';
 export { Text } from './fields/Text';
 export { Date } from './fields/Date';
+export { File } from './fields/File';
 export { Num } from './fields/Number';
 export { Select } from './fields/Select';
 export { HasOne } from './fields/HasOne';

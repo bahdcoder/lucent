@@ -6,6 +6,7 @@ class AddResource extends React.Component {
     state = {
         form: {},
         errors: {},
+        preparedForm: {},
         resource: this.getCurrentResource(),
         editing: !!this.props.match.params.primaryKey
     }
@@ -154,9 +155,9 @@ class AddResource extends React.Component {
      * @return {void}
      *
      */
-    postResource = (redirect = true) => {
+    postResource = async (redirect = true) => {
         Pangaso.request()
-            .post(`resources/${this.state.resource.slug}`, this.state.form)
+            .post(`resources/${this.state.resource.slug}`, await this.getFormData())
             .then(() => {
                 Pangaso.success(`${this.state.resource.name} created !`)
 
@@ -178,19 +179,83 @@ class AddResource extends React.Component {
     }
 
     /**
+     * 
+     * Get the form data from state
+     * to be sent to the server
+     * 
+     */
+    getFormData = async () => {
+        const { form } = this.state
+
+        const preparedForm = {}
+
+        for (const attribute of Object.keys(form)) {
+            const field = form[attribute]
+
+            preparedForm[attribute] = field
+
+            if (typeof field === 'object') {
+                preparedForm[attribute] = {}
+
+                for (const nestedAttribute of Object.keys(field)) {
+                    const nestedField = field[nestedAttribute]
+
+                    
+                    
+                    if (nestedField instanceof Blob) {
+                        const path = await this.uploadFile(nestedAttribute, nestedField)
+
+                        preparedForm[attribute][nestedAttribute] = path
+                    }
+
+                    else {
+                        preparedForm[attribute][nestedAttribute] = nestedField
+                    }
+                }
+            }
+
+            else if (field instanceof Blob) {
+                const path = await this.uploadFile(nestedAttribute, nestedField)
+
+                preparedForm[attribute] = path
+            }
+
+            else {
+                preparedForm[attribute] = field
+            }
+        }
+
+        this.setState({
+            preparedForm
+        })
+
+        return preparedForm
+    }
+
+    uploadFile = async (attribute, file) => {
+        const form = new FormData()
+        
+        form.append('file', file)
+        
+        const { data } = await Pangaso.request().post(`/resources/${this.state.resource.slug}/upload-file`, form)
+        
+        return data
+    }
+
+    /**
      *
      * Patch request to server to update resource
      *
      * @return {void}
      *
      */
-    updateResource = (redirect = true) => {
+    updateResource = async (redirect = true) => {
         Pangaso.request()
             .put(
                 `resources/${this.state.resource.slug}/${
                     this.props.match.params.primaryKey
                 }`,
-                this.state.form
+                await this.getFormData()
             )
             .then(() => {
                 Pangaso.success(`${this.state.resource.name} updated !`)
@@ -236,7 +301,10 @@ class AddResource extends React.Component {
                 },
                 errors: {
                     ...this.state.errors,
-                    [event.name]: null
+                    [embedded ? embedded : event.name]: embedded ? {
+                        ...this.state.errors[embedded],
+                        [event.name]: null
+                    } : null
                 }
             })
         }
@@ -257,6 +325,27 @@ class AddResource extends React.Component {
             })
         }
 
+        if (event.target.files) {
+            return this.setState({
+                form: {
+                    ...this.state.form,
+                    [embedded ? embedded : event.target.name]: embedded
+                        ? {
+                              ...this.state.form[embedded],
+                              [event.target.name]: event.target.files[0]
+                          }
+                        : event.target.files[0]
+                },
+                errors: {
+                    ...this.state.errors,
+                    [embedded ? embedded : event.target.name]: embedded ? {
+                        ...this.state.errors[embedded],
+                        [event.target.name]: null
+                    } : null
+                }
+            })
+        }
+
         this.setState({
             form: {
                 ...this.state.form,
@@ -269,7 +358,10 @@ class AddResource extends React.Component {
             },
             errors: {
                 ...this.state.errors,
-                [event.target.name]: null
+                [embedded ? embedded : event.target.name]: embedded ? {
+                    ...this.state.errors[embedded],
+                    [event.target.name]: null
+                } : null
             }
         })
     }

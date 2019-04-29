@@ -84,6 +84,17 @@ router.post(
 
 /**
  *
+ * Define the route for uploading a file for a collection
+ *
+ */
+router.post(
+    '/api/resources/:slug/upload-file',
+    SetResourceMiddleware,
+    AsyncWrapper(Resource.upload)
+)
+
+/**
+ *
  * Define the route for updating a single database record for a specific collection/resource
  *
  */

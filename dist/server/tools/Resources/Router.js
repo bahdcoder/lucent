@@ -53,6 +53,12 @@ router.get('/api/resources/:slug/:resource/has-one/:relation', set_resource_1.Se
 router.post('/api/resources/:slug/run-action', set_resource_1.SetResourceMiddleware, AsyncWrapper(resource_controller_1.Resource.action));
 /**
  *
+ * Define the route for uploading a file for a collection
+ *
+ */
+router.post('/api/resources/:slug/upload-file', set_resource_1.SetResourceMiddleware, AsyncWrapper(resource_controller_1.Resource.upload));
+/**
+ *
  * Define the route for updating a single database record for a specific collection/resource
  *
  */

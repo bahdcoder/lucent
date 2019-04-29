@@ -277,27 +277,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _components_Svg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Svg */ "./client/components/Svg.js");
-/* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Table */ "./client/components/Table.js");
-/* harmony import */ var _components_Modal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Modal */ "./client/components/Modal.js");
-/* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Loader */ "./client/components/Loader.js");
-/* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Button */ "./client/components/Button.js");
-/* harmony import */ var _components_Select__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Select */ "./client/components/Select.js");
-/* harmony import */ var _components_Checkbox__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Checkbox */ "./client/components/Checkbox.js");
-/* harmony import */ var _components_Detail_ID__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Detail/ID */ "./client/components/Detail/ID.js");
-/* harmony import */ var _components_Detail_Num__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Detail/Num */ "./client/components/Detail/Num.js");
-/* harmony import */ var _components_Detail_Text__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Detail/Text */ "./client/components/Detail/Text.js");
-/* harmony import */ var _components_Detail_Date__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Detail/Date */ "./client/components/Detail/Date.js");
-/* harmony import */ var _components_Detail_Select__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Detail/Select */ "./client/components/Detail/Select.js");
-/* harmony import */ var _components_Detail_Boolean__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Detail/Boolean */ "./client/components/Detail/Boolean.js");
-/* harmony import */ var _components_Detail_Password__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Detail/Password */ "./client/components/Detail/Password.js");
-/* harmony import */ var _components_Detail_Textarea__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Detail/Textarea */ "./client/components/Detail/Textarea.js");
-/* harmony import */ var _components_Form_NumField__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Form/NumField */ "./client/components/Form/NumField.js");
-/* harmony import */ var _components_Form_DateField__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Form/DateField */ "./client/components/Form/DateField.js");
-/* harmony import */ var _components_Form_TextField__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Form/TextField */ "./client/components/Form/TextField.js");
-/* harmony import */ var _components_Form_SelectField__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Form/SelectField */ "./client/components/Form/SelectField.js");
-/* harmony import */ var _components_Form_BooleanField__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Form/BooleanField */ "./client/components/Form/BooleanField.js");
-/* harmony import */ var _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/Form/TextareaField */ "./client/components/Form/TextareaField.js");
-/* harmony import */ var _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/Form/PasswordField */ "./client/components/Form/PasswordField.js");
+/* harmony import */ var _components_File__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/File */ "./client/components/File.js");
+/* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Table */ "./client/components/Table.js");
+/* harmony import */ var _components_Modal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Modal */ "./client/components/Modal.js");
+/* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Loader */ "./client/components/Loader.js");
+/* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Button */ "./client/components/Button.js");
+/* harmony import */ var _components_Select__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Select */ "./client/components/Select.js");
+/* harmony import */ var _components_Checkbox__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Checkbox */ "./client/components/Checkbox.js");
+/* harmony import */ var _components_Detail_ID__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Detail/ID */ "./client/components/Detail/ID.js");
+/* harmony import */ var _components_Detail_Num__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Detail/Num */ "./client/components/Detail/Num.js");
+/* harmony import */ var _components_Detail_Text__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Detail/Text */ "./client/components/Detail/Text.js");
+/* harmony import */ var _components_Detail_Date__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Detail/Date */ "./client/components/Detail/Date.js");
+/* harmony import */ var _components_Detail_File__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Detail/File */ "./client/components/Detail/File.js");
+/* harmony import */ var _components_Detail_Select__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Detail/Select */ "./client/components/Detail/Select.js");
+/* harmony import */ var _components_Detail_Boolean__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Detail/Boolean */ "./client/components/Detail/Boolean.js");
+/* harmony import */ var _components_Detail_Password__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Detail/Password */ "./client/components/Detail/Password.js");
+/* harmony import */ var _components_Detail_Textarea__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Detail/Textarea */ "./client/components/Detail/Textarea.js");
+/* harmony import */ var _components_Form_NumField__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Form/NumField */ "./client/components/Form/NumField.js");
+/* harmony import */ var _components_Form_DateField__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Form/DateField */ "./client/components/Form/DateField.js");
+/* harmony import */ var _components_Form_TextField__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Form/TextField */ "./client/components/Form/TextField.js");
+/* harmony import */ var _components_Form_FileField__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/Form/FileField */ "./client/components/Form/FileField.js");
+/* harmony import */ var _components_Form_SelectField__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/Form/SelectField */ "./client/components/Form/SelectField.js");
+/* harmony import */ var _components_Form_BooleanField__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/Form/BooleanField */ "./client/components/Form/BooleanField.js");
+/* harmony import */ var _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/Form/TextareaField */ "./client/components/Form/TextareaField.js");
+/* harmony import */ var _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/Form/PasswordField */ "./client/components/Form/PasswordField.js");
 
 
 
@@ -314,6 +317,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
  // details
 
 
@@ -323,7 +327,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
  // fields
+
 
 
 
@@ -546,13 +552,14 @@ function () {
      *
      */
 
-    this.field('form-num', _components_Form_NumField__WEBPACK_IMPORTED_MODULE_24__["default"]);
-    this.field('form-text', _components_Form_TextField__WEBPACK_IMPORTED_MODULE_26__["default"]);
-    this.field('form-date', _components_Form_DateField__WEBPACK_IMPORTED_MODULE_25__["default"]);
-    this.field('form-select', _components_Form_SelectField__WEBPACK_IMPORTED_MODULE_27__["default"]);
-    this.field('form-boolean', _components_Form_BooleanField__WEBPACK_IMPORTED_MODULE_28__["default"]);
-    this.field('form-password', _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_30__["default"]);
-    this.field('form-textarea', _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_29__["default"]);
+    this.field('form-num', _components_Form_NumField__WEBPACK_IMPORTED_MODULE_26__["default"]);
+    this.field('form-text', _components_Form_TextField__WEBPACK_IMPORTED_MODULE_28__["default"]);
+    this.field('form-date', _components_Form_DateField__WEBPACK_IMPORTED_MODULE_27__["default"]);
+    this.field('form-file', _components_Form_FileField__WEBPACK_IMPORTED_MODULE_29__["default"]);
+    this.field('form-select', _components_Form_SelectField__WEBPACK_IMPORTED_MODULE_30__["default"]);
+    this.field('form-boolean', _components_Form_BooleanField__WEBPACK_IMPORTED_MODULE_31__["default"]);
+    this.field('form-password', _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_33__["default"]);
+    this.field('form-textarea', _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_32__["default"]);
     /**
      *
      * Here we'll register a bunch of components to be used
@@ -561,14 +568,15 @@ function () {
      *
      */
 
-    this.detail('detail-id', _components_Detail_ID__WEBPACK_IMPORTED_MODULE_16__["default"]);
-    this.detail('detail-num', _components_Detail_Num__WEBPACK_IMPORTED_MODULE_17__["default"]);
-    this.detail('detail-text', _components_Detail_Text__WEBPACK_IMPORTED_MODULE_18__["default"]);
-    this.detail('detail-date', _components_Detail_Date__WEBPACK_IMPORTED_MODULE_19__["default"]);
-    this.detail('detail-select', _components_Detail_Select__WEBPACK_IMPORTED_MODULE_20__["default"]);
-    this.detail('detail-boolean', _components_Detail_Boolean__WEBPACK_IMPORTED_MODULE_21__["default"]);
-    this.detail('detail-textarea', _components_Detail_Textarea__WEBPACK_IMPORTED_MODULE_23__["default"]);
-    this.detail('detail-password', _components_Detail_Password__WEBPACK_IMPORTED_MODULE_22__["default"]);
+    this.detail('detail-id', _components_Detail_ID__WEBPACK_IMPORTED_MODULE_17__["default"]);
+    this.detail('detail-num', _components_Detail_Num__WEBPACK_IMPORTED_MODULE_18__["default"]);
+    this.detail('detail-text', _components_Detail_Text__WEBPACK_IMPORTED_MODULE_19__["default"]);
+    this.detail('detail-date', _components_Detail_Date__WEBPACK_IMPORTED_MODULE_20__["default"]);
+    this.detail('detail-file', _components_Detail_File__WEBPACK_IMPORTED_MODULE_21__["default"]);
+    this.detail('detail-select', _components_Detail_Select__WEBPACK_IMPORTED_MODULE_22__["default"]);
+    this.detail('detail-boolean', _components_Detail_Boolean__WEBPACK_IMPORTED_MODULE_23__["default"]);
+    this.detail('detail-textarea', _components_Detail_Textarea__WEBPACK_IMPORTED_MODULE_25__["default"]);
+    this.detail('detail-password', _components_Detail_Password__WEBPACK_IMPORTED_MODULE_24__["default"]);
     /**
      *
      * Here we'll register components to the component
@@ -578,12 +586,13 @@ function () {
 
     this.component('component-svg', _components_Svg__WEBPACK_IMPORTED_MODULE_9__["default"]);
     this.component('component-link', react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Link"]);
-    this.component('component-modal', _components_Modal__WEBPACK_IMPORTED_MODULE_11__["default"]);
-    this.component('component-table', _components_Table__WEBPACK_IMPORTED_MODULE_10__["default"]);
-    this.component('component-loader', _components_Loader__WEBPACK_IMPORTED_MODULE_12__["default"]);
-    this.component('component-button', _components_Button__WEBPACK_IMPORTED_MODULE_13__["default"]);
-    this.component('component-select', _components_Select__WEBPACK_IMPORTED_MODULE_14__["default"]);
-    this.component('component-checkbox', _components_Checkbox__WEBPACK_IMPORTED_MODULE_15__["default"]);
+    this.component('component-file', _components_File__WEBPACK_IMPORTED_MODULE_10__["default"]);
+    this.component('component-modal', _components_Modal__WEBPACK_IMPORTED_MODULE_12__["default"]);
+    this.component('component-table', _components_Table__WEBPACK_IMPORTED_MODULE_11__["default"]);
+    this.component('component-loader', _components_Loader__WEBPACK_IMPORTED_MODULE_13__["default"]);
+    this.component('component-button', _components_Button__WEBPACK_IMPORTED_MODULE_14__["default"]);
+    this.component('component-select', _components_Select__WEBPACK_IMPORTED_MODULE_15__["default"]);
+    this.component('component-checkbox', _components_Checkbox__WEBPACK_IMPORTED_MODULE_16__["default"]);
   }
   /**
    *
@@ -783,6 +792,28 @@ var DateDetail = function DateDetail(_ref) {
 
 /***/ }),
 
+/***/ "./client/components/Detail/File.js":
+/*!******************************************!*\
+  !*** ./client/components/Detail/File.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var File = function File(_ref) {
+  var content = _ref.content;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, content);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (File);
+
+/***/ }),
+
 /***/ "./client/components/Detail/ID.js":
 /*!****************************************!*\
   !*** ./client/components/Detail/ID.js ***!
@@ -939,6 +970,111 @@ var Textarea = function Textarea(_ref) {
 
 /***/ }),
 
+/***/ "./client/components/File.js":
+/*!***********************************!*\
+  !*** ./client/components/File.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Button */ "./client/components/Button.js");
+
+
+
+
+
+
+
+
+
+
+var File =
+/*#__PURE__*/
+function (_React$Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default()(File, _React$Component);
+
+  /**
+   *
+   * Define the default state
+   *
+   */
+  function File() {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, File);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(File).call(this));
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "state", {
+      file: null
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "handleFileChange", function (e) {
+      _this.setState({
+        file: event.target.files[0]
+      });
+
+      _this.props.handler(e);
+    });
+
+    _this.file = react__WEBPACK_IMPORTED_MODULE_7___default.a.createRef();
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(File, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var name = this.props.name;
+      var file = this.state.file;
+      return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        className: "flex items-center"
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        className: "w-1/5",
+        label: 'Choose File',
+        handler: function handler() {
+          return _this2.file.current.click();
+        }
+      }), file && react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("span", {
+        className: "ml-4"
+      }, file.name)), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("input", {
+        type: "file",
+        name: name,
+        ref: this.file,
+        style: {
+          display: 'none'
+        },
+        onChange: this.handleFileChange
+      }));
+    }
+  }]);
+
+  return File;
+}(react__WEBPACK_IMPORTED_MODULE_7___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (File);
+
+/***/ }),
+
 /***/ "./client/components/Form/BooleanField.js":
 /*!************************************************!*\
   !*** ./client/components/Form/BooleanField.js ***!
@@ -1017,13 +1153,37 @@ var DateField = function DateField(_ref) {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('text-grey-darkest my-3 h-10 pr-3 pl-10 rounded-lg shadow border focus:outline-none focus:border-2', {
       'border-grey focus:border-indigo': !error,
       'border-red focus:border-red': error
-    }, className)
+    }, className),
+    readOnly: true
   }, rest)), error && react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
     className: "text-xs text-red font-thin"
   }, error));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (DateField);
+
+/***/ }),
+
+/***/ "./client/components/Form/FileField.js":
+/*!*********************************************!*\
+  !*** ./client/components/Form/FileField.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _File__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../File */ "./client/components/File.js");
+
+
+
+var FileField = function FileField(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_File__WEBPACK_IMPORTED_MODULE_1__["default"], props);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (FileField);
 
 /***/ }),
 
@@ -37170,7 +37330,7 @@ exports.default = _PaginationBoxView2.default;
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
