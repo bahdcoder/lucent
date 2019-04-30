@@ -175,12 +175,17 @@ class ResourceController {
      *
      */
     public async upload(req: Express.Request, res: Express.Response) {
+        const id = v4()
         if (req.files && req.files.file) {
             const file: any = req.files.file
-            const path = `${process.cwd()}/pangaso-storage/${v4()}.${file.name.split('.').pop()}`
+            const path = `${process.cwd()}/pangaso-storage/${id}.${file.name
+                .split('.')
+                .pop()}`
 
             file.mv(path, () => {
-                return res.json(`/pangaso-storage/${v4()}.${file.name.split('.').pop()}`)
+                return res.json(
+                    `/pangaso-storage/${id}.${file.name.split('.').pop()}`
+                )
             })
         }
     }

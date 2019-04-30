@@ -75,6 +75,7 @@
     "express-edge": "^1.0.0",
     "express-fileupload": "^1.1.4",
     "flatpickr": "^4.5.7",
+    "image-extensions": "^1.1.0",
     "indicative": "^5.0.8",
     "mongodb": "^3.2.3",
     "mongoose": "^5.4.20",

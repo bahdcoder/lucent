@@ -991,10 +991,10 @@ Pangaso.booting(function (_ref) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js");
-/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
-/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js");
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js");
@@ -1055,6 +1055,7 @@ function (_React$Component) {
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "state", {
       form: {},
       errors: {},
+      staleFiles: [],
       preparedForm: {},
       resource: _this.getCurrentResource(),
       editing: !!_this.props.match.params.primaryKey
@@ -1095,7 +1096,8 @@ function (_React$Component) {
 
       _this.setState({
         form: form,
-        errors: errors
+        errors: errors,
+        preparedForm: form
       });
     });
 
@@ -1154,7 +1156,7 @@ function (_React$Component) {
     _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3___default()(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee2() {
-      var form, preparedForm, _i, _Object$keys, attribute, field, _i2, _Object$keys2, _nestedAttribute, _nestedField, path, _path;
+      var form, preparedForm, staleFiles, _i, _Object$keys, attribute, field, _i2, _Object$keys2, nestedAttribute, nestedField, path, _path;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee2$(_context2) {
         while (1) {
@@ -1162,20 +1164,20 @@ function (_React$Component) {
             case 0:
               form = _this.state.form;
               preparedForm = {};
+              staleFiles = [];
               _i = 0, _Object$keys = Object.keys(form);
 
-            case 3:
+            case 4:
               if (!(_i < _Object$keys.length)) {
-                _context2.next = 37;
+                _context2.next = 39;
                 break;
               }
 
               attribute = _Object$keys[_i];
               field = form[attribute];
-              preparedForm[attribute] = field;
 
-              if (!(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(field) === 'object')) {
-                _context2.next = 26;
+              if (!(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(field) === 'object' && !(field instanceof Blob))) {
+                _context2.next = 27;
                 break;
               }
 
@@ -1184,70 +1186,81 @@ function (_React$Component) {
 
             case 10:
               if (!(_i2 < _Object$keys2.length)) {
-                _context2.next = 24;
+                _context2.next = 25;
                 break;
               }
 
-              _nestedAttribute = _Object$keys2[_i2];
-              _nestedField = field[_nestedAttribute];
+              nestedAttribute = _Object$keys2[_i2];
+              nestedField = field[nestedAttribute];
 
-              if (!(_nestedField instanceof Blob)) {
-                _context2.next = 20;
+              if (!(nestedField instanceof Blob)) {
+                _context2.next = 21;
                 break;
               }
 
-              _context2.next = 16;
-              return _this.uploadFile(_nestedAttribute, _nestedField);
+              if (_this.state.preparedForm[attribute][nestedAttribute]) {
+                staleFiles.push(_this.state.preparedForm[attribute][nestedAttribute]);
+              }
 
-            case 16:
+              _context2.next = 17;
+              return _this.uploadFile(nestedAttribute, nestedField);
+
+            case 17:
               path = _context2.sent;
-              preparedForm[attribute][_nestedAttribute] = path;
-              _context2.next = 21;
+              preparedForm[attribute][nestedAttribute] = path;
+              _context2.next = 22;
               break;
 
-            case 20:
-              preparedForm[attribute][_nestedAttribute] = _nestedField;
-
             case 21:
+              preparedForm[attribute][nestedAttribute] = nestedField;
+
+            case 22:
               _i2++;
               _context2.next = 10;
               break;
 
-            case 24:
-              _context2.next = 34;
+            case 25:
+              _context2.next = 36;
               break;
 
-            case 26:
+            case 27:
               if (!(field instanceof Blob)) {
-                _context2.next = 33;
+                _context2.next = 35;
                 break;
               }
 
-              _context2.next = 29;
-              return _this.uploadFile(nestedAttribute, nestedField);
+              if (_this.state.preparedForm[attribute]) {
+                staleFiles.push(_this.state.preparedForm[attribute]);
+              }
 
-            case 29:
+              _context2.next = 31;
+              return _this.uploadFile(attribute, field);
+
+            case 31:
               _path = _context2.sent;
               preparedForm[attribute] = _path;
-              _context2.next = 34;
+              _context2.next = 36;
               break;
 
-            case 33:
+            case 35:
               preparedForm[attribute] = field;
 
-            case 34:
+            case 36:
               _i++;
-              _context2.next = 3;
+              _context2.next = 4;
               break;
 
-            case 37:
+            case 39:
               _this.setState({
-                preparedForm: preparedForm
+                preparedForm: preparedForm,
+                staleFiles: staleFiles
               });
 
-              return _context2.abrupt("return", preparedForm);
+              return _context2.abrupt("return", _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, preparedForm, {
+                staleFiles: staleFiles
+              }));
 
-            case 39:
+            case 41:
             case "end":
               return _context2.stop();
           }
@@ -1348,27 +1361,27 @@ function (_React$Component) {
        */
       if (event.name && event.date) {
         return _this.setState({
-          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.name, event.date)) : event.date)),
-          errors: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.name, null)) : null))
+          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.name, event.date)) : event.date)),
+          errors: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.errors, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.errors[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.name, null)) : null))
         });
       }
 
       if (event.target.type === 'checkbox') {
         return _this.setState({
-          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.target.name, !_this.state.form[embedded][event.target.name])) : !_this.state.form[event.target.name]))
+          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.target.name, !_this.state.form[embedded][event.target.name])) : !_this.state.form[event.target.name]))
         });
       }
 
       if (event.target.files) {
         return _this.setState({
-          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.target.name, event.target.files[0])) : event.target.files[0])),
-          errors: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.target.name, null)) : null))
+          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.target.name, event.target.files[0])) : event.target.files[0])),
+          errors: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.errors, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.errors[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.target.name, null)) : null))
         });
       }
 
       _this.setState({
-        form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.target.name, event.target.value)) : event.target.value)),
-        errors: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, _this.state.errors[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.target.name, null)) : null))
+        form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.target.name, event.target.value)) : event.target.value)),
+        errors: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.errors, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.target.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.errors[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.target.name, null)) : null))
       });
     });
 
@@ -1587,12 +1600,12 @@ function (_React$Component) {
             handler: function handler(e) {
               return _this4.handleChange(e, embeddableField.attribute);
             },
-            value: form[embeddableField.attribute][field.attribute],
-            checked: form[embeddableField.attribute][field.attribute],
+            value: form[embeddableField.attribute] && form[embeddableField.attribute][field.attribute],
+            checked: form[embeddableField.attribute] && form[embeddableField.attribute][field.attribute],
             dateOptions: {
               enableTime: field.enableTime
             },
-            error: errors[embeddableField.attribute][field.attribute]
+            error: errors[embeddableField.attribute] && errors[embeddableField.attribute][field.attribute]
           }))) : null;
         })));
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {

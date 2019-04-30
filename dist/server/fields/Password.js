@@ -40,6 +40,8 @@ var Password = /** @class */ (function (_super) {
         _this.name = name;
         _this.type = 'Password';
         _this.attribute = attribute || ChangeCase.camelCase(_this.name);
+        _this.hideOnIndex();
+        _this.hideOnDetail();
         return _this;
     }
     /**

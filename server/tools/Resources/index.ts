@@ -23,9 +23,21 @@ export class Resources extends Tool {
         )
 
         /**
-         * 
+         *
+         * Register storage path as a source for static files.
+         * TODO: this should be the config for storage
+         * folder defined by user.
+         *
+         */
+        app.use(
+            '/pangaso-storage',
+            Express.static(`${process.cwd()}/pangaso-storage`)
+        )
+
+        /**
+         *
          * Define the file upload middleware
-         * 
+         *
          */
         app.use(FileUpload())
 

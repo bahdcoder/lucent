@@ -1,5 +1,6 @@
 import * as Express from 'express'
 import { Resource } from './controllers/resource.controller'
+import { RemoveFilesMiddleware } from './middleware/remove-files'
 import { SetResourceMiddleware } from './middleware/set-resource'
 import { CreateResourceValidator } from './middleware/create-resource'
 
@@ -101,6 +102,7 @@ router.post(
 router.put(
     '/api/resources/:slug/:resource',
     SetResourceMiddleware,
+    RemoveFilesMiddleware,
     AsyncWrapper(Resource.update)
 )
 
@@ -112,6 +114,7 @@ router.put(
 router.post(
     '/api/resources/:slug',
     SetResourceMiddleware,
+    RemoveFilesMiddleware,
     CreateResourceValidator,
     AsyncWrapper(Resource.store)
 )

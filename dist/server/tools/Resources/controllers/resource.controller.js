@@ -229,13 +229,16 @@ var ResourceController = /** @class */ (function () {
      */
     ResourceController.prototype.upload = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var file_1, path;
+            var id, file_1, path;
             return __generator(this, function (_a) {
+                id = uuid_1.v4();
                 if (req.files && req.files.file) {
                     file_1 = req.files.file;
-                    path = process.cwd() + "/pangaso-storage/" + uuid_1.v4() + "." + file_1.name.split('.').pop();
+                    path = process.cwd() + "/pangaso-storage/" + id + "." + file_1.name
+                        .split('.')
+                        .pop();
                     file_1.mv(path, function () {
-                        return res.json("/pangaso-storage/" + uuid_1.v4() + "." + file_1.name.split('.').pop());
+                        return res.json("/pangaso-storage/" + id + "." + file_1.name.split('.').pop());
                     });
                 }
                 return [2 /*return*/];

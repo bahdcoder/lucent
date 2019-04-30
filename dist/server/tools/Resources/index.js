@@ -38,6 +38,14 @@ var Resources = /** @class */ (function (_super) {
         app.use('/pangaso-resources', Express.static(Root.resolve('pangaso-resources')));
         /**
          *
+         * Register storage path as a source for static files.
+         * TODO: this should be the config for storage
+         * folder defined by user.
+         *
+         */
+        app.use('/pangaso-storage', Express.static(process.cwd() + "/pangaso-storage"));
+        /**
+         *
          * Define the file upload middleware
          *
          */

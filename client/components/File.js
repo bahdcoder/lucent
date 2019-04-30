@@ -26,8 +26,8 @@ class File extends React.Component {
     }
 
     render() {
-        const { name } = this.props
         const { file } = this.state
+        const { name, error, value } = this.props
 
         return (
             <React.Fragment>
@@ -38,7 +38,16 @@ class File extends React.Component {
                         handler={() => this.file.current.click()}
                     />
 
-                    {file && <span className='ml-4'>{file.name}</span>}
+                    {file && <span className="ml-4">{file.name}</span>}
+                    {value && !file && (
+                        <a
+                            className="no-underline text-indigo hover:text-indigo-light ml-4"
+                            href={value}
+                            target="_blank"
+                        >
+                            {value}
+                        </a>
+                    )}
                 </div>
 
                 <input
@@ -48,6 +57,11 @@ class File extends React.Component {
                     style={{ display: 'none' }}
                     onChange={this.handleFileChange}
                 />
+                {error && (
+                    <span className="text-xs mt-3 text-red font-thin">
+                        {error}
+                    </span>
+                )}
             </React.Fragment>
         )
     }

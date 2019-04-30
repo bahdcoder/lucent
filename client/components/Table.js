@@ -172,6 +172,7 @@ const Table = ({
                                             key={index}
                                         >
                                             <DetailField
+                                                table
                                                 options={field.options}
                                                 content={row[field.attribute]}
                                                 checked={row[field.attribute]}

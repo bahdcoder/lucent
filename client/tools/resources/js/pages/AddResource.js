@@ -6,6 +6,7 @@ class AddResource extends React.Component {
     state = {
         form: {},
         errors: {},
+        staleFiles: [],
         preparedForm: {},
         resource: this.getCurrentResource(),
         editing: !!this.props.match.params.primaryKey
@@ -67,7 +68,8 @@ class AddResource extends React.Component {
 
         this.setState({
             form,
-            errors
+            errors,
+            preparedForm: form
         })
     }
 
@@ -157,7 +159,10 @@ class AddResource extends React.Component {
      */
     postResource = async (redirect = true) => {
         Pangaso.request()
-            .post(`resources/${this.state.resource.slug}`, await this.getFormData())
+            .post(
+                `resources/${this.state.resource.slug}`,
+                await this.getFormData()
+            )
             .then(() => {
                 Pangaso.success(`${this.state.resource.name} created !`)
 
@@ -179,66 +184,81 @@ class AddResource extends React.Component {
     }
 
     /**
-     * 
+     *
      * Get the form data from state
      * to be sent to the server
-     * 
+     *
      */
     getFormData = async () => {
         const { form } = this.state
 
         const preparedForm = {}
+        const staleFiles = []
 
         for (const attribute of Object.keys(form)) {
             const field = form[attribute]
 
-            preparedForm[attribute] = field
-
-            if (typeof field === 'object') {
+            if (typeof field === 'object' && !(field instanceof Blob)) {
                 preparedForm[attribute] = {}
 
                 for (const nestedAttribute of Object.keys(field)) {
                     const nestedField = field[nestedAttribute]
 
-                    
-                    
                     if (nestedField instanceof Blob) {
-                        const path = await this.uploadFile(nestedAttribute, nestedField)
+                        if (
+                            this.state.preparedForm[attribute][nestedAttribute]
+                        ) {
+                            staleFiles.push(
+                                this.state.preparedForm[attribute][
+                                    nestedAttribute
+                                ]
+                            )
+                        }
+
+                        const path = await this.uploadFile(
+                            nestedAttribute,
+                            nestedField
+                        )
 
                         preparedForm[attribute][nestedAttribute] = path
-                    }
-
-                    else {
+                    } else {
                         preparedForm[attribute][nestedAttribute] = nestedField
                     }
                 }
-            }
+            } else if (field instanceof Blob) {
+                if (this.state.preparedForm[attribute]) {
+                    staleFiles.push(this.state.preparedForm[attribute])
+                }
 
-            else if (field instanceof Blob) {
-                const path = await this.uploadFile(nestedAttribute, nestedField)
+                const path = await this.uploadFile(attribute, field)
 
                 preparedForm[attribute] = path
-            }
-
-            else {
+            } else {
                 preparedForm[attribute] = field
             }
         }
 
         this.setState({
-            preparedForm
+            preparedForm,
+            staleFiles
         })
 
-        return preparedForm
+        return {
+            ...preparedForm,
+            staleFiles
+        }
     }
 
     uploadFile = async (attribute, file) => {
         const form = new FormData()
-        
+
         form.append('file', file)
-        
-        const { data } = await Pangaso.request().post(`/resources/${this.state.resource.slug}/upload-file`, form)
-        
+
+        const { data } = await Pangaso.request().post(
+            `/resources/${this.state.resource.slug}/upload-file`,
+            form
+        )
+
         return data
     }
 
@@ -301,10 +321,12 @@ class AddResource extends React.Component {
                 },
                 errors: {
                     ...this.state.errors,
-                    [embedded ? embedded : event.name]: embedded ? {
-                        ...this.state.errors[embedded],
-                        [event.name]: null
-                    } : null
+                    [embedded ? embedded : event.name]: embedded
+                        ? {
+                              ...this.state.errors[embedded],
+                              [event.name]: null
+                          }
+                        : null
                 }
             })
         }
@@ -338,10 +360,12 @@ class AddResource extends React.Component {
                 },
                 errors: {
                     ...this.state.errors,
-                    [embedded ? embedded : event.target.name]: embedded ? {
-                        ...this.state.errors[embedded],
-                        [event.target.name]: null
-                    } : null
+                    [embedded ? embedded : event.target.name]: embedded
+                        ? {
+                              ...this.state.errors[embedded],
+                              [event.target.name]: null
+                          }
+                        : null
                 }
             })
         }
@@ -358,10 +382,12 @@ class AddResource extends React.Component {
             },
             errors: {
                 ...this.state.errors,
-                [embedded ? embedded : event.target.name]: embedded ? {
-                    ...this.state.errors[embedded],
-                    [event.target.name]: null
-                } : null
+                [embedded ? embedded : event.target.name]: embedded
+                    ? {
+                          ...this.state.errors[embedded],
+                          [event.target.name]: null
+                      }
+                    : null
             }
         })
     }
@@ -527,12 +553,20 @@ class AddResource extends React.Component {
                                                                 form[
                                                                     embeddableField
                                                                         .attribute
+                                                                ] &&
+                                                                form[
+                                                                    embeddableField
+                                                                        .attribute
                                                                 ][
                                                                     field
                                                                         .attribute
                                                                 ]
                                                             }
                                                             checked={
+                                                                form[
+                                                                    embeddableField
+                                                                        .attribute
+                                                                ] &&
                                                                 form[
                                                                     embeddableField
                                                                         .attribute
@@ -546,6 +580,10 @@ class AddResource extends React.Component {
                                                                     field.enableTime
                                                             }}
                                                             error={
+                                                                errors[
+                                                                    embeddableField
+                                                                        .attribute
+                                                                ] &&
                                                                 errors[
                                                                     embeddableField
                                                                         .attribute

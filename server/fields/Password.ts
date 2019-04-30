@@ -24,6 +24,9 @@ export class Password extends Field {
         this.name = name
         this.type = 'Password'
         this.attribute = attribute || ChangeCase.camelCase(this.name)
+
+        this.hideOnIndex()
+        this.hideOnDetail()
     }
 
     /**
