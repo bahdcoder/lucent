@@ -41,6 +41,29 @@
         }
     </style>
 
+    <style>
+        /* border text-grey-darkest my-3 px-5 rounded-lg shadow focus:outline-none focus:border-2 h-10 border-grey focus:border-indigo w-full */
+        .multi-select .dropdown .dropdown-heading {
+            color: #3d4852 !important;
+            height: 2.5rem !important;
+            border-width: 1px !important;
+            border-radius: .5rem !important;
+            border-color: #b8c2cc !important;
+            padding-left: 1.25rem !important;
+            padding-right: 1.25rem !important;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1) !important;
+        }
+        .multi-select .dropdown .dropdown-content .select-panel div input {
+            color: #3d4852 !important;
+            height: 2.5rem !important;
+            border-width: 1px !important;
+            border-radius: .5rem !important;
+            border-color: #b8c2cc !important;
+            padding-left: 1.25rem !important;
+            padding-right: 1.25rem !important;
+        }
+    </style>
+
     @each(tool in tools)
         @each(style in tool.styles)
             <link rel="stylesheet" href="/{{ style.path }}">
