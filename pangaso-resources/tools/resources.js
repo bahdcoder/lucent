@@ -548,6 +548,148 @@ module.exports = function (str) {
 
 /***/ }),
 
+/***/ "./client/tools/resources/js/components/Form/HasMany.js":
+/*!**************************************************************!*\
+  !*** ./client/tools/resources/js/components/Form/HasMany.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+
+
+
+
+
+
+
+
+
+var HasManyField =
+/*#__PURE__*/
+function (_React$Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default()(HasManyField, _React$Component);
+
+  function HasManyField() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, HasManyField);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, (_getPrototypeOf2 = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(HasManyField)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "state", {
+      options: [],
+      resource: _this.getResource()
+      /**
+       *
+       * Fetch a list of all the selectable values
+       *
+       */
+
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "getSelectOptions", function () {
+      var resource = _this.state.resource;
+      return _this.state.options.map(function (option) {
+        return {
+          label: option[resource.displayValue],
+          value: option[resource.primaryKey]
+        };
+      });
+    });
+
+    return _this;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(HasManyField, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      Pangaso.request().get("/resources/".concat(this.state.resource.slug, "/all")).then(function (_ref) {
+        var data = _ref.data;
+
+        _this2.setState({
+          options: data
+        });
+      });
+    }
+    /**
+     *
+     * Get the related resource
+     *
+     * @return {object}
+     *
+     */
+
+  }, {
+    key: "getResource",
+    value: function getResource() {
+      var _this3 = this;
+
+      return Pangaso.resources.find(function (resource) {
+        return resource.title === _this3.props.field.resource;
+      });
+    }
+    /**
+     *
+     * Get select options
+     *
+     */
+
+  }, {
+    key: "render",
+
+    /**
+     *
+     * Render the has one field
+     *
+     */
+    value: function render() {
+      var _this$props = this.props,
+          field = _this$props.field,
+          handler = _this$props.handler,
+          value = _this$props.value;
+      var MultiSelect = Pangaso.components['component-multiselect'];
+      return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(MultiSelect, {
+        value: value,
+        handler: handler,
+        name: field.attribute,
+        options: this.getSelectOptions()
+      });
+    }
+  }]);
+
+  return HasManyField;
+}(react__WEBPACK_IMPORTED_MODULE_7___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (HasManyField);
+
+/***/ }),
+
 /***/ "./client/tools/resources/js/components/Form/HasOne.js":
 /*!*************************************************************!*\
   !*** ./client/tools/resources/js/components/Form/HasOne.js ***!
@@ -691,6 +833,47 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_7___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (HasOneField);
+
+/***/ }),
+
+/***/ "./client/tools/resources/js/components/HasMany.js":
+/*!*********************************************************!*\
+  !*** ./client/tools/resources/js/components/HasMany.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _pages_Resource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/Resource */ "./client/tools/resources/js/pages/Resource.js");
+
+
+
+/**
+ *
+ * Get the current resource based on resource param
+ *
+ */
+
+var HasMany = function HasMany(props) {
+  var getCurrentResource = function getCurrentResource() {
+    return Pangaso.resources.find(function (resource) {
+      return resource.title === props.field.resource;
+    });
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "mt-12"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_pages_Resource__WEBPACK_IMPORTED_MODULE_2__["default"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, props, {
+    resource: getCurrentResource()
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (HasMany);
 
 /***/ }),
 
@@ -926,7 +1109,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Sidebar */ "./client/tools/resources/js/components/Sidebar.js");
 /* harmony import */ var _pages_AddResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/AddResource */ "./client/tools/resources/js/pages/AddResource.js");
 /* harmony import */ var _components_Form_HasOne__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Form/HasOne */ "./client/tools/resources/js/components/Form/HasOne.js");
-/* harmony import */ var _pages_ResourceDetails__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/ResourceDetails */ "./client/tools/resources/js/pages/ResourceDetails.js");
+/* harmony import */ var _components_Form_HasMany__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Form/HasMany */ "./client/tools/resources/js/components/Form/HasMany.js");
+/* harmony import */ var _pages_ResourceDetails__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/ResourceDetails */ "./client/tools/resources/js/pages/ResourceDetails.js");
+
 
 
 
@@ -945,11 +1130,18 @@ Pangaso.booting(function (_ref) {
   sidebar(_components_Sidebar__WEBPACK_IMPORTED_MODULE_1__["default"]);
   /**
    *
-   * Register a new field component
+   * Register a new has-one field component
    *
    */
 
   field('form-hasone', _components_Form_HasOne__WEBPACK_IMPORTED_MODULE_3__["default"]);
+  /**
+   *
+   * Register a new has-many field component
+   *
+   */
+
+  field('form-hasmany', _components_Form_HasMany__WEBPACK_IMPORTED_MODULE_4__["default"]);
   /**
    *
    * Define the route for displaying a resource
@@ -977,7 +1169,7 @@ Pangaso.booting(function (_ref) {
    *
    */
 
-  route('/resources/:resource/:primaryKey/details', _pages_ResourceDetails__WEBPACK_IMPORTED_MODULE_4__["default"]);
+  route('/resources/:resource/:primaryKey/details', _pages_ResourceDetails__WEBPACK_IMPORTED_MODULE_5__["default"]);
 });
 
 /***/ }),
@@ -1176,7 +1368,7 @@ function (_React$Component) {
               attribute = _Object$keys[_i];
               field = form[attribute];
 
-              if (!(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(field) === 'object' && !(field instanceof Blob))) {
+              if (!(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(field) === 'object' && !(field instanceof Blob) && !Array.isArray(field))) {
                 _context2.next = 27;
                 break;
               }
@@ -1354,11 +1546,18 @@ function (_React$Component) {
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "handleChange", function (event) {
       var embedded = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
+      if (event.type === 'MultiSelect') {
+        return _this.setState({
+          form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.name, event.value))
+        });
+      }
       /**
        *
        * Handle the date field case
        *
        */
+
+
       if (event.name && event.date) {
         return _this.setState({
           form: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.form, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, embedded ? embedded : event.name, embedded ? _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.state.form[embedded], _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.name, event.date)) : event.date)),
@@ -1454,6 +1653,10 @@ function (_React$Component) {
           attributes[field.attribute] = _this2.getDefaultFieldValue(field);
         });
         return attributes;
+      }
+
+      if (field.type === 'HasMany') {
+        return [];
       }
 
       if (field.type === 'Date') {
@@ -1563,7 +1766,6 @@ function (_React$Component) {
           resource: resource,
           id: field.attribute,
           name: field.attribute,
-          handler: _this4.handleChange,
           value: form[field.attribute],
           checked: form[field.attribute],
           dateOptions: {
@@ -1571,7 +1773,10 @@ function (_React$Component) {
           },
           options: field.options,
           error: errors[field.attribute],
-          placeholder: field.type === 'Select' ? "Select a ".concat(field.name) : field.name
+          placeholder: field.type === 'Select' ? "Select a ".concat(field.name) : field.name,
+          handler: function handler() {
+            return _this4.handleChange(arguments.length <= 0 ? undefined : arguments[0], arguments.length <= 1 ? undefined : arguments[1], field);
+          }
         }))) : null;
       })), embeddableFields.map(function (embeddableField, index) {
         var formFields = embeddableField.fields;
@@ -1666,8 +1871,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! query-string */ "../../../node_modules/query-string/index.js");
-/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! query-string */ "../../../node_modules/query-string/index.js");
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_12__);
+
 
 
 
@@ -1704,7 +1912,7 @@ function (_React$Component) {
         total: 0,
         data: []
       },
-      page: query_string__WEBPACK_IMPORTED_MODULE_11___default.a.parse(_this.props.location.search).page || 1,
+      page: query_string__WEBPACK_IMPORTED_MODULE_12___default.a.parse(_this.props.location.search).page || 1,
       selected: [],
       isFetching: true,
       selectedAction: {},
@@ -1736,8 +1944,15 @@ function (_React$Component) {
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "fetchData", function () {
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      Pangaso.request().get("resources/".concat(_this.props.match.params.resource, "?page=").concat(page)).then(function (_ref) {
+      var _this$props = _this.props,
+          resource = _this$props.resource,
+          parentRecord = _this$props.parentRecord,
+          parentResource = _this$props.parentResource,
+          field = _this$props.field;
+      var url = resource ? "/resources/".concat(parentResource.slug, "/").concat(parentRecord[parentResource.primaryKey], "/has-many/").concat(field.attribute) : "resources/".concat(_this.props.match.params.resource, "?page=").concat(page);
+      Pangaso.request().get(url).then(function (_ref) {
         var data = _ref.data;
+        console.log('-->', data);
 
         _this.setState({
           data: data,
@@ -1748,9 +1963,20 @@ function (_React$Component) {
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "handlePageChange", function (_ref2) {
       var selected = _ref2.selected;
-      var history = _this.props.history;
+      var _this$props2 = _this.props,
+          history = _this$props2.history,
+          resource = _this$props2.resource;
       var page = selected + 1;
-      history.push("".concat(history.location.pathname, "?page=").concat(page));
+      /**
+       *
+       * If this is the resource page, then add the page
+       * to query parameters
+       *
+       */
+
+      if (!resource) {
+        history.push("".concat(history.location.pathname, "?page=").concat(page));
+      }
 
       _this.setState({
         page: page,
@@ -1858,7 +2084,7 @@ function (_React$Component) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                this.fetchData(query_string__WEBPACK_IMPORTED_MODULE_11___default.a.parse(this.props.location.search).page || 1);
+                this.fetchData(query_string__WEBPACK_IMPORTED_MODULE_12___default.a.parse(this.props.location.search).page || 1);
 
               case 1:
               case "end":
@@ -1884,7 +2110,7 @@ function (_React$Component) {
     key: "getCurrentResource",
     value: function getCurrentResource() {
       var slug = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props.match.params.resource;
-      return Pangaso.resources.find(function (resource) {
+      return this.props.resource || Pangaso.resources.find(function (resource) {
         return resource.slug === slug;
       });
     }
@@ -1943,7 +2169,10 @@ function (_React$Component) {
           multiDeleting = _this$state.multiDeleting,
           selectedAction = _this$state.selectedAction;
       return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_10___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("h1", {
-        className: "font-thin text-3xl mb-2"
+        className: classnames__WEBPACK_IMPORTED_MODULE_11___default()('font-thin mb-2', {
+          'text-2xl': this.props.resource,
+          'text-3xl': !this.props.resource
+        })
       }, resource.title), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
         className: "flex justify-between items-center"
       }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
@@ -2022,25 +2251,30 @@ function (_React$Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _components_HasOne__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/HasOne */ "./client/tools/resources/js/components/HasOne.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _components_HasOne__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/HasOne */ "./client/tools/resources/js/components/HasOne.js");
+/* harmony import */ var _components_HasMany__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/HasMany */ "./client/tools/resources/js/components/HasMany.js");
+
+
 
 
 
@@ -2055,22 +2289,22 @@ __webpack_require__.r(__webpack_exports__);
 var ResourceDetails =
 /*#__PURE__*/
 function (_React$Component) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default()(ResourceDetails, _React$Component);
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6___default()(ResourceDetails, _React$Component);
 
   function ResourceDetails() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, ResourceDetails);
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, ResourceDetails);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, (_getPrototypeOf2 = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(ResourceDetails)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, (_getPrototypeOf2 = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(ResourceDetails)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "state", {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "state", {
       data: {},
       deleting: false,
       resource: _this.getCurrentResource()
@@ -2082,13 +2316,13 @@ function (_React$Component) {
 
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "triggerDelete", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "triggerDelete", function () {
       return _this.setState({
         deleting: !_this.state.deleting
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "delete", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "delete", function () {
       var _this$state = _this.state,
           data = _this$state.data,
           resource = _this$state.resource;
@@ -2103,29 +2337,35 @@ function (_React$Component) {
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "getDetailField", function (detail) {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "getDetailField", function (detail) {
       return Pangaso.details[detail];
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "getDetailFields", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "getDetailFields", function () {
       return _this.state.resource.fields.filter(function (field) {
         return !field.hideOnDetailPage;
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "getEmbeddedFields", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "getEmbeddedFields", function () {
       return _this.state.resource.fields.filter(function (field) {
         return ['HasOneEmbedded', 'HasManyEmbedded'].includes(field.type);
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "getHasOneFields", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "getHasOneFields", function () {
       return _this.state.resource.fields.filter(function (field) {
         return field.type === 'HasOne';
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), "viewChildResource", function (resource, primaryKey) {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "getHasManyFields", function () {
+      return _this.state.resource.fields.filter(function (field) {
+        return field.type === 'HasMany';
+      });
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "viewChildResource", function (resource, primaryKey) {
       _this.setState({
         data: {},
         deleting: false,
@@ -2138,29 +2378,52 @@ function (_React$Component) {
     return _this;
   }
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(ResourceDetails, [{
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(ResourceDetails, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.fetch(this.props.match.params.primaryKey);
     }
+    /**
+     * Fetch data for new resource if resource param has changed.
+     *
+     * @param {ResourcePropsInterface} nextProps
+     *
+     * @return {void}
+     *
+     */
+
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      var _this2 = this;
+
+      if (nextProps.match.params.resource !== this.props.match.params.resource) {
+        this.setState({
+          isFetching: true,
+          resource: this.getCurrentResource(nextProps.match.params.resource)
+        }, function () {
+          return _this2.fetch(nextProps.match.params.primaryKey);
+        });
+      }
+    }
   }, {
     key: "fetch",
     value: function fetch(primaryKey) {
-      var _this2 = this;
+      var _this3 = this;
 
       var push = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
       Pangaso.request().get("/resources/".concat(this.state.resource.slug, "/").concat(primaryKey)).then(function (_ref) {
         var data = _ref.data;
 
-        _this2.setState({
+        _this3.setState({
           data: data
         }, function () {
           if (push) {
-            _this2.props.history.push("/resources/".concat(_this2.state.resource.slug, "/").concat(primaryKey, "/details"));
+            _this3.props.history.push("/resources/".concat(_this3.state.resource.slug, "/").concat(primaryKey, "/details"));
           }
         });
       })["catch"](function () {
-        _this2.props.history.push("/resources/".concat(_this2.state.resource.slug));
+        _this3.props.history.push("/resources/".concat(_this3.state.resource.slug));
       });
     }
     /**
@@ -2194,8 +2457,9 @@ function (_React$Component) {
      *
      */
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
+      var Link = this.props.Link;
       var _this$state2 = this.state,
           resource = _this$state2.resource,
           data = _this$state2.data,
@@ -2204,79 +2468,90 @@ function (_React$Component) {
       var Button = Pangaso.components['component-button'];
       var fields = this.getDetailFields();
       var hasOneFields = this.getHasOneFields();
+      var hasManyFields = this.getHasManyFields();
       var embeddedFields = this.getEmbeddedFields();
-      return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_8___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "flex justify-between items-center"
-      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("h1", {
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h1", {
         className: "font-thin text-3xl mb-2"
-      }, resource.name, " Details"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+      }, resource.name, " Details"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "flex"
-      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Button, {
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Button, {
         link: true,
         label: 'Edit',
         className: "mr-1",
         to: "/resources/".concat(resource.slug, "/").concat(data[resource.primaryKey], "/edit")
-      }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Button, {
+      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Button, {
         handler: this.triggerDelete,
         label: 'Delete',
         type: "danger"
-      }))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+      }))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "mt-6 bg-white rounded-lg w-full py-4 px-8"
       }, fields.map(function (field, index) {
-        var DetailField = _this3.getDetailField(field.detail);
+        var DetailField = _this4.getDetailField(field.detail);
 
-        return DetailField ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        return DetailField ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
           key: index,
-          className: classnames__WEBPACK_IMPORTED_MODULE_8___default()('w-full py-4 flex items-center', {
+          className: classnames__WEBPACK_IMPORTED_MODULE_9___default()('w-full py-4 flex items-center', {
             'border-b border-grey-light ': index !== fields.length - 1
           })
-        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("label", {
+        }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
           className: "w-1/4 text-lg font-thin text-grey-dark"
-        }, field.name), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        }, field.name), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
           className: "w-2/4 flex flex-col text-grey-darkest leading-normal tracking-normal"
-        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(DetailField, {
+        }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(DetailField, {
           options: field.options,
           dateFormat: field.dateFormat,
           checked: data[field.attribute],
           content: data[field.attribute]
         }))) : null;
       })), embeddedFields.map(function (embeddableField, index) {
-        return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
           key: index,
           className: "w-full mt-12"
-        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("h3", {
+        }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h3", {
           className: "font-thin text-2xl mb-2"
-        }, embeddableField.name), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+        }, embeddableField.name), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
           className: "mt-6 bg-white rounded-lg w-full py-4 px-8"
         }, embeddableField.fields.map(function (field, index) {
           var embeddableFieldData = data[embeddableField.attribute] || {};
 
-          var DetailField = _this3.getDetailField(field.detail);
+          var DetailField = _this4.getDetailField(field.detail);
 
-          return DetailField ? react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          return DetailField ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
             key: index,
-            className: classnames__WEBPACK_IMPORTED_MODULE_8___default()('w-full py-4 flex items-center', {
+            className: classnames__WEBPACK_IMPORTED_MODULE_9___default()('w-full py-4 flex items-center', {
               'border-b border-grey-light ': index !== embeddableField.fields.length - 1
             })
-          }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("label", {
+          }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
             className: "w-1/4 text-lg font-thin text-grey-dark"
-          }, field.name), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          }, field.name), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
             className: "w-2/4 flex flex-col text-grey-darkest leading-normal tracking-normal"
-          }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(DetailField, {
+          }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(DetailField, {
             dateFormat: field.dateFormat,
             checked: embeddableFieldData[field.attribute],
             content: embeddableFieldData[field.attribute]
           }))) : null;
         })));
       }), Object.keys(data).length > 0 && hasOneFields.map(function (hasOneField, index) {
-        return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_HasOne__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_HasOne__WEBPACK_IMPORTED_MODULE_10__["default"], {
           key: index,
           parentRecord: data,
           field: hasOneField,
           parentResource: resource,
-          viewChildResource: _this3.viewChildResource
+          viewChildResource: _this4.viewChildResource
         });
-      }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Modal, {
+      }), Object.keys(data).length > 0 && hasManyFields.map(function (hasManyField, index) {
+        return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_HasMany__WEBPACK_IMPORTED_MODULE_11__["default"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({
+          key: index,
+          Link: Link
+        }, _this4.props, {
+          parentRecord: data,
+          field: hasManyField,
+          parentResource: resource // viewChildResource={this.viewChildResource}
+
+        }));
+      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Modal, {
         open: deleting,
         action: {
           type: 'danger',
@@ -2284,7 +2559,7 @@ function (_React$Component) {
           handler: this["delete"]
         },
         renderContent: function renderContent() {
-          return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("p", {
+          return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("p", {
             className: "text-grey-dark"
           }, "Are you sure you want to delete this resource?");
         },
@@ -2295,7 +2570,7 @@ function (_React$Component) {
   }]);
 
   return ResourceDetails;
-}(react__WEBPACK_IMPORTED_MODULE_7___default.a.Component);
+}(react__WEBPACK_IMPORTED_MODULE_8___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (ResourceDetails);
 
@@ -2455,6 +2730,35 @@ function _defineProperty(obj, key, value) {
 }
 
 module.exports = _defineProperty;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/extends.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/extends.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _extends() {
+  module.exports = _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+module.exports = _extends;
 
 /***/ }),
 

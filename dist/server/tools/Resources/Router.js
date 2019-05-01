@@ -48,6 +48,12 @@ router.get('/api/resources/:slug/:resource', set_resource_1.SetResourceMiddlewar
 router.get('/api/resources/:slug/:resource/has-one/:relation', set_resource_1.SetResourceMiddleware, AsyncWrapper(resource_controller_1.Resource.fetchHasOne));
 /**
  *
+ * Define the route for fetching all related database records related to a specific resource
+ *
+ */
+router.get('/api/resources/:slug/:resource/has-many/:relation', set_resource_1.SetResourceMiddleware, AsyncWrapper(resource_controller_1.Resource.fetchHasMany));
+/**
+ *
  * Define the route for running a specific action on a list of selected resources
  *
  */

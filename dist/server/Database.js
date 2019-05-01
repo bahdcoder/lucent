@@ -133,7 +133,7 @@ var Database = /** @class */ (function () {
                         _a = {};
                         return [4 /*yield*/, this.get()
                                 .collection(collection)
-                                .find({})
+                                .find(filter)
                                 .count()];
                     case 1:
                         // @ts-ignore

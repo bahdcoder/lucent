@@ -18,42 +18,54 @@ var ChangeCase = require("change-case");
 var HasMany = /** @class */ (function (_super) {
     __extends(HasMany, _super);
     /**
-     * Create a new instance of this field
      *
-     * @param {string }name
-     * @param {string} resource
-     * @param {string} attribute
+     * Initialize a HasMany instance
      *
-     * @return {void}
+     * @param {String} relatedResource
+     *
+     * @return {null}
      *
      */
-    function HasMany(name, resource, attribute) {
-        if (attribute === void 0) { attribute = ''; }
+    function HasMany(name, attribute, resource) {
         var _this = _super.call(this) || this;
-        _this.name = name;
-        _this.resource = resource;
-        _this.attribute = attribute;
         /**
-         * Define the type of thie field
+         * Define a type for this field
          *
          * @var {String}
          *
          */
         _this.type = 'HasMany';
+        /**
+         *
+         * Declare the resource this field relates to
+         *
+         * @type {String}
+         *
+         */
+        _this.resource = null;
         _this.name = name;
-        _this.resource = resource;
         _this.attribute = attribute || ChangeCase.camelCase(_this.name);
+        _this.resource = resource || name;
+        _this.hideOnIndex();
+        _this.hideOnDetail();
         return _this;
     }
     /**
+     * Make a HasMany Instance
      *
-     * Create a new HasMany relationship instance
+     * @param {string} name the name of the relationship
+     *
+     * @param {string} attribute the name of the attribute on this resource
+     *
+     * @param {string} resource the name of the matching related resource
+     *
+     * @param  {...any} args
      *
      * @return {HasMany}
      *
      */
-    HasMany.make = function (name, resource, attribute) {
-        return new HasMany(name, resource, attribute);
+    HasMany.make = function (name, attribute, resource) {
+        return new HasMany(name, attribute, resource);
     };
     return HasMany;
 }(Field_1.Field));

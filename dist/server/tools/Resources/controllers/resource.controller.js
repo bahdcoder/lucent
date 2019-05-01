@@ -85,6 +85,47 @@ var ResourceController = /** @class */ (function () {
         };
         /**
          *
+         * Fetch records for a has many relationship
+         *
+         * @param {Express.Request} req
+         *
+         * @param {Express.Response} res
+         *
+         * @return {Express.Response}
+         *
+         */
+        this.fetchHasMany = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var resource, relatedField, relatedResource, data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.show(req, res, false)];
+                    case 1:
+                        resource = _a.sent();
+                        if (!resource) {
+                            return [2 /*return*/, res.status(404).json({
+                                    message: 'Resource not found.'
+                                })];
+                        }
+                        relatedField = req.pangaso.resource
+                            .fields()
+                            .find(function (field) { return field.attribute === req.params.relation; });
+                        relatedResource = req.pangaso.resources.find(function (r) { return r.title() === relatedField.resource; });
+                        return [4 /*yield*/, req.pangaso.database.fetch(relatedResource.collection(), {
+                                limit: relatedResource.perPage(),
+                                page: req.query.page || 1
+                            }, {
+                                _id: {
+                                    $in: (resource[relatedField.attribute] || []).map(function (primaryKey) { return new mongodb_1.ObjectID(primaryKey); })
+                                }
+                            })];
+                    case 2:
+                        data = _a.sent();
+                        return [2 /*return*/, res.json(data)];
+                }
+            });
+        }); };
+        /**
+         *
          * Fetch a record for a has one relationship
          *
          * @param {Express.Request} req
@@ -225,6 +266,11 @@ var ResourceController = /** @class */ (function () {
      * @param {Express.Response} res
      *
      * @return {Express.Response}
+     *
+     * TODO: implement a middleware to fetch the validation error for
+     * this upload and validate. Also exclude the file
+     * validations when creating/updating a
+     * resource.
      *
      */
     ResourceController.prototype.upload = function (req, res) {

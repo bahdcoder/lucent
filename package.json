@@ -50,6 +50,7 @@
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
+    "@khanacademy/react-multi-select": "^0.3.2",
     "@types/app-root-path": "^1.2.4",
     "@types/body-parser": "^1.17.0",
     "@types/change-case": "^2.3.1",

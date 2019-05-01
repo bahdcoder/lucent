@@ -93,6 +93,10 @@ class AddResource extends React.Component {
             return attributes
         }
 
+        if (field.type === 'HasMany') {
+            return []
+        }
+
         if (field.type === 'Date') {
             return new Date()
         }
@@ -198,7 +202,11 @@ class AddResource extends React.Component {
         for (const attribute of Object.keys(form)) {
             const field = form[attribute]
 
-            if (typeof field === 'object' && !(field instanceof Blob)) {
+            if (
+                typeof field === 'object' &&
+                !(field instanceof Blob) &&
+                !Array.isArray(field)
+            ) {
                 preparedForm[attribute] = {}
 
                 for (const nestedAttribute of Object.keys(field)) {
@@ -299,10 +307,25 @@ class AddResource extends React.Component {
 
     /**
      *
+     * Handle field change for any of the fields available.
+     *
+     * @param {React.SyntheticEvent} event
+     *
+     * @param {strng} string
+     *
      * @return {void}
      *
      */
     handleChange = (event, embedded = null) => {
+        if (event.type === 'MultiSelect') {
+            return this.setState({
+                form: {
+                    ...this.state.form,
+                    [event.name]: event.value
+                }
+            })
+        }
+
         /**
          *
          * Handle the date field case
@@ -487,7 +510,6 @@ class AddResource extends React.Component {
                                                 resource={resource}
                                                 id={field.attribute}
                                                 name={field.attribute}
-                                                handler={this.handleChange}
                                                 value={form[field.attribute]}
                                                 checked={form[field.attribute]}
                                                 dateOptions={{
@@ -501,6 +523,13 @@ class AddResource extends React.Component {
                                                               field.name
                                                           }`
                                                         : field.name
+                                                }
+                                                handler={(...all) =>
+                                                    this.handleChange(
+                                                        all[0],
+                                                        all[1],
+                                                        field
+                                                    )
                                                 }
                                             />
                                         </div>

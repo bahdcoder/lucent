@@ -7,6 +7,7 @@ const Select = ({
     name,
     error,
     className,
+    multiple = false,
     placeholder = 'Select an option',
     options = []
 }) => (
@@ -23,6 +24,7 @@ const Select = ({
                 },
                 className
             )}
+            multiple={multiple}
         >
             <option value="">{placeholder}</option>
             {options.map(option => (

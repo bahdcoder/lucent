@@ -92,7 +92,7 @@ export class Database {
             // @ts-ignore
             total: await this.get()
                 .collection(collection)
-                .find({})
+                .find(filter)
                 .count(),
 
             // @ts-ignore

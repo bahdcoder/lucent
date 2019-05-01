@@ -2,6 +2,7 @@ import Resource from './pages/Resource'
 import Sidebar from './components/Sidebar'
 import AddResource from './pages/AddResource'
 import HasOneField from './components/Form/HasOne'
+import HasManyField from './components/Form/HasMany'
 import ResourceDetails from './pages/ResourceDetails'
 
 Pangaso.booting(({ route, sidebar, field }) => {
@@ -14,10 +15,17 @@ Pangaso.booting(({ route, sidebar, field }) => {
 
     /**
      *
-     * Register a new field component
+     * Register a new has-one field component
      *
      */
     field('form-hasone', HasOneField)
+
+    /**
+     *
+     * Register a new has-many field component
+     *
+     */
+    field('form-hasmany', HasManyField)
 
     /**
      *

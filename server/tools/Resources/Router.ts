@@ -74,6 +74,17 @@ router.get(
 
 /**
  *
+ * Define the route for fetching all related database records related to a specific resource
+ *
+ */
+router.get(
+    '/api/resources/:slug/:resource/has-many/:relation',
+    SetResourceMiddleware,
+    AsyncWrapper(Resource.fetchHasMany)
+)
+
+/**
+ *
  * Define the route for running a specific action on a list of selected resources
  *
  */

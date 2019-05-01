@@ -2,6 +2,7 @@ import React from 'react'
 import classnames from 'classnames'
 
 import HasOne from '../components/HasOne'
+import HasMany from '../components/HasMany'
 
 class ResourceDetails extends React.Component {
     state = {
@@ -17,6 +18,30 @@ class ResourceDetails extends React.Component {
      */
     componentDidMount() {
         this.fetch(this.props.match.params.primaryKey)
+    }
+
+    /**
+     * Fetch data for new resource if resource param has changed.
+     *
+     * @param {ResourcePropsInterface} nextProps
+     *
+     * @return {void}
+     *
+     */
+    componentWillReceiveProps(nextProps) {
+        if (
+            nextProps.match.params.resource !== this.props.match.params.resource
+        ) {
+            this.setState(
+                {
+                    isFetching: true,
+                    resource: this.getCurrentResource(
+                        nextProps.match.params.resource
+                    )
+                },
+                () => this.fetch(nextProps.match.params.primaryKey)
+            )
+        }
     }
 
     fetch(primaryKey, push = true) {
@@ -127,6 +152,16 @@ class ResourceDetails extends React.Component {
 
     /**
      *
+     * Get all HasMany relationships
+     *
+     * @return {array}
+     *
+     */
+    getHasManyFields = () =>
+        this.state.resource.fields.filter(field => field.type === 'HasMany')
+
+    /**
+     *
      * This method navigates to another detail
      *
      */
@@ -149,6 +184,7 @@ class ResourceDetails extends React.Component {
      *
      */
     render() {
+        const { Link } = this.props
         const { resource, data, deleting } = this.state
 
         const Modal = Pangaso.components['component-modal']
@@ -156,6 +192,7 @@ class ResourceDetails extends React.Component {
 
         const fields = this.getDetailFields()
         const hasOneFields = this.getHasOneFields()
+        const hasManyFields = this.getHasManyFields()
         const embeddedFields = this.getEmbeddedFields()
 
         return (
@@ -276,6 +313,19 @@ class ResourceDetails extends React.Component {
                             field={hasOneField}
                             parentResource={resource}
                             viewChildResource={this.viewChildResource}
+                        />
+                    ))}
+
+                {Object.keys(data).length > 0 &&
+                    hasManyFields.map((hasManyField, index) => (
+                        <HasMany
+                            key={index}
+                            Link={Link}
+                            {...this.props}
+                            parentRecord={data}
+                            field={hasManyField}
+                            parentResource={resource}
+                            // viewChildResource={this.viewChildResource}
                         />
                     ))}
                 <Modal

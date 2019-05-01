@@ -21,6 +21,8 @@ class RemoveFiles {
                 req.body.staleFiles.forEach((file: string) => {
                     Fs.unlinkSync(`${process.cwd()}${file}`)
                 })
+
+                delete req.body.staleFiles
             } catch (error) {}
         }
 

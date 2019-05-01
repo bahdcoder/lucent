@@ -19,7 +19,7 @@ var HasOne = /** @class */ (function (_super) {
     __extends(HasOne, _super);
     /**
      *
-     * Initialize a HasOneEmbedded instance
+     * Initialize a HasOne instance
      *
      * @param {String} relatedResource
      *

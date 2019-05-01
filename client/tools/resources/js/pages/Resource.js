@@ -1,4 +1,5 @@
 import React from 'react'
+import classnames from 'classnames'
 import QueryString from 'query-string'
 
 class Resource extends React.Component {
@@ -32,7 +33,10 @@ class Resource extends React.Component {
      *
      */
     getCurrentResource(slug = this.props.match.params.resource) {
-        return Pangaso.resources.find(resource => resource.slug === slug)
+        return (
+            this.props.resource ||
+            Pangaso.resources.find(resource => resource.slug === slug)
+        )
     }
 
     /**
@@ -62,9 +66,18 @@ class Resource extends React.Component {
      *
      */
     fetchData = (page = 1) => {
+        const { resource, parentRecord, parentResource, field } = this.props
+
+        const url = resource
+            ? `/resources/${parentResource.slug}/${
+                  parentRecord[parentResource.primaryKey]
+              }/has-many/${field.attribute}`
+            : `resources/${this.props.match.params.resource}?page=${page}`
+
         Pangaso.request()
-            .get(`resources/${this.props.match.params.resource}?page=${page}`)
+            .get(url)
             .then(({ data }) => {
+                console.log('-->', data)
                 this.setState({
                     data,
                     isFetching: false
@@ -78,11 +91,19 @@ class Resource extends React.Component {
      *
      */
     handlePageChange = ({ selected }) => {
-        const { history } = this.props
+        const { history, resource } = this.props
 
         const page = selected + 1
 
-        history.push(`${history.location.pathname}?page=${page}`)
+        /**
+         *
+         * If this is the resource page, then add the page
+         * to query parameters
+         *
+         */
+        if (!resource) {
+            history.push(`${history.location.pathname}?page=${page}`)
+        }
 
         this.setState(
             {
@@ -270,7 +291,14 @@ class Resource extends React.Component {
 
         return (
             <React.Fragment>
-                <h1 className="font-thin text-3xl mb-2">{resource.title}</h1>
+                <h1
+                    className={classnames('font-thin mb-2', {
+                        'text-2xl': this.props.resource,
+                        'text-3xl': !this.props.resource
+                    })}
+                >
+                    {resource.title}
+                </h1>
 
                 <div className="flex justify-between items-center">
                     <div className="w-1/5 flex items-center">

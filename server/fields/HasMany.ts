@@ -3,7 +3,7 @@ import * as ChangeCase from 'change-case'
 
 export class HasMany extends Field {
     /**
-     * Define the type of thie field
+     * Define a type for this field
      *
      * @var {String}
      *
@@ -11,35 +11,49 @@ export class HasMany extends Field {
     public type: string = 'HasMany'
 
     /**
-     * Create a new instance of this field
      *
-     * @param {string }name
-     * @param {string} resource
-     * @param {string} attribute
+     * Declare the resource this field relates to
      *
-     * @return {void}
+     * @type {String}
      *
      */
-    constructor(
-        public name: string,
-        public resource: string,
-        public attribute: string = ''
-    ) {
-        super()
-
-        this.name = name
-        this.resource = resource
-        this.attribute = attribute || ChangeCase.camelCase(this.name)
-    }
+    public resource: string | null = null
 
     /**
      *
-     * Create a new HasMany relationship instance
+     * Initialize a HasMany instance
+     *
+     * @param {String} relatedResource
+     *
+     * @return {null}
+     *
+     */
+    constructor(name: string, attribute?: string, resource?: string) {
+        super()
+
+        this.name = name
+        this.attribute = attribute || ChangeCase.camelCase(this.name)
+        this.resource = resource || name
+
+        this.hideOnIndex()
+        this.hideOnDetail()
+    }
+
+    /**
+     * Make a HasMany Instance
+     *
+     * @param {string} name the name of the relationship
+     *
+     * @param {string} attribute the name of the attribute on this resource
+     *
+     * @param {string} resource the name of the matching related resource
+     *
+     * @param  {...any} args
      *
      * @return {HasMany}
      *
      */
-    static make(name: string, resource: string, attribute?: string) {
-        return new HasMany(name, resource, attribute)
+    static make(name: string, attribute?: string, resource?: string) {
+        return new HasMany(name, attribute, resource)
     }
 }

@@ -43,6 +43,7 @@ export interface IResource {
     fields(): Array<any>
     schema?(): any
     slug(): string
+    title(): string
     serialize(): Object
     authorizedToCreate?(): boolean
     authorizedToView?(): boolean

@@ -99,6 +99,61 @@ class ResourceController {
 
     /**
      *
+     * Fetch records for a has many relationship
+     *
+     * @param {Express.Request} req
+     *
+     * @param {Express.Response} res
+     *
+     * @return {Express.Response}
+     *
+     */
+    public fetchHasMany = async (
+        req: Express.Request,
+        res: Express.Response
+    ) => {
+        // we need the resource
+        const resource = await this.show(req, res, false)
+
+        if (!resource) {
+            return res.status(404).json({
+                message: 'Resource not found.'
+            })
+        }
+
+        // using the resource, let's find it's related resource
+
+        const relatedField = req.pangaso.resource
+            .fields()
+            .find((field: IField) => field.attribute === req.params.relation)
+
+        // using the found field, let's find the related resource
+
+        const relatedResource = req.pangaso.resources.find(
+            (r: IResource) => r.title() === relatedField.resource
+        )
+
+        // it's a has many relationship, so we'll get all payments
+        const data = await req.pangaso.database.fetch(
+            relatedResource.collection(),
+            {
+                limit: relatedResource.perPage(),
+                page: req.query.page || 1
+            },
+            {
+                _id: {
+                    $in: (resource[relatedField.attribute] || []).map(
+                        (primaryKey: string) => new ObjectID(primaryKey)
+                    )
+                }
+            }
+        )
+
+        return res.json(data)
+    }
+
+    /**
+     *
      * Fetch a record for a has one relationship
      *
      * @param {Express.Request} req
@@ -172,6 +227,11 @@ class ResourceController {
      * @param {Express.Response} res
      *
      * @return {Express.Response}
+     *
+     * TODO: implement a middleware to fetch the validation error for
+     * this upload and validate. Also exclude the file
+     * validations when creating/updating a
+     * resource.
      *
      */
     public async upload(req: Express.Request, res: Express.Response) {

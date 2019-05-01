@@ -9,18 +9,18 @@ import Checkbox from './Checkbox'
 const Table = ({
     Link,
     resource,
-    selectAll,
-    rows = [],
     page = 1,
     total = 1,
+    rows = [],
+    selectAll,
     headers = [],
     toggleSelect,
+    onPageChange,
     selected = [],
     triggerRunAction,
     setSelectedAction,
     triggerMultiDelete,
-    selectedAction = '',
-    onPageChange
+    selectedAction = ''
 }) => {
     /**
      *
@@ -57,8 +57,8 @@ const Table = ({
             <div className="h-16 flex justify-between items-center">
                 <div className="w-20 flex justify-center items-center">
                     <Checkbox
-                        handler={selectAll}
                         id="selectAll"
+                        handler={selectAll}
                         checked={selected.length === rows.length}
                     />
                 </div>

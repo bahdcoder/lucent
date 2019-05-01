@@ -14,7 +14,7 @@ const DateField = ({
 }) => (
     <React.Fragment>
         <FlatPickr
-            onChange={date => handler({ name, date })}
+            onChange={date => handler({ name, date: date[0] })}
             options={dateOptions}
             className={classnames(
                 'text-grey-darkest my-3 h-10 pr-3 pl-10 rounded-lg shadow border focus:outline-none focus:border-2',

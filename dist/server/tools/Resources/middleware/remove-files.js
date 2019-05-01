@@ -56,6 +56,7 @@ var RemoveFiles = /** @class */ (function () {
                         req.body.staleFiles.forEach(function (file) {
                             Fs.unlinkSync("" + process.cwd() + file);
                         });
+                        delete req.body.staleFiles;
                     }
                     catch (error) { }
                 }

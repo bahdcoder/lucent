@@ -284,23 +284,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Button */ "./client/components/Button.js");
 /* harmony import */ var _components_Select__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Select */ "./client/components/Select.js");
 /* harmony import */ var _components_Checkbox__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Checkbox */ "./client/components/Checkbox.js");
-/* harmony import */ var _components_Detail_ID__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Detail/ID */ "./client/components/Detail/ID.js");
-/* harmony import */ var _components_Detail_Num__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Detail/Num */ "./client/components/Detail/Num.js");
-/* harmony import */ var _components_Detail_Text__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Detail/Text */ "./client/components/Detail/Text.js");
-/* harmony import */ var _components_Detail_Date__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Detail/Date */ "./client/components/Detail/Date.js");
-/* harmony import */ var _components_Detail_File__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Detail/File */ "./client/components/Detail/File.js");
-/* harmony import */ var _components_Detail_Select__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Detail/Select */ "./client/components/Detail/Select.js");
-/* harmony import */ var _components_Detail_Boolean__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Detail/Boolean */ "./client/components/Detail/Boolean.js");
-/* harmony import */ var _components_Detail_Password__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Detail/Password */ "./client/components/Detail/Password.js");
-/* harmony import */ var _components_Detail_Textarea__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Detail/Textarea */ "./client/components/Detail/Textarea.js");
-/* harmony import */ var _components_Form_NumField__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Form/NumField */ "./client/components/Form/NumField.js");
-/* harmony import */ var _components_Form_DateField__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Form/DateField */ "./client/components/Form/DateField.js");
-/* harmony import */ var _components_Form_TextField__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Form/TextField */ "./client/components/Form/TextField.js");
-/* harmony import */ var _components_Form_FileField__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/Form/FileField */ "./client/components/Form/FileField.js");
-/* harmony import */ var _components_Form_SelectField__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/Form/SelectField */ "./client/components/Form/SelectField.js");
-/* harmony import */ var _components_Form_BooleanField__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/Form/BooleanField */ "./client/components/Form/BooleanField.js");
-/* harmony import */ var _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/Form/TextareaField */ "./client/components/Form/TextareaField.js");
-/* harmony import */ var _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/Form/PasswordField */ "./client/components/Form/PasswordField.js");
+/* harmony import */ var _components_MultiSelect__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/MultiSelect */ "./client/components/MultiSelect.js");
+/* harmony import */ var _components_Detail_ID__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Detail/ID */ "./client/components/Detail/ID.js");
+/* harmony import */ var _components_Detail_Num__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Detail/Num */ "./client/components/Detail/Num.js");
+/* harmony import */ var _components_Detail_Text__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Detail/Text */ "./client/components/Detail/Text.js");
+/* harmony import */ var _components_Detail_Date__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Detail/Date */ "./client/components/Detail/Date.js");
+/* harmony import */ var _components_Detail_File__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Detail/File */ "./client/components/Detail/File.js");
+/* harmony import */ var _components_Detail_Select__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Detail/Select */ "./client/components/Detail/Select.js");
+/* harmony import */ var _components_Detail_Boolean__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Detail/Boolean */ "./client/components/Detail/Boolean.js");
+/* harmony import */ var _components_Detail_Password__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Detail/Password */ "./client/components/Detail/Password.js");
+/* harmony import */ var _components_Detail_Textarea__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Detail/Textarea */ "./client/components/Detail/Textarea.js");
+/* harmony import */ var _components_Form_NumField__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Form/NumField */ "./client/components/Form/NumField.js");
+/* harmony import */ var _components_Form_DateField__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Form/DateField */ "./client/components/Form/DateField.js");
+/* harmony import */ var _components_Form_TextField__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/Form/TextField */ "./client/components/Form/TextField.js");
+/* harmony import */ var _components_Form_FileField__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/Form/FileField */ "./client/components/Form/FileField.js");
+/* harmony import */ var _components_Form_SelectField__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/Form/SelectField */ "./client/components/Form/SelectField.js");
+/* harmony import */ var _components_Form_BooleanField__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/Form/BooleanField */ "./client/components/Form/BooleanField.js");
+/* harmony import */ var _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/Form/TextareaField */ "./client/components/Form/TextareaField.js");
+/* harmony import */ var _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/Form/PasswordField */ "./client/components/Form/PasswordField.js");
+/* harmony import */ var _components_Form_MultiSelectField__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/Form/MultiSelectField */ "./client/components/Form/MultiSelectField.js");
 
 
 
@@ -310,6 +312,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // components
+
 
 
 
@@ -329,6 +332,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // fields
+
 
 
 
@@ -552,14 +556,15 @@ function () {
      *
      */
 
-    this.field('form-num', _components_Form_NumField__WEBPACK_IMPORTED_MODULE_26__["default"]);
-    this.field('form-text', _components_Form_TextField__WEBPACK_IMPORTED_MODULE_28__["default"]);
-    this.field('form-date', _components_Form_DateField__WEBPACK_IMPORTED_MODULE_27__["default"]);
-    this.field('form-file', _components_Form_FileField__WEBPACK_IMPORTED_MODULE_29__["default"]);
-    this.field('form-select', _components_Form_SelectField__WEBPACK_IMPORTED_MODULE_30__["default"]);
-    this.field('form-boolean', _components_Form_BooleanField__WEBPACK_IMPORTED_MODULE_31__["default"]);
-    this.field('form-password', _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_33__["default"]);
-    this.field('form-textarea', _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_32__["default"]);
+    this.field('form-num', _components_Form_NumField__WEBPACK_IMPORTED_MODULE_27__["default"]);
+    this.field('form-text', _components_Form_TextField__WEBPACK_IMPORTED_MODULE_29__["default"]);
+    this.field('form-date', _components_Form_DateField__WEBPACK_IMPORTED_MODULE_28__["default"]);
+    this.field('form-file', _components_Form_FileField__WEBPACK_IMPORTED_MODULE_30__["default"]);
+    this.field('form-select', _components_Form_SelectField__WEBPACK_IMPORTED_MODULE_31__["default"]);
+    this.field('form-boolean', _components_Form_BooleanField__WEBPACK_IMPORTED_MODULE_32__["default"]);
+    this.field('form-password', _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_34__["default"]);
+    this.field('form-textarea', _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_33__["default"]);
+    this.field('form-multiselect', _components_Form_MultiSelectField__WEBPACK_IMPORTED_MODULE_35__["default"]);
     /**
      *
      * Here we'll register a bunch of components to be used
@@ -568,15 +573,15 @@ function () {
      *
      */
 
-    this.detail('detail-id', _components_Detail_ID__WEBPACK_IMPORTED_MODULE_17__["default"]);
-    this.detail('detail-num', _components_Detail_Num__WEBPACK_IMPORTED_MODULE_18__["default"]);
-    this.detail('detail-text', _components_Detail_Text__WEBPACK_IMPORTED_MODULE_19__["default"]);
-    this.detail('detail-date', _components_Detail_Date__WEBPACK_IMPORTED_MODULE_20__["default"]);
-    this.detail('detail-file', _components_Detail_File__WEBPACK_IMPORTED_MODULE_21__["default"]);
-    this.detail('detail-select', _components_Detail_Select__WEBPACK_IMPORTED_MODULE_22__["default"]);
-    this.detail('detail-boolean', _components_Detail_Boolean__WEBPACK_IMPORTED_MODULE_23__["default"]);
-    this.detail('detail-textarea', _components_Detail_Textarea__WEBPACK_IMPORTED_MODULE_25__["default"]);
-    this.detail('detail-password', _components_Detail_Password__WEBPACK_IMPORTED_MODULE_24__["default"]);
+    this.detail('detail-id', _components_Detail_ID__WEBPACK_IMPORTED_MODULE_18__["default"]);
+    this.detail('detail-num', _components_Detail_Num__WEBPACK_IMPORTED_MODULE_19__["default"]);
+    this.detail('detail-text', _components_Detail_Text__WEBPACK_IMPORTED_MODULE_20__["default"]);
+    this.detail('detail-date', _components_Detail_Date__WEBPACK_IMPORTED_MODULE_21__["default"]);
+    this.detail('detail-file', _components_Detail_File__WEBPACK_IMPORTED_MODULE_22__["default"]);
+    this.detail('detail-select', _components_Detail_Select__WEBPACK_IMPORTED_MODULE_23__["default"]);
+    this.detail('detail-boolean', _components_Detail_Boolean__WEBPACK_IMPORTED_MODULE_24__["default"]);
+    this.detail('detail-textarea', _components_Detail_Textarea__WEBPACK_IMPORTED_MODULE_26__["default"]);
+    this.detail('detail-password', _components_Detail_Password__WEBPACK_IMPORTED_MODULE_25__["default"]);
     /**
      *
      * Here we'll register components to the component
@@ -593,6 +598,7 @@ function () {
     this.component('component-button', _components_Button__WEBPACK_IMPORTED_MODULE_14__["default"]);
     this.component('component-select', _components_Select__WEBPACK_IMPORTED_MODULE_15__["default"]);
     this.component('component-checkbox', _components_Checkbox__WEBPACK_IMPORTED_MODULE_16__["default"]);
+    this.component('component-multiselect', _components_MultiSelect__WEBPACK_IMPORTED_MODULE_17__["default"]);
   }
   /**
    *
@@ -1209,7 +1215,7 @@ var DateField = function DateField(_ref) {
     onChange: function onChange(date) {
       return handler({
         name: name,
-        date: date
+        date: date[0]
       });
     },
     options: dateOptions,
@@ -1247,6 +1253,29 @@ var FileField = function FileField(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FileField);
+
+/***/ }),
+
+/***/ "./client/components/Form/MultiSelectField.js":
+/*!****************************************************!*\
+  !*** ./client/components/Form/MultiSelectField.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _MultiSelect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../MultiSelect */ "./client/components/MultiSelect.js");
+
+
+
+var MultiSelectField = function MultiSelectField(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MultiSelect__WEBPACK_IMPORTED_MODULE_1__["default"], props);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (MultiSelectField);
 
 /***/ }),
 
@@ -1490,6 +1519,87 @@ var Modal = function Modal(_ref) {
 
 /***/ }),
 
+/***/ "./client/components/MultiSelect.js":
+/*!******************************************!*\
+  !*** ./client/components/MultiSelect.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _khanacademy_react_multi_select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @khanacademy/react-multi-select */ "./node_modules/@khanacademy/react-multi-select/dist/index.js");
+/* harmony import */ var _khanacademy_react_multi_select__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_khanacademy_react_multi_select__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var students = [{
+  id: 0,
+  name: 'Zach Morris'
+}, {
+  id: 1,
+  name: 'Kelly Kapowski'
+}, {
+  id: 2,
+  name: 'A.C. Slater'
+}, {
+  id: 3,
+  name: 'Lisa Turtle'
+}, {
+  id: 4,
+  name: 'Jessie Spano'
+}, {
+  id: 5,
+  name: 'Samuel Powers'
+}, {
+  id: 6,
+  name: 'Tori Scott'
+}];
+var studentsList = students.map(function (s) {
+  return {
+    value: s.id,
+    label: s.name
+  };
+});
+
+var ItemRenderer = function ItemRenderer(_ref) {
+  var option = _ref.option,
+      checked = _ref.checked,
+      onClick = _ref.onClick;
+  var Checkbox = Pangaso.components['component-checkbox'];
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Checkbox, {
+    handler: onClick,
+    checked: checked,
+    id: "option-".concat(option.value)
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, option.label));
+};
+
+var MultiSelect = function MultiSelect(_ref2) {
+  var _ref2$value = _ref2.value,
+      value = _ref2$value === void 0 ? [] : _ref2$value,
+      _ref2$options = _ref2.options,
+      options = _ref2$options === void 0 ? [] : _ref2$options,
+      name = _ref2.name,
+      handler = _ref2.handler;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_khanacademy_react_multi_select__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    selected: value,
+    options: options,
+    ItemRenderer: ItemRenderer,
+    onSelectedChanged: function onSelectedChanged(selected) {
+      return handler({
+        name: name,
+        value: selected,
+        type: 'MultiSelect'
+      });
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (MultiSelect);
+
+/***/ }),
+
 /***/ "./client/components/Select.js":
 /*!*************************************!*\
   !*** ./client/components/Select.js ***!
@@ -1512,6 +1622,8 @@ var Select = function Select(_ref) {
       name = _ref.name,
       error = _ref.error,
       className = _ref.className,
+      _ref$multiple = _ref.multiple,
+      multiple = _ref$multiple === void 0 ? false : _ref$multiple,
       _ref$placeholder = _ref.placeholder,
       placeholder = _ref$placeholder === void 0 ? 'Select an option' : _ref$placeholder,
       _ref$options = _ref.options,
@@ -1523,7 +1635,8 @@ var Select = function Select(_ref) {
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('bg-white focus:outline-none text-grey-darkest my-3 border h-10 px-3 rounded-lg shadow focus:outline-none focus:border-2', {
       'border-grey focus:border-indigo': !error,
       'border-red focus:border-red': error
-    }, className)
+    }, className),
+    multiple: multiple
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
     value: ""
   }, placeholder), options.map(function (option) {
@@ -1860,24 +1973,24 @@ __webpack_require__.r(__webpack_exports__);
 var Table = function Table(_ref) {
   var Link = _ref.Link,
       resource = _ref.resource,
-      selectAll = _ref.selectAll,
-      _ref$rows = _ref.rows,
-      rows = _ref$rows === void 0 ? [] : _ref$rows,
       _ref$page = _ref.page,
       page = _ref$page === void 0 ? 1 : _ref$page,
       _ref$total = _ref.total,
       total = _ref$total === void 0 ? 1 : _ref$total,
+      _ref$rows = _ref.rows,
+      rows = _ref$rows === void 0 ? [] : _ref$rows,
+      selectAll = _ref.selectAll,
       _ref$headers = _ref.headers,
       headers = _ref$headers === void 0 ? [] : _ref$headers,
       toggleSelect = _ref.toggleSelect,
+      onPageChange = _ref.onPageChange,
       _ref$selected = _ref.selected,
       selected = _ref$selected === void 0 ? [] : _ref$selected,
       triggerRunAction = _ref.triggerRunAction,
       setSelectedAction = _ref.setSelectedAction,
       triggerMultiDelete = _ref.triggerMultiDelete,
       _ref$selectedAction = _ref.selectedAction,
-      selectedAction = _ref$selectedAction === void 0 ? '' : _ref$selectedAction,
-      onPageChange = _ref.onPageChange;
+      selectedAction = _ref$selectedAction === void 0 ? '' : _ref$selectedAction;
 
   /**
    *
@@ -1912,8 +2025,8 @@ var Table = function Table(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-20 flex justify-center items-center"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    handler: selectAll,
     id: "selectAll",
+    handler: selectAll,
     checked: selected.length === rows.length
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end w-1/3"
@@ -2635,6 +2748,1376 @@ module.exports = _typeof;
 
 module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
 
+
+/***/ }),
+
+/***/ "./node_modules/@khanacademy/react-multi-select/dist/dropdown.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@khanacademy/react-multi-select/dist/dropdown.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _loadingIndicator = __webpack_require__(/*! ./loading-indicator.js */ "./node_modules/@khanacademy/react-multi-select/dist/loading-indicator.js");
+
+var _loadingIndicator2 = _interopRequireDefault(_loadingIndicator);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+/**
+ * A generic dropdown component.  It takes the children of the component
+ * and hosts it in the component.  When the component is selected, it
+ * drops-down the contentComponent and applies the contentProps.
+ */
+
+
+var Dropdown = function (_Component) {
+    _inherits(Dropdown, _Component);
+
+    function Dropdown() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, Dropdown);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Dropdown.__proto__ || Object.getPrototypeOf(Dropdown)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+            expanded: false,
+            hasFocus: false
+        }, _this.handleDocumentClick = function (event) {
+            if (_this.wrapper && !_this.wrapper.contains(event.target)) {
+                _this.setState({ expanded: false });
+            }
+        }, _this.handleKeyDown = function (e) {
+            switch (e.which) {
+                case 27:
+                    // Escape
+                    _this.toggleExpanded(false);
+                    break;
+                case 38:
+                    // Up Arrow
+                    _this.toggleExpanded(false);
+                    break;
+                case 13: // Enter Key
+                case 32: // Space
+                case 40:
+                    // Down Arrow
+                    _this.toggleExpanded(true);
+                    break;
+                default:
+                    return;
+            }
+
+            e.preventDefault();
+        }, _this.handleFocus = function (e) {
+            var hasFocus = _this.state.hasFocus;
+
+
+            if (e.target === _this.wrapper && !hasFocus) {
+                _this.setState({ hasFocus: true });
+            }
+        }, _this.handleBlur = function (e) {
+            var hasFocus = _this.state.hasFocus;
+
+
+            if (hasFocus) {
+                _this.setState({ hasFocus: false });
+            }
+        }, _this.handleMouseEnter = function (e) {
+            _this.handleHover(true);
+        }, _this.handleMouseLeave = function (e) {
+            _this.handleHover(false);
+        }, _this.handleHover = function (toggleExpanded) {
+            var shouldToggleOnHover = _this.props.shouldToggleOnHover;
+
+
+            if (shouldToggleOnHover) {
+                _this.toggleExpanded(toggleExpanded);
+            }
+        }, _this.toggleExpanded = function (value) {
+            var isLoading = _this.props.isLoading;
+            var expanded = _this.state.expanded;
+
+
+            if (isLoading) {
+                return;
+            }
+
+            var newExpanded = value === undefined ? !expanded : !!value;
+
+            _this.setState({ expanded: newExpanded });
+
+            if (!newExpanded && _this.wrapper) {
+                _this.wrapper.focus();
+            }
+        }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(Dropdown, [{
+        key: 'componentWillUpdate',
+        value: function componentWillUpdate() {
+            document.addEventListener('touchstart', this.handleDocumentClick);
+            document.addEventListener('mousedown', this.handleDocumentClick);
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            document.removeEventListener('touchstart', this.handleDocumentClick);
+            document.removeEventListener('mousedown', this.handleDocumentClick);
+        }
+    }, {
+        key: 'renderPanel',
+        value: function renderPanel() {
+            var _props = this.props,
+                ContentComponent = _props.contentComponent,
+                contentProps = _props.contentProps;
+
+
+            return _react2.default.createElement(
+                'div',
+                {
+                    className: 'dropdown-content',
+                    style: styles.panelContainer
+                },
+                _react2.default.createElement(ContentComponent, contentProps)
+            );
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            var _state = this.state,
+                expanded = _state.expanded,
+                hasFocus = _state.hasFocus;
+            var _props2 = this.props,
+                children = _props2.children,
+                isLoading = _props2.isLoading,
+                disabled = _props2.disabled;
+
+
+            var expandedHeaderStyle = expanded ? styles.dropdownHeaderExpanded : undefined;
+
+            var focusedHeaderStyle = hasFocus ? styles.dropdownHeaderFocused : undefined;
+
+            var arrowStyle = expanded ? styles.dropdownArrowUp : styles.dropdownArrowDown;
+
+            var focusedArrowStyle = hasFocus ? styles.dropdownArrowDownFocused : undefined;
+
+            var headingStyle = _extends({}, styles.dropdownChildren, disabled ? styles.disabledDropdownChildren : {});
+
+            return _react2.default.createElement(
+                'div',
+                {
+                    className: 'dropdown',
+                    tabIndex: '0',
+                    role: 'combobox',
+                    'aria-expanded': expanded,
+                    'aria-readonly': 'true',
+                    'aria-disabled': disabled,
+                    style: styles.dropdownContainer,
+                    ref: function ref(_ref2) {
+                        return _this2.wrapper = _ref2;
+                    },
+                    onKeyDown: this.handleKeyDown,
+                    onFocus: this.handleFocus,
+                    onBlur: this.handleBlur,
+                    onMouseEnter: this.handleMouseEnter,
+                    onMouseLeave: this.handleMouseLeave
+                },
+                _react2.default.createElement(
+                    'div',
+                    {
+                        className: 'dropdown-heading',
+                        style: _extends({}, styles.dropdownHeader, expandedHeaderStyle, focusedHeaderStyle),
+                        onClick: function onClick() {
+                            return _this2.toggleExpanded();
+                        }
+                    },
+                    _react2.default.createElement(
+                        'span',
+                        {
+                            className: 'dropdown-heading-value',
+                            style: headingStyle
+                        },
+                        children
+                    ),
+                    _react2.default.createElement(
+                        'span',
+                        {
+                            className: 'dropdown-heading-loading-container',
+                            style: styles.loadingContainer
+                        },
+                        isLoading && _react2.default.createElement(_loadingIndicator2.default, null)
+                    ),
+                    _react2.default.createElement(
+                        'span',
+                        {
+                            className: 'dropdown-heading-dropdown-arrow',
+                            style: styles.dropdownArrow
+                        },
+                        _react2.default.createElement('span', { style: _extends({}, arrowStyle, focusedArrowStyle)
+                        })
+                    )
+                ),
+                expanded && this.renderPanel()
+            );
+        }
+    }]);
+
+    return Dropdown;
+}(_react.Component);
+
+var focusColor = '#78c008';
+
+var styles = {
+    dropdownArrow: {
+        boxSizing: 'border-box',
+        cursor: 'pointer',
+        display: 'table-cell',
+        position: 'relative',
+        textAlign: 'center',
+        verticalAlign: 'middle',
+        width: 25,
+        paddingRight: 5
+    },
+    dropdownArrowDown: {
+        boxSizing: 'border-box',
+        borderColor: '#999 transparent transparent',
+        borderStyle: 'solid',
+        borderWidth: '5px 5px 2.5px',
+        display: 'inline-block',
+        height: 0,
+        width: 0,
+        position: 'relative'
+    },
+    dropdownArrowDownFocused: {
+        borderColor: focusColor + ' transparent transparent'
+    },
+    dropdownArrowUp: {
+        boxSizing: 'border-box',
+        top: '-2px',
+        borderColor: 'transparent transparent #999',
+        borderStyle: 'solid',
+        borderWidth: '0px 5px 5px',
+        display: 'inline-block',
+        height: 0,
+        width: 0,
+        position: 'relative'
+    },
+    dropdownChildren: {
+        boxSizing: 'border-box',
+        bottom: 0,
+        color: '#333',
+        left: 0,
+        lineHeight: '34px',
+        paddingLeft: 10,
+        paddingRight: 10,
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        maxWidth: '100%',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap'
+    },
+    disabledDropdownChildren: {
+        opacity: 0.5
+    },
+    dropdownContainer: {
+        position: 'relative',
+        boxSizing: 'border-box',
+        outline: 'none'
+    },
+    dropdownHeader: {
+        boxSizing: 'border-box',
+        backgroundColor: '#fff',
+        borderColor: '#d9d9d9 #ccc #b3b3b3',
+        borderRadius: 4,
+        borderBottomRightRadius: 4,
+        borderBottomLeftRadius: 4,
+        border: '1px solid #ccc',
+        color: '#333',
+        cursor: 'default',
+        display: 'table',
+        borderSpacing: 0,
+        borderCollapse: 'separate',
+        height: 36,
+        outline: 'none',
+        overflow: 'hidden',
+        position: 'relative',
+        width: '100%'
+    },
+    dropdownHeaderFocused: {
+        borderColor: focusColor,
+        boxShadow: 'none'
+    },
+    dropdownHeaderExpanded: {
+        borderBottomRightRadius: '0px',
+        borderBottomLeftRadius: '0px'
+    },
+    loadingContainer: {
+        cursor: 'pointer',
+        display: 'table-cell',
+        verticalAlign: 'middle',
+        width: '16px'
+    },
+    panelContainer: {
+        borderBottomRightRadius: '4px',
+        borderBottomLeftRadius: '4px',
+        backgroundColor: '#fff',
+        border: '1px solid #ccc',
+        borderTopColor: '#e6e6e6',
+        boxShadow: '0 1px 0 rgba(0, 0, 0, 0.06)',
+        boxSizing: 'border-box',
+        marginTop: '-1px',
+        maxHeight: '300px',
+        position: 'absolute',
+        top: '100%',
+        width: '100%',
+        zIndex: 1,
+        overflowY: 'auto'
+    }
+};
+
+exports.default = Dropdown;
+
+/***/ }),
+
+/***/ "./node_modules/@khanacademy/react-multi-select/dist/get-string.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@khanacademy/react-multi-select/dist/get-string.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var strings = {
+    selectSomeItems: "Select some items...",
+    allItemsAreSelected: "All items are selected",
+    selectAll: "Select All",
+    search: "Search"
+};
+
+function getString(key, overrideStrings) {
+    if (overrideStrings && overrideStrings[key]) {
+        return overrideStrings[key];
+    }
+
+    return strings[key];
+}
+
+exports.default = getString;
+
+/***/ }),
+
+/***/ "./node_modules/@khanacademy/react-multi-select/dist/index.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@khanacademy/react-multi-select/dist/index.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Dropdown = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _dropdown = __webpack_require__(/*! ./dropdown.js */ "./node_modules/@khanacademy/react-multi-select/dist/dropdown.js");
+
+var _dropdown2 = _interopRequireDefault(_dropdown);
+
+var _selectPanel = __webpack_require__(/*! ./select-panel.js */ "./node_modules/@khanacademy/react-multi-select/dist/select-panel.js");
+
+var _selectPanel2 = _interopRequireDefault(_selectPanel);
+
+var _getString = __webpack_require__(/*! ./get-string.js */ "./node_modules/@khanacademy/react-multi-select/dist/get-string.js");
+
+var _getString2 = _interopRequireDefault(_getString);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+/**
+ * This component is designed to be a multi-selct component which supports
+ * the selection of several items in a picklist.  It was meant to mimic the
+ * style of react-select but the multi-select behavior didn't work for our
+ * our needs.
+ *
+ * Arguments:
+ * - options: The {value, label}[] options to be displayed
+ * - values: The currently selected values []
+ * - onSelectedChanged: An event to notify the caller of new values
+ * - valueRenderer: A fn to support overriding the message in the component
+ * - isLoading: Show a loading indicator
+ */
+
+
+var MultiSelect = function (_Component) {
+    _inherits(MultiSelect, _Component);
+
+    function MultiSelect() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, MultiSelect);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MultiSelect.__proto__ || Object.getPrototypeOf(MultiSelect)).call.apply(_ref, [this].concat(args))), _this), _this.handleSelectedChanged = function (selected) {
+            var _this$props = _this.props,
+                onSelectedChanged = _this$props.onSelectedChanged,
+                disabled = _this$props.disabled;
+
+
+            if (disabled) {
+                return;
+            }
+
+            if (onSelectedChanged) {
+                onSelectedChanged(selected);
+            }
+        }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(MultiSelect, [{
+        key: 'getSelectedText',
+        value: function getSelectedText() {
+            var _props = this.props,
+                options = _props.options,
+                selected = _props.selected;
+
+
+            var selectedOptions = selected.map(function (s) {
+                return options.find(function (o) {
+                    return o.value === s;
+                });
+            });
+
+            var selectedLabels = selectedOptions.map(function (s) {
+                return s ? s.label : "";
+            });
+
+            return selectedLabels.join(", ");
+        }
+    }, {
+        key: 'renderHeader',
+        value: function renderHeader() {
+            var _props2 = this.props,
+                options = _props2.options,
+                selected = _props2.selected,
+                valueRenderer = _props2.valueRenderer,
+                overrideStrings = _props2.overrideStrings;
+
+
+            var noneSelected = selected.length === 0;
+            var allSelected = selected.length === options.length;
+
+            var customText = valueRenderer && valueRenderer(selected, options);
+
+            if (noneSelected) {
+                return _react2.default.createElement(
+                    'span',
+                    { style: styles.noneSelected },
+                    customText || (0, _getString2.default)("selectSomeItems", overrideStrings)
+                );
+            }
+
+            if (customText) {
+                return _react2.default.createElement(
+                    'span',
+                    null,
+                    customText
+                );
+            }
+
+            return _react2.default.createElement(
+                'span',
+                null,
+                allSelected ? (0, _getString2.default)("allItemsAreSelected", overrideStrings) : this.getSelectedText()
+            );
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _props3 = this.props,
+                ItemRenderer = _props3.ItemRenderer,
+                options = _props3.options,
+                selected = _props3.selected,
+                selectAllLabel = _props3.selectAllLabel,
+                isLoading = _props3.isLoading,
+                disabled = _props3.disabled,
+                disableSearch = _props3.disableSearch,
+                filterOptions = _props3.filterOptions,
+                shouldToggleOnHover = _props3.shouldToggleOnHover,
+                hasSelectAll = _props3.hasSelectAll,
+                overrideStrings = _props3.overrideStrings;
+
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'multi-select' },
+                _react2.default.createElement(
+                    _dropdown2.default,
+                    {
+                        isLoading: isLoading,
+                        contentComponent: _selectPanel2.default,
+                        shouldToggleOnHover: shouldToggleOnHover,
+                        contentProps: {
+                            ItemRenderer: ItemRenderer,
+                            options: options,
+                            selected: selected,
+                            hasSelectAll: hasSelectAll,
+                            selectAllLabel: selectAllLabel,
+                            onSelectedChanged: this.handleSelectedChanged,
+                            disabled: disabled,
+                            disableSearch: disableSearch,
+                            filterOptions: filterOptions,
+                            overrideStrings: overrideStrings
+                        },
+                        disabled: disabled
+                    },
+                    this.renderHeader()
+                )
+            );
+        }
+    }]);
+
+    return MultiSelect;
+}(_react.Component);
+
+MultiSelect.defaultProps = {
+    hasSelectAll: true,
+    shouldToggleOnHover: false
+};
+
+
+var styles = {
+    noneSelected: {
+        color: "#aaa"
+    }
+};
+
+exports.default = MultiSelect;
+exports.Dropdown = _dropdown2.default;
+
+/***/ }),
+
+/***/ "./node_modules/@khanacademy/react-multi-select/dist/loading-indicator.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/@khanacademy/react-multi-select/dist/loading-indicator.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+/**
+ * A simple loading indicator, modeled after react-select.  Since react styles
+ * don't support animations, hack it so we inject the keyframe animation
+ * into the document.
+ */
+
+
+var STYLESHEET_NAME = "__react-multi-select_style_inject__";
+
+function findStylesheet() {
+    var styleSheet = Array.from(document.styleSheets).find(function (stylesheet) {
+        return stylesheet.title === STYLESHEET_NAME;
+    });
+
+    // upcast as CSSStyleSheet
+    var cssStylesheet = styleSheet;
+
+    return cssStylesheet;
+}
+
+function registerStylesheet(css) {
+    try {
+        if (findStylesheet()) {
+            return;
+        }
+
+        var style = document.createElement("style");
+        style.setAttribute("title", STYLESHEET_NAME);
+        document.head && document.head.appendChild(style);
+
+        var stylesheet = findStylesheet();
+        if (!stylesheet) {
+            // Someting bad happened.  Abort!
+            return;
+        }
+
+        stylesheet.insertRule(css, 0);
+    } catch (e) {}
+}
+
+var LoadingIndicator = function (_Component) {
+    _inherits(LoadingIndicator, _Component);
+
+    function LoadingIndicator() {
+        _classCallCheck(this, LoadingIndicator);
+
+        return _possibleConstructorReturn(this, (LoadingIndicator.__proto__ || Object.getPrototypeOf(LoadingIndicator)).apply(this, arguments));
+    }
+
+    _createClass(LoadingIndicator, [{
+        key: "componentWillMount",
+        value: function componentWillMount() {
+            // React styles don't support adding keyframe rules.  Create a
+            // stylesheet and inject the keyframe animarion into it.
+            registerStylesheet(keyFrames);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement("span", {
+                className: "loading-indicator",
+                style: styles.loading
+            });
+        }
+    }]);
+
+    return LoadingIndicator;
+}(_react.Component);
+
+LoadingIndicator.propTypes = {};
+
+
+var keyFrames = "\n@keyframes react-multi-select_loading-spin {\n    to {\n        transform: rotate(1turn);\n    }\n}\n";
+
+var styles = {
+    loading: {
+        "animation": "react-multi-select_loading-spin 400ms infinite linear",
+        "width": "16px",
+        "height": "16px",
+        boxSizing: "border-box",
+        borderRadius: "50%",
+        border: "2px solid #ccc",
+        borderRightColor: "#333",
+        display: "inline-block",
+        position: "relative",
+        verticalAlign: "middle"
+    }
+};
+
+exports.default = LoadingIndicator;
+
+/***/ }),
+
+/***/ "./node_modules/@khanacademy/react-multi-select/dist/select-item.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@khanacademy/react-multi-select/dist/select-item.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+/**
+ * This component represents an individual item in the multi-select drop-down
+ */
+
+
+var DefaultItemRenderer = function (_Component) {
+    _inherits(DefaultItemRenderer, _Component);
+
+    function DefaultItemRenderer() {
+        _classCallCheck(this, DefaultItemRenderer);
+
+        return _possibleConstructorReturn(this, (DefaultItemRenderer.__proto__ || Object.getPrototypeOf(DefaultItemRenderer)).apply(this, arguments));
+    }
+
+    _createClass(DefaultItemRenderer, [{
+        key: "render",
+        value: function render() {
+            var _props = this.props,
+                checked = _props.checked,
+                option = _props.option,
+                onClick = _props.onClick,
+                disabled = _props.disabled;
+
+
+            var style = _extends({}, styles.label, disabled ? styles.labelDisabled : undefined);
+
+            return _react2.default.createElement(
+                "span",
+                {
+                    className: "item-renderer"
+                },
+                _react2.default.createElement("input", {
+                    type: "checkbox",
+                    onChange: onClick,
+                    checked: checked,
+                    tabIndex: "-1",
+                    disabled: disabled
+                }),
+                _react2.default.createElement(
+                    "span",
+                    { style: style },
+                    option.label
+                )
+            );
+        }
+    }]);
+
+    return DefaultItemRenderer;
+}(_react.Component);
+
+var SelectItem = function (_Component2) {
+    _inherits(SelectItem, _Component2);
+
+    function SelectItem() {
+        var _ref;
+
+        var _temp, _this2, _ret;
+
+        _classCallCheck(this, SelectItem);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref = SelectItem.__proto__ || Object.getPrototypeOf(SelectItem)).call.apply(_ref, [this].concat(args))), _this2), _this2.state = {
+            hovered: false
+        }, _this2.onChecked = function (e) {
+            var onSelectionChanged = _this2.props.onSelectionChanged;
+            var checked = e.target.checked;
+
+
+            onSelectionChanged(checked);
+        }, _this2.toggleChecked = function () {
+            var _this2$props = _this2.props,
+                checked = _this2$props.checked,
+                onSelectionChanged = _this2$props.onSelectionChanged;
+
+            onSelectionChanged(!checked);
+        }, _this2.handleClick = function (e) {
+            var onClick = _this2.props.onClick;
+
+            _this2.toggleChecked();
+            onClick(e);
+        }, _this2.handleKeyDown = function (e) {
+            switch (e.which) {
+                case 13: // Enter
+                case 32:
+                    // Space
+                    _this2.toggleChecked();
+                    break;
+                default:
+                    return;
+            }
+
+            e.preventDefault();
+        }, _temp), _possibleConstructorReturn(_this2, _ret);
+    }
+
+    _createClass(SelectItem, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            this.updateFocus();
+        }
+    }, {
+        key: "componentDidUpdate",
+        value: function componentDidUpdate() {
+            this.updateFocus();
+        }
+    }, {
+        key: "updateFocus",
+        value: function updateFocus() {
+            var focused = this.props.focused;
+
+
+            if (focused && this.itemRef) {
+                this.itemRef.focus();
+            }
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var _this3 = this;
+
+            var _props2 = this.props,
+                ItemRenderer = _props2.ItemRenderer,
+                option = _props2.option,
+                checked = _props2.checked,
+                focused = _props2.focused,
+                disabled = _props2.disabled;
+            var hovered = this.state.hovered;
+
+
+            var focusStyle = focused || hovered ? styles.itemContainerHover : undefined;
+
+            return _react2.default.createElement(
+                "label",
+                {
+                    className: "select-item",
+                    role: "option",
+                    "aria-selected": checked,
+                    selected: checked,
+                    tabIndex: "-1",
+                    style: _extends({}, styles.itemContainer, focusStyle),
+                    ref: function ref(_ref2) {
+                        return _this3.itemRef = _ref2;
+                    },
+                    onKeyDown: this.handleKeyDown,
+                    onMouseOver: function onMouseOver() {
+                        return _this3.setState({ hovered: true });
+                    },
+                    onMouseOut: function onMouseOut() {
+                        return _this3.setState({ hovered: false });
+                    }
+                },
+                _react2.default.createElement(ItemRenderer, {
+                    option: option,
+                    checked: checked,
+                    onClick: this.handleClick,
+                    disabled: disabled
+                })
+            );
+        }
+    }]);
+
+    return SelectItem;
+}(_react.Component);
+
+SelectItem.defaultProps = {
+    ItemRenderer: DefaultItemRenderer
+};
+
+
+var styles = {
+    itemContainer: {
+        boxSizing: 'border-box',
+        backgroundColor: '#fff',
+        color: '#666666',
+        cursor: 'pointer',
+        display: 'block',
+        padding: '8px 10px'
+    },
+    itemContainerHover: {
+        backgroundColor: '#ebf5ff',
+        outline: 0
+    },
+    label: {
+        display: 'inline-block',
+        verticalAlign: 'middle',
+        borderBottomRightRadius: '2px',
+        borderTopRightRadius: '2px',
+        cursor: 'default',
+        padding: '2px 5px'
+    },
+    labelDisabled: {
+        opacity: 0.5
+    }
+};
+
+exports.default = SelectItem;
+
+/***/ }),
+
+/***/ "./node_modules/@khanacademy/react-multi-select/dist/select-list.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@khanacademy/react-multi-select/dist/select-list.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _selectItem = __webpack_require__(/*! ./select-item.js */ "./node_modules/@khanacademy/react-multi-select/dist/select-item.js");
+
+var _selectItem2 = _interopRequireDefault(_selectItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+/**
+ * This component represents an unadorned list of SelectItem (s).
+ */
+
+
+var SelectList = function (_Component) {
+    _inherits(SelectList, _Component);
+
+    function SelectList() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, SelectList);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SelectList.__proto__ || Object.getPrototypeOf(SelectList)).call.apply(_ref, [this].concat(args))), _this), _this.handleSelectionChanged = function (option, checked) {
+            var _this$props = _this.props,
+                selected = _this$props.selected,
+                onSelectedChanged = _this$props.onSelectedChanged,
+                disabled = _this$props.disabled;
+
+
+            if (disabled) {
+                true;
+            }
+
+            if (checked) {
+                onSelectedChanged([].concat(_toConsumableArray(selected), [option.value]));
+            } else {
+                var _index = selected.indexOf(option.value);
+                var removed = [].concat(_toConsumableArray(selected.slice(0, _index)), _toConsumableArray(selected.slice(_index + 1)));
+                onSelectedChanged(removed);
+            }
+        }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(SelectList, [{
+        key: 'renderItems',
+        value: function renderItems() {
+            var _this2 = this;
+
+            var _props = this.props,
+                ItemRenderer = _props.ItemRenderer,
+                options = _props.options,
+                selected = _props.selected,
+                focusIndex = _props.focusIndex,
+                onClick = _props.onClick,
+                disabled = _props.disabled;
+
+
+            return options.map(function (o, i) {
+                return _react2.default.createElement(
+                    'li',
+                    {
+                        style: styles.listItem,
+                        key: o.hasOwnProperty("key") ? o.key : i
+                    },
+                    _react2.default.createElement(_selectItem2.default, {
+                        focused: focusIndex === i,
+                        option: o,
+                        onSelectionChanged: function onSelectionChanged(c) {
+                            return _this2.handleSelectionChanged(o, c);
+                        },
+                        checked: selected.includes(o.value),
+                        onClick: function (_onClick) {
+                            function onClick(_x) {
+                                return _onClick.apply(this, arguments);
+                            }
+
+                            onClick.toString = function () {
+                                return _onClick.toString();
+                            };
+
+                            return onClick;
+                        }(function (e) {
+                            return onClick(e, i);
+                        }),
+                        ItemRenderer: ItemRenderer,
+                        disabled: disabled
+                    })
+                );
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'ul',
+                {
+                    className: 'select-list',
+                    style: styles.list
+                },
+                this.renderItems()
+            );
+        }
+    }]);
+
+    return SelectList;
+}(_react.Component);
+
+var styles = {
+    list: {
+        margin: 0,
+        paddingLeft: 0
+    },
+    listItem: {
+        listStyle: 'none'
+    }
+};
+
+exports.default = SelectList;
+
+/***/ }),
+
+/***/ "./node_modules/@khanacademy/react-multi-select/dist/select-panel.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@khanacademy/react-multi-select/dist/select-panel.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _fuzzyMatchUtils = __webpack_require__(/*! fuzzy-match-utils */ "./node_modules/fuzzy-match-utils/dist/fuzzy-match-utils.js");
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _selectItem = __webpack_require__(/*! ./select-item.js */ "./node_modules/@khanacademy/react-multi-select/dist/select-item.js");
+
+var _selectItem2 = _interopRequireDefault(_selectItem);
+
+var _selectList = __webpack_require__(/*! ./select-list.js */ "./node_modules/@khanacademy/react-multi-select/dist/select-list.js");
+
+var _selectList2 = _interopRequireDefault(_selectList);
+
+var _getString = __webpack_require__(/*! ./get-string.js */ "./node_modules/@khanacademy/react-multi-select/dist/get-string.js");
+
+var _getString2 = _interopRequireDefault(_getString);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+/**
+ * This component represents the entire panel which gets dropped down when the
+ * user selects the component.  It encapsulates the search filter, the
+ * Select-all item, and the list of options.
+ */
+
+
+var SelectPanel = function (_Component) {
+    _inherits(SelectPanel, _Component);
+
+    function SelectPanel() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, SelectPanel);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SelectPanel.__proto__ || Object.getPrototypeOf(SelectPanel)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+            searchHasFocus: false,
+            searchText: "",
+            focusIndex: 0
+        }, _this.selectAll = function () {
+            var _this$props = _this.props,
+                onSelectedChanged = _this$props.onSelectedChanged,
+                options = _this$props.options;
+
+            var allValues = options.map(function (o) {
+                return o.value;
+            });
+
+            onSelectedChanged(allValues);
+        }, _this.selectNone = function () {
+            var onSelectedChanged = _this.props.onSelectedChanged;
+
+
+            onSelectedChanged([]);
+        }, _this.selectAllChanged = function (checked) {
+            if (checked) {
+                _this.selectAll();
+            } else {
+                _this.selectNone();
+            }
+        }, _this.handleSearchChange = function (e) {
+            _this.setState({
+                searchText: e.target.value,
+                focusIndex: -1
+            });
+        }, _this.handleItemClicked = function (index) {
+            _this.setState({ focusIndex: index });
+        }, _this.clearSearch = function () {
+            _this.setState({ searchText: "" });
+        }, _this.handleKeyDown = function (e) {
+            switch (e.which) {
+                case 38:
+                    // Up Arrow
+                    if (e.altKey) {
+                        return;
+                    }
+
+                    _this.updateFocus(-1);
+                    break;
+                case 40:
+                    // Down Arrow
+                    if (e.altKey) {
+                        return;
+                    }
+
+                    _this.updateFocus(1);
+                    break;
+                default:
+                    return;
+            }
+
+            e.stopPropagation();
+            e.preventDefault();
+        }, _this.handleSearchFocus = function (searchHasFocus) {
+            _this.setState({
+                searchHasFocus: searchHasFocus,
+                focusIndex: -1
+            });
+        }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(SelectPanel, [{
+        key: 'allAreSelected',
+        value: function allAreSelected() {
+            var _props = this.props,
+                options = _props.options,
+                selected = _props.selected;
+
+            return options.length === selected.length;
+        }
+    }, {
+        key: 'filteredOptions',
+        value: function filteredOptions() {
+            var searchText = this.state.searchText;
+            var _props2 = this.props,
+                options = _props2.options,
+                customFilterOptions = _props2.filterOptions;
+
+
+            return customFilterOptions ? customFilterOptions(options, searchText) : (0, _fuzzyMatchUtils.filterOptions)(options, searchText);
+        }
+    }, {
+        key: 'updateFocus',
+        value: function updateFocus(offset) {
+            var focusIndex = this.state.focusIndex;
+            var options = this.props.options;
+
+
+            var newFocus = focusIndex + offset;
+            newFocus = Math.max(0, newFocus);
+            newFocus = Math.min(newFocus, options.length);
+
+            this.setState({ focusIndex: newFocus });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            var _state = this.state,
+                focusIndex = _state.focusIndex,
+                searchHasFocus = _state.searchHasFocus;
+            var _props3 = this.props,
+                ItemRenderer = _props3.ItemRenderer,
+                selectAllLabel = _props3.selectAllLabel,
+                disabled = _props3.disabled,
+                disableSearch = _props3.disableSearch,
+                hasSelectAll = _props3.hasSelectAll,
+                overrideStrings = _props3.overrideStrings;
+
+
+            var selectAllOption = {
+                label: selectAllLabel || (0, _getString2.default)("selectAll", overrideStrings),
+                value: ""
+            };
+
+            var focusedSearchStyle = searchHasFocus ? styles.searchFocused : undefined;
+
+            return _react2.default.createElement(
+                'div',
+                {
+                    className: 'select-panel',
+                    style: styles.panel,
+                    role: 'listbox',
+                    onKeyDown: this.handleKeyDown
+                },
+                !disableSearch && _react2.default.createElement(
+                    'div',
+                    { style: styles.searchContainer },
+                    _react2.default.createElement('input', {
+                        placeholder: (0, _getString2.default)("search", overrideStrings),
+                        type: 'text',
+                        onChange: this.handleSearchChange,
+                        style: _extends({}, styles.search, focusedSearchStyle),
+                        onFocus: function onFocus() {
+                            return _this2.handleSearchFocus(true);
+                        },
+                        onBlur: function onBlur() {
+                            return _this2.handleSearchFocus(false);
+                        }
+                    })
+                ),
+                hasSelectAll && _react2.default.createElement(_selectItem2.default, {
+                    focused: focusIndex === 0,
+                    checked: this.allAreSelected(),
+                    option: selectAllOption,
+                    onSelectionChanged: this.selectAllChanged,
+                    onClick: function onClick() {
+                        return _this2.handleItemClicked(0);
+                    },
+                    ItemRenderer: ItemRenderer,
+                    disabled: disabled
+                }),
+                _react2.default.createElement(_selectList2.default, _extends({}, this.props, {
+                    options: this.filteredOptions(),
+                    focusIndex: focusIndex - 1,
+                    onClick: function onClick(e, index) {
+                        return _this2.handleItemClicked(index + 1);
+                    },
+                    ItemRenderer: ItemRenderer,
+                    disabled: disabled
+                }))
+            );
+        }
+    }]);
+
+    return SelectPanel;
+}(_react.Component);
+
+var styles = {
+    panel: {
+        boxSizing: 'border-box'
+    },
+    search: {
+        display: "block",
+
+        maxWidth: "100%",
+        borderRadius: "3px",
+
+        boxSizing: 'border-box',
+        height: '30px',
+        lineHeight: '24px',
+        border: '1px solid',
+        borderColor: '#dee2e4',
+        padding: '10px',
+        width: "100%",
+        outline: "none"
+    },
+    searchFocused: {
+        borderColor: "#78c008"
+    },
+    searchContainer: {
+        width: "100%",
+        boxSizing: 'border-box',
+        padding: "0.5em"
+    }
+};
+
+exports.default = SelectPanel;
 
 /***/ }),
 
@@ -8976,6 +10459,237 @@ var update = __webpack_require__(/*! ../../../style-loader/lib/addStyles.js */ "
 if(content.locals) module.exports = content.locals;
 
 if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/fuzzy-match-utils/dist/fuzzy-match-utils.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/fuzzy-match-utils/dist/fuzzy-match-utils.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.filterOptions = filterOptions;
+exports.typeaheadSimilarity = typeaheadSimilarity;
+exports.fullStringDistance = fullStringDistance;
+exports.cleanUpText = cleanUpText;
+
+
+/**
+ * Filters React Select options and sorts by similarity to a search filter.
+ * Handles partial matches, eg. searching for "Waberg High" will find "Raoul
+ * Wallenberg Traditional High School". Case insensitive. Ignores
+ * non-alphanumeric characters.
+ *
+ * @param  options  An unfiltered list of Options.
+ * @param? filter  A string to compare against Option labels.
+ * @param? substitutions  Strings with multiple spellings or variations that we
+ *           expect to match, eg. accented characters or abbreviated words.
+ *
+ * @return A filtered and sorted array of Options.
+ */
+
+/**
+ * A collection of string matching algorithms built with React Select in mind.
+ */
+
+// Option type from React Select and similar libraries.
+function filterOptions(options, filter, substitutions) {
+    // If the filter is blank, return the full list of Options.
+    if (!filter) {
+        return options;
+    }
+
+    var cleanFilter = cleanUpText(filter, substitutions);
+    return options
+    // Filter out undefined or null Options.
+    .filter(function (_ref) {
+        var label = _ref.label,
+            value = _ref.value;
+        return label != null && value != null;
+    })
+    // Create a {score, Option} pair for each Option based on its label's
+    // similarity to the filter text.
+    .map(function (option) {
+        return {
+            option: option,
+            score: typeaheadSimilarity(cleanUpText(option.label, substitutions), cleanFilter)
+        };
+    })
+    // Only include matches of the entire substring, with a slight
+    // affordance for transposition or extra characters.
+    .filter(function (pair) {
+        return pair.score >= cleanFilter.length - 2;
+    })
+    // Sort 'em by order of their score.
+    .sort(function (a, b) {
+        return b.score - a.score;
+    })
+    // …and grab the original Options back from their pairs.
+    .map(function (pair) {
+        return pair.option;
+    });
+}
+
+/**
+ * Scores the similarity between two strings by returning the length of the
+ * longest common subsequence. Intended for comparing strings of different
+ * lengths; eg. when matching a typeahead search input with a school name.
+
+ * Meant for use in an instant search box where results are being fetched
+ * as a user is typing.
+ *
+ * @param  a  The longer string (though, we flip them if it's shorter).
+ * @param  b  The shorter string, eg. a typeahead search input.
+ *
+ * @return The length of the longest common subsequence. Higher scores indicate
+ *           closer matches.
+ */
+function typeaheadSimilarity(a, b) {
+    var aLength = a.length;
+    var bLength = b.length;
+    var table = [];
+
+    if (!aLength || !bLength) {
+        return 0;
+    }
+
+    // Ensure `a` isn't shorter than `b`.
+    if (aLength < bLength) {
+        var _ref2 = [b, a];
+        a = _ref2[0];
+        b = _ref2[1];
+    }
+
+    // Early exit if `a` includes `b`; these will be scored higher than any
+    // other options with the same `b` (filter string), with a preference for
+    // shorter `a` strings (option labels).
+    if (a.indexOf(b) !== -1) {
+        return bLength + 1 / aLength;
+    }
+
+    // Initialize the table axes:
+    //
+    //    0 0 0 0 ... bLength
+    //    0
+    //    0
+    //
+    //   ...
+    //
+    // aLength
+    //
+    for (var x = 0; x <= aLength; ++x) {
+        table[x] = [0];
+    }
+    for (var y = 0; y <= bLength; ++y) {
+        table[0][y] = 0;
+    }
+
+    // Populate the rest of the table with a dynamic programming algorithm.
+    for (var _x = 1; _x <= aLength; ++_x) {
+        for (var _y = 1; _y <= bLength; ++_y) {
+            table[_x][_y] = a[_x - 1] === b[_y - 1] ? 1 + table[_x - 1][_y - 1] : Math.max(table[_x][_y - 1], table[_x - 1][_y]);
+        }
+    }
+
+    return table[aLength][bLength];
+}
+
+/**
+ * Returns the Levenshtein distance between two strings.
+ *
+ * NOTE: The Jaro-Winkler distance also worked well and is slightly more
+ * performant. Levenshtein seems to match more reliably, which is more
+ * important here.
+ *
+ * @param  a  The first string for comparison.
+ * @param  b  The second string for comparison.
+ *
+ * @return The Levenshtein distance, where lower distance indicates higher
+ *           similarity.
+ */
+function fullStringDistance(a, b) {
+    var aLength = a.length;
+    var bLength = b.length;
+    var table = [];
+
+    if (!aLength) {
+        return bLength;
+    }
+    if (!bLength) {
+        return aLength;
+    }
+
+    // Initialize the table axes:
+    //
+    //    0 1 2 3 4 ... bLength
+    //    1
+    //    2
+    //
+    //   ...
+    //
+    // aLength
+    //
+    for (var x = 0; x <= aLength; ++x) {
+        table[x] = [x];
+    }
+    for (var y = 0; y <= bLength; ++y) {
+        table[0][y] = y;
+    }
+
+    // Populate the rest of the table with a dynamic programming algorithm.
+    for (var _x2 = 1; _x2 <= aLength; ++_x2) {
+        for (var _y2 = 1; _y2 <= bLength; ++_y2) {
+            table[_x2][_y2] = a[_x2 - 1] === b[_y2 - 1] ? table[_x2 - 1][_y2 - 1] : 1 + Math.min(table[_x2 - 1][_y2], // Substitution,
+            table[_x2][_y2 - 1], // insertion,
+            table[_x2 - 1][_y2 - 1]); // and deletion.
+        }
+    }
+
+    return table[aLength][bLength];
+}
+
+/**
+ * Apply string substitutions, remove non-alphanumeric characters, and convert
+ * all letters to uppercase.
+ *
+ * eg. 'Scoil Bhríde Primary School' may become 'SCOILBHRIDEPRIMARYSCHOOL'.
+ *
+ * @param  input  An unsanitized input string.
+ * @param  substitutions  Strings with multiple spellings or variations that we
+ *          expect to match, for example accented characters or abbreviated
+ *          words.
+ *
+ * @return The sanitized text.
+ */
+function cleanUpText(input, substitutions) {
+    if (!input) {
+        return '';
+    }
+
+    // Uppercase and remove all non-alphanumeric, non-accented characters.
+    // Also remove underscores.
+    input = input.toUpperCase().replace(/((?=[^\u00E0-\u00FC])\W)|_/g, '');
+
+    if (!substitutions) {
+        return input;
+    }
+    var safeSubstitutions = substitutions; // For Flow.
+
+    // Replace all strings in `safeSubstitutions` with their standardized
+    // counterparts.
+    return Object.keys(safeSubstitutions).reduce(function (output, substitution) {
+        var unsubbed = new RegExp(substitution, 'g');
+        return output.replace(unsubbed, safeSubstitutions[substitution]);
+    }, input);
+}
+
 
 /***/ }),
 
@@ -37609,7 +39323,7 @@ exports.default = _PaginationBoxView2.default;
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

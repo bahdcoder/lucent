@@ -17,7 +17,7 @@ export declare class HasOne extends Field {
     resource: string | null;
     /**
      *
-     * Initialize a HasOneEmbedded instance
+     * Initialize a HasOne instance
      *
      * @param {String} relatedResource
      *
