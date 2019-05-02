@@ -210,11 +210,13 @@ class ResourceDetails extends React.Component {
                             to={`/resources/${resource.slug}/${
                                 data[resource.primaryKey]
                             }/edit`}
+                            dataTestId={`edit-resource-button-${resource.slug}`}
                         />
                         <Button
-                            handler={this.triggerDelete}
-                            label={'Delete'}
                             type="danger"
+                            label={'Delete'}
+                            handler={this.triggerDelete}
+                            dataTestId={`delete-resource-button-${resource.slug}`}
                         />
                     </div>
                 </div>
@@ -244,6 +246,7 @@ class ResourceDetails extends React.Component {
                                         dateFormat={field.dateFormat}
                                         checked={data[field.attribute]}
                                         content={data[field.attribute]}
+                                        dataTestId={`detail-${field.attribute}`}
                                     />
                                 </div>
                             </div>
@@ -297,6 +300,8 @@ class ResourceDetails extends React.Component {
                                                         field.attribute
                                                     ]
                                                 }
+                                                options={field.options}
+                                                dataTestId={`detail-${embeddableField.attribute}-${field.attribute}`}
                                             />
                                         </div>
                                     </div>
@@ -333,7 +338,8 @@ class ResourceDetails extends React.Component {
                     action={{
                         type: 'danger',
                         label: 'Delete',
-                        handler: this.delete
+                        handler: this.delete,
+                        dataTestId: `confirm-delete-resource-button-${resource.slug}`
                     }}
                     renderContent={() => (
                         <p className="text-grey-dark">

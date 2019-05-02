@@ -144,7 +144,7 @@ const Table = ({
                 </thead>
 
                 <tbody>
-                    {rows.map(row => (
+                    {rows.map((row, index) => (
                         <tr
                             key={row[resource.primaryKey]}
                             className="trans-30 border-b border-grey-light hover:bg-grey-lighter"
@@ -188,7 +188,7 @@ const Table = ({
                                             }/details`}
                                             className="trans-30 text-grey cursor-pointer hover:text-indigo-dark"
                                         >
-                                            <Svg icon="eye" />
+                                            <Svg icon="eye" dataTestId={`view-resource-${index}`} />
                                         </Link>
                                         <Link
                                             to={`/resources/${resource.slug}/${
@@ -213,6 +213,11 @@ const Table = ({
                             </React.Fragment>
                         </tr>
                     ))}
+                    {rows.length === 0 && (
+                        <tr className='my-12'>
+                            <td className='text-center py-12 text-indigo text-lg' data-testid='no-items-match-criteria' colSpan={headers.length + 2}>No items match your criteria</td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
 

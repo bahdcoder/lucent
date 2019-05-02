@@ -10,6 +10,7 @@ const TextField = ({
     error,
     rows,
     cols,
+    dataTestId,
     textarea = false,
     handler = () => {}
 }) => {
@@ -33,10 +34,11 @@ const TextField = ({
                 type={type}
                 value={value}
                 onChange={handler}
+                data-testid={dataTestId}
                 placeholder={placeholder || name}
             />
             {error && (
-                <span className="text-xs text-red font-thin">{error}</span>
+                <span data-testid={`${dataTestId}-error`} className="text-xs text-red font-thin">{error}</span>
             )}
         </React.Fragment>
     )

@@ -77,7 +77,6 @@ class Resource extends React.Component {
         Pangaso.request()
             .get(url)
             .then(({ data }) => {
-                console.log('-->', data)
                 this.setState({
                     data,
                     isFetching: false
@@ -292,6 +291,7 @@ class Resource extends React.Component {
         return (
             <React.Fragment>
                 <h1
+                    data-testid={`resource-title-${resource.slug}`}
                     className={classnames('font-thin mb-2', {
                         'text-2xl': this.props.resource,
                         'text-3xl': !this.props.resource
@@ -317,6 +317,7 @@ class Resource extends React.Component {
                         link
                         label={`Create ${resource.name}`}
                         to={`/resources/${resource.slug}/new`}
+                        dataTestId={`create-resource-${resource.slug}`}
                     />
                 </div>
 

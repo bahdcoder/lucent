@@ -27,7 +27,7 @@ class File extends React.Component {
 
     render() {
         const { file } = this.state
-        const { name, error, value } = this.props
+        const { name, error, value, dataTestId } = this.props
 
         return (
             <React.Fragment>
@@ -54,11 +54,13 @@ class File extends React.Component {
                     type="file"
                     name={name}
                     ref={this.file}
+                    data-testid={dataTestId}
                     style={{ display: 'none' }}
+
                     onChange={this.handleFileChange}
                 />
                 {error && (
-                    <span className="text-xs mt-3 text-red font-thin">
+                    <span data-testid={`${dataTestId}-error`} className="text-xs mt-3 text-red font-thin">
                         {error}
                     </span>
                 )}

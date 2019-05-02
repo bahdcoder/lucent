@@ -141,4 +141,16 @@ router.delete(
     AsyncWrapper(Resource.delete)
 )
 
+/**
+ * 
+ * Register these routes only if environment is not production
+ * 
+ */
+if (process.env.NODE_ENV !== 'production') {
+    router.delete(
+        '/api/resources/:slug/clear',
+        AsyncWrapper(Resource.clear)
+    )
+}
+
 export default router

@@ -231,7 +231,9 @@ export class Pangaso {
                  */
                 this.resources.push(new resource())
             })
-        } catch (error) {}
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     /**
@@ -263,7 +265,7 @@ export class Pangaso {
          *
          */
         if (!resource) {
-            throw new Error('User Resource must be defined.')
+            // throw new Error('User Resource must be defined.')
         }
 
         return resource

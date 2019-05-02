@@ -12,6 +12,7 @@
     "build": "webpack --mode=production",
     "watch": "yarn dev -- --watch",
     "test:unit": "jest",
+    "test:e2e": "cypress run",
     "prettier": "prettier --write './**/*.{js,ts,tsx,css}'"
   },
   "devDependencies": {
@@ -30,6 +31,8 @@
     "babel-loader": "^8.0.5",
     "babel-plugin-module-resolver": "^3.2.0",
     "css-loader": "^2.1.1",
+    "cypress": "^3.2.0",
+    "faker": "^4.1.0",
     "glob-all": "^3.1.0",
     "jest": "^24.7.1",
     "laravel-mix": "^4.0.15",

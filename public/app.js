@@ -677,19 +677,21 @@ __webpack_require__.r(__webpack_exports__);
 
 var Button = function Button(_ref) {
   var to = _ref.to,
+      handler = _ref.handler,
+      dataTestId = _ref.dataTestId,
       _ref$label = _ref.label,
       label = _ref$label === void 0 ? '' : _ref$label,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? '' : _ref$className,
       _ref$link = _ref.link,
       link = _ref$link === void 0 ? false : _ref$link,
+      _ref$className = _ref.className,
+      className = _ref$className === void 0 ? '' : _ref$className,
       _ref$type = _ref.type,
-      type = _ref$type === void 0 ? 'primary' : _ref$type,
-      handler = _ref.handler;
+      type = _ref$type === void 0 ? 'primary' : _ref$type;
   var ButtonElement = link ? react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"] : 'button';
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ButtonElement, {
     to: to,
     onClick: handler,
+    "data-testid": dataTestId,
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('trans-30 no-underline text-white rounded-lg px-8 h-9 flex items-center focus:outline-none', {
       'bg-indigo hover:bg-indigo-dark': type === 'primary',
       'bg-red-light hover:bg-red-dark': type === 'danger'
@@ -721,7 +723,8 @@ var Checkbox = function Checkbox(_ref) {
       label = _ref.label,
       handler = _ref.handler,
       value = _ref.value,
-      name = _ref.name;
+      name = _ref.name,
+      dataTestId = _ref.dataTestId;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: id,
     name: name,
@@ -729,7 +732,8 @@ var Checkbox = function Checkbox(_ref) {
     type: "checkbox",
     checked: checked,
     onChange: handler,
-    className: "checkbox"
+    className: "checkbox",
+    "data-testid": dataTestId
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: id
   }, label));
@@ -757,10 +761,12 @@ __webpack_require__.r(__webpack_exports__);
 
 var Boolean = function Boolean(_ref) {
   var _ref$checked = _ref.checked,
-      checked = _ref$checked === void 0 ? false : _ref$checked;
+      checked = _ref$checked === void 0 ? false : _ref$checked,
+      dataTestId = _ref.dataTestId;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    "data-testid": dataTestId,
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('w-2 h-2 mr-3 rounded-full', {
       'bg-red': !checked,
       'bg-green': checked
@@ -790,8 +796,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var DateDetail = function DateDetail(_ref) {
   var content = _ref.content,
-      dateFormat = _ref.dateFormat;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, date_fns_format__WEBPACK_IMPORTED_MODULE_1___default()(content, dateFormat));
+      dateFormat = _ref.dateFormat,
+      dataTestId = _ref.dataTestId;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "data-testid": dataTestId
+  }, date_fns_format__WEBPACK_IMPORTED_MODULE_1___default()(content, dateFormat));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (DateDetail);
@@ -822,7 +831,8 @@ var image_extensions__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__web
 var File = function File(_ref) {
   var _ref$table = _ref.table,
       table = _ref$table === void 0 ? false : _ref$table,
-      content = _ref.content;
+      content = _ref.content,
+      dataTestId = _ref.dataTestId;
   if (!content) return null;
   var ext = content.split('.').pop();
   var FileContent = null;
@@ -866,7 +876,8 @@ var File = function File(_ref) {
       'no-underline text-indigo hover:text-indigo-light': !FileContent
     }),
     href: content,
-    target: "_blank"
+    target: "_blank",
+    "data-testid": dataTestId
   }, FileContent || 'View File');
 };
 
@@ -888,8 +899,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ID = function ID(_ref) {
-  var content = _ref.content;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, content);
+  var content = _ref.content,
+      dataTestId = _ref.dataTestId;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "data-testid": dataTestId
+  }, content);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ID);
@@ -910,8 +924,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Num = function Num(_ref) {
-  var content = _ref.content;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, content);
+  var content = _ref.content,
+      dataTestId = _ref.dataTestId;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "data-testid": dataTestId
+  }, content);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Num);
@@ -932,8 +949,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Password = function Password(_ref) {
-  var content = _ref.content;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, content);
+  var content = _ref.content,
+      dataTestId = _ref.dataTestId;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "data-testid": dataTestId
+  }, content);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Password);
@@ -955,12 +975,15 @@ __webpack_require__.r(__webpack_exports__);
 
 var Select = function Select(_ref) {
   var content = _ref.content,
+      dataTestId = _ref.dataTestId,
       _ref$options = _ref.options,
       options = _ref$options === void 0 ? [] : _ref$options;
   var option = options.find(function (o) {
     return o.value === content;
   });
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, option && option.label);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "data-testid": dataTestId
+  }, option && option.label);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Select);
@@ -981,8 +1004,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Text = function Text(_ref) {
-  var content = _ref.content;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, content);
+  var content = _ref.content,
+      dataTestId = _ref.dataTestId;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "data-testid": dataTestId
+  }, content);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Text);
@@ -1009,7 +1035,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Textarea = function Textarea(_ref) {
-  var content = _ref.content;
+  var content = _ref.content,
+      dataTestId = _ref.dataTestId;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false),
       _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
@@ -1017,6 +1044,7 @@ var Textarea = function Textarea(_ref) {
       toggleShow = _useState2[1];
 
   return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, show && content, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
+    "data-testid": dataTestId,
     onClick: function onClick() {
       return toggleShow(!show);
     },
@@ -1108,7 +1136,8 @@ function (_React$Component) {
       var _this$props = this.props,
           name = _this$props.name,
           error = _this$props.error,
-          value = _this$props.value;
+          value = _this$props.value,
+          dataTestId = _this$props.dataTestId;
       return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
         className: "flex items-center"
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_components_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -1127,11 +1156,13 @@ function (_React$Component) {
         type: "file",
         name: name,
         ref: this.file,
+        "data-testid": dataTestId,
         style: {
           display: 'none'
         },
         onChange: this.handleFileChange
       }), error && react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("span", {
+        "data-testid": "".concat(dataTestId, "-error"),
         className: "text-xs mt-3 text-red font-thin"
       }, error));
     }
@@ -1388,6 +1419,7 @@ var TextField = function TextField(_ref) {
       error = _ref.error,
       rows = _ref.rows,
       cols = _ref.cols,
+      dataTestId = _ref.dataTestId,
       _ref$textarea = _ref.textarea,
       textarea = _ref$textarea === void 0 ? false : _ref$textarea,
       _ref$handler = _ref.handler,
@@ -1405,8 +1437,10 @@ var TextField = function TextField(_ref) {
     type: type,
     value: value,
     onChange: handler,
+    "data-testid": dataTestId,
     placeholder: placeholder || name
   }), error && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    "data-testid": "".concat(dataTestId, "-error"),
     className: "text-xs text-red font-thin"
   }, error));
 };
@@ -1534,34 +1568,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _khanacademy_react_multi_select__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_khanacademy_react_multi_select__WEBPACK_IMPORTED_MODULE_1__);
 
 
-var students = [{
-  id: 0,
-  name: 'Zach Morris'
-}, {
-  id: 1,
-  name: 'Kelly Kapowski'
-}, {
-  id: 2,
-  name: 'A.C. Slater'
-}, {
-  id: 3,
-  name: 'Lisa Turtle'
-}, {
-  id: 4,
-  name: 'Jessie Spano'
-}, {
-  id: 5,
-  name: 'Samuel Powers'
-}, {
-  id: 6,
-  name: 'Tori Scott'
-}];
-var studentsList = students.map(function (s) {
-  return {
-    value: s.id,
-    label: s.name
-  };
-});
 
 var ItemRenderer = function ItemRenderer(_ref) {
   var option = _ref.option,
@@ -1581,10 +1587,12 @@ var MultiSelect = function MultiSelect(_ref2) {
       _ref2$options = _ref2.options,
       options = _ref2$options === void 0 ? [] : _ref2$options,
       name = _ref2.name,
-      handler = _ref2.handler;
+      handler = _ref2.handler,
+      dataTestId = _ref2.dataTestId;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_khanacademy_react_multi_select__WEBPACK_IMPORTED_MODULE_1___default.a, {
     selected: value,
     options: options,
+    "data-testid": dataTestId,
     ItemRenderer: ItemRenderer,
     onSelectedChanged: function onSelectedChanged(selected) {
       return handler({
@@ -1622,16 +1630,18 @@ var Select = function Select(_ref) {
       name = _ref.name,
       error = _ref.error,
       className = _ref.className,
+      dataTestId = _ref.dataTestId,
+      _ref$options = _ref.options,
+      options = _ref$options === void 0 ? [] : _ref$options,
       _ref$multiple = _ref.multiple,
       multiple = _ref$multiple === void 0 ? false : _ref$multiple,
       _ref$placeholder = _ref.placeholder,
-      placeholder = _ref$placeholder === void 0 ? 'Select an option' : _ref$placeholder,
-      _ref$options = _ref.options,
-      options = _ref$options === void 0 ? [] : _ref$options;
+      placeholder = _ref$placeholder === void 0 ? 'Select an option' : _ref$placeholder;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
     name: name,
     value: value,
     onChange: handler,
+    "data-testid": dataTestId,
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('bg-white focus:outline-none text-grey-darkest my-3 border h-10 px-3 rounded-lg shadow focus:outline-none focus:border-2', {
       'border-grey focus:border-indigo': !error,
       'border-red focus:border-red': error
@@ -1645,6 +1655,7 @@ var Select = function Select(_ref) {
       key: option.value
     }, option.label);
   })), error && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    "data-testid": "".concat(dataTestId, "-error"),
     className: "text-xs text-red font-thin"
   }, error));
 };
@@ -1683,7 +1694,8 @@ var Svg = function Svg(_ref) {
       _ref$height = _ref.height,
       height = _ref$height === void 0 ? 20 : _ref$height,
       className = _ref.className,
-      rest = _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1___default()(_ref, ["icon", "width", "height", "className"]);
+      dataTestId = _ref.dataTestId,
+      rest = _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1___default()(_ref, ["icon", "width", "height", "className", "dataTestId"]);
 
   var icons = {
     eye: react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("svg", _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, rest, {
@@ -1692,6 +1704,7 @@ var Svg = function Svg(_ref) {
       role: "presentation",
       viewBox: "0 0 22 16",
       "aria-labelledby": "view",
+      "data-testid": dataTestId,
       xmlns: "http://www.w3.org/2000/svg",
       className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('fill-current', className)
     }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("path", {
@@ -1703,6 +1716,7 @@ var Svg = function Svg(_ref) {
       viewBox: "0 0 20 20",
       role: "presentation",
       "aria-labelledby": "edit",
+      "data-testid": dataTestId,
       xmlns: "http://www.w3.org/2000/svg",
       className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('fill-current', className)
     }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("path", {
@@ -1714,6 +1728,7 @@ var Svg = function Svg(_ref) {
       viewBox: "0 0 20 20",
       role: "presentation",
       "aria-labelledby": "delete",
+      "data-testid": dataTestId,
       xmlns: "http://www.w3.org/2000/svg",
       className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('fill-current cursor-pointer', className)
     }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("path", {
@@ -1725,8 +1740,9 @@ var Svg = function Svg(_ref) {
       width: width,
       height: height,
       viewBox: "0 0 20 20",
-      "aria-labelledby": "search",
       role: "presentation",
+      "data-testid": dataTestId,
+      "aria-labelledby": "search",
       className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('fill-current', className)
     }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("path", {
       fillRule: "nonzero",
@@ -1741,6 +1757,7 @@ var Svg = function Svg(_ref) {
       xmlnsXlink: "http://www.w3.org/1999/xlink",
       x: "0px",
       y: "0px",
+      "data-testid": dataTestId,
       viewBox: "0 0 309.267 309.267",
       style: {
         enableBackground: 'new 0 0 309.267 309.267'
@@ -1772,6 +1789,7 @@ var Svg = function Svg(_ref) {
       x: "0px",
       y: "0px",
       viewBox: "0 0 58 58",
+      "data-testid": dataTestId,
       style: {
         enableBackground: 'new 0 0 58 58'
       },
@@ -1886,6 +1904,7 @@ var Svg = function Svg(_ref) {
       height: height,
       version: "1.1",
       id: "Layer_1",
+      "data-testid": dataTestId,
       xmlns: "http://www.w3.org/2000/svg",
       xmlnsXlink: "http://www.w3.org/1999/xlink",
       x: "0px",
@@ -2087,7 +2106,7 @@ var Table = function Table(_ref) {
     }, field.name.toUpperCase());
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     className: "py-3 w-12 px-0"
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, rows.map(function (row) {
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, rows.map(function (row, index) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
       key: row[resource.primaryKey],
       className: "trans-30 border-b border-grey-light hover:bg-grey-lighter"
@@ -2119,7 +2138,8 @@ var Table = function Table(_ref) {
       to: "/resources/".concat(resource.slug, "/").concat(row[resource.primaryKey], "/details"),
       className: "trans-30 text-grey cursor-pointer hover:text-indigo-dark"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Svg__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      icon: "eye"
+      icon: "eye",
+      dataTestId: "view-resource-".concat(index)
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Link, {
       to: "/resources/".concat(resource.slug, "/").concat(row[resource.primaryKey], "/edit"),
       className: "trans-30 text-grey ml-3 cursor-pointer hover:text-indigo-dark"
@@ -2132,7 +2152,13 @@ var Table = function Table(_ref) {
         return triggerMultiDelete(row[resource.primaryKey]);
       }
     })))));
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }), rows.length === 0 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+    className: "my-12"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+    className: "text-center py-12 text-indigo text-lg",
+    "data-testid": "no-items-match-criteria",
+    colSpan: headers.length + 2
+  }, "No items match your criteria")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex text-grey-dark w-full justify-between rounded-b-lg pr-6 bg-grey-lighter shadow"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_paginate__WEBPACK_IMPORTED_MODULE_2___default.a, {
     nextLabel: '»',

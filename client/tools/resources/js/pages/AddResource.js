@@ -515,6 +515,9 @@ class AddResource extends React.Component {
                                                 dateOptions={{
                                                     enableTime: field.enableTime
                                                 }}
+                                                dataTestId={`field-${
+                                                    field.attribute
+                                                }`}
                                                 options={field.options}
                                                 error={errors[field.attribute]}
                                                 placeholder={
@@ -578,6 +581,11 @@ class AddResource extends React.Component {
                                                                     embeddableField.attribute
                                                                 )
                                                             }
+                                                            dataTestId={`field-${
+                                                                embeddableField.attribute
+                                                            }-${
+                                                                field.attribute
+                                                            }`}
                                                             value={
                                                                 form[
                                                                     embeddableField
@@ -621,6 +629,7 @@ class AddResource extends React.Component {
                                                                         .attribute
                                                                 ]
                                                             }
+                                                            options={field.options}
                                                         />
                                                     </div>
                                                 </div>
@@ -651,6 +660,7 @@ class AddResource extends React.Component {
                                         : 'Create & Add another'
                                 }
                                 className="mr-6"
+                                dataTestId={`create-resource-button-and-add-another-${resource.slug}`}
                             />
                             <Button
                                 className="mr-6"
@@ -662,6 +672,7 @@ class AddResource extends React.Component {
                                 label={`${editing ? 'Update' : 'Create'} ${
                                     resource.name
                                 }`}
+                                dataTestId={`create-resource-button-${resource.slug}`}
                             />
                         </div>
                     </React.Fragment>

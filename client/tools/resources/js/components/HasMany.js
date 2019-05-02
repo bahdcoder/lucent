@@ -7,16 +7,14 @@ import Resource from '../pages/Resource'
  *
  */
 const HasMany = props => {
-    const getCurrentResource = () => Pangaso.resources.find(
-        resource => resource.title === props.field.resource
-    )
+    const getCurrentResource = () =>
+        Pangaso.resources.find(
+            resource => resource.title === props.field.resource
+        )
 
     return (
         <div className="mt-12">
-            <Resource
-                {...props}
-                resource={getCurrentResource()}
-            />
+            <Resource {...props} resource={getCurrentResource()} />
         </div>
     )
 }

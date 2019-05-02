@@ -415,6 +415,29 @@ var ResourceController = /** @class */ (function () {
             });
         });
     };
+    /**
+     *
+     * Clear all records from specific resource collection
+     *
+     * @param {Express.Request} req
+     *
+     * @param {Express.Response} res
+     *
+     * @return {Express.Response}
+     *
+     */
+    ResourceController.prototype.clear = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, req.pangaso.database.clear(req.params.slug)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, res.json({})];
+                }
+            });
+        });
+    };
     return ResourceController;
 }());
 exports.Resource = new ResourceController();

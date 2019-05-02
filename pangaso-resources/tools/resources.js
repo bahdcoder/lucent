@@ -1079,6 +1079,7 @@ var Sidebar = function Sidebar(_ref) {
   }, "Resources")), Pangaso.resources.map(function (resource) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Link, {
       key: resource.slug,
+      "data-testid": resource.slug,
       to: "/resources/".concat(resource.slug),
       className: "flex w-full mt-8 items-center text-white no-underline font-thin"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -1771,6 +1772,7 @@ function (_React$Component) {
           dateOptions: {
             enableTime: field.enableTime
           },
+          dataTestId: "field-".concat(field.attribute),
           options: field.options,
           error: errors[field.attribute],
           placeholder: field.type === 'Select' ? "Select a ".concat(field.name) : field.name,
@@ -1805,12 +1807,14 @@ function (_React$Component) {
             handler: function handler(e) {
               return _this4.handleChange(e, embeddableField.attribute);
             },
+            dataTestId: "field-".concat(embeddableField.attribute, "-").concat(field.attribute),
             value: form[embeddableField.attribute] && form[embeddableField.attribute][field.attribute],
             checked: form[embeddableField.attribute] && form[embeddableField.attribute][field.attribute],
             dateOptions: {
               enableTime: field.enableTime
             },
-            error: errors[embeddableField.attribute] && errors[embeddableField.attribute][field.attribute]
+            error: errors[embeddableField.attribute] && errors[embeddableField.attribute][field.attribute],
+            options: field.options
           }))) : null;
         })));
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
@@ -1824,11 +1828,13 @@ function (_React$Component) {
           return _this4.postResource(false);
         },
         label: editing ? 'Updated & Continue editing' : 'Create & Add another',
-        className: "mr-6"
+        className: "mr-6",
+        dataTestId: "create-resource-button-and-add-another-".concat(resource.slug)
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Button, {
         className: "mr-6",
         handler: editing ? this.updateResource : this.postResource,
-        label: "".concat(editing ? 'Update' : 'Create', " ").concat(resource.name)
+        label: "".concat(editing ? 'Update' : 'Create', " ").concat(resource.name),
+        dataTestId: "create-resource-button-".concat(resource.slug)
       }))));
     }
   }]);
@@ -1952,7 +1958,6 @@ function (_React$Component) {
       var url = resource ? "/resources/".concat(parentResource.slug, "/").concat(parentRecord[parentResource.primaryKey], "/has-many/").concat(field.attribute) : "resources/".concat(_this.props.match.params.resource, "?page=").concat(page);
       Pangaso.request().get(url).then(function (_ref) {
         var data = _ref.data;
-        console.log('-->', data);
 
         _this.setState({
           data: data,
@@ -2169,6 +2174,7 @@ function (_React$Component) {
           multiDeleting = _this$state.multiDeleting,
           selectedAction = _this$state.selectedAction;
       return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_10___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("h1", {
+        "data-testid": "resource-title-".concat(resource.slug),
         className: classnames__WEBPACK_IMPORTED_MODULE_11___default()('font-thin mb-2', {
           'text-2xl': this.props.resource,
           'text-3xl': !this.props.resource
@@ -2187,7 +2193,8 @@ function (_React$Component) {
       })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Button, {
         link: true,
         label: "Create ".concat(resource.name),
-        to: "/resources/".concat(resource.slug, "/new")
+        to: "/resources/".concat(resource.slug, "/new"),
+        dataTestId: "create-resource-".concat(resource.slug)
       })), this.state.isFetching ? react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Loader, null) : react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Table, {
         page: page,
         Link: Link,
@@ -2480,11 +2487,13 @@ function (_React$Component) {
         link: true,
         label: 'Edit',
         className: "mr-1",
-        to: "/resources/".concat(resource.slug, "/").concat(data[resource.primaryKey], "/edit")
+        to: "/resources/".concat(resource.slug, "/").concat(data[resource.primaryKey], "/edit"),
+        dataTestId: "edit-resource-button-".concat(resource.slug)
       }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Button, {
-        handler: this.triggerDelete,
+        type: "danger",
         label: 'Delete',
-        type: "danger"
+        handler: this.triggerDelete,
+        dataTestId: "delete-resource-button-".concat(resource.slug)
       }))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "mt-6 bg-white rounded-lg w-full py-4 px-8"
       }, fields.map(function (field, index) {
@@ -2503,7 +2512,8 @@ function (_React$Component) {
           options: field.options,
           dateFormat: field.dateFormat,
           checked: data[field.attribute],
-          content: data[field.attribute]
+          content: data[field.attribute],
+          dataTestId: "detail-".concat(field.attribute)
         }))) : null;
       })), embeddedFields.map(function (embeddableField, index) {
         return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
@@ -2530,7 +2540,9 @@ function (_React$Component) {
           }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(DetailField, {
             dateFormat: field.dateFormat,
             checked: embeddableFieldData[field.attribute],
-            content: embeddableFieldData[field.attribute]
+            content: embeddableFieldData[field.attribute],
+            options: field.options,
+            dataTestId: "detail-".concat(embeddableField.attribute, "-").concat(field.attribute)
           }))) : null;
         })));
       }), Object.keys(data).length > 0 && hasOneFields.map(function (hasOneField, index) {
@@ -2556,7 +2568,8 @@ function (_React$Component) {
         action: {
           type: 'danger',
           label: 'Delete',
-          handler: this["delete"]
+          handler: this["delete"],
+          dataTestId: "confirm-delete-resource-button-".concat(resource.slug)
         },
         renderContent: function renderContent() {
           return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("p", {

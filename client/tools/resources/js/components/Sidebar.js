@@ -26,6 +26,7 @@ const Sidebar = ({ Link, location }) => (
         {Pangaso.resources.map(resource => (
             <Link
                 key={resource.slug}
+                data-testid={resource.slug}
                 to={`/resources/${resource.slug}`}
                 className="flex w-full mt-8 items-center text-white no-underline font-thin"
             >

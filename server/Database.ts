@@ -146,6 +146,24 @@ export class Database {
 
     /**
      *
+     * clear a specific collection
+     *
+     * @param {string} collection
+     *
+     * @return {Promise}
+     *
+     */
+    public async clear(
+        collection: string
+    ): Promise<any> {
+        // @ts-ignore
+        return this.get()
+            .collection(collection)
+            .deleteMany({})
+    }
+
+    /**
+     *
      * Store a new resoruce into collection
      *
      * @param collection

@@ -359,6 +359,23 @@ class ResourceController {
 
         return res.json(data)
     }
+
+    /**
+     *
+     * Clear all records from specific resource collection
+     *
+     * @param {Express.Request} req
+     *
+     * @param {Express.Response} res
+     *
+     * @return {Express.Response}
+     *
+     */
+    public async clear(req: Express.Request, res: Express.Response) {
+        await req.pangaso.database.clear(req.params.slug)
+
+        return res.json({})
+    }
 }
 
 export const Resource = new ResourceController()

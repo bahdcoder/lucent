@@ -7,15 +7,17 @@ const Select = ({
     name,
     error,
     className,
+    dataTestId,
+    options = [],
     multiple = false,
     placeholder = 'Select an option',
-    options = []
 }) => (
     <React.Fragment>
         <select
             name={name}
             value={value}
             onChange={handler}
+            data-testid={dataTestId}
             className={classnames(
                 'bg-white focus:outline-none text-grey-darkest my-3 border h-10 px-3 rounded-lg shadow focus:outline-none focus:border-2',
                 {
@@ -33,7 +35,7 @@ const Select = ({
                 </option>
             ))}
         </select>
-        {error && <span className="text-xs text-red font-thin">{error}</span>}
+        {error && <span data-testid={`${dataTestId}-error`} className="text-xs text-red font-thin">{error}</span>}
     </React.Fragment>
 )
 

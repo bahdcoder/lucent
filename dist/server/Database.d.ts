@@ -82,6 +82,16 @@ export declare class Database {
     destroy(collection: string, primaryKeys: Array<string>): Promise<any>;
     /**
      *
+     * clear a specific collection
+     *
+     * @param {string} collection
+     *
+     * @return {Promise}
+     *
+     */
+    clear(collection: string): Promise<any>;
+    /**
+     *
      * Store a new resoruce into collection
      *
      * @param collection

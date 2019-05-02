@@ -4,7 +4,7 @@ import ImageExtensions from 'image-extensions'
 
 import Svg from '../Svg'
 
-const File = ({ table = false, content }) => {
+const File = ({ table = false, content, dataTestId }) => {
     if (!content) return null
 
     const ext = content.split('.').pop()
@@ -42,6 +42,7 @@ const File = ({ table = false, content }) => {
             })}
             href={content}
             target="_blank"
+            data-testid={dataTestId}
         >
             {FileContent || 'View File'}
         </a>

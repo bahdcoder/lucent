@@ -183,7 +183,9 @@ var Pangaso = /** @class */ (function () {
                 _this.resources.push(new resource());
             });
         }
-        catch (error) { }
+        catch (error) {
+            console.log(error);
+        }
     };
     /**
      * Get the user resource
@@ -212,7 +214,7 @@ var Pangaso = /** @class */ (function () {
          *
          */
         if (!resource) {
-            throw new Error('User Resource must be defined.');
+            // throw new Error('User Resource must be defined.')
         }
         return resource;
     };

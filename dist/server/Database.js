@@ -198,6 +198,25 @@ var Database = /** @class */ (function () {
     };
     /**
      *
+     * clear a specific collection
+     *
+     * @param {string} collection
+     *
+     * @return {Promise}
+     *
+     */
+    Database.prototype.clear = function (collection) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                // @ts-ignore
+                return [2 /*return*/, this.get()
+                        .collection(collection)
+                        .deleteMany({})];
+            });
+        });
+    };
+    /**
+     *
      * Store a new resoruce into collection
      *
      * @param collection

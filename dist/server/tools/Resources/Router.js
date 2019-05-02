@@ -82,4 +82,12 @@ router.post('/api/resources/:slug', set_resource_1.SetResourceMiddleware, remove
  *
  */
 router.delete('/api/resources/:slug', set_resource_1.SetResourceMiddleware, AsyncWrapper(resource_controller_1.Resource.delete));
+/**
+ *
+ * Register these routes only if environment is not production
+ *
+ */
+if (process.env.NODE_ENV !== 'production') {
+    router.delete('/api/resources/:slug/clear', AsyncWrapper(resource_controller_1.Resource.clear));
+}
 exports.default = router;

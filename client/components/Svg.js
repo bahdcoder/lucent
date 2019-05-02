@@ -1,7 +1,14 @@
 import React from 'react'
 import classnames from 'classnames'
 
-const Svg = ({ icon = 'eye', width = 20, height = 20, className, ...rest }) => {
+const Svg = ({
+    icon = 'eye',
+    width = 20,
+    height = 20,
+    className,
+    dataTestId,
+    ...rest
+}) => {
     const icons = {
         eye: (
             <svg
@@ -11,6 +18,7 @@ const Svg = ({ icon = 'eye', width = 20, height = 20, className, ...rest }) => {
                 role="presentation"
                 viewBox="0 0 22 16"
                 aria-labelledby="view"
+                data-testid={dataTestId}
                 xmlns="http://www.w3.org/2000/svg"
                 className={classnames('fill-current', className)}
             >
@@ -26,6 +34,7 @@ const Svg = ({ icon = 'eye', width = 20, height = 20, className, ...rest }) => {
                 viewBox="0 0 20 20"
                 role="presentation"
                 aria-labelledby="edit"
+                data-testid={dataTestId}
                 xmlns="http://www.w3.org/2000/svg"
                 className={classnames('fill-current', className)}
             >
@@ -41,6 +50,7 @@ const Svg = ({ icon = 'eye', width = 20, height = 20, className, ...rest }) => {
                 viewBox="0 0 20 20"
                 role="presentation"
                 aria-labelledby="delete"
+                data-testid={dataTestId}
                 xmlns="http://www.w3.org/2000/svg"
                 className={classnames('fill-current cursor-pointer', className)}
             >
@@ -57,8 +67,9 @@ const Svg = ({ icon = 'eye', width = 20, height = 20, className, ...rest }) => {
                 width={width}
                 height={height}
                 viewBox="0 0 20 20"
-                aria-labelledby="search"
                 role="presentation"
+                data-testid={dataTestId}
+                aria-labelledby="search"
                 className={classnames('fill-current', className)}
             >
                 <path
@@ -78,6 +89,7 @@ const Svg = ({ icon = 'eye', width = 20, height = 20, className, ...rest }) => {
                 xmlnsXlink="http://www.w3.org/1999/xlink"
                 x="0px"
                 y="0px"
+                data-testid={dataTestId}
                 viewBox="0 0 309.267 309.267"
                 style={{ enableBackground: 'new 0 0 309.267 309.267' }}
                 xmlSpace="preserve"
@@ -119,6 +131,7 @@ const Svg = ({ icon = 'eye', width = 20, height = 20, className, ...rest }) => {
                 x="0px"
                 y="0px"
                 viewBox="0 0 58 58"
+                data-testid={dataTestId}
                 style={{ enableBackground: 'new 0 0 58 58' }}
                 xmlSpace="preserve"
             >
@@ -243,6 +256,7 @@ const Svg = ({ icon = 'eye', width = 20, height = 20, className, ...rest }) => {
                 height={height}
                 version="1.1"
                 id="Layer_1"
+                data-testid={dataTestId}
                 xmlns="http://www.w3.org/2000/svg"
                 xmlnsXlink="http://www.w3.org/1999/xlink"
                 x="0px"

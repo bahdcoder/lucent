@@ -137,6 +137,18 @@ declare class ResourceController {
      *
      */
     delete(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
+    /**
+     *
+     * Clear all records from specific resource collection
+     *
+     * @param {Express.Request} req
+     *
+     * @param {Express.Response} res
+     *
+     * @return {Express.Response}
+     *
+     */
+    clear(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
 }
 export declare const Resource: ResourceController;
 export {};

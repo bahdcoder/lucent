@@ -1,13 +1,14 @@
 import classnames from 'classnames'
 import React, { useState } from 'react'
 
-const Textarea = ({ content }) => {
+const Textarea = ({ content, dataTestId }) => {
     const [show, toggleShow] = useState(false)
 
     return (
         <React.Fragment>
             {show && content}
             <span
+                data-testid={dataTestId}
                 onClick={() => toggleShow(!show)}
                 className={classnames(
                     'text-indigo font-bold cursor-pointer hover:text-indigo-light trans-30',
