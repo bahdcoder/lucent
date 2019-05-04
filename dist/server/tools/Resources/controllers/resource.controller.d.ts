@@ -1,4 +1,5 @@
 import * as Express from 'express';
+import { FilterQuery } from 'mongodb';
 declare class ResourceController {
     /**
      *
@@ -38,6 +39,18 @@ declare class ResourceController {
     fetchAll(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
     /**
      *
+     * Build the filter based on query params
+     *
+     * @param {Express.Request} req
+     *
+     * @param {Express.Response} res
+     *
+     * @return {FilterQuery}
+     *
+     */
+    buildFilter(req: Express.Request, res: Express.Response): FilterQuery<any>;
+    /**
+     *
      * Fetch all data from specific resource collection
      *
      * @param {Express.Request} req
@@ -47,7 +60,7 @@ declare class ResourceController {
      * @return {Express.Response}
      *
      */
-    search(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
+    search: (req: Express.Request, res: Express.Response) => Promise<import("express-serve-static-core").Response>;
     /**
      *
      * Fetch data from specific resource collection
@@ -59,7 +72,7 @@ declare class ResourceController {
      * @return {Express.Response}
      *
      */
-    fetch(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
+    fetch: (req: Express.Request, res: Express.Response) => Promise<import("express-serve-static-core").Response>;
     /**
      *
      * Fetch records for a has many relationship

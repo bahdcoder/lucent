@@ -1,6 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import QueryString from 'query-string'
+import { debounce } from 'throttle-debounce'
 
 class Resource extends React.Component {
     state = {
@@ -8,15 +9,46 @@ class Resource extends React.Component {
             total: 0,
             data: []
         },
-        page: QueryString.parse(this.props.location.search).page || 1,
         selected: [],
         isFetching: true,
         selectedAction: {},
         multiDeleting: false,
-        currentlyDeleting: '',
         runningAction: false,
-        resource: this.getCurrentResource()
+        currentlyDeleting: '',
+        resource: this.getCurrentResource(),
+        page: this.getQueryParams().page || 1,
+        query: this.getQueryParams().query || '',
     }
+
+    /**
+     * 
+     * Get parsed query parameters
+     * 
+     */
+    getQueryParams() {
+        return QueryString.parse(this.props.location.search)
+    }
+
+    /**
+     * 
+     * Get all the query params
+     * 
+     * @return {Object}
+     * 
+     */
+    params = () => QueryString.parse(this.props.location.search)
+
+    /**
+     * 
+     * Get stringified version of params
+     * 
+     * @return {string}
+     * 
+     */
+    paramsString = () => QueryString.stringify({
+        page: this.state.page || 1,
+        query: this.state.query || ''
+    })
 
     /**
      *
@@ -24,7 +56,7 @@ class Resource extends React.Component {
      *
      */
     async componentDidMount() {
-        this.fetchData(QueryString.parse(this.props.location.search).page || 1)
+        this.fetchData()
     }
 
     /**
@@ -61,18 +93,34 @@ class Resource extends React.Component {
         })
 
     /**
+     * 
+     * Update the window location with the latest params
+     * 
+     * @return {null}
+     * 
+     */
+    updateWindowLocation = () => {
+        const { history, location } = this.props
+
+        history.push(`${location.pathname}?${this.paramsString()}`)
+    }
+
+    /**
      *
      * Fetch the data for a specific resource
      *
      */
-    fetchData = (page = 1) => {
+    fetchData = debounce(500, () => {
+        this.updateWindowLocation()
         const { resource, parentRecord, parentResource, field } = this.props
 
-        const url = resource
+        let url = resource
             ? `/resources/${parentResource.slug}/${
                   parentRecord[parentResource.primaryKey]
               }/has-many/${field.attribute}`
-            : `resources/${this.props.match.params.resource}?page=${page}`
+            : `resources/${this.props.match.params.resource}`
+
+        url = `${url}?${this.paramsString()}`
 
         Pangaso.request()
             .get(url)
@@ -82,7 +130,7 @@ class Resource extends React.Component {
                     isFetching: false
                 })
             })
-    }
+    })
 
     /**
      *
@@ -101,7 +149,7 @@ class Resource extends React.Component {
          *
          */
         if (!resource) {
-            history.push(`${history.location.pathname}?page=${page}`)
+            // history.push(`${history.location.pathname}?page=${page}`)
         }
 
         this.setState(
@@ -110,7 +158,7 @@ class Resource extends React.Component {
                 selected: [],
                 isFetching: true
             },
-            () => this.fetchData(page)
+            () => this.fetchData()
         )
     }
 
@@ -128,6 +176,8 @@ class Resource extends React.Component {
         ) {
             this.setState(
                 {
+                    page: 1,
+                    query: '',
                     isFetching: true,
                     resource: this.getCurrentResource(
                         nextProps.match.params.resource
@@ -137,6 +187,36 @@ class Resource extends React.Component {
             )
         }
     }
+
+    handleQueryChange = event => {
+        this.setState({
+            isFetching: true,
+            query: event.target.value
+        }, () => {
+            this.updateWindowLocation()
+            this.fetchData()
+        })
+    }
+
+    /**
+     *
+     * Search the server with specific query
+     *
+     * @return {null}
+     *
+     */
+    search = debounce(500, () => {
+        const { resource } = this.props
+        const { query, page, history, location } = this.state
+
+        history.push(`${location.pathname}`)
+
+        Pangaso.request()
+            .get(`/resources/${resource.slug}/search?query=${query}`)
+            .then(({ data }) => {
+                
+            })
+    })
 
     /**
      *
@@ -234,7 +314,7 @@ class Resource extends React.Component {
                         selectedAction: '',
                         runningAction: false
                     },
-                    () => this.fetchData(this.state.page)
+                    () => this.fetchData()
                 )
 
                 Pangaso.success('Action run !')
@@ -282,6 +362,7 @@ class Resource extends React.Component {
         const {
             data,
             page,
+            query,
             resource,
             selected,
             runningAction,
@@ -309,7 +390,9 @@ class Resource extends React.Component {
                         />
                         <input
                             type="text"
+                            value={query}
                             placeholder="Search"
+                            onChange={this.handleQueryChange}
                             className="w-full text-grey-darkest my-3 h-10 pr-3 pl-10 rounded-lg shadow focus:outline-none focus:border-indigo focus:border-2"
                         />
                     </div>

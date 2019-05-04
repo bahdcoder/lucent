@@ -85,6 +85,60 @@ var ResourceController = /** @class */ (function () {
         };
         /**
          *
+         * Fetch all data from specific resource collection
+         *
+         * @param {Express.Request} req
+         *
+         * @param {Express.Response} res
+         *
+         * @return {Express.Response}
+         *
+         */
+        this.search = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var filter, data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        filter = this.buildFilter(req, res);
+                        return [4 /*yield*/, req.pangaso.database.fetch(req.pangaso.resource.collection(), {
+                                limit: req.pangaso.resource.perPage(),
+                                page: req.query.page || 1
+                            }, filter)];
+                    case 1:
+                        data = _a.sent();
+                        return [2 /*return*/, res.json(data)];
+                }
+            });
+        }); };
+        /**
+         *
+         * Fetch data from specific resource collection
+         *
+         * @param {Express.Request} req
+         *
+         * @param {Express.Response} res
+         *
+         * @return {Express.Response}
+         *
+         */
+        this.fetch = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var filter, data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        filter = this.buildFilter(req, res);
+                        return [4 /*yield*/, req.pangaso.database.fetch(req.pangaso.resource.collection(), {
+                                limit: req.pangaso.resource.perPage(),
+                                page: req.query.page || 1
+                            }, filter)];
+                    case 1:
+                        data = _a.sent();
+                        return [2 /*return*/, res.json(data)];
+                }
+            });
+        }); };
+        /**
+         *
          * Fetch records for a has many relationship
          *
          * @param {Express.Request} req
@@ -205,73 +259,32 @@ var ResourceController = /** @class */ (function () {
     };
     /**
      *
-     * Fetch all data from specific resource collection
+     * Build the filter based on query params
      *
      * @param {Express.Request} req
      *
      * @param {Express.Response} res
      *
-     * @return {Express.Response}
+     * @return {FilterQuery}
      *
      */
-    ResourceController.prototype.search = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var filter, searchableFields, data;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        filter = {};
-                        if (req.query.query) {
-                            filter = {
-                                $or: []
-                            };
-                            searchableFields = req.pangaso.resource
-                                .fields()
-                                .filter(function (field) { return field.isSearchable; });
-                            searchableFields.forEach(function (field) {
-                                var _a;
-                                filter.$or.push((_a = {},
-                                    _a[field.attribute] = new RegExp(req.query.query, 'i'),
-                                    _a));
-                            });
-                        }
-                        return [4 /*yield*/, req.pangaso.database.fetch(req.pangaso.resource.collection(), {
-                                limit: req.pangaso.resource.perPage(),
-                                page: req.query.page || 1
-                            }, filter)];
-                    case 1:
-                        data = _a.sent();
-                        return [2 /*return*/, res.json(data)];
-                }
+    ResourceController.prototype.buildFilter = function (req, res) {
+        var filter = {};
+        if (req.query.query) {
+            filter = {
+                $or: []
+            };
+            var searchableFields = req.pangaso.resource
+                .fields()
+                .filter(function (field) { return field.isSearchable; });
+            searchableFields.forEach(function (field) {
+                var _a;
+                filter.$or.push((_a = {},
+                    _a[field.attribute] = new RegExp(req.query.query, 'i'),
+                    _a));
             });
-        });
-    };
-    /**
-     *
-     * Fetch data from specific resource collection
-     *
-     * @param {Express.Request} req
-     *
-     * @param {Express.Response} res
-     *
-     * @return {Express.Response}
-     *
-     */
-    ResourceController.prototype.fetch = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var data;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, req.pangaso.database.fetch(req.pangaso.resource.collection(), {
-                            limit: req.pangaso.resource.perPage(),
-                            page: req.query.page || 1
-                        })];
-                    case 1:
-                        data = _a.sent();
-                        return [2 /*return*/, res.json(data)];
-                }
-            });
-        });
+        }
+        return filter;
     };
     /**
      *

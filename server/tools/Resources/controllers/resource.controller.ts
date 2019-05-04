@@ -76,16 +76,16 @@ class ResourceController {
 
     /**
      *
-     * Fetch all data from specific resource collection
+     * Build the filter based on query params
      *
      * @param {Express.Request} req
      *
      * @param {Express.Response} res
      *
-     * @return {Express.Response}
+     * @return {FilterQuery}
      *
      */
-    public async search(req: Express.Request, res: Express.Response) {
+    public buildFilter(req: Express.Request, res: Express.Response) {
         let filter: FilterQuery<any> = {}
 
         if (req.query.query) {
@@ -103,6 +103,23 @@ class ResourceController {
                 })
             })
         }
+
+        return filter
+    }
+
+    /**
+     *
+     * Fetch all data from specific resource collection
+     *
+     * @param {Express.Request} req
+     *
+     * @param {Express.Response} res
+     *
+     * @return {Express.Response}
+     *
+     */
+    public search = async (req: Express.Request, res: Express.Response) => {
+        const filter = this.buildFilter(req, res)
 
         const data = await req.pangaso.database.fetch(
             req.pangaso.resource.collection(),
@@ -127,13 +144,16 @@ class ResourceController {
      * @return {Express.Response}
      *
      */
-    public async fetch(req: Express.Request, res: Express.Response) {
+    public fetch = async (req: Express.Request, res: Express.Response) => {
+        const filter = this.buildFilter(req, res)
+
         const data = await req.pangaso.database.fetch(
             req.pangaso.resource.collection(),
             {
                 limit: req.pangaso.resource.perPage(),
                 page: req.query.page || 1
-            }
+            },
+            filter
         )
 
         return res.json(data)

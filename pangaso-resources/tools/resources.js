@@ -1900,6 +1900,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! query-string */ "../../../node_modules/query-string/index.js");
 /* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var throttle_debounce__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! throttle-debounce */ "./node_modules/throttle-debounce/dist/index.esm.js");
+
 
 
 
@@ -1937,20 +1939,32 @@ function (_React$Component) {
         total: 0,
         data: []
       },
-      page: query_string__WEBPACK_IMPORTED_MODULE_12___default.a.parse(_this.props.location.search).page || 1,
       selected: [],
       isFetching: true,
       selectedAction: {},
       multiDeleting: false,
-      currentlyDeleting: '',
       runningAction: false,
-      resource: _this.getCurrentResource()
+      currentlyDeleting: '',
+      resource: _this.getCurrentResource(),
+      page: _this.getQueryParams().page || 1,
+      query: _this.getQueryParams().query || ''
       /**
-       *
-       * Fetch resource data when component is mounted
-       *
+       * 
+       * Get parsed query parameters
+       * 
        */
 
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "params", function () {
+      return query_string__WEBPACK_IMPORTED_MODULE_12___default.a.parse(_this.props.location.search);
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "paramsString", function () {
+      return query_string__WEBPACK_IMPORTED_MODULE_12___default.a.stringify({
+        page: _this.state.page || 1,
+        query: _this.state.query || ''
+      });
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "triggerMultiDelete", function () {
@@ -1967,14 +1981,23 @@ function (_React$Component) {
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "fetchData", function () {
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "updateWindowLocation", function () {
       var _this$props = _this.props,
-          resource = _this$props.resource,
-          parentRecord = _this$props.parentRecord,
-          parentResource = _this$props.parentResource,
-          field = _this$props.field;
-      var url = resource ? "/resources/".concat(parentResource.slug, "/").concat(parentRecord[parentResource.primaryKey], "/has-many/").concat(field.attribute) : "resources/".concat(_this.props.match.params.resource, "?page=").concat(page);
+          history = _this$props.history,
+          location = _this$props.location;
+      history.push("".concat(location.pathname, "?").concat(_this.paramsString()));
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "fetchData", Object(throttle_debounce__WEBPACK_IMPORTED_MODULE_13__["debounce"])(500, function () {
+      _this.updateWindowLocation();
+
+      var _this$props2 = _this.props,
+          resource = _this$props2.resource,
+          parentRecord = _this$props2.parentRecord,
+          parentResource = _this$props2.parentResource,
+          field = _this$props2.field;
+      var url = resource ? "/resources/".concat(parentResource.slug, "/").concat(parentRecord[parentResource.primaryKey], "/has-many/").concat(field.attribute) : "resources/".concat(_this.props.match.params.resource);
+      url = "".concat(url, "?").concat(_this.paramsString());
       Pangaso.request().get(url).then(function (_ref) {
         var data = _ref.data;
 
@@ -1983,13 +2006,13 @@ function (_React$Component) {
           isFetching: false
         });
       });
-    });
+    }));
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "handlePageChange", function (_ref2) {
       var selected = _ref2.selected;
-      var _this$props2 = _this.props,
-          history = _this$props2.history,
-          resource = _this$props2.resource;
+      var _this$props3 = _this.props,
+          history = _this$props3.history,
+          resource = _this$props3.resource;
       var page = selected + 1;
       /**
        *
@@ -1998,8 +2021,7 @@ function (_React$Component) {
        *
        */
 
-      if (!resource) {
-        history.push("".concat(history.location.pathname, "?page=").concat(page));
+      if (!resource) {// history.push(`${history.location.pathname}?page=${page}`)
       }
 
       _this.setState({
@@ -2007,9 +2029,33 @@ function (_React$Component) {
         selected: [],
         isFetching: true
       }, function () {
-        return _this.fetchData(page);
+        return _this.fetchData();
       });
     });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "handleQueryChange", function (event) {
+      _this.setState({
+        isFetching: true,
+        query: event.target.value
+      }, function () {
+        _this.updateWindowLocation();
+
+        _this.fetchData();
+      });
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "search", Object(throttle_debounce__WEBPACK_IMPORTED_MODULE_13__["debounce"])(500, function () {
+      var resource = _this.props.resource;
+      var _this$state = _this.state,
+          query = _this$state.query,
+          page = _this$state.page,
+          history = _this$state.history,
+          location = _this$state.location;
+      history.push("".concat(location.pathname));
+      Pangaso.request().get("/resources/".concat(resource.slug, "/search?query=").concat(query)).then(function (_ref3) {
+        var data = _ref3.data;
+      });
+    }));
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "setSelectedAction", function (event) {
       var selectedAction = _this.state.resource.actions.find(function (action) {
@@ -2069,7 +2115,7 @@ function (_React$Component) {
           selectedAction: '',
           runningAction: false
         }, function () {
-          return _this.fetchData(_this.state.page);
+          return _this.fetchData();
         });
 
         Pangaso.success('Action run !');
@@ -2100,7 +2146,26 @@ function (_React$Component) {
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default()(Resource, [{
+    key: "getQueryParams",
+    value: function getQueryParams() {
+      return query_string__WEBPACK_IMPORTED_MODULE_12___default.a.parse(this.props.location.search);
+    }
+    /**
+     * 
+     * Get all the query params
+     * 
+     * @return {Object}
+     * 
+     */
+
+  }, {
     key: "componentDidMount",
+
+    /**
+     *
+     * Fetch resource data when component is mounted
+     *
+     */
     value: function () {
       var _componentDidMount = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
       /*#__PURE__*/
@@ -2109,7 +2174,7 @@ function (_React$Component) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                this.fetchData(query_string__WEBPACK_IMPORTED_MODULE_12___default.a.parse(this.props.location.search).page || 1);
+                this.fetchData();
 
               case 1:
               case "end":
@@ -2161,6 +2226,8 @@ function (_React$Component) {
 
       if (nextProps.match.params.resource !== this.props.match.params.resource) {
         this.setState({
+          page: 1,
+          query: '',
           isFetching: true,
           resource: this.getCurrentResource(nextProps.match.params.resource)
         }, function () {
@@ -2168,14 +2235,6 @@ function (_React$Component) {
         });
       }
     }
-    /**
-     *
-     * Set the selected action
-     *
-     * @param {React.SyntheticEvent} event
-     *
-     */
-
   }, {
     key: "render",
     value: function render() {
@@ -2185,14 +2244,15 @@ function (_React$Component) {
       var Table = Pangaso.components['component-table'];
       var Button = Pangaso.components['component-button'];
       var Loader = Pangaso.components['component-loader'];
-      var _this$state = this.state,
-          data = _this$state.data,
-          page = _this$state.page,
-          resource = _this$state.resource,
-          selected = _this$state.selected,
-          runningAction = _this$state.runningAction,
-          multiDeleting = _this$state.multiDeleting,
-          selectedAction = _this$state.selectedAction;
+      var _this$state2 = this.state,
+          data = _this$state2.data,
+          page = _this$state2.page,
+          query = _this$state2.query,
+          resource = _this$state2.resource,
+          selected = _this$state2.selected,
+          runningAction = _this$state2.runningAction,
+          multiDeleting = _this$state2.multiDeleting,
+          selectedAction = _this$state2.selectedAction;
       return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_10___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("h1", {
         "data-testid": "resource-title-".concat(resource.slug),
         className: classnames__WEBPACK_IMPORTED_MODULE_11___default()('font-thin mb-2', {
@@ -2208,7 +2268,9 @@ function (_React$Component) {
         className: "absolute ml-3 z-5 text-grey"
       }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("input", {
         type: "text",
+        value: query,
         placeholder: "Search",
+        onChange: this.handleQueryChange,
         className: "w-full text-grey-darkest my-3 h-10 pr-3 pl-10 rounded-lg shadow focus:outline-none focus:border-indigo focus:border-2"
       })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Button, {
         link: true,
@@ -7483,6 +7545,157 @@ try {
   // problems, please detail your unique predicament in a GitHub issue.
   Function("r", "regeneratorRuntime = r")(runtime);
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/throttle-debounce/dist/index.esm.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/throttle-debounce/dist/index.esm.js ***!
+  \**********************************************************/
+/*! exports provided: throttle, debounce */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "throttle", function() { return throttle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "debounce", function() { return debounce; });
+/* eslint-disable no-undefined,no-param-reassign,no-shadow */
+
+/**
+ * Throttle execution of a function. Especially useful for rate limiting
+ * execution of handlers on events like resize and scroll.
+ *
+ * @param  {Number}    delay          A zero-or-greater delay in milliseconds. For event callbacks, values around 100 or 250 (or even higher) are most useful.
+ * @param  {Boolean}   [noTrailing]   Optional, defaults to false. If noTrailing is true, callback will only execute every `delay` milliseconds while the
+ *                                    throttled-function is being called. If noTrailing is false or unspecified, callback will be executed one final time
+ *                                    after the last throttled-function call. (After the throttled-function has not been called for `delay` milliseconds,
+ *                                    the internal counter is reset)
+ * @param  {Function}  callback       A function to be executed after delay milliseconds. The `this` context and all arguments are passed through, as-is,
+ *                                    to `callback` when the throttled-function is executed.
+ * @param  {Boolean}   [debounceMode] If `debounceMode` is true (at begin), schedule `clear` to execute after `delay` ms. If `debounceMode` is false (at end),
+ *                                    schedule `callback` to execute after `delay` ms.
+ *
+ * @return {Function}  A new, throttled, function.
+ */
+function throttle (delay, noTrailing, callback, debounceMode) {
+  /*
+   * After wrapper has stopped being called, this timeout ensures that
+   * `callback` is executed at the proper times in `throttle` and `end`
+   * debounce modes.
+   */
+  var timeoutID;
+  var cancelled = false; // Keep track of the last time `callback` was executed.
+
+  var lastExec = 0; // Function to clear existing timeout
+
+  function clearExistingTimeout() {
+    if (timeoutID) {
+      clearTimeout(timeoutID);
+    }
+  } // Function to cancel next exec
+
+
+  function cancel() {
+    clearExistingTimeout();
+    cancelled = true;
+  } // `noTrailing` defaults to falsy.
+
+
+  if (typeof noTrailing !== 'boolean') {
+    debounceMode = callback;
+    callback = noTrailing;
+    noTrailing = undefined;
+  }
+  /*
+   * The `wrapper` function encapsulates all of the throttling / debouncing
+   * functionality and when executed will limit the rate at which `callback`
+   * is executed.
+   */
+
+
+  function wrapper() {
+    var self = this;
+    var elapsed = Date.now() - lastExec;
+    var args = arguments;
+
+    if (cancelled) {
+      return;
+    } // Execute `callback` and update the `lastExec` timestamp.
+
+
+    function exec() {
+      lastExec = Date.now();
+      callback.apply(self, args);
+    }
+    /*
+     * If `debounceMode` is true (at begin) this is used to clear the flag
+     * to allow future `callback` executions.
+     */
+
+
+    function clear() {
+      timeoutID = undefined;
+    }
+
+    if (debounceMode && !timeoutID) {
+      /*
+       * Since `wrapper` is being called for the first time and
+       * `debounceMode` is true (at begin), execute `callback`.
+       */
+      exec();
+    }
+
+    clearExistingTimeout();
+
+    if (debounceMode === undefined && elapsed > delay) {
+      /*
+       * In throttle mode, if `delay` time has been exceeded, execute
+       * `callback`.
+       */
+      exec();
+    } else if (noTrailing !== true) {
+      /*
+       * In trailing throttle mode, since `delay` time has not been
+       * exceeded, schedule `callback` to execute `delay` ms after most
+       * recent execution.
+       *
+       * If `debounceMode` is true (at begin), schedule `clear` to execute
+       * after `delay` ms.
+       *
+       * If `debounceMode` is false (at end), schedule `callback` to
+       * execute after `delay` ms.
+       */
+      timeoutID = setTimeout(debounceMode ? clear : exec, debounceMode === undefined ? delay - elapsed : delay);
+    }
+  }
+
+  wrapper.cancel = cancel; // Return the wrapper function.
+
+  return wrapper;
+}
+
+/* eslint-disable no-undefined */
+/**
+ * Debounce execution of a function. Debouncing, unlike throttling,
+ * guarantees that a function is only executed a single time, either at the
+ * very beginning of a series of calls, or at the very end.
+ *
+ * @param  {Number}   delay         A zero-or-greater delay in milliseconds. For event callbacks, values around 100 or 250 (or even higher) are most useful.
+ * @param  {Boolean}  [atBegin]     Optional, defaults to false. If atBegin is false or unspecified, callback will only be executed `delay` milliseconds
+ *                                  after the last debounced-function call. If atBegin is true, callback will be executed only at the first debounced-function call.
+ *                                  (After the throttled-function has not been called for `delay` milliseconds, the internal counter is reset).
+ * @param  {Function} callback      A function to be executed after delay milliseconds. The `this` context and all arguments are passed through, as-is,
+ *                                  to `callback` when the debounced-function is executed.
+ *
+ * @return {Function} A new, debounced function.
+ */
+
+function debounce (delay, atBegin, callback) {
+  return callback === undefined ? throttle(delay, atBegin, false) : throttle(delay, callback, atBegin !== false);
+}
+
+
 
 
 /***/ }),
