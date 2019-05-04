@@ -1,4 +1,4 @@
-const { Pangaso } = require('@fullstackjs/pangaso')
+const { Pangaso } = require('../dist/server/main')
 
 new Pangaso()
     .onPort(process.env.PORT || 5044)
