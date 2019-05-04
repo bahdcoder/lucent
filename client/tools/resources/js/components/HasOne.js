@@ -43,6 +43,16 @@ class HasOne extends React.Component {
 
     /**
      *
+     * Get the fields to be displayed on details page
+     *
+     * @return {array}
+     *
+     */
+    getDetailFields = () =>
+        this.state.resource.fields.filter(field => !field.hideOnDetailPage)
+
+    /**
+     *
      * Render the component
      *
      */
@@ -50,10 +60,12 @@ class HasOne extends React.Component {
         const { field, viewChildResource } = this.props
         const { isFetching, resource, data } = this.state
 
+        const resourceFields = this.getDetailFields()
+
         const Loader = Pangaso.components['component-loader']
         const Button = Pangaso.components['component-button']
 
-        const resourceWasFound = Object.keys(data).length > 0
+        const resourceWasFound = data && Object.keys(data).length > 0
 
         return (
             <React.Fragment>
@@ -84,7 +96,7 @@ class HasOne extends React.Component {
 
                         <div className="mt-6 bg-white rounded-lg w-full py-4 px-8">
                             {resourceWasFound &&
-                                resource.fields.map((field, index) => {
+                                resourceFields.map((field, index) => {
                                     const DetailField =
                                         Pangaso.details[field.detail]
 
@@ -96,7 +108,7 @@ class HasOne extends React.Component {
                                                 {
                                                     'border-b border-grey-light ':
                                                         index !==
-                                                        resource.fields.length -
+                                                        resourceFields.length -
                                                             1
                                                 }
                                             )}
@@ -121,6 +133,11 @@ class HasOne extends React.Component {
                                         </div>
                                     ) : null
                                 })}
+                            {!resourceWasFound && !isFetching && (
+                                <span className='w-full font-bold flex items-center justify-center py-8 text-indigo'>
+                                    Resource not found.
+                                </span>
+                            )}
                         </div>
                     </div>
                 )}

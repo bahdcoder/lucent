@@ -38,6 +38,18 @@ declare class ResourceController {
     fetchAll(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
     /**
      *
+     * Fetch all data from specific resource collection
+     *
+     * @param {Express.Request} req
+     *
+     * @param {Express.Response} res
+     *
+     * @return {Express.Response}
+     *
+     */
+    search(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
+    /**
+     *
      * Fetch data from specific resource collection
      *
      * @param {Express.Request} req

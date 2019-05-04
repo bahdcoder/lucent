@@ -21,13 +21,17 @@ const MultiSelect = ({
     options = [],
     name,
     handler,
-    dataTestId
+    dataTestId,
+    filterOptions,
+    isLoading = false
 }) => (
     <BaseMultiSelect
         selected={value}
         options={options}
+        isLoading={isLoading}
         data-testid={dataTestId}
         ItemRenderer={ItemRenderer}
+        filterOptions={filterOptions}
         onSelectedChanged={selected =>
             handler({ name, value: selected, type: 'MultiSelect' })
         }

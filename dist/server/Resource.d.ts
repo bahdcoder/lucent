@@ -37,7 +37,7 @@ export declare class BaseResource implements IResource {
      * Get the value to be used to display this resource
      *
      */
-    diplayValue(): string;
+    displayValue(): string;
     /**
      *
      * Get all actions for this resource

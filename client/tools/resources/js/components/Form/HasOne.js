@@ -12,11 +12,10 @@ class HasOneField extends React.Component {
      *
      */
     componentDidMount() {
-        const resource = Pangaso.resources.find(
-            resource => resource.name === this.props.field.resource
-        )
+        const { field } = this.props
+        const { resource } = this.state
 
-        Pangaso.request()
+        !field.isSearchable && Pangaso.request()
             .get(`/resources/${resource.slug}/all`)
             .then(({ data }) => {
                 this.setState({
@@ -58,19 +57,31 @@ class HasOneField extends React.Component {
      *
      */
     render() {
-        const { field, handler, value } = this.props
-
         const Select = Pangaso.components['component-select']
+        const Combobox = Pangaso.components['component-combobox']
 
-        return (
-            <Select
-                value={value}
-                handler={handler}
-                name={field.attribute}
-                options={this.getSelectOptions()}
-                placeholder={`Select a ${field.name}`}
-            />
-        )
+        if (this.props.field.isSearchable) {
+            const { resource } = this.state
+
+            return (
+                <Combobox
+                    {...this.props}
+                    resource={resource}
+                />
+            )
+        } else {
+            const { field, handler, value, ...rest } = this.props
+
+            return (
+                <Select
+                    value={value}
+                    handler={handler}
+                    name={field.attribute}
+                    options={this.getSelectOptions()}
+                    placeholder={`Select a ${field.name}`}
+                />
+            )
+        }
     }
 }
 

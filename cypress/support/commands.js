@@ -34,7 +34,9 @@ const getFakeData = () => ({
 Cypress.Commands.add('getById', id => cy.get(`[data-testid=${id}]`))
 
 // -- Add a command to clear collection on the server -- //
-Cypress.Commands.add('clearResource', collection => cy.request('DELETE', `/api/resources/${collection}/clear`))
+Cypress.Commands.add('clearResource', collection =>
+    cy.request('DELETE', `/api/resources/${collection}/clear`)
+)
 
 // -- Add a command to seed collection data on the server -- //
 Cypress.Commands.add('seedResource', (collection, data) => {

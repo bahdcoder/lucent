@@ -9,7 +9,7 @@ const Button = ({
     label = '',
     link = false,
     className = '',
-    type = 'primary',
+    type = 'primary'
 }) => {
     let ButtonElement = link ? Link : 'button'
 

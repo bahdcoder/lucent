@@ -56,11 +56,13 @@ class File extends React.Component {
                     ref={this.file}
                     data-testid={dataTestId}
                     style={{ display: 'none' }}
-
                     onChange={this.handleFileChange}
                 />
                 {error && (
-                    <span data-testid={`${dataTestId}-error`} className="text-xs mt-3 text-red font-thin">
+                    <span
+                        data-testid={`${dataTestId}-error`}
+                        className="text-xs mt-3 text-red font-thin"
+                    >
                         {error}
                     </span>
                 )}

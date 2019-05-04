@@ -1,6 +1,6 @@
 import { v4 } from 'uuid'
 import * as Express from 'express'
-import { ObjectID } from 'mongodb'
+import { ObjectID, FilterQuery } from 'mongodb'
 import { IResource, IField } from '../../../index.d'
 
 class ResourceController {
@@ -76,6 +76,48 @@ class ResourceController {
 
     /**
      *
+     * Fetch all data from specific resource collection
+     *
+     * @param {Express.Request} req
+     *
+     * @param {Express.Response} res
+     *
+     * @return {Express.Response}
+     *
+     */
+    public async search(req: Express.Request, res: Express.Response) {
+        let filter: FilterQuery<any> = {}
+
+        if (req.query.query) {
+            filter = {
+                $or: []
+            }
+
+            const searchableFields = req.pangaso.resource
+                .fields()
+                .filter((field: IField) => field.isSearchable)
+
+            searchableFields.forEach((field: IField) => {
+                filter.$or.push({
+                    [field.attribute]: new RegExp(req.query.query, 'i')
+                })
+            })
+        }
+
+        const data = await req.pangaso.database.fetch(
+            req.pangaso.resource.collection(),
+            {
+                limit: req.pangaso.resource.perPage(),
+                page: req.query.page || 1
+            },
+            filter
+        )
+
+        return res.json(data)
+    }
+
+    /**
+     *
      * Fetch data from specific resource collection
      *
      * @param {Express.Request} req
@@ -133,7 +175,6 @@ class ResourceController {
             (r: IResource) => r.title() === relatedField.resource
         )
 
-        // it's a has many relationship, so we'll get all payments
         const data = await req.pangaso.database.fetch(
             relatedResource.collection(),
             {
@@ -193,7 +234,7 @@ class ResourceController {
             resource[relatedField.attribute]
         )
 
-        return res.json(record || {})
+        return res.json(record || null)
     }
 
     /**

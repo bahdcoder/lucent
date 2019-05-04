@@ -1,10 +1,10 @@
 /**
- * 
+ *
  * These tests are for the create resource page
- * 
+ *
  * Before all tests, clear the organisations
  * and contacts collections
- * 
+ *
  */
 before(() => {
     cy.clearResource('contacts')
@@ -33,14 +33,35 @@ describe('The Create resource page', () => {
 
         cy.getById('create-resource-button-contacts').click()
 
-        cy.getById('field-firstName-error').should('contain', 'The firstName is required.')
-        cy.getById('field-lastName-error').should('contain', 'The lastName is required.')
-        cy.getById('field-email-error').should('contain', 'The email is required.')
-        cy.getById('field-phone-error').should('contain', 'The phone is required.')
+        cy.getById('field-firstName-error').should(
+            'contain',
+            'The firstName is required.'
+        )
+        cy.getById('field-lastName-error').should(
+            'contain',
+            'The lastName is required.'
+        )
+        cy.getById('field-email-error').should(
+            'contain',
+            'The email is required.'
+        )
+        cy.getById('field-phone-error').should(
+            'contain',
+            'The phone is required.'
+        )
 
-        cy.getById('field-address-city-error').should('contain', 'The city is required.')
-        cy.getById('field-address-state-error').should('contain', 'The state is required.')
-        cy.getById('field-address-postalCode-error').should('contain', 'The postalCode is required.')
+        cy.getById('field-address-city-error').should(
+            'contain',
+            'The city is required.'
+        )
+        cy.getById('field-address-state-error').should(
+            'contain',
+            'The state is required.'
+        )
+        cy.getById('field-address-postalCode-error').should(
+            'contain',
+            'The postalCode is required.'
+        )
     })
 
     it('should display validation errors on create organisations form', () => {
@@ -48,14 +69,35 @@ describe('The Create resource page', () => {
 
         cy.getById('create-resource-button-organisations').click()
 
-        cy.getById('field-name-error').should('contain', 'The name is required.')
-        cy.getById('field-email-error').should('contain', 'The email is required.')
-        cy.getById('field-phone-error').should('contain', 'The phone is required.')
+        cy.getById('field-name-error').should(
+            'contain',
+            'The name is required.'
+        )
+        cy.getById('field-email-error').should(
+            'contain',
+            'The email is required.'
+        )
+        cy.getById('field-phone-error').should(
+            'contain',
+            'The phone is required.'
+        )
 
-        cy.getById('field-address-city-error').should('contain', 'The city is required.')
-        cy.getById('field-address-state-error').should('contain', 'The state is required.')
-        cy.getById('field-address-country-error').should('contain', 'The country is required.')
-        cy.getById('field-address-postalCode-error').should('contain', 'The postalCode is required.')
+        cy.getById('field-address-city-error').should(
+            'contain',
+            'The city is required.'
+        )
+        cy.getById('field-address-state-error').should(
+            'contain',
+            'The state is required.'
+        )
+        cy.getById('field-address-country-error').should(
+            'contain',
+            'The country is required.'
+        )
+        cy.getById('field-address-postalCode-error').should(
+            'contain',
+            'The postalCode is required.'
+        )
     })
 
     it('should populate the create contact form and create a new one', () => {

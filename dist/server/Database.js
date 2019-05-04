@@ -122,31 +122,28 @@ var Database = /** @class */ (function () {
      * @return {Promise}
      *
      */
-    Database.prototype.fetch = function (collection, params, filter) {
+    Database.prototype.fetch = function (collectionName, params, filter) {
         if (params === void 0) { params = {}; }
         if (filter === void 0) { filter = {}; }
         return __awaiter(this, void 0, void 0, function () {
-            var _a;
+            var collection, builder, _a;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
+                        collection = this.get().collection(collectionName);
+                        builder = collection.find(filter);
+                        if (params.limit && params.page) {
+                            builder = builder.skip(params.limit * (params.page - 1)).limit(params.limit);
+                        }
                         _a = {};
-                        return [4 /*yield*/, this.get()
-                                .collection(collection)
-                                .find(filter)
+                        return [4 /*yield*/, builder
                                 .count()];
                     case 1:
                         // @ts-ignore
                         _a.total = _b.sent();
-                        return [4 /*yield*/, this.get()
-                                .collection(collection)
-                                .find(filter)
-                                .skip(params.limit * (params.page - 1))
-                                .limit(params.limit)
+                        return [4 /*yield*/, builder
                                 .toArray()];
-                    case 2: 
-                    //  TODO: figure out how to get count and data in one query.
-                    return [2 /*return*/, (
+                    case 2: return [2 /*return*/, (
                         // @ts-ignore
                         _a.data = _b.sent(),
                             _a)];

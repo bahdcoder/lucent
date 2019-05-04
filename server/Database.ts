@@ -82,25 +82,28 @@ export class Database {
      *
      */
     public async fetch(
-        collection: string,
+        collectionName: string,
         params: any = {},
         filter: any = {}
     ): Promise<any> {
         //  TODO: figure out how to get count and data in one query.
 
+        // @ts-ignore
+        const collection = this.get().collection(collectionName)
+
+        let builder = collection.find(filter)
+
+        if (params.limit && params.page) {
+            builder = builder.skip(params.limit * (params.page - 1)).limit(params.limit)
+        }
+
         return {
             // @ts-ignore
-            total: await this.get()
-                .collection(collection)
-                .find(filter)
+            total: await builder
                 .count(),
 
             // @ts-ignore
-            data: await this.get()
-                .collection(collection)
-                .find(filter)
-                .skip(params.limit * (params.page - 1))
-                .limit(params.limit)
+            data: await builder
                 .toArray()
         }
     }
@@ -153,9 +156,7 @@ export class Database {
      * @return {Promise}
      *
      */
-    public async clear(
-        collection: string
-    ): Promise<any> {
+    public async clear(collection: string): Promise<any> {
         // @ts-ignore
         return this.get()
             .collection(collection)

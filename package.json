@@ -96,6 +96,7 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "redux-axios-middleware": "^4.0.0",
+    "throttle-debounce": "^2.1.0",
     "toastedjs": "^0.0.2",
     "ts-loader": "^5.3.3",
     "uuid": "^3.3.2"

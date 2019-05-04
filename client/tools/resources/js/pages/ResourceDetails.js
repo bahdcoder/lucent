@@ -216,7 +216,9 @@ class ResourceDetails extends React.Component {
                             type="danger"
                             label={'Delete'}
                             handler={this.triggerDelete}
-                            dataTestId={`delete-resource-button-${resource.slug}`}
+                            dataTestId={`delete-resource-button-${
+                                resource.slug
+                            }`}
                         />
                     </div>
                 </div>
@@ -301,7 +303,9 @@ class ResourceDetails extends React.Component {
                                                     ]
                                                 }
                                                 options={field.options}
-                                                dataTestId={`detail-${embeddableField.attribute}-${field.attribute}`}
+                                                dataTestId={`detail-${
+                                                    embeddableField.attribute
+                                                }-${field.attribute}`}
                                             />
                                         </div>
                                     </div>
@@ -339,7 +343,9 @@ class ResourceDetails extends React.Component {
                         type: 'danger',
                         label: 'Delete',
                         handler: this.delete,
-                        dataTestId: `confirm-delete-resource-button-${resource.slug}`
+                        dataTestId: `confirm-delete-resource-button-${
+                            resource.slug
+                        }`
                     }}
                     renderContent={() => (
                         <p className="text-grey-dark">

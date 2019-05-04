@@ -154,7 +154,7 @@ var ResourceController = /** @class */ (function () {
                         return [4 /*yield*/, req.pangaso.database.find(relatedResource.collection(), resource[relatedField.attribute])];
                     case 2:
                         record = _a.sent();
-                        return [2 /*return*/, res.json(record || {})];
+                        return [2 /*return*/, res.json(record || null)];
                 }
             });
         }); };
@@ -196,6 +196,49 @@ var ResourceController = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, req.pangaso.database.fetchAll(req.pangaso.resource.collection())];
+                    case 1:
+                        data = _a.sent();
+                        return [2 /*return*/, res.json(data)];
+                }
+            });
+        });
+    };
+    /**
+     *
+     * Fetch all data from specific resource collection
+     *
+     * @param {Express.Request} req
+     *
+     * @param {Express.Response} res
+     *
+     * @return {Express.Response}
+     *
+     */
+    ResourceController.prototype.search = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var filter, searchableFields, data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        filter = {};
+                        if (req.query.query) {
+                            filter = {
+                                $or: []
+                            };
+                            searchableFields = req.pangaso.resource
+                                .fields()
+                                .filter(function (field) { return field.isSearchable; });
+                            searchableFields.forEach(function (field) {
+                                var _a;
+                                filter.$or.push((_a = {},
+                                    _a[field.attribute] = new RegExp(req.query.query, 'i'),
+                                    _a));
+                            });
+                        }
+                        return [4 /*yield*/, req.pangaso.database.fetch(req.pangaso.resource.collection(), {
+                                limit: req.pangaso.resource.perPage(),
+                                page: req.query.page || 1
+                            }, filter)];
                     case 1:
                         data = _a.sent();
                         return [2 /*return*/, res.json(data)];

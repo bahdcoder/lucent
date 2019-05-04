@@ -22,6 +22,14 @@ var Field = /** @class */ (function () {
          */
         this.canBeNull = false;
         /**
+         *
+         * Make this field searchable
+         *
+         * @var {boolean}
+         *
+         */
+        this.isSearchable = false;
+        /**
          * Define the component
          *
          * @var {string}
@@ -148,6 +156,16 @@ var Field = /** @class */ (function () {
      */
     Field.prototype.sortable = function () {
         this.canBeSorted = true;
+        return this;
+    };
+    /**
+     * Mark this field as searchable
+     *
+     * @return {Field}
+     *
+     */
+    Field.prototype.searchable = function () {
+        this.isSearchable = true;
         return this;
     };
     /**

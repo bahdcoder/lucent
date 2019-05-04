@@ -23,6 +23,15 @@ export class Field {
     public canBeNull: boolean = false
 
     /**
+     *
+     * Make this field searchable
+     *
+     * @var {boolean}
+     *
+     */
+    public isSearchable: boolean = false
+
+    /**
      * Define the component
      *
      * @var {string}
@@ -168,6 +177,18 @@ export class Field {
      */
     sortable() {
         this.canBeSorted = true
+
+        return this
+    }
+
+    /**
+     * Mark this field as searchable
+     *
+     * @return {Field}
+     *
+     */
+    searchable() {
+        this.isSearchable = true
 
         return this
     }

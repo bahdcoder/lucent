@@ -2,50 +2,27 @@ import React from 'react'
 
 class HasManyField extends React.Component {
     state = {
-        options: [],
-        resource: this.getResource()
+        resource: this.getCurrentResource()
     }
 
-    /**
-     *
-     * Fetch a list of all the selectable values
-     *
-     */
     componentDidMount() {
-        Pangaso.request()
-            .get(`/resources/${this.state.resource.slug}/all`)
-            .then(({ data }) => {
-                this.setState({
-                    options: data
-                })
-            })
+        const { editing } = this.props
+
+        if (editing) {
+            Pangaso
+        }
     }
 
     /**
-     *
-     * Get the related resource
-     *
-     * @return {object}
-     *
+     * 
+     * Get the current resource, which is the
+     * related resource
+     * 
      */
-    getResource() {
+    getCurrentResource() {
         return Pangaso.resources.find(
             resource => resource.title === this.props.field.resource
         )
-    }
-
-    /**
-     *
-     * Get select options
-     *
-     */
-    getSelectOptions = () => {
-        const { resource } = this.state
-
-        return this.state.options.map(option => ({
-            label: option[resource.displayValue],
-            value: option[resource.primaryKey]
-        }))
     }
 
     /**
@@ -54,17 +31,13 @@ class HasManyField extends React.Component {
      *
      */
     render() {
-        const { field, handler, value } = this.props
-
-        const MultiSelect = Pangaso.components['component-multiselect']
+        const { value, resource, ...rest } = this.props
+        const Combobox = Pangaso.components['component-combobox']
 
         return (
-            <MultiSelect
-                value={value}
-                handler={handler}
-                name={field.attribute}
-                options={this.getSelectOptions()}
-            />
+            <React.Fragment>
+                <Combobox multiple resource={this.state.resource} {...rest} />
+            </React.Fragment>
         )
     }
 }

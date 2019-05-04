@@ -52,6 +52,17 @@ router.get(
 
 /**
  *
+ * Define the route for fetching all database records for a specific resource
+ *
+ */
+router.get(
+    '/api/resources/:slug/search',
+    SetResourceMiddleware,
+    AsyncWrapper(Resource.search)
+)
+
+/**
+ *
  * Define the route for fetching a single database record for a specific collection/resource
  *
  */
@@ -142,15 +153,12 @@ router.delete(
 )
 
 /**
- * 
+ *
  * Register these routes only if environment is not production
- * 
+ *
  */
 if (process.env.NODE_ENV !== 'production') {
-    router.delete(
-        '/api/resources/:slug/clear',
-        AsyncWrapper(Resource.clear)
-    )
+    router.delete('/api/resources/:slug/clear', AsyncWrapper(Resource.clear))
 }
 
 export default router

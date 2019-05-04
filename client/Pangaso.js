@@ -7,11 +7,13 @@ import { Link } from 'react-router-dom'
 // components
 import Svg from './components/Svg'
 import File from './components/File'
+import Text from './components/Text'
 import Table from './components/Table'
 import Modal from './components/Modal'
 import Loader from './components/Loader'
 import Button from './components/Button'
 import Select from './components/Select'
+import Combobox from './components/Combobox'
 import Checkbox from './components/Checkbox'
 import MultiSelect from './components/MultiSelect'
 
@@ -200,12 +202,14 @@ export class Pangaso {
         this.component('component-svg', Svg)
         this.component('component-link', Link)
         this.component('component-file', File)
+        this.component('component-text', Text)
         this.component('component-modal', Modal)
         this.component('component-table', Table)
         this.component('component-loader', Loader)
         this.component('component-button', Button)
         this.component('component-select', Select)
         this.component('component-checkbox', Checkbox)
+        this.component('component-combobox', Combobox)
         this.component('component-multiselect', MultiSelect)
     }
 

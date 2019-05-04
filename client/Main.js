@@ -18,8 +18,12 @@ export class Main extends React.Component {
      * Pass setState to Pangaso instance
      *
      */
-    async componentDidMount() {
+    componentDidMount() {
         Pangaso.setState = this.setState.bind(this)
+    }
+
+    componentDidCatch(error, info) {
+        console.log('ERROR----X-XX--XXX--XXXX--XXXXX----------------------->', error, info)
     }
 
     /**

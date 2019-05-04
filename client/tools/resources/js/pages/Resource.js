@@ -107,6 +107,7 @@ class Resource extends React.Component {
         this.setState(
             {
                 page,
+                selected: [],
                 isFetching: true
             },
             () => this.fetchData(page)

@@ -51,7 +51,7 @@ export class BaseResource implements IResource {
      * Get the value to be used to display this resource
      *
      */
-    public diplayValue() {
+    public displayValue() {
         return ''
     }
 
@@ -183,7 +183,7 @@ export class BaseResource implements IResource {
             perPage: this.perPage(),
             primaryKey: this.primaryKey(),
             collection: this.collection(),
-            displayValue: this.diplayValue(),
+            displayValue: this.displayValue(),
             authorizedToView: this.authorizedToView(),
             authorizedToCreate: this.authorizedToCreate(),
             authorizedToUpdate: this.authorizedToUpdate(),

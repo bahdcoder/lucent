@@ -36,6 +36,12 @@ router.get('/api/resources/:slug', set_resource_1.SetResourceMiddleware, AsyncWr
 router.get('/api/resources/:slug/all', set_resource_1.SetResourceMiddleware, AsyncWrapper(resource_controller_1.Resource.fetchAll));
 /**
  *
+ * Define the route for fetching all database records for a specific resource
+ *
+ */
+router.get('/api/resources/:slug/search', set_resource_1.SetResourceMiddleware, AsyncWrapper(resource_controller_1.Resource.search));
+/**
+ *
  * Define the route for fetching a single database record for a specific collection/resource
  *
  */

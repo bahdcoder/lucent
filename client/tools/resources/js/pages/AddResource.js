@@ -6,6 +6,7 @@ class AddResource extends React.Component {
     state = {
         form: {},
         errors: {},
+        record: {},
         staleFiles: [],
         preparedForm: {},
         resource: this.getCurrentResource(),
@@ -136,7 +137,9 @@ class AddResource extends React.Component {
              *
              */
             .then(({ data }) => {
-                this.populateFields(data)
+                this.setState({
+                    record: data
+                }, () => this.populateFields(data))
             })
 
             /**
@@ -202,7 +205,7 @@ class AddResource extends React.Component {
         for (const attribute of Object.keys(form)) {
             const field = form[attribute]
 
-            if (
+            if (field &&
                 typeof field === 'object' &&
                 !(field instanceof Blob) &&
                 !Array.isArray(field)
@@ -317,7 +320,7 @@ class AddResource extends React.Component {
      *
      */
     handleChange = (event, embedded = null) => {
-        if (event.type === 'MultiSelect') {
+        if (['MultiSelect', 'SingleSelect'].includes(event.type)) {
             return this.setState({
                 form: {
                     ...this.state.form,
@@ -470,9 +473,9 @@ class AddResource extends React.Component {
      *
      */
     render() {
-        const { editing, errors, form, resource } = this.state
         const Button = Pangaso.components['component-button']
         const Loader = Pangaso.components['component-loader']
+        const { editing, errors, form, resource, record } = this.state
 
         const embeddableFields = this.getEmbeddedFields()
         const formFields = editing
@@ -506,6 +509,7 @@ class AddResource extends React.Component {
                                         <div className="w-2/4 flex flex-col">
                                             <Field
                                                 field={field}
+                                                editing={editing}
                                                 className="w-full"
                                                 resource={resource}
                                                 id={field.attribute}
@@ -534,6 +538,8 @@ class AddResource extends React.Component {
                                                         field
                                                     )
                                                 }
+                                                parentRecord={record}
+                                                parentResource={resource}
                                             />
                                         </div>
                                     </div>
@@ -629,7 +635,9 @@ class AddResource extends React.Component {
                                                                         .attribute
                                                                 ]
                                                             }
-                                                            options={field.options}
+                                                            options={
+                                                                field.options
+                                                            }
                                                         />
                                                     </div>
                                                 </div>
@@ -660,7 +668,9 @@ class AddResource extends React.Component {
                                         : 'Create & Add another'
                                 }
                                 className="mr-6"
-                                dataTestId={`create-resource-button-and-add-another-${resource.slug}`}
+                                dataTestId={`create-resource-button-and-add-another-${
+                                    resource.slug
+                                }`}
                             />
                             <Button
                                 className="mr-6"
@@ -672,7 +682,9 @@ class AddResource extends React.Component {
                                 label={`${editing ? 'Update' : 'Create'} ${
                                     resource.name
                                 }`}
-                                dataTestId={`create-resource-button-${resource.slug}`}
+                                dataTestId={`create-resource-button-${
+                                    resource.slug
+                                }`}
                             />
                         </div>
                     </React.Fragment>

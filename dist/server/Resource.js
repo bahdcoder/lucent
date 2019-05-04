@@ -84,7 +84,7 @@ var BaseResource = /** @class */ (function () {
      * Get the value to be used to display this resource
      *
      */
-    BaseResource.prototype.diplayValue = function () {
+    BaseResource.prototype.displayValue = function () {
         return '';
     };
     /**
@@ -212,7 +212,7 @@ var BaseResource = /** @class */ (function () {
             perPage: this.perPage(),
             primaryKey: this.primaryKey(),
             collection: this.collection(),
-            displayValue: this.diplayValue(),
+            displayValue: this.displayValue(),
             authorizedToView: this.authorizedToView(),
             authorizedToCreate: this.authorizedToCreate(),
             authorizedToUpdate: this.authorizedToUpdate(),

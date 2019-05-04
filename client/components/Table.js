@@ -188,7 +188,10 @@ const Table = ({
                                             }/details`}
                                             className="trans-30 text-grey cursor-pointer hover:text-indigo-dark"
                                         >
-                                            <Svg icon="eye" dataTestId={`view-resource-${index}`} />
+                                            <Svg
+                                                icon="eye"
+                                                dataTestId={`view-resource-${index}`}
+                                            />
                                         </Link>
                                         <Link
                                             to={`/resources/${resource.slug}/${
@@ -214,8 +217,14 @@ const Table = ({
                         </tr>
                     ))}
                     {rows.length === 0 && (
-                        <tr className='my-12'>
-                            <td className='text-center py-12 text-indigo text-lg' data-testid='no-items-match-criteria' colSpan={headers.length + 2}>No items match your criteria</td>
+                        <tr className="my-12">
+                            <td
+                                className="text-center py-12 text-indigo text-lg"
+                                data-testid="no-items-match-criteria"
+                                colSpan={headers.length + 2}
+                            >
+                                No items match your criteria
+                            </td>
                         </tr>
                     )}
                 </tbody>

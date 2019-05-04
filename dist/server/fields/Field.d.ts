@@ -17,6 +17,14 @@ export declare class Field {
      */
     canBeNull: boolean;
     /**
+     *
+     * Make this field searchable
+     *
+     * @var {boolean}
+     *
+     */
+    isSearchable: boolean;
+    /**
      * Define the component
      *
      * @var {string}
@@ -135,6 +143,13 @@ export declare class Field {
      *
      */
     sortable(): this;
+    /**
+     * Mark this field as searchable
+     *
+     * @return {Field}
+     *
+     */
+    searchable(): this;
     /**
      * Callback to be used to calculate
      * the value of this field.
