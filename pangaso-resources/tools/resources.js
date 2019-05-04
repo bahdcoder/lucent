@@ -1983,9 +1983,10 @@ function (_React$Component) {
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "updateWindowLocation", function () {
       var _this$props = _this.props,
+          resource = _this$props.resource,
           history = _this$props.history,
           location = _this$props.location;
-      history.push("".concat(location.pathname, "?").concat(_this.paramsString()));
+      !resource && history.push("".concat(location.pathname, "?").concat(_this.paramsString()));
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "fetchData", Object(throttle_debounce__WEBPACK_IMPORTED_MODULE_13__["debounce"])(500, function () {
@@ -2238,7 +2239,9 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var Link = this.props.Link;
+      var _this$props4 = this.props,
+          Link = _this$props4.Link,
+          viewChildResource = _this$props4.viewChildResource;
       var Svg = Pangaso.components['component-svg'];
       var Modal = Pangaso.components['component-modal'];
       var Table = Pangaso.components['component-table'];
@@ -2289,6 +2292,7 @@ function (_React$Component) {
         selectedAction: selectedAction,
         toggleSelect: this.toggleSelect,
         onPageChange: this.handlePageChange,
+        viewChildResource: viewChildResource,
         triggerRunAction: this.triggerRunAction,
         setSelectedAction: this.setSelectedAction,
         triggerMultiDelete: this.triggerMultiDelete
@@ -2457,8 +2461,8 @@ function (_React$Component) {
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "viewChildResource", function (resource, primaryKey) {
       _this.setState({
         data: {},
-        deleting: false,
-        resource: resource
+        resource: resource,
+        deleting: false
       }, function () {
         return _this.fetch(primaryKey, true);
       });
@@ -2642,8 +2646,8 @@ function (_React$Component) {
         }, _this4.props, {
           parentRecord: data,
           field: hasManyField,
-          parentResource: resource // viewChildResource={this.viewChildResource}
-
+          parentResource: resource,
+          viewChildResource: _this4.viewChildResource
         }));
       }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Modal, {
         open: deleting,

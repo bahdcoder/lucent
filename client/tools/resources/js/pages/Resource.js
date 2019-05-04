@@ -100,9 +100,9 @@ class Resource extends React.Component {
      * 
      */
     updateWindowLocation = () => {
-        const { history, location } = this.props
+        const { resource, history, location } = this.props
 
-        history.push(`${location.pathname}?${this.paramsString()}`)
+        !resource && history.push(`${location.pathname}?${this.paramsString()}`)
     }
 
     /**
@@ -353,7 +353,7 @@ class Resource extends React.Component {
     }
 
     render() {
-        const { Link } = this.props
+        const { Link, viewChildResource } = this.props
         const Svg = Pangaso.components['component-svg']
         const Modal = Pangaso.components['component-modal']
         const Table = Pangaso.components['component-table']
@@ -420,6 +420,7 @@ class Resource extends React.Component {
                         selectedAction={selectedAction}
                         toggleSelect={this.toggleSelect}
                         onPageChange={this.handlePageChange}
+                        viewChildResource={viewChildResource}
                         triggerRunAction={this.triggerRunAction}
                         setSelectedAction={this.setSelectedAction}
                         triggerMultiDelete={this.triggerMultiDelete}

@@ -1,5 +1,6 @@
 import * as Express from 'express';
 import { FilterQuery } from 'mongodb';
+import { IResource } from '../../../index.d';
 declare class ResourceController {
     /**
      *
@@ -24,7 +25,7 @@ declare class ResourceController {
      * @return {Express.Response}
      *
      */
-    show: (req: Express.Request, res: Express.Response, expectsJson?: boolean) => Promise<any>;
+    show: (req: Express.Request, res: Express.Response) => Promise<import("express-serve-static-core").Response>;
     /**
      *
      * Fetch all data from specific resource collection
@@ -48,7 +49,7 @@ declare class ResourceController {
      * @return {FilterQuery}
      *
      */
-    buildFilter(req: Express.Request, res: Express.Response): FilterQuery<any>;
+    buildFilter(req: Express.Request, resource?: IResource): FilterQuery<any>;
     /**
      *
      * Fetch all data from specific resource collection

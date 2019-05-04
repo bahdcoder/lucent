@@ -2254,6 +2254,7 @@ var Table = function Table(_ref) {
       selected = _ref$selected === void 0 ? [] : _ref$selected,
       triggerRunAction = _ref.triggerRunAction,
       setSelectedAction = _ref.setSelectedAction,
+      viewChildResource = _ref.viewChildResource,
       triggerMultiDelete = _ref.triggerMultiDelete,
       _ref$selectedAction = _ref.selectedAction,
       selectedAction = _ref$selectedAction === void 0 ? '' : _ref$selectedAction;
@@ -2381,7 +2382,14 @@ var Table = function Table(_ref) {
       className: "text-left pr-6"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "flex items-center justify-end flex-grow"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Link, {
+    }, viewChildResource ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Svg__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      icon: "eye",
+      dataTestId: "view-resource-".concat(index),
+      className: "trans-30 text-grey cursor-pointer hover:text-indigo-dark",
+      onClick: function onClick() {
+        return viewChildResource(resource, row[resource.primaryKey]);
+      }
+    }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Link, {
       to: "/resources/".concat(resource.slug, "/").concat(row[resource.primaryKey], "/details"),
       className: "trans-30 text-grey cursor-pointer hover:text-indigo-dark"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Svg__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -39669,7 +39677,7 @@ exports.default = _PaginationBoxView2.default;
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -36,8 +36,7 @@ class ResourceController {
      */
     public show = async (
         req: Express.Request,
-        res: Express.Response,
-        expectsJson = true
+        res: Express.Response
     ) => {
         const resource = await req.pangaso.database.find(
             req.pangaso.resource.collection(),
@@ -45,14 +44,12 @@ class ResourceController {
         )
 
         if (!resource) {
-            return expectsJson
-                ? res.status(404).json({
-                      message: 'Resource not found.'
-                  })
-                : null
+            return res.status(404).json({
+                message: 'Resource not found.'
+            })
         }
 
-        return expectsJson ? res.json(resource) : resource
+        return res.json(resource)
     }
 
     /**
@@ -85,7 +82,7 @@ class ResourceController {
      * @return {FilterQuery}
      *
      */
-    public buildFilter(req: Express.Request, res: Express.Response) {
+    public buildFilter(req: Express.Request, resource?: IResource) {
         let filter: FilterQuery<any> = {}
 
         if (req.query.query) {
@@ -93,7 +90,7 @@ class ResourceController {
                 $or: []
             }
 
-            const searchableFields = req.pangaso.resource
+            const searchableFields = (resource || req.pangaso.resource)
                 .fields()
                 .filter((field: IField) => field.isSearchable)
 
@@ -119,7 +116,7 @@ class ResourceController {
      *
      */
     public search = async (req: Express.Request, res: Express.Response) => {
-        const filter = this.buildFilter(req, res)
+        const filter = this.buildFilter(req)
 
         const data = await req.pangaso.database.fetch(
             req.pangaso.resource.collection(),
@@ -145,7 +142,7 @@ class ResourceController {
      *
      */
     public fetch = async (req: Express.Request, res: Express.Response) => {
-        const filter = this.buildFilter(req, res)
+        const filter = this.buildFilter(req)
 
         const data = await req.pangaso.database.fetch(
             req.pangaso.resource.collection(),
@@ -175,7 +172,10 @@ class ResourceController {
         res: Express.Response
     ) => {
         // we need the resource
-        const resource = await this.show(req, res, false)
+        const resource = await req.pangaso.database.find(
+            req.pangaso.resource.collection(),
+            req.params.resource
+        )
 
         if (!resource) {
             return res.status(404).json({
@@ -195,6 +195,8 @@ class ResourceController {
             (r: IResource) => r.title() === relatedField.resource
         )
 
+        const filter = this.buildFilter(req, relatedResource)
+
         const data = await req.pangaso.database.fetch(
             relatedResource.collection(),
             {
@@ -206,7 +208,8 @@ class ResourceController {
                     $in: (resource[relatedField.attribute] || []).map(
                         (primaryKey: string) => new ObjectID(primaryKey)
                     )
-                }
+                },
+                ...filter
             }
         )
 
@@ -229,29 +232,29 @@ class ResourceController {
         res: Express.Response
     ) => {
         // we need the resource
-        const resource = await this.show(req, res, false)
+        const parentRecord = await req.pangaso.database.find(
+            req.pangaso.resource.collection(),
+            req.params.resource
+        )
 
-        if (!resource) {
+        if (!parentRecord) {
             return res.status(404).json({
                 message: 'Resource not found.'
             })
         }
 
         // using the resource, let's find it's related resource
-
-        // plan
         const relatedField = req.pangaso.resource
             .fields()
             .find((field: IField) => field.attribute === req.params.relation)
 
-        //
         const relatedResource = req.pangaso.resources.find(
             (r: IResource) => r.name() === relatedField.resource
         )
 
         const record = await req.pangaso.database.find(
             relatedResource.collection(),
-            resource[relatedField.attribute]
+            parentRecord[relatedField.attribute]
         )
 
         return res.json(record || null)

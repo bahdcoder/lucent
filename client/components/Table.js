@@ -19,6 +19,7 @@ const Table = ({
     selected = [],
     triggerRunAction,
     setSelectedAction,
+    viewChildResource,
     triggerMultiDelete,
     selectedAction = ''
 }) => {
@@ -182,17 +183,27 @@ const Table = ({
                                 })}
                                 <td className="text-left pr-6">
                                     <span className="flex items-center justify-end flex-grow">
-                                        <Link
-                                            to={`/resources/${resource.slug}/${
-                                                row[resource.primaryKey]
-                                            }/details`}
-                                            className="trans-30 text-grey cursor-pointer hover:text-indigo-dark"
-                                        >
+                                        
+                                        {viewChildResource ? (
                                             <Svg
                                                 icon="eye"
                                                 dataTestId={`view-resource-${index}`}
+                                                className="trans-30 text-grey cursor-pointer hover:text-indigo-dark"
+                                                onClick={() => viewChildResource(resource, row[resource.primaryKey])}
                                             />
-                                        </Link>
+                                        ) : (
+                                            <Link
+                                                to={`/resources/${resource.slug}/${
+                                                    row[resource.primaryKey]
+                                                }/details`}
+                                                className="trans-30 text-grey cursor-pointer hover:text-indigo-dark"
+                                            >
+                                                <Svg
+                                                    icon="eye"
+                                                    dataTestId={`view-resource-${index}`}
+                                                />
+                                            </Link>
+                                        )}
                                         <Link
                                             to={`/resources/${resource.slug}/${
                                                 row[resource.primaryKey]

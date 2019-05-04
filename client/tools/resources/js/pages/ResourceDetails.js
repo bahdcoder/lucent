@@ -169,8 +169,8 @@ class ResourceDetails extends React.Component {
         this.setState(
             {
                 data: {},
+                resource,
                 deleting: false,
-                resource: resource
             },
             () => this.fetch(primaryKey, true)
         )
@@ -334,7 +334,7 @@ class ResourceDetails extends React.Component {
                             parentRecord={data}
                             field={hasManyField}
                             parentResource={resource}
-                            // viewChildResource={this.viewChildResource}
+                            viewChildResource={this.viewChildResource}
                         />
                     ))}
                 <Modal
