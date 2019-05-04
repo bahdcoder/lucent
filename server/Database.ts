@@ -94,17 +94,17 @@ export class Database {
         let builder = collection.find(filter)
 
         if (params.limit && params.page) {
-            builder = builder.skip(params.limit * (params.page - 1)).limit(params.limit)
+            builder = builder
+                .skip(params.limit * (params.page - 1))
+                .limit(params.limit)
         }
 
         return {
             // @ts-ignore
-            total: await builder
-                .count(),
+            total: await collection.find(filter).count(),
 
             // @ts-ignore
-            data: await builder
-                .toArray()
+            data: await builder.toArray()
         }
     }
 
@@ -191,7 +191,7 @@ export class Database {
      *
      * @param data
      *
-     * @return {Promise}
+     * @return Promise
      *
      */
     public async update(collection: string, primaryKey: string, data: object) {
@@ -223,7 +223,7 @@ export class Database {
         return this.get()
             .collection(collection)
             .updateMany(
-                { _id: primaryKeys.map(key => new ObjectID(key)) },
+                { _id: { $in: primaryKeys.map(key => new ObjectID(key)) } },
                 { $set: data }
             )
     }

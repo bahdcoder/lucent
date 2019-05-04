@@ -112,7 +112,7 @@ export declare class Database {
      *
      * @param data
      *
-     * @return {Promise}
+     * @return Promise
      *
      */
     update(collection: string, primaryKey: string, data: object): Promise<import("mongodb").FindAndModifyWriteOpResultObject<any>>;

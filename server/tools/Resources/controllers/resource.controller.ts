@@ -34,10 +34,7 @@ class ResourceController {
      * @return {Express.Response}
      *
      */
-    public show = async (
-        req: Express.Request,
-        res: Express.Response
-    ) => {
+    public show = async (req: Express.Request, res: Express.Response) => {
         const resource = await req.pangaso.database.find(
             req.pangaso.resource.collection(),
             req.params.resource
@@ -326,15 +323,197 @@ class ResourceController {
      *
      */
     public async update(req: Express.Request, res: Express.Response) {
-        const data = await req.pangaso.resource.beforeUpdate(req.body)
+        // const data = await req.pangaso.resource.beforeUpdate(req.body)
 
-        const resource = await req.pangaso.database.update(
+        const data = req.body
+
+        const { value: parentRecord } = await req.pangaso.database.update(
             req.pangaso.resource.collection(),
             req.params.resource,
             data
         )
 
-        return res.json(resource)
+        // Here, we'll check if there's a has-one relationship
+        const hasOneRelationships = req.pangaso.resource
+            .fields()
+            .filter((field: IField) => field.type === 'HasOne')
+
+        for (let index = 0; index < hasOneRelationships.length; index++) {
+            const hasOneField = hasOneRelationships[index]
+
+            // get the related resource.
+            const relatedResource = req.pangaso.resources.find(
+                (r: IResource) => r.name() === hasOneField.resource
+            )
+
+            // try to find a reverse related has-one/has-many relationship
+            const reverseRelationshipField = relatedResource
+                .fields()
+                .find(
+                    (field: IField) =>
+                        field.resource === req.pangaso.resource.title()
+                )
+
+            // if this field wasn't even updated, let's quit this whole process now.
+            // TODO: <---------
+
+            // if a relationship was found
+            if (reverseRelationshipField) {
+                // if the found relationship is a HasMany relationship,
+                // we'll have to do a sync. if this updated record id
+                // is already owned by the HaSMany related resource
+                // then we'll remove it. if it's not, then we'll
+                // add it.
+                if (reverseRelationshipField.type === 'HasMany') {
+                    // Here, we'll find the related has-many record
+                    const relatedParentRecord = await req.pangaso.database.find(
+                        relatedResource.collection(),
+                        parentRecord[hasOneField.attribute]
+                    )
+
+                    // if the record is found, it's time to perform the
+                    // sync and update
+                    if (relatedParentRecord) {
+                        let updatedRelatedResources =
+                            relatedParentRecord[
+                                reverseRelationshipField.attribute
+                            ]
+                        let original =
+                            relatedParentRecord[
+                                reverseRelationshipField.attribute
+                            ] || []
+
+                        console.log('-->', relatedParentRecord[
+                            relatedResource.primaryKey()
+                        ], parentRecord[hasOneField.attribute])
+
+                        // Let's check if the user updated the related has-one field
+                        if (
+                            original.includes(
+                                parentRecord[req.pangaso.resource.primaryKey()]
+                            ) &&
+                            parentRecord[hasOneField.attribute] !==
+                                relatedParentRecord[
+                                    relatedResource.primaryKey()
+                                ]
+                        ) {
+                            console.log('-----------------> UPDATING DATA',  (
+                                relatedParentRecord[
+                                    reverseRelationshipField.attribute
+                                ] || []
+                            ).filter(
+                                (i: string) =>
+                                    i !==
+                                    parentRecord[
+                                        req.pangaso.resource.primaryKey()
+                                    ]
+                            ))
+                            // remove it from the old relatedParent
+                            await req.pangaso.database.update(
+                                relatedResource.collection(),
+                                relatedParentRecord[
+                                    relatedResource.primaryKey()
+                                ],
+                                {
+                                    [reverseRelationshipField.attribute]: (
+                                        relatedParentRecord[
+                                            reverseRelationshipField.attribute
+                                        ] || []
+                                    ).filter(
+                                        (i: string) =>
+                                            i !==
+                                            parentRecord[
+                                                req.pangaso.resource.primaryKey()
+                                            ]
+                                    )
+                                }
+                            )
+                        }
+
+                        if (
+                            !original.includes(
+                                parentRecord[req.pangaso.resource.primaryKey()]
+                            ) &&
+                            parentRecord[hasOneField.attribute] !==
+                                relatedParentRecord[
+                                    relatedResource.primaryKey()
+                                ]
+                        ) {
+                            // fetch the newly related parent and add this parentRecord to it's has-many array.
+                        }
+
+                        // if (original.includes(
+                        //     parentRecord[req.pangaso.resource.primaryKey()]
+                        // )) {
+                        //     updatedRelatedResources = original.filter((i: string) => i !== parentRecord[req.pangaso.resource.primaryKey()])
+                        // }
+                    }
+                }
+            }
+        }
+
+        // Here, we'll check if there's a has-many relationship
+        const hasManyRelationships = req.pangaso.resource
+            .fields()
+            .filter((field: IField) => field.type === 'HasMany')
+
+        // if there is, we'll check if there's a reverse has-one/has-many relationship
+        for (let index = 0; index < hasManyRelationships.length; index++) {
+            const hasManyField = hasManyRelationships[index]
+
+            // get the related resource.
+            const relatedResource = req.pangaso.resources.find(
+                (r: IResource) => r.title() === hasManyField.resource
+            )
+
+            // try to find a reverse related has-one/has-many relationship
+            const reverseRelationshipField = relatedResource
+                .fields()
+                .find(
+                    (field: IField) =>
+                        field.name === req.pangaso.resource.name()
+                )
+
+            // if a relationship was found
+            if (reverseRelationshipField) {
+                // if the found relationship is a Has-One relationship
+                // we'll findAndUpdate the related record with
+                // the parent value
+                if (reverseRelationshipField.type === 'HasOne') {
+                    // We are going to perform a full sync of the two resources
+                    // in the database.
+
+                    // First, we'll remove all of the old ones
+                    await req.pangaso.database.bulkUpdate(
+                        relatedResource.collection(),
+                        parentRecord[hasManyField.attribute],
+                        {
+                            [reverseRelationshipField.attribute]: null
+                        }
+                    )
+
+                    // Next, we'll update
+
+                    // Next, we'll run this query to populate the new ones that were selected by user
+                    await req.pangaso.database.bulkUpdate(
+                        relatedResource.collection(),
+                        data[hasManyField.attribute],
+                        {
+                            [reverseRelationshipField.attribute]:
+                                parentRecord[req.pangaso.resource.primaryKey()]
+                        }
+                    )
+                }
+
+                if (reverseRelationshipField.type === 'HasMany') {
+                    // TODO: Add support for has many updates.
+                }
+            }
+            // try to find a reverse related has-many relationship
+        }
+        // if there is, then we'll automatically populate the related models.
+
+        return res.json(parentRecord)
     }
 
     /**

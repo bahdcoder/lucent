@@ -101,7 +101,7 @@ export class Action {
         return {
             id: this.id,
             name: this.name,
-            fiels: this.fields(),
+            fields: this.fields(),
             isDestructive: this.isDestructive
         }
     }

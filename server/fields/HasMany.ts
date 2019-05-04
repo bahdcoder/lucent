@@ -32,8 +32,8 @@ export class HasMany extends Field {
         super()
 
         this.name = name
-        this.attribute = attribute || ChangeCase.camelCase(this.name)
         this.resource = resource || name
+        this.attribute = attribute || ChangeCase.camelCase(this.name)
 
         this.hideOnIndex()
         this.hideOnDetail()

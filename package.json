@@ -99,6 +99,7 @@
     "react-paginate": "^6.3.0",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
+    "react-transition-group": "^4.0.0",
     "redux-axios-middleware": "^4.0.0",
     "throttle-debounce": "^2.1.0",
     "toastedjs": "^0.0.2",

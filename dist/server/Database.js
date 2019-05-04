@@ -133,16 +133,16 @@ var Database = /** @class */ (function () {
                         collection = this.get().collection(collectionName);
                         builder = collection.find(filter);
                         if (params.limit && params.page) {
-                            builder = builder.skip(params.limit * (params.page - 1)).limit(params.limit);
+                            builder = builder
+                                .skip(params.limit * (params.page - 1))
+                                .limit(params.limit);
                         }
                         _a = {};
-                        return [4 /*yield*/, builder
-                                .count()];
+                        return [4 /*yield*/, collection.find(filter).count()];
                     case 1:
                         // @ts-ignore
                         _a.total = _b.sent();
-                        return [4 /*yield*/, builder
-                                .toArray()];
+                        return [4 /*yield*/, builder.toArray()];
                     case 2: return [2 /*return*/, (
                         // @ts-ignore
                         _a.data = _b.sent(),
@@ -243,7 +243,7 @@ var Database = /** @class */ (function () {
      *
      * @param data
      *
-     * @return {Promise}
+     * @return Promise
      *
      */
     Database.prototype.update = function (collection, primaryKey, data) {
@@ -275,7 +275,7 @@ var Database = /** @class */ (function () {
                 // @ts-ignore
                 return [2 /*return*/, this.get()
                         .collection(collection)
-                        .updateMany({ _id: primaryKeys.map(function (key) { return new mongodb_1.ObjectID(key); }) }, { $set: data })];
+                        .updateMany({ _id: { $in: primaryKeys.map(function (key) { return new mongodb_1.ObjectID(key); }) } }, { $set: data })];
             });
         });
     };

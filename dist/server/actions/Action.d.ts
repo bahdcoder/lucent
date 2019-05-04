@@ -75,7 +75,7 @@ export declare class Action {
     serialize(): {
         id: string;
         name: string;
-        fiels: never[];
+        fields: never[];
         isDestructive: Boolean;
     };
 }

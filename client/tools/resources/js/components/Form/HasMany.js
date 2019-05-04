@@ -14,10 +14,10 @@ class HasManyField extends React.Component {
     }
 
     /**
-     * 
+     *
      * Get the current resource, which is the
      * related resource
-     * 
+     *
      */
     getCurrentResource() {
         return Pangaso.resources.find(

@@ -27,10 +27,18 @@ mix.react('client/index.js', 'public/app.js')
         'client/tools/resources/js/index.js',
         'pangaso-resources/tools/resources.js'
     )
+    .react(
+        'client/tools/dashboard/js/index.js',
+        'pangaso-dashboard/tools/dashboard.js'
+    )
     .sass('client/styles/main.scss', 'public/app.css')
     .sass(
         'client/tools/resources/styles/index.scss',
         'pangaso-resources/tools/resources.css'
+    )
+    .sass(
+        'client/tools/dashboard/styles/index.scss',
+        'pangaso-dashboard/tools/dashboard.css'
     )
     .tailwind()
 

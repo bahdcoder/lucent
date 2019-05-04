@@ -183,17 +183,23 @@ const Table = ({
                                 })}
                                 <td className="text-left pr-6">
                                     <span className="flex items-center justify-end flex-grow">
-                                        
                                         {viewChildResource ? (
                                             <Svg
                                                 icon="eye"
                                                 dataTestId={`view-resource-${index}`}
                                                 className="trans-30 text-grey cursor-pointer hover:text-indigo-dark"
-                                                onClick={() => viewChildResource(resource, row[resource.primaryKey])}
+                                                onClick={() =>
+                                                    viewChildResource(
+                                                        resource,
+                                                        row[resource.primaryKey]
+                                                    )
+                                                }
                                             />
                                         ) : (
                                             <Link
-                                                to={`/resources/${resource.slug}/${
+                                                to={`/resources/${
+                                                    resource.slug
+                                                }/${
                                                     row[resource.primaryKey]
                                                 }/details`}
                                                 className="trans-30 text-grey cursor-pointer hover:text-indigo-dark"
@@ -250,8 +256,8 @@ const Table = ({
                     pageCount={pageCount}
                     pageRangeDisplayed={5}
                     marginPagesDisplayed={2}
-                    onPageChange={onPageChange}
                     activeClassName={'active'}
+                    onPageChange={onPageChange}
                     containerClassName={'paginator'}
                 />
 

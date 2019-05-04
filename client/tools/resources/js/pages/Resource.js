@@ -17,38 +17,39 @@ class Resource extends React.Component {
         currentlyDeleting: '',
         resource: this.getCurrentResource(),
         page: this.getQueryParams().page || 1,
-        query: this.getQueryParams().query || '',
+        query: this.getQueryParams().query || ''
     }
 
     /**
-     * 
+     *
      * Get parsed query parameters
-     * 
+     *
      */
     getQueryParams() {
         return QueryString.parse(this.props.location.search)
     }
 
     /**
-     * 
+     *
      * Get all the query params
-     * 
+     *
      * @return {Object}
-     * 
+     *
      */
     params = () => QueryString.parse(this.props.location.search)
 
     /**
-     * 
+     *
      * Get stringified version of params
-     * 
+     *
      * @return {string}
-     * 
+     *
      */
-    paramsString = () => QueryString.stringify({
-        page: this.state.page || 1,
-        query: this.state.query || ''
-    })
+    paramsString = () =>
+        QueryString.stringify({
+            page: this.state.page || 1,
+            query: this.state.query || ''
+        })
 
     /**
      *
@@ -93,11 +94,11 @@ class Resource extends React.Component {
         })
 
     /**
-     * 
+     *
      * Update the window location with the latest params
-     * 
+     *
      * @return {null}
-     * 
+     *
      */
     updateWindowLocation = () => {
         const { resource, history, location } = this.props
@@ -189,13 +190,16 @@ class Resource extends React.Component {
     }
 
     handleQueryChange = event => {
-        this.setState({
-            isFetching: true,
-            query: event.target.value
-        }, () => {
-            this.updateWindowLocation()
-            this.fetchData()
-        })
+        this.setState(
+            {
+                isFetching: true,
+                query: event.target.value
+            },
+            () => {
+                this.updateWindowLocation()
+                this.fetchData()
+            }
+        )
     }
 
     /**
@@ -213,9 +217,7 @@ class Resource extends React.Component {
 
         Pangaso.request()
             .get(`/resources/${resource.slug}/search?query=${query}`)
-            .then(({ data }) => {
-                
-            })
+            .then(({ data }) => {})
     })
 
     /**

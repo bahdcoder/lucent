@@ -3,7 +3,7 @@ const {
     Text,
     Resource,
     HasOne,
-    HasOneEmbedded,
+    HasOneEmbedded
 } = require('../../dist/server/main')
 
 class Contact extends Resource {
@@ -14,10 +14,18 @@ class Contact extends Resource {
     fields() {
         return [
             ID.make('ID'),
-            Text.make('First Name').createWithRules('required|max:40').searchable(),
-            Text.make('Last Name').createWithRules('required|max:40').searchable(),
-            Text.make('Email').createWithRules('required|email').searchable(),
-            Text.make('Phone').createWithRules('required').searchable(),
+            Text.make('First Name')
+                .createWithRules('required|max:40')
+                .searchable(),
+            Text.make('Last Name')
+                .createWithRules('required|max:40')
+                .searchable(),
+            Text.make('Email')
+                .createWithRules('required|email')
+                .searchable(),
+            Text.make('Phone')
+                .createWithRules('required')
+                .searchable(),
             HasOneEmbedded.make('Address').withFields([
                 Text.make('City').createWithRules('required'),
                 Text.make('State').createWithRules('required'),

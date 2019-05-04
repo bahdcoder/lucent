@@ -34,7 +34,7 @@ class Combobox extends React.Component {
         },
         isFetching: true,
         optionsOpen: false,
-        selected: [],
+        selected: []
     }
 
     handleChange = event => {
@@ -51,29 +51,37 @@ class Combobox extends React.Component {
     }
 
     /**
-     * 
+     *
      * Remove escape key event listener
-     * 
+     *
      */
     componentWillUnmount() {
         document.removeEventListener('keydown', this.closeOptions, false)
     }
 
     /**
-     * 
+     *
      * Here, we'll check if value prop was passed. If it was,
      * then we'll fetch the matching records and set
      * on this component.
-     * 
+     *
      */
     componentDidMount() {
-        const { field, editing, multiple, parentResource, parentRecord } = this.props
+        const {
+            field,
+            editing,
+            multiple,
+            parentResource,
+            parentRecord
+        } = this.props
 
         if (editing && multiple) {
             Pangaso.request()
-                .get(`/resources/${parentResource.slug}/${
-                    parentRecord[parentResource.primaryKey]
-                }/has-many/${field.attribute}`)
+                .get(
+                    `/resources/${parentResource.slug}/${
+                        parentRecord[parentResource.primaryKey]
+                    }/has-many/${field.attribute}`
+                )
                 .then(({ data }) => {
                     this.setState({
                         selected: data.data
@@ -83,12 +91,14 @@ class Combobox extends React.Component {
 
         if (editing && !multiple) {
             Pangaso.request()
-                .get(`/resources/${parentResource.slug}/${
-                    parentRecord[parentResource.primaryKey]
-                }/has-one/${field.attribute}`)
+                .get(
+                    `/resources/${parentResource.slug}/${
+                        parentRecord[parentResource.primaryKey]
+                    }/has-one/${field.attribute}`
+                )
                 .then(({ data }) => {
                     this.setState({
-                        selected: data ? [data]: []
+                        selected: data ? [data] : []
                     })
                 })
         }
@@ -97,10 +107,11 @@ class Combobox extends React.Component {
     }
 
     closeOptions = ({ keyCode }) => {
-        keyCode === 27 && this.setState({
-            query: '',
-            optionsOpen: false
-        })
+        keyCode === 27 &&
+            this.setState({
+                query: '',
+                optionsOpen: false
+            })
     }
 
     /**
@@ -147,10 +158,7 @@ class Combobox extends React.Component {
         let newSelected = [option]
 
         if (multiple) {
-            newSelected = [
-                ...newSelected,
-                ...this.state.selected
-            ]
+            newSelected = [...newSelected, ...this.state.selected]
         }
 
         this.setState(
@@ -174,44 +182,46 @@ class Combobox extends React.Component {
     }
 
     /**
-     * 
+     *
      * Trigger the handler on the
      * parent component
-     * 
+     *
      */
     triggerHandler = () => {
         const { name, handler, resource, multiple } = this.props
 
-        const value =  this.state.selected.map(
-            item => item[resource.primaryKey]
-        )
+        const value = this.state.selected.map(item => item[resource.primaryKey])
 
-        handler && handler({
-            name,
-            value: multiple ? value : (value[0] || null),
-            type: multiple ? 'MultiSelect' : 'SingleSelect',
-        })
+        handler &&
+            handler({
+                name,
+                value: multiple ? value : value[0] || null,
+                type: multiple ? 'MultiSelect' : 'SingleSelect'
+            })
     }
 
     /**
-     * 
+     *
      * Remove an item from the list of selected
-     * 
+     *
      * @param {object} item
-     * 
+     *
      * @return {null}
-     * 
+     *
      */
     removeItem = item => {
         const { resource } = this.props
 
-        this.setState({
-            selected: this.state.selected.filter(
-                selectedItem =>
-                    selectedItem[resource.primaryKey] !==
-                    item[resource.primaryKey]
-            )
-        }, () => this.triggerHandler())
+        this.setState(
+            {
+                selected: this.state.selected.filter(
+                    selectedItem =>
+                        selectedItem[resource.primaryKey] !==
+                        item[resource.primaryKey]
+                )
+            },
+            () => this.triggerHandler()
+        )
     }
 
     render() {

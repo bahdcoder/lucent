@@ -15,13 +15,14 @@ class HasOneField extends React.Component {
         const { field } = this.props
         const { resource } = this.state
 
-        !field.isSearchable && Pangaso.request()
-            .get(`/resources/${resource.slug}/all`)
-            .then(({ data }) => {
-                this.setState({
-                    options: data
+        !field.isSearchable &&
+            Pangaso.request()
+                .get(`/resources/${resource.slug}/all`)
+                .then(({ data }) => {
+                    this.setState({
+                        options: data
+                    })
                 })
-            })
     }
 
     /**
@@ -63,12 +64,7 @@ class HasOneField extends React.Component {
         if (this.props.field.isSearchable) {
             const { resource } = this.state
 
-            return (
-                <Combobox
-                    {...this.props}
-                    resource={resource}
-                />
-            )
+            return <Combobox {...this.props} resource={resource} />
         } else {
             const { field, handler, value, ...rest } = this.props
 

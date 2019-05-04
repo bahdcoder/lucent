@@ -170,7 +170,7 @@ class ResourceDetails extends React.Component {
             {
                 data: {},
                 resource,
-                deleting: false,
+                deleting: false
             },
             () => this.fetch(primaryKey, true)
         )

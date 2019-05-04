@@ -134,7 +134,7 @@ class HasOne extends React.Component {
                                     ) : null
                                 })}
                             {!resourceWasFound && !isFetching && (
-                                <span className='w-full font-bold flex items-center justify-center py-8 text-indigo'>
+                                <span className="w-full font-bold flex items-center justify-center py-8 text-indigo">
                                     Resource not found.
                                 </span>
                             )}

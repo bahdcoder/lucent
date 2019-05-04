@@ -1,7 +1,3 @@
 module.exports = {
-    testPathIgnorePatterns: [
-        '<rootDir>/node_modules/',
-        '<rootDir>/cypress'
-    ]
+    testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/cypress']
 }
-  

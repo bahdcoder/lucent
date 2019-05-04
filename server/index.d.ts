@@ -18,6 +18,7 @@ export interface IField {
     type: string
     fields?: IField[]
     name: string
+    resource?: string
     isSearchable: boolean
 }
 

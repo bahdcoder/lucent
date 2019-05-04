@@ -1,6 +1,7 @@
 import React from 'react'
 import Pangaso from './Pangaso'
-import { Route, Link, withRouter } from 'react-router-dom'
+import { Route, Link, withRouter, Switch } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 export class Main extends React.Component {
     /**
@@ -22,10 +23,6 @@ export class Main extends React.Component {
         Pangaso.setState = this.setState.bind(this)
     }
 
-    componentDidCatch(error, info) {
-        console.log('ERROR----X-XX--XXX--XXXX--XXXXX----------------------->', error, info)
-    }
-
     /**
      *
      * Render the main component
@@ -39,11 +36,11 @@ export class Main extends React.Component {
                 <div className="flex">
                     <div className="w-1/8 flex min-h-screen">
                         <div className="bg-indigo-darker w-full">
-                            <div className="w-full text-white bg-indigo-darkest h-16 flex items-center justify-center text-lg">
+                            <div className="w-full text-white bg-indigo-darkest h-12 flex items-center justify-center text-lg">
                                 Pangaso
                             </div>
                             {/** Register all sidebar items for tools */}
-                            <div className="py-16 px-8">
+                            <div className="py-8 px-8">
                                 {this.state.sidebarItems.map(
                                     (SidebarItem, index) => {
                                         const SidebarItemWithRouter = withRouter(
@@ -71,20 +68,53 @@ export class Main extends React.Component {
                             />
                         </div>
                         {/** Loop through all registered tools and display them here. */}
-                        <div className="p-12">
-                            {this.state.routes.map(
-                                ({ path, component: Component }, index) => (
-                                    <Route
-                                        exact
-                                        key={index}
-                                        path={path}
-                                        render={props => (
-                                            <Component {...props} Link={Link} />
+                        <Route
+                            render={({ location }) => (
+                                <div className="p-12">
+                                    {/* <TransitionGroup>
+                                    <CSSTransition
+                                        timeout={300}
+                                        classNames='fade'
+                                    >
+                                        <Switch location={location}>
+                                            {this.state.routes.map(
+                                                ({ path, component: Component }) => (
+                                                    <Route
+                                                        exact
+                                                        key={path}
+                                                        path={path}
+                                                        render={props => (
+                                                            <Component {...props} Link={Link} />
+                                                        )}
+                                                    />
+                                                )
+                                            )}
+                                        </Switch>
+                                    </CSSTransition>
+                                </TransitionGroup> */}
+                                    <Switch location={location}>
+                                        {this.state.routes.map(
+                                            (
+                                                { path, component: Component },
+                                                index
+                                            ) => (
+                                                <Route
+                                                    exact
+                                                    key={index}
+                                                    path={path}
+                                                    render={props => (
+                                                        <Component
+                                                            {...props}
+                                                            Link={Link}
+                                                        />
+                                                    )}
+                                                />
+                                            )
                                         )}
-                                    />
-                                )
+                                    </Switch>
+                                </div>
                             )}
-                        </div>
+                        />
                         {/** By default, pangaso will come with two tools: Dashboard & Resources tools  */}
                     </div>
                 </div>

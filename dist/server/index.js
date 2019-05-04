@@ -8,6 +8,7 @@ var Router_1 = require("./Router");
 var Root = require("app-root-path");
 var mongodb_1 = require("mongodb");
 var BodyParser = require("body-parser");
+var Dashboard_1 = require("./tools/Dashboard");
 var Resources_1 = require("./tools/Resources");
 var Database_1 = require("./Database");
 var Pangaso = /** @class */ (function () {
@@ -64,7 +65,7 @@ var Pangaso = /** @class */ (function () {
          * @type {Array}
          *
          */
-        this.tools = [new Resources_1.Resources()];
+        this.tools = [new Dashboard_1.Dashboard(), new Resources_1.Resources()];
         /**
          * Define the pangaso router
          *

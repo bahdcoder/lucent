@@ -44,8 +44,8 @@ var HasMany = /** @class */ (function (_super) {
          */
         _this.resource = null;
         _this.name = name;
-        _this.attribute = attribute || ChangeCase.camelCase(_this.name);
         _this.resource = resource || name;
+        _this.attribute = attribute || ChangeCase.camelCase(_this.name);
         _this.hideOnIndex();
         _this.hideOnDetail();
         return _this;

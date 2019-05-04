@@ -6,6 +6,7 @@ import PangasoRouter from './Router'
 import * as Root from 'app-root-path'
 import { MongoClient } from 'mongodb'
 import * as BodyParser from 'body-parser'
+import { Dashboard } from './tools/Dashboard'
 import { Resources } from './tools/Resources'
 import { Connection, Database } from './Database'
 import { IResource, ITools, IAsset } from './index.d'
@@ -81,7 +82,7 @@ export class Pangaso {
      * @type {Array}
      *
      */
-    private tools: ITools[] = [new Resources()]
+    private tools: ITools[] = [new Dashboard(), new Resources()]
 
     /**
      *

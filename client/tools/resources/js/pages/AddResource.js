@@ -137,9 +137,12 @@ class AddResource extends React.Component {
              *
              */
             .then(({ data }) => {
-                this.setState({
-                    record: data
-                }, () => this.populateFields(data))
+                this.setState(
+                    {
+                        record: data
+                    },
+                    () => this.populateFields(data)
+                )
             })
 
             /**
@@ -205,7 +208,8 @@ class AddResource extends React.Component {
         for (const attribute of Object.keys(form)) {
             const field = form[attribute]
 
-            if (field &&
+            if (
+                field &&
                 typeof field === 'object' &&
                 !(field instanceof Blob) &&
                 !Array.isArray(field)
