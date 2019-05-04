@@ -1,5 +1,5 @@
 {
-  "name": "@fullstackjs/pangaso",
+  "name": "pangaso",
   "version": "1.0.0",
   "main": "dist/server/main.js",
   "types": "dist/server/index.d.ts",

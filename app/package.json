@@ -1,0 +1,20 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/consola": "^1.0.0",
+    "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
+    "consola": "^2.6.0",
+    "express": "^4.16.4",
+    "faker": "^4.1.0",
+    "mongoose": "^5.5.1",
+    "nodemon": "^1.18.11"
+  },
+  "scripts": {
+    "dev": "nodemon index",
+    "start": "node index"
+  }
+}
