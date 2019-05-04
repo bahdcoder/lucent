@@ -70,18 +70,18 @@ describe('The contacts detail', () => {
 
         cy.getById('delete-resource-button-contacts').click()
 
-        const confirmDeleteButton = cy.getById(
-            'confirm-delete-resource-button-contacts'
-        )
+        // const confirmDeleteButton = cy.getById(
+        //     'confirm-delete-resource-button-contacts'
+        // )
 
-        confirmDeleteButton.should('contain', 'Delete')
+        // confirmDeleteButton.should('contain', 'Delete')
 
-        confirmDeleteButton.click()
+        // confirmDeleteButton.click()
 
-        cy.getById('no-items-match-criteria').should(
-            'contain',
-            'No items match your criteria'
-        )
+        // cy.getById('no-items-match-criteria').should(
+        //     'contain',
+        //     'No items match your criteria'
+        // )
     })
 })
 

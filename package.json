@@ -12,8 +12,10 @@
     "build": "webpack --mode=production",
     "watch": "yarn dev -- --watch",
     "test:unit": "jest",
-    "test:e2e": "cypress run",
-    "prettier": "prettier --write './**/*.{js,ts,tsx,css}'"
+    "test:e2e": "cypress run --record",
+    "prettier": "prettier --write './**/*.{js,ts,tsx,css}'",
+    "start-dev-server": "cd app && npm start",
+    "test": "yarn test:unit && start-server-and-test start-dev-server http://localhost:5044 test:e2e"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
@@ -47,6 +49,7 @@
     "resolve-url-loader": "2.3.1",
     "sass": "^1.18.0",
     "sass-loader": "7.*",
+    "start-server-and-test": "^1.9.0",
     "tailwindcss": "^0.7.4",
     "typescript": "^3.4.3",
     "uglifyjs-webpack-plugin": "^2.1.2",
