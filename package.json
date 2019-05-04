@@ -12,7 +12,7 @@
     "build": "webpack --mode=production",
     "watch": "yarn dev -- --watch",
     "test:unit": "jest",
-    "test:e2e": "cypress run --record",
+    "test:e2e": "cypress run --record --key 6214b15d-0117-4a31-adc0-70c9dbf744e7",
     "prettier": "prettier --write './**/*.{js,ts,tsx,css}'",
     "start-dev-server": "cd app && npm start",
     "test": "yarn test:unit && start-server-and-test start-dev-server http://localhost:5044 test:e2e"
