@@ -249,6 +249,7 @@ class ResourceDetails extends React.Component {
                                         checked={data[field.attribute]}
                                         content={data[field.attribute]}
                                         dataTestId={`detail-${field.attribute}`}
+                                        {...field}
                                     />
                                 </div>
                             </div>

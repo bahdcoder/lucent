@@ -16,6 +16,14 @@ export class Select extends Field {
     public type: string = 'Select'
 
     /**
+     * 
+     * Define the options for this select field
+     * 
+     * @var {Array[SelectOptions]}
+     */
+    public options: SelectOptions[] = []
+
+    /**
      * Initialize the Select field
      *
      * @param {string} name
@@ -25,14 +33,26 @@ export class Select extends Field {
      */
     constructor(
         public name: string,
-        public options: SelectOptions[],
         public attribute: string = ''
     ) {
         super()
 
         this.name = name
-        this.options = options
         this.attribute = attribute || ChangeCase.camelCase(this.name)
+    }
+
+    /**
+     * Set the options for select
+     * 
+     * @param options SelectOptions[]
+     * 
+     * @return {Select}
+     * 
+     */
+    public withOptions(options: SelectOptions[]) {
+        this.options = options
+
+        return this
     }
 
     /**
@@ -42,7 +62,7 @@ export class Select extends Field {
      * @return {Select}
      *
      */
-    static make(name: string, options: SelectOptions[], attribute?: string) {
-        return new Select(name, options, attribute)
+    static make(name: string, attribute?: string) {
+        return new Select(name, attribute)
     }
 }

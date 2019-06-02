@@ -453,7 +453,7 @@ class AddResource extends React.Component {
      *
      */
     getCreationFields = () =>
-        this.state.resource.fields.filter(field => !field.hideOnCreationForm)
+        this.state.resource.nonComputedFields.filter(field => !field.hideOnCreationForm)
 
     /**
      *
@@ -463,7 +463,7 @@ class AddResource extends React.Component {
      *
      */
     getUpdateFields = () =>
-        this.state.resource.fields.filter(field => !field.hideOnUpdateForm)
+        this.state.resource.nonComputedFields.filter(field => !field.hideOnUpdateForm)
 
     /**
      *

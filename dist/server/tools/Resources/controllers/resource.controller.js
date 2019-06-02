@@ -128,6 +128,7 @@ var ResourceController = /** @class */ (function () {
                             }, filter)];
                     case 1:
                         data = _a.sent();
+                        this.resolveComputedFields(req, data.data);
                         return [2 /*return*/, res.json(data)];
                 }
             });
@@ -617,6 +618,48 @@ var ResourceController = /** @class */ (function () {
                         _a.sent();
                         return [2 /*return*/, res.json({})];
                 }
+            });
+        });
+    };
+    /**
+     *
+     * This method
+     */
+    ResourceController.prototype.resolveComputedFieldForDocument = function () {
+        return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/];
+        }); });
+    };
+    /**
+     *
+     * This method resolves all computed fields for a resource
+     * @param {Array/Object} data
+     *
+     * @return {Array/Object}
+     */
+    ResourceController.prototype.resolveComputedFields = function (req, data) {
+        return __awaiter(this, void 0, void 0, function () {
+            var computedFields;
+            return __generator(this, function (_a) {
+                computedFields = req.pangaso.resource.fields().filter(function (field) { return field.computed; });
+                // first we'll check if it's an array or an object
+                if (Array.isArray(data)) {
+                    // yep, it's a collection of documents
+                    /**
+                     *
+                     * To have some control, let's make this synchronous for now. If it doesn't pose
+                     * any performance issues then we can make it async
+                     *
+                     */
+                    computedFields.forEach(function (field) {
+                        data.forEach(function (item) {
+                            item[field.attribute] = field.computedResolver(item);
+                        });
+                    });
+                    return [2 /*return*/, data];
+                }
+                // it's a single document
+                return [2 /*return*/, data];
             });
         });
     };

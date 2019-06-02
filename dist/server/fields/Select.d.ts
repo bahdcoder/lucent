@@ -5,7 +5,6 @@ interface SelectOptions {
 }
 export declare class Select extends Field {
     name: string;
-    options: SelectOptions[];
     attribute: string;
     /**
      * Define the type of this field
@@ -15,6 +14,13 @@ export declare class Select extends Field {
      */
     type: string;
     /**
+     *
+     * Define the options for this select field
+     *
+     * @var {Array[SelectOptions]}
+     */
+    options: SelectOptions[];
+    /**
      * Initialize the Select field
      *
      * @param {string} name
@@ -22,7 +28,16 @@ export declare class Select extends Field {
      * @return {void}
      *
      */
-    constructor(name: string, options: SelectOptions[], attribute?: string);
+    constructor(name: string, attribute?: string);
+    /**
+     * Set the options for select
+     *
+     * @param options SelectOptions[]
+     *
+     * @return {Select}
+     *
+     */
+    withOptions(options: SelectOptions[]): this;
     /**
      *
      * Make a Select
@@ -30,6 +45,6 @@ export declare class Select extends Field {
      * @return {Select}
      *
      */
-    static make(name: string, options: SelectOptions[], attribute?: string): Select;
+    static make(name: string, attribute?: string): Select;
 }
 export {};

@@ -37,6 +37,22 @@ var Textarea = /** @class */ (function (_super) {
          *
          */
         _this.type = 'Textarea';
+        /**
+         * Define the number of rows for this textarea
+         *
+         * @var {number}
+         *
+         */
+        _this.rowsCount = 4;
+        /**
+         *
+         * This property removes the textarea toggle show/hide
+         * functionality on the details screen
+         *
+         * @var {boolean}
+         *
+         */
+        _this.shouldAlwaysShow = false;
         _this.name = name;
         _this.type = 'Textarea';
         _this.attribute = attribute || ChangeCase.camelCase(_this.name);
@@ -52,6 +68,27 @@ var Textarea = /** @class */ (function (_super) {
      */
     Textarea.make = function (name, attribute) {
         return new Textarea(name, attribute);
+    };
+    /**
+     * Set shouldAlwaysShow property to true
+     *
+     * @return {Textarea}
+     *
+     */
+    Textarea.prototype.alwaysShow = function () {
+        this.shouldAlwaysShow = true;
+        return this;
+    };
+    /**
+     *
+     * Set the number of rows on this textarea
+     *
+     * @return {Textarea}
+     *
+     */
+    Textarea.prototype.rows = function (rowsCount) {
+        this.rowsCount = rowsCount;
+        return this;
     };
     return Textarea;
 }(Field_1.Field));

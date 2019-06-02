@@ -33,6 +33,12 @@ export declare class BaseResource implements IResource {
      */
     fields(): never[];
     /**
+     * Get all non computed fields for this resource
+     *
+     * @return {Array}
+     */
+    nonComputedFields(): never[];
+    /**
      *
      * Get the value to be used to display this resource
      *
@@ -135,6 +141,7 @@ export declare class BaseResource implements IResource {
         collection: string;
         displayValue: string;
         authorizedToView: boolean;
+        nonComputedFields: never[];
         authorizedToCreate: boolean;
         authorizedToUpdate: boolean;
         authorizedToDelete: boolean;

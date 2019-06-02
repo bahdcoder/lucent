@@ -80,6 +80,14 @@ var BaseResource = /** @class */ (function () {
         return [];
     };
     /**
+     * Get all non computed fields for this resource
+     *
+     * @return {Array}
+     */
+    BaseResource.prototype.nonComputedFields = function () {
+        return this.fields().filter(function (field) { return !field.computed; });
+    };
+    /**
      *
      * Get the value to be used to display this resource
      *
@@ -104,8 +112,7 @@ var BaseResource = /** @class */ (function () {
      *
      */
     BaseResource.prototype.collection = function () {
-        var name = this.name();
-        return name.toLowerCase() + "s";
+        return Pluralize.plural(this.name()).toLowerCase();
     };
     /**
      * Determine if current user is authorized to create this resource
@@ -214,11 +221,11 @@ var BaseResource = /** @class */ (function () {
             collection: this.collection(),
             displayValue: this.displayValue(),
             authorizedToView: this.authorizedToView(),
+            nonComputedFields: this.nonComputedFields(),
             authorizedToCreate: this.authorizedToCreate(),
             authorizedToUpdate: this.authorizedToUpdate(),
             authorizedToDelete: this.authorizedToDelete(),
             actions: this.actions().map(function (action) { return action.serialize(); })
-            // schemaFields: Object.keys(this.schema().paths)
         };
     };
     return BaseResource;

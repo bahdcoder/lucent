@@ -16,10 +16,13 @@ const getFakeOrg = data => ({
 
 // -- Add a command to generate fake contact data -- //
 const getFakeContact = data => ({
+    age: faker.random.number(),
     email: faker.internet.email(),
     lastName: faker.name.lastName(),
     phone: faker.phone.phoneNumber(),
     firstName: faker.name.firstName(),
+    bio: faker.lorem.paragraph(),
+    password: faker.lorem.word(),
     address: {
         city: faker.address.city(),
         state: faker.address.state(),

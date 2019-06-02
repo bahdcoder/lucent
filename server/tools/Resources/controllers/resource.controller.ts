@@ -150,6 +150,8 @@ class ResourceController {
             filter
         )
 
+        this.resolveComputedFields(req, data.data)
+
         return res.json(data)
     }
 
@@ -299,6 +301,12 @@ class ResourceController {
         const id = v4()
         if (req.files && req.files.file) {
             const file: any = req.files.file
+            /**
+             * TODO: Make sure the `pangaso-storage` folder is customizable
+             *  Also, there should be multiple drivers support for file
+             * uploads and storage
+             * 
+             */
             const path = `${process.cwd()}/pangaso-storage/${id}.${file.name
                 .split('.')
                 .pop()}`
@@ -618,6 +626,45 @@ class ResourceController {
         await req.pangaso.database.clear(req.params.slug)
 
         return res.json({})
+    }
+
+    /**
+     * 
+     * This method 
+     */
+    public async resolveComputedFieldForDocument() {}
+
+    /**
+     * 
+     * This method resolves all computed fields for a resource
+     * @param {Array/Object} data
+     * 
+     * @return {Array/Object}
+     */
+    public async resolveComputedFields(req: Express.Request, data: any) {
+        const computedFields = req.pangaso.resource.fields().filter((field: IField) => field.computed)
+
+        // first we'll check if it's an array or an object
+        if (Array.isArray(data)) {
+            // yep, it's a collection of documents
+
+            /**
+             * 
+             * To have some control, let's make this synchronous for now. If it doesn't pose
+             * any performance issues then we can make it async
+             * 
+             */
+            computedFields.forEach((field: IField) => {
+                data.forEach((item: any) => {
+                    item[field.attribute] = field.computedResolver(item)
+                })
+            })
+
+            return data
+        }
+
+        // it's a single document
+        return data
     }
 }
 

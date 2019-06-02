@@ -1,5 +1,7 @@
 const { Pangaso } = require('../dist/server/main')
 
+process.env.MONGO_URL = 'mongodb://localhost/pangaso'
+
 new Pangaso()
     .onPort(process.env.PORT || 5044)
     .withTools([])

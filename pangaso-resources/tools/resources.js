@@ -1150,13 +1150,13 @@ function (_React$Component) {
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "getCreationFields", function () {
-      return _this.state.resource.fields.filter(function (field) {
+      return _this.state.resource.nonComputedFields.filter(function (field) {
         return !field.hideOnCreationForm;
       });
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "getUpdateFields", function () {
-      return _this.state.resource.fields.filter(function (field) {
+      return _this.state.resource.nonComputedFields.filter(function (field) {
         return !field.hideOnUpdateForm;
       });
     });
@@ -2137,13 +2137,13 @@ function (_React$Component) {
           className: "w-1/4 text-lg font-thin text-grey-dark"
         }, field.name), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
           className: "w-2/4 flex flex-col text-grey-darkest leading-normal tracking-normal"
-        }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(DetailField, {
+        }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(DetailField, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({
           options: field.options,
           dateFormat: field.dateFormat,
           checked: data[field.attribute],
           content: data[field.attribute],
           dataTestId: "detail-".concat(field.attribute)
-        }))) : null;
+        }, field)))) : null;
       })), embeddedFields.map(function (embeddableField, index) {
         return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
           key: index,

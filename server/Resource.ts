@@ -1,4 +1,4 @@
-import { IResource } from './index.d'
+import { IResource, IField } from './index.d'
 import * as Pluralize from 'pluralize'
 
 export class BaseResource implements IResource {
@@ -47,6 +47,15 @@ export class BaseResource implements IResource {
     }
 
     /**
+     * Get all non computed fields for this resource
+     * 
+     * @return {Array}
+     */
+    public nonComputedFields() {
+        return this.fields().filter((field: IField) => !field.computed)
+    }
+
+    /**
      *
      * Get the value to be used to display this resource
      *
@@ -73,9 +82,7 @@ export class BaseResource implements IResource {
      *
      */
     public collection(): string {
-        const name: string = this.name()
-
-        return `${name.toLowerCase()}s`
+        return Pluralize.plural(this.name()).toLowerCase()
     }
 
     /**
@@ -185,11 +192,11 @@ export class BaseResource implements IResource {
             collection: this.collection(),
             displayValue: this.displayValue(),
             authorizedToView: this.authorizedToView(),
+            nonComputedFields: this.nonComputedFields(),
             authorizedToCreate: this.authorizedToCreate(),
             authorizedToUpdate: this.authorizedToUpdate(),
             authorizedToDelete: this.authorizedToDelete(),
             actions: this.actions().map((action: any) => action.serialize())
-            // schemaFields: Object.keys(this.schema().paths)
         }
     }
 }

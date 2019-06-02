@@ -1,7 +1,7 @@
-import { IFieldMeta } from '../index.d'
+import { IFieldMeta, IField } from '../index.d'
 import * as ChangeCase from 'change-case'
 
-export class Field {
+export class Field implements IField {
     /**
      *
      * Define meta data for this field
@@ -21,6 +21,15 @@ export class Field {
      *
      */
     public canBeNull: boolean = false
+
+    /**
+     * 
+     * Define the field type
+     * 
+     * @var {string}
+     * 
+     */
+    public type: string = ''
 
     /**
      *
@@ -50,6 +59,24 @@ export class Field {
     public detail: string = `detail-${ChangeCase.lowerCase(
         this.constructor.name
     )}`
+
+    /**
+     * 
+     * Define this field as a computed field
+     * 
+     * @var {boolean}
+     * 
+     */
+    public computed: boolean = false
+
+    /**
+     * 
+     * This is used to resolve the value of a computed property
+     * 
+     * @var {Function}
+     * 
+     */
+    public computedResolver: Function = () => {}
 
     /**
      *
@@ -87,7 +114,7 @@ export class Field {
 
     /**
      *
-     * The matching database attribute for this field
+     * The matching database collection attribute for this field
      *
      * @var {string}
      *
@@ -189,6 +216,22 @@ export class Field {
      */
     searchable() {
         this.isSearchable = true
+
+        return this
+    }
+
+    /**
+     * 
+     * Marks a field as a computed field
+     * 
+     * @param {Function} resolver
+     * 
+     * @return {Field}
+     * 
+     */
+    computedWith(resolver: Function) {
+        this.computed = true
+        this.computedResolver = resolver
 
         return this
     }

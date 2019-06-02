@@ -25,11 +25,10 @@ var Select = /** @class */ (function (_super) {
      * @return {void}
      *
      */
-    function Select(name, options, attribute) {
+    function Select(name, attribute) {
         if (attribute === void 0) { attribute = ''; }
         var _this = _super.call(this) || this;
         _this.name = name;
-        _this.options = options;
         _this.attribute = attribute;
         /**
          * Define the type of this field
@@ -38,11 +37,29 @@ var Select = /** @class */ (function (_super) {
          *
          */
         _this.type = 'Select';
+        /**
+         *
+         * Define the options for this select field
+         *
+         * @var {Array[SelectOptions]}
+         */
+        _this.options = [];
         _this.name = name;
-        _this.options = options;
         _this.attribute = attribute || ChangeCase.camelCase(_this.name);
         return _this;
     }
+    /**
+     * Set the options for select
+     *
+     * @param options SelectOptions[]
+     *
+     * @return {Select}
+     *
+     */
+    Select.prototype.withOptions = function (options) {
+        this.options = options;
+        return this;
+    };
     /**
      *
      * Make a Select
@@ -50,8 +67,8 @@ var Select = /** @class */ (function (_super) {
      * @return {Select}
      *
      */
-    Select.make = function (name, options, attribute) {
-        return new Select(name, options, attribute);
+    Select.make = function (name, attribute) {
+        return new Select(name, attribute);
     };
     return Select;
 }(Field_1.Field));

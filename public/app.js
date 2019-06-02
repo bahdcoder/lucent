@@ -1321,14 +1321,15 @@ __webpack_require__.r(__webpack_exports__);
 
 var Textarea = function Textarea(_ref) {
   var content = _ref.content,
-      dataTestId = _ref.dataTestId;
+      dataTestId = _ref.dataTestId,
+      shouldAlwaysShow = _ref.shouldAlwaysShow;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false),
       _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
       show = _useState2[0],
       toggleShow = _useState2[1];
 
-  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, show && content, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
+  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, !shouldAlwaysShow && react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, show && content, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
     "data-testid": dataTestId,
     onClick: function onClick() {
       return toggleShow(!show);
@@ -1336,7 +1337,7 @@ var Textarea = function Textarea(_ref) {
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('text-indigo font-bold cursor-pointer hover:text-indigo-light trans-30', {
       'mt-4': show
     })
-  }, show ? 'Hide Content' : 'Show Content'));
+  }, show ? 'Hide Content' : 'Show Content')), shouldAlwaysShow && content);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Textarea);
@@ -1720,8 +1721,7 @@ var TextareaField = function TextareaField(props) {
     textarea: true
   }, props, {
     className: "py-4 h-auto",
-    rows: 4,
-    cols: 4
+    rows: props.field.rowsCount
   }));
 };
 
@@ -39797,7 +39797,7 @@ exports.default = _PaginationBoxView2.default;
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

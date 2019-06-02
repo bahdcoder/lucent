@@ -13,6 +13,7 @@ export interface IFieldMeta {
  *
  */
 export interface IField {
+    computed: boolean
     attribute: string
     creationRules: string
     type: string
@@ -20,6 +21,7 @@ export interface IField {
     name: string
     resource?: string
     isSearchable: boolean
+    computedResolver: Function
 }
 
 /**

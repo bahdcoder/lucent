@@ -23,6 +23,14 @@ var Field = /** @class */ (function () {
         this.canBeNull = false;
         /**
          *
+         * Define the field type
+         *
+         * @var {string}
+         *
+         */
+        this.type = '';
+        /**
+         *
          * Make this field searchable
          *
          * @var {boolean}
@@ -43,6 +51,22 @@ var Field = /** @class */ (function () {
          *
          */
         this.detail = "detail-" + ChangeCase.lowerCase(this.constructor.name);
+        /**
+         *
+         * Define this field as a computed field
+         *
+         * @var {boolean}
+         *
+         */
+        this.computed = false;
+        /**
+         *
+         * This is used to resolve the value of a computed property
+         *
+         * @var {Function}
+         *
+         */
+        this.computedResolver = function () { };
         /**
          *
          * Define the name of this field.
@@ -75,7 +99,7 @@ var Field = /** @class */ (function () {
         this.updateRules = '';
         /**
          *
-         * The matching database attribute for this field
+         * The matching database collection attribute for this field
          *
          * @var {string}
          *
@@ -166,6 +190,20 @@ var Field = /** @class */ (function () {
      */
     Field.prototype.searchable = function () {
         this.isSearchable = true;
+        return this;
+    };
+    /**
+     *
+     * Marks a field as a computed field
+     *
+     * @param {Function} resolver
+     *
+     * @return {Field}
+     *
+     */
+    Field.prototype.computedWith = function (resolver) {
+        this.computed = true;
+        this.computedResolver = resolver;
         return this;
     };
     /**

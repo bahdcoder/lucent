@@ -235,7 +235,7 @@ class Organisation extends Resource {
                 Text.make('City').createWithRules('required'),
                 Text.make('State').createWithRules('required'),
                 Text.make('Postal Code').createWithRules('required'),
-                Select.make('Country', countries).createWithRules('required')
+                Select.make('Country').withOptions(countries).createWithRules('required')
             ]),
             HasMany.make('Contacts').searchable()
         ]

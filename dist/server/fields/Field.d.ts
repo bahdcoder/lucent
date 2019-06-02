@@ -1,5 +1,5 @@
-import { IFieldMeta } from '../index.d';
-export declare class Field {
+import { IFieldMeta, IField } from '../index.d';
+export declare class Field implements IField {
     /**
      *
      * Define meta data for this field
@@ -16,6 +16,14 @@ export declare class Field {
      *
      */
     canBeNull: boolean;
+    /**
+     *
+     * Define the field type
+     *
+     * @var {string}
+     *
+     */
+    type: string;
     /**
      *
      * Make this field searchable
@@ -38,6 +46,22 @@ export declare class Field {
      *
      */
     detail: string;
+    /**
+     *
+     * Define this field as a computed field
+     *
+     * @var {boolean}
+     *
+     */
+    computed: boolean;
+    /**
+     *
+     * This is used to resolve the value of a computed property
+     *
+     * @var {Function}
+     *
+     */
+    computedResolver: Function;
     /**
      *
      * Define the name of this field.
@@ -70,7 +94,7 @@ export declare class Field {
     updateRules: string;
     /**
      *
-     * The matching database attribute for this field
+     * The matching database collection attribute for this field
      *
      * @var {string}
      *
@@ -150,6 +174,16 @@ export declare class Field {
      *
      */
     searchable(): this;
+    /**
+     *
+     * Marks a field as a computed field
+     *
+     * @param {Function} resolver
+     *
+     * @return {Field}
+     *
+     */
+    computedWith(resolver: Function): this;
     /**
      * Callback to be used to calculate
      * the value of this field.

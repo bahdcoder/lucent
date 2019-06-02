@@ -11,7 +11,7 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "build": "webpack --mode=production",
     "watch": "yarn dev -- --watch",
-    "test:unit": "jest",
+    "test:unit": "jest --verbose",
     "test:e2e": "cypress run --record --key 6214b15d-0117-4a31-adc0-70c9dbf744e7",
     "prettier": "prettier --write './**/*.{js,ts,tsx,css}'",
     "start-dev-server": "cd app && npm start",
