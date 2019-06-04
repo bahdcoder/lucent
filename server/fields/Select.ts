@@ -16,9 +16,9 @@ export class Select extends Field {
     public type: string = 'Select'
 
     /**
-     * 
+     *
      * Define the options for this select field
-     * 
+     *
      * @var {Array[SelectOptions]}
      */
     public options: SelectOptions[] = []
@@ -31,10 +31,7 @@ export class Select extends Field {
      * @return {void}
      *
      */
-    constructor(
-        public name: string,
-        public attribute: string = ''
-    ) {
+    constructor(public name: string, public attribute: string = '') {
         super()
 
         this.name = name
@@ -43,11 +40,11 @@ export class Select extends Field {
 
     /**
      * Set the options for select
-     * 
+     *
      * @param options SelectOptions[]
-     * 
+     *
      * @return {Select}
-     * 
+     *
      */
     public withOptions(options: SelectOptions[]) {
         this.options = options

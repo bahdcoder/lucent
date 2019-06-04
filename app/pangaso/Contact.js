@@ -9,7 +9,7 @@ const {
     Password,
     Textarea,
     HasOneEmbedded
-} = require('../../dist/server/main')
+} = require(process.env.CI_ENVIRONMENT ? '../dist/server/main' : 'pangaso')
 
 const Bcrypt = require('bcryptjs')
 
@@ -22,24 +22,33 @@ class Contact extends Resource {
         return [
             ID.make('ID'),
             Num.make('Age').hideOnIndex(),
-            Select.make('Role').withOptions([{
-                label: 'Administrator',
-                value: 'admin'
-            }, {
-                label: 'Manager',
-                value: 'manager'
-            }, {
-                label: 'Super Administrator',
-                value: 'super-admin'
-            }]).hideOnIndex(),
+            Select.make('Role')
+                .withOptions([
+                    {
+                        label: 'Administrator',
+                        value: 'admin'
+                    },
+                    {
+                        label: 'Manager',
+                        value: 'manager'
+                    },
+                    {
+                        label: 'Super Administrator',
+                        value: 'super-admin'
+                    }
+                ])
+                .hideOnIndex(),
             Text.make('First Name')
                 .createWithRules('required|max:40')
-                .searchable().hideOnIndex(),
-            Text.make('Full Name')
-                .computedWith(document => `${document.firstName} ${document.lastName}`),
+                .searchable()
+                .hideOnIndex(),
+            Text.make('Full Name').computedWith(
+                document => `${document.firstName} ${document.lastName}`
+            ),
             Text.make('Last Name')
                 .createWithRules('required|max:40')
-                .searchable().hideOnIndex(),
+                .searchable()
+                .hideOnIndex(),
             Text.make('Email')
                 .createWithRules('required|email')
                 .searchable(),
@@ -47,8 +56,11 @@ class Contact extends Resource {
             Text.make('Phone')
                 .createWithRules('required')
                 .searchable(),
-            Textarea.make('Bio').createWithRules('required')
-                .searchable().alwaysShow().rows(12),
+            Textarea.make('Bio')
+                .createWithRules('required')
+                .searchable()
+                .alwaysShow()
+                .rows(12),
             HasOneEmbedded.make('Address').withFields([
                 Text.make('City').createWithRules('required'),
                 Text.make('State').createWithRules('required'),

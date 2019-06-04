@@ -48,7 +48,7 @@ export class BaseResource implements IResource {
 
     /**
      * Get all non computed fields for this resource
-     * 
+     *
      * @return {Array}
      */
     public nonComputedFields() {

@@ -12,19 +12,19 @@ export class Textarea extends Field {
 
     /**
      * Define the number of rows for this textarea
-     * 
+     *
      * @var {number}
-     * 
+     *
      */
     public rowsCount: number = 4
 
     /**
-     * 
+     *
      * This property removes the textarea toggle show/hide
      * functionality on the details screen
-     * 
+     *
      * @var {boolean}
-     * 
+     *
      */
     public shouldAlwaysShow: boolean = false
 
@@ -59,9 +59,9 @@ export class Textarea extends Field {
 
     /**
      * Set shouldAlwaysShow property to true
-     * 
+     *
      * @return {Textarea}
-     * 
+     *
      */
     public alwaysShow() {
         this.shouldAlwaysShow = true
@@ -70,11 +70,11 @@ export class Textarea extends Field {
     }
 
     /**
-     * 
+     *
      * Set the number of rows on this textarea
-     * 
+     *
      * @return {Textarea}
-     * 
+     *
      */
     public rows(rowsCount: number) {
         this.rowsCount = rowsCount

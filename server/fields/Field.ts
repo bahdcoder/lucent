@@ -23,11 +23,11 @@ export class Field implements IField {
     public canBeNull: boolean = false
 
     /**
-     * 
+     *
      * Define the field type
-     * 
+     *
      * @var {string}
-     * 
+     *
      */
     public type: string = ''
 
@@ -61,20 +61,20 @@ export class Field implements IField {
     )}`
 
     /**
-     * 
+     *
      * Define this field as a computed field
-     * 
+     *
      * @var {boolean}
-     * 
+     *
      */
     public computed: boolean = false
 
     /**
-     * 
+     *
      * This is used to resolve the value of a computed property
-     * 
+     *
      * @var {Function}
-     * 
+     *
      */
     public computedResolver: Function = () => {}
 
@@ -221,13 +221,13 @@ export class Field implements IField {
     }
 
     /**
-     * 
+     *
      * Marks a field as a computed field
-     * 
+     *
      * @param {Function} resolver
-     * 
+     *
      * @return {Field}
-     * 
+     *
      */
     computedWith(resolver: Function) {
         this.computed = true

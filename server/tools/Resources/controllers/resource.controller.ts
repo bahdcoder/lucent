@@ -305,7 +305,7 @@ class ResourceController {
              * TODO: Make sure the `pangaso-storage` folder is customizable
              *  Also, there should be multiple drivers support for file
              * uploads and storage
-             * 
+             *
              */
             const path = `${process.cwd()}/pangaso-storage/${id}.${file.name
                 .split('.')
@@ -391,9 +391,11 @@ class ResourceController {
                                 reverseRelationshipField.attribute
                             ] || []
 
-                        console.log('-->', relatedParentRecord[
-                            relatedResource.primaryKey()
-                        ], parentRecord[hasOneField.attribute])
+                        console.log(
+                            '-->',
+                            relatedParentRecord[relatedResource.primaryKey()],
+                            parentRecord[hasOneField.attribute]
+                        )
 
                         // Let's check if the user updated the related has-one field
                         if (
@@ -405,17 +407,20 @@ class ResourceController {
                                     relatedResource.primaryKey()
                                 ]
                         ) {
-                            console.log('-----------------> UPDATING DATA',  (
-                                relatedParentRecord[
-                                    reverseRelationshipField.attribute
-                                ] || []
-                            ).filter(
-                                (i: string) =>
-                                    i !==
-                                    parentRecord[
-                                        req.pangaso.resource.primaryKey()
-                                    ]
-                            ))
+                            console.log(
+                                '-----------------> UPDATING DATA',
+                                (
+                                    relatedParentRecord[
+                                        reverseRelationshipField.attribute
+                                    ] || []
+                                ).filter(
+                                    (i: string) =>
+                                        i !==
+                                        parentRecord[
+                                            req.pangaso.resource.primaryKey()
+                                        ]
+                                )
+                            )
                             // remove it from the old relatedParent
                             await req.pangaso.database.update(
                                 relatedResource.collection(),
@@ -629,30 +634,32 @@ class ResourceController {
     }
 
     /**
-     * 
-     * This method 
+     *
+     * This method
      */
     public async resolveComputedFieldForDocument() {}
 
     /**
-     * 
+     *
      * This method resolves all computed fields for a resource
      * @param {Array/Object} data
-     * 
+     *
      * @return {Array/Object}
      */
     public async resolveComputedFields(req: Express.Request, data: any) {
-        const computedFields = req.pangaso.resource.fields().filter((field: IField) => field.computed)
+        const computedFields = req.pangaso.resource
+            .fields()
+            .filter((field: IField) => field.computed)
 
         // first we'll check if it's an array or an object
         if (Array.isArray(data)) {
             // yep, it's a collection of documents
 
             /**
-             * 
+             *
              * To have some control, let's make this synchronous for now. If it doesn't pose
              * any performance issues then we can make it async
-             * 
+             *
              */
             computedFields.forEach((field: IField) => {
                 data.forEach((item: any) => {
