@@ -15,7 +15,6 @@ import Button from './components/Button'
 import Select from './components/Select'
 import Combobox from './components/Combobox'
 import Checkbox from './components/Checkbox'
-import MultiSelect from './components/MultiSelect'
 
 // details
 import IDDetail from './components/Detail/ID'
@@ -37,7 +36,6 @@ import SelectField from './components/Form/SelectField'
 import BooleanField from './components/Form/BooleanField'
 import TextareaField from './components/Form/TextareaField'
 import PasswordField from './components/Form/PasswordField'
-import MultiSelectField from './components/Form/MultiSelectField'
 
 class Form {}
 
@@ -174,7 +172,6 @@ export class Pangaso {
         this.field('form-boolean', BooleanField)
         this.field('form-password', PasswordField)
         this.field('form-textarea', TextareaField)
-        this.field('form-multiselect', MultiSelectField)
 
         /**
          *
@@ -210,7 +207,6 @@ export class Pangaso {
         this.component('component-select', Select)
         this.component('component-checkbox', Checkbox)
         this.component('component-combobox', Combobox)
-        this.component('component-multiselect', MultiSelect)
     }
 
     /**

@@ -1,7 +1,6 @@
 import React from 'react'
 import Pangaso from './Pangaso'
 import { Route, Link, withRouter, Switch } from 'react-router-dom'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 export class Main extends React.Component {
     /**

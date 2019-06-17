@@ -74,6 +74,9 @@ var ResourceController = /** @class */ (function () {
                                     message: 'Resource not found.'
                                 })];
                         }
+                        return [4 /*yield*/, this.resolveComputedFields(req, resource)];
+                    case 2:
+                        resource = _a.sent();
                         return [2 /*return*/, res.json(resource)];
                 }
             });
@@ -145,7 +148,7 @@ var ResourceController = /** @class */ (function () {
          *
          */
         this.fetchHasMany = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var resource, relatedField, relatedResource, filter, data;
+            var resource, relatedField, relatedResource, filter, data, dataWithComputed;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, req.pangaso.database.find(req.pangaso.resource.collection(), req.params.resource)];
@@ -169,7 +172,11 @@ var ResourceController = /** @class */ (function () {
                                 } }, filter))];
                     case 2:
                         data = _a.sent();
-                        return [2 /*return*/, res.json(data)];
+                        dataWithComputed = data.data.slice();
+                        return [4 /*yield*/, this.resolveComputedFields(req, dataWithComputed, relatedResource)];
+                    case 3:
+                        dataWithComputed = _a.sent();
+                        return [2 /*return*/, res.json(__assign({}, data, { data: dataWithComputed }))];
                 }
             });
         }); };
@@ -203,7 +210,12 @@ var ResourceController = /** @class */ (function () {
                         return [4 /*yield*/, req.pangaso.database.find(relatedResource.collection(), parentRecord[relatedField.attribute])];
                     case 2:
                         record = _a.sent();
-                        return [2 /*return*/, res.json(record || null)];
+                        if (!record) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.resolveComputedFields(req, record, relatedResource)];
+                    case 3:
+                        record = _a.sent();
+                        _a.label = 4;
+                    case 4: return [2 /*return*/, res.json(record || null)];
                 }
             });
         }); };
@@ -355,148 +367,15 @@ var ResourceController = /** @class */ (function () {
      */
     ResourceController.prototype.update = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var data, parentRecord, hasOneRelationships, _loop_1, index, hasManyRelationships, _loop_2, index;
+            var data, parentRecord;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         data = req.body;
-                        return [4 /*yield*/, req.pangaso.database.update(req.pangaso.resource.collection(), req.params.resource, data)
-                            // Here, we'll check if there's a has-one relationship
-                        ];
+                        return [4 /*yield*/, req.pangaso.database.update(req.pangaso.resource.collection(), req.params.resource, data)];
                     case 1:
                         parentRecord = (_a.sent()).value;
-                        hasOneRelationships = req.pangaso.resource
-                            .fields()
-                            .filter(function (field) { return field.type === 'HasOne'; });
-                        _loop_1 = function (index) {
-                            var _a, hasOneField, relatedResource, reverseRelationshipField, relatedParentRecord, updatedRelatedResources, original;
-                            return __generator(this, function (_b) {
-                                switch (_b.label) {
-                                    case 0:
-                                        hasOneField = hasOneRelationships[index];
-                                        relatedResource = req.pangaso.resources.find(function (r) { return r.name() === hasOneField.resource; });
-                                        reverseRelationshipField = relatedResource
-                                            .fields()
-                                            .find(function (field) {
-                                            return field.resource === req.pangaso.resource.title();
-                                        });
-                                        if (!reverseRelationshipField) return [3 /*break*/, 4];
-                                        if (!(reverseRelationshipField.type === 'HasMany')) return [3 /*break*/, 4];
-                                        return [4 /*yield*/, req.pangaso.database.find(relatedResource.collection(), parentRecord[hasOneField.attribute])
-                                            // if the record is found, it's time to perform the
-                                            // sync and update
-                                        ];
-                                    case 1:
-                                        relatedParentRecord = _b.sent();
-                                        if (!relatedParentRecord) return [3 /*break*/, 4];
-                                        updatedRelatedResources = relatedParentRecord[reverseRelationshipField.attribute];
-                                        original = relatedParentRecord[reverseRelationshipField.attribute] || [];
-                                        console.log('-->', relatedParentRecord[relatedResource.primaryKey()], parentRecord[hasOneField.attribute]);
-                                        if (!(original.includes(parentRecord[req.pangaso.resource.primaryKey()]) &&
-                                            parentRecord[hasOneField.attribute] !==
-                                                relatedParentRecord[relatedResource.primaryKey()])) return [3 /*break*/, 3];
-                                        console.log('-----------------> UPDATING DATA', (relatedParentRecord[reverseRelationshipField.attribute] || []).filter(function (i) {
-                                            return i !==
-                                                parentRecord[req.pangaso.resource.primaryKey()];
-                                        }));
-                                        // remove it from the old relatedParent
-                                        return [4 /*yield*/, req.pangaso.database.update(relatedResource.collection(), relatedParentRecord[relatedResource.primaryKey()], (_a = {},
-                                                _a[reverseRelationshipField.attribute] = (relatedParentRecord[reverseRelationshipField.attribute] || []).filter(function (i) {
-                                                    return i !==
-                                                        parentRecord[req.pangaso.resource.primaryKey()];
-                                                }),
-                                                _a))];
-                                    case 2:
-                                        // remove it from the old relatedParent
-                                        _b.sent();
-                                        _b.label = 3;
-                                    case 3:
-                                        if (!original.includes(parentRecord[req.pangaso.resource.primaryKey()]) &&
-                                            parentRecord[hasOneField.attribute] !==
-                                                relatedParentRecord[relatedResource.primaryKey()]) {
-                                            // fetch the newly related parent and add this parentRecord to it's has-many array.
-                                        }
-                                        _b.label = 4;
-                                    case 4: return [2 /*return*/];
-                                }
-                            });
-                        };
-                        index = 0;
-                        _a.label = 2;
-                    case 2:
-                        if (!(index < hasOneRelationships.length)) return [3 /*break*/, 5];
-                        return [5 /*yield**/, _loop_1(index)];
-                    case 3:
-                        _a.sent();
-                        _a.label = 4;
-                    case 4:
-                        index++;
-                        return [3 /*break*/, 2];
-                    case 5:
-                        hasManyRelationships = req.pangaso.resource
-                            .fields()
-                            .filter(function (field) { return field.type === 'HasMany'; });
-                        _loop_2 = function (index) {
-                            var _a, _b, hasManyField, relatedResource, reverseRelationshipField;
-                            return __generator(this, function (_c) {
-                                switch (_c.label) {
-                                    case 0:
-                                        hasManyField = hasManyRelationships[index];
-                                        relatedResource = req.pangaso.resources.find(function (r) { return r.title() === hasManyField.resource; });
-                                        reverseRelationshipField = relatedResource
-                                            .fields()
-                                            .find(function (field) {
-                                            return field.name === req.pangaso.resource.name();
-                                        });
-                                        if (!reverseRelationshipField) return [3 /*break*/, 4];
-                                        if (!(reverseRelationshipField.type === 'HasOne')) return [3 /*break*/, 3];
-                                        // We are going to perform a full sync of the two resources
-                                        // in the database.
-                                        // First, we'll remove all of the old ones
-                                        return [4 /*yield*/, req.pangaso.database.bulkUpdate(relatedResource.collection(), parentRecord[hasManyField.attribute], (_a = {},
-                                                _a[reverseRelationshipField.attribute] = null,
-                                                _a))
-                                            // Next, we'll update
-                                            // Next, we'll run this query to populate the new ones that were selected by user
-                                        ];
-                                    case 1:
-                                        // We are going to perform a full sync of the two resources
-                                        // in the database.
-                                        // First, we'll remove all of the old ones
-                                        _c.sent();
-                                        // Next, we'll update
-                                        // Next, we'll run this query to populate the new ones that were selected by user
-                                        return [4 /*yield*/, req.pangaso.database.bulkUpdate(relatedResource.collection(), data[hasManyField.attribute], (_b = {},
-                                                _b[reverseRelationshipField.attribute] = parentRecord[req.pangaso.resource.primaryKey()],
-                                                _b))];
-                                    case 2:
-                                        // Next, we'll update
-                                        // Next, we'll run this query to populate the new ones that were selected by user
-                                        _c.sent();
-                                        _c.label = 3;
-                                    case 3:
-                                        if (reverseRelationshipField.type === 'HasMany') {
-                                            // TODO: Add support for has many updates.
-                                        }
-                                        _c.label = 4;
-                                    case 4: return [2 /*return*/];
-                                }
-                            });
-                        };
-                        index = 0;
-                        _a.label = 6;
-                    case 6:
-                        if (!(index < hasManyRelationships.length)) return [3 /*break*/, 9];
-                        return [5 /*yield**/, _loop_2(index)];
-                    case 7:
-                        _a.sent();
-                        _a.label = 8;
-                    case 8:
-                        index++;
-                        return [3 /*break*/, 6];
-                    case 9: 
-                    // if there is, then we'll automatically populate the related models.
-                    return [2 /*return*/, res.json(parentRecord)];
+                        return [2 /*return*/, res.json(parentRecord)];
                 }
             });
         });
@@ -623,27 +502,21 @@ var ResourceController = /** @class */ (function () {
     };
     /**
      *
-     * This method
-     */
-    ResourceController.prototype.resolveComputedFieldForDocument = function () {
-        return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/];
-        }); });
-    };
-    /**
-     *
      * This method resolves all computed fields for a resource
      * @param {Array/Object} data
      *
      * @return {Array/Object}
      */
-    ResourceController.prototype.resolveComputedFields = function (req, data) {
+    ResourceController.prototype.resolveComputedFields = function (req, data, resource) {
         return __awaiter(this, void 0, void 0, function () {
-            var computedFields;
+            var computedFields, results;
             return __generator(this, function (_a) {
-                computedFields = req.pangaso.resource.fields().filter(function (field) { return field.computed; });
+                computedFields = (resource || req.pangaso.resource)
+                    .fields()
+                    .filter(function (field) { return field.computed; });
+                results = Array.isArray(data) ? data.slice() : __assign({}, data);
                 // first we'll check if it's an array or an object
-                if (Array.isArray(data)) {
+                if (Array.isArray(results)) {
                     // yep, it's a collection of documents
                     /**
                      *
@@ -652,14 +525,17 @@ var ResourceController = /** @class */ (function () {
                      *
                      */
                     computedFields.forEach(function (field) {
-                        data.forEach(function (item) {
+                        results.forEach(function (item) {
                             item[field.attribute] = field.computedResolver(item);
                         });
                     });
-                    return [2 /*return*/, data];
+                    return [2 /*return*/, results];
                 }
                 // it's a single document
-                return [2 /*return*/, data];
+                computedFields.forEach(function (field) {
+                    results[field.attribute] = field.computedResolver(results);
+                });
+                return [2 /*return*/, results];
             });
         });
     };
