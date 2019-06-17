@@ -581,6 +581,7 @@ class AddResource extends React.Component {
 
                                                     <div className="w-2/4 flex flex-col">
                                                         <Field
+                                                            {...field}
                                                             className="w-full"
                                                             id={field.attribute}
                                                             name={
@@ -660,7 +661,7 @@ class AddResource extends React.Component {
                             className={classnames(
                                 'p-8 flex justify-end bg-grey-lighter shadow',
                                 {
-                                    'mt-8': embeddableFields.length !== 0
+                                    'mt-8': embeddableFields.length === 0
                                 }
                             )}
                         >

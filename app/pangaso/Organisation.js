@@ -232,6 +232,7 @@ class Organisation extends Resource {
                 Text.make('State').createWithRules('required'),
                 Text.make('Postal Code').createWithRules('required'),
                 Select.make('Country')
+                    .asCombobox()
                     .withOptions(countries)
                     .createWithRules('required')
             ]),

@@ -177,17 +177,12 @@ declare class ResourceController {
     clear(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
     /**
      *
-     * This method
-     */
-    resolveComputedFieldForDocument(): Promise<void>;
-    /**
-     *
      * This method resolves all computed fields for a resource
      * @param {Array/Object} data
      *
      * @return {Array/Object}
      */
-    resolveComputedFields(req: Express.Request, data: any): Promise<any>;
+    resolveComputedFields(req: Express.Request, data: any, resource?: IResource): Promise<any>;
 }
 export declare const Resource: ResourceController;
 export {};

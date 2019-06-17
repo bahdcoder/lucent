@@ -14,6 +14,12 @@ export declare class Select extends Field {
      */
     type: string;
     /**
+     * Define this select as a combobox
+     *
+     * @var {boolean}
+     */
+    isCombobox: boolean;
+    /**
      *
      * Define the options for this select field
      *
@@ -38,6 +44,12 @@ export declare class Select extends Field {
      *
      */
     withOptions(options: SelectOptions[]): this;
+    /**
+     * Make this select a combobox
+     *
+     * @return {Select}
+     */
+    asCombobox(): this;
     /**
      *
      * Make a Select

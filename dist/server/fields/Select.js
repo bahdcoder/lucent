@@ -38,6 +38,12 @@ var Select = /** @class */ (function (_super) {
          */
         _this.type = 'Select';
         /**
+         * Define this select as a combobox
+         *
+         * @var {boolean}
+         */
+        _this.isCombobox = false;
+        /**
          *
          * Define the options for this select field
          *
@@ -58,6 +64,15 @@ var Select = /** @class */ (function (_super) {
      */
     Select.prototype.withOptions = function (options) {
         this.options = options;
+        return this;
+    };
+    /**
+     * Make this select a combobox
+     *
+     * @return {Select}
+     */
+    Select.prototype.asCombobox = function () {
+        this.isCombobox = true;
         return this;
     };
     /**

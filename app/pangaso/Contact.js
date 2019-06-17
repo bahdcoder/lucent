@@ -60,7 +60,7 @@ class Contact extends Resource {
                 .createWithRules('required')
                 .searchable()
                 .alwaysShow()
-                .rows(12),
+                .rows(4),
             HasOneEmbedded.make('Address').withFields([
                 Text.make('City').createWithRules('required'),
                 Text.make('State').createWithRules('required'),

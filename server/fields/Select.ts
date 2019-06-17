@@ -16,6 +16,13 @@ export class Select extends Field {
     public type: string = 'Select'
 
     /**
+     * Define this select as a combobox
+     * 
+     * @var {boolean}
+     */
+    public isCombobox: boolean = false
+
+    /**
      *
      * Define the options for this select field
      *
@@ -48,6 +55,17 @@ export class Select extends Field {
      */
     public withOptions(options: SelectOptions[]) {
         this.options = options
+
+        return this
+    }
+
+    /**
+     * Make this select a combobox
+     * 
+     * @return {Select}
+     */
+    public asCombobox() {
+        this.isCombobox = true
 
         return this
     }

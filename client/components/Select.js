@@ -10,6 +10,7 @@ const Select = ({
     dataTestId,
     options = [],
     multiple = false,
+    isCombobox = false,
     placeholder = 'Select an option'
 }) => (
     <React.Fragment>
