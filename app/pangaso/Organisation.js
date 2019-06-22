@@ -1,7 +1,13 @@
-const { ID, Text, Resource, HasOneEmbedded, Select, HasMany } = require(process
-    .env.CI_ENVIRONMENT
-    ? '../dist/server/main'
-    : 'pangaso')
+const {
+    ID,
+    Text,
+    File,
+    Resource,
+    HasOneEmbedded,
+    Select,
+    HasMany,
+    HasManyEmbedded
+} = require(process.env.CI_ENVIRONMENT ? '../dist/server/main' : 'pangaso')
 
 const countries = [
     'Afghanistan',
@@ -236,7 +242,14 @@ class Organisation extends Resource {
                     .withOptions(countries)
                     .createWithRules('required')
             ]),
-            HasMany.make('Contacts').searchable()
+            HasManyEmbedded.make('Branch').withFields([
+                File.make('Logo').hideOnIndex(),
+                Text.make('City').createWithRules('required'),
+                Text.make('State').createWithRules('required')
+            ]),
+            HasMany.make('Contacts')
+                .searchable()
+                .createWithRules('required')
         ]
     }
 }

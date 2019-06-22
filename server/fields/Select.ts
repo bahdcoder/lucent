@@ -17,7 +17,7 @@ export class Select extends Field {
 
     /**
      * Define this select as a combobox
-     * 
+     *
      * @var {boolean}
      */
     public isCombobox: boolean = false
@@ -61,7 +61,7 @@ export class Select extends Field {
 
     /**
      * Make this select a combobox
-     * 
+     *
      * @return {Select}
      */
     public asCombobox() {

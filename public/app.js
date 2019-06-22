@@ -507,10 +507,21 @@ function () {
                       responseErrors[error.field] = error.message;
                     });
                   } else {
-                    responseErrors[resourceError] = {};
-                    errors.forEach(function (error) {
-                      responseErrors[resourceError][error.field] = error.message;
-                    });
+                    if (resourceErrors[resourceError].length && resourceErrors[resourceError].length > 0 && Array.isArray(resourceErrors[resourceError][0])) {
+                      responseErrors[resourceError] = [];
+                      resourceErrors[resourceError].forEach(function (error) {
+                        var formattedErrors = {};
+                        error.forEach(function (e) {
+                          formattedErrors[e.field] = e.message;
+                        });
+                        responseErrors[resourceError].push(formattedErrors);
+                      });
+                    } else {
+                      responseErrors[resourceError] = {};
+                      errors.forEach(function (error) {
+                        responseErrors[resourceError][error.field] = error.message;
+                      });
+                    }
                   }
                 }
               };

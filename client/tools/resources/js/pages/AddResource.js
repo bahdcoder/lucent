@@ -1,6 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import format from 'date-fns/format'
+import HasManyEmbedded from '../components/HasManyEmbedded'
 
 class AddResource extends React.Component {
     state = {
@@ -48,6 +49,14 @@ class AddResource extends React.Component {
                     this.getFormat(field)
                 )
                 errors[field.attribute] = null
+
+                return
+            }
+
+            if (field.type === 'HasManyEmbedded') {
+                form[field.attribute] = data[field.attribute] || [{}]
+
+                errors[field.attribute] = [{}]
 
                 return
             }
@@ -194,6 +203,13 @@ class AddResource extends React.Component {
     }
 
     /**
+     * Get a string of all has many embedded fields
+     * 
+     * @return {Array}
+     */
+    getHasManyEmbeddedFields = () => this.state.resource.fields.filter(field => field.type === 'HasManyEmbedded').map(field => field.attribute)
+
+    /**
      *
      * Get the form data from state
      * to be sent to the server
@@ -204,6 +220,7 @@ class AddResource extends React.Component {
 
         const preparedForm = {}
         const staleFiles = []
+        const hasManyFields = this.getHasManyEmbeddedFields()
 
         for (const attribute of Object.keys(form)) {
             const field = form[attribute]
@@ -323,12 +340,46 @@ class AddResource extends React.Component {
      * @return {void}
      *
      */
-    handleChange = (event, embedded = null) => {
+    handleChange = (event, embedded = null, hasMany = false) => {
         if (['MultiSelect', 'SingleSelect'].includes(event.type)) {
             return this.setState({
                 form: {
                     ...this.state.form,
-                    [event.name]: event.value
+                    [embedded ? embedded : event.name]: embedded
+                        ? {
+                              ...this.state.form[embedded],
+                              [event.name]: event.value
+                          }
+                        : event.value
+                }
+            })
+        }
+
+        if (hasMany) {
+            return this.setState({
+                form: {
+                    ...this.state.form,
+                    [event.attribute]: this.state.form[event.attribute].map(
+                        (item, itemIndex) => {
+                            if (itemIndex === event.index) {
+                                return {
+                                    ...item,
+                                    [event.name]: event.value
+                                }
+                            }
+
+                            return item
+                        }
+                    )
+                },
+                errors: {
+                    ...this.state.errors,
+                    [event.attribute]: this.state.errors[event.attribute] ? this.state.errors[event.attribute].map(
+                        item => ({
+                            ...item,
+                            [event.name]: null
+                        })
+                    ) : []
                 }
             })
         }
@@ -423,6 +474,34 @@ class AddResource extends React.Component {
     }
 
     /**
+     * Remove item from has many embedded field list
+     *
+     * @return {null}
+     */
+    removeItem = (attribute, indexToRemove) => {
+        this.setState({
+            form: {
+                ...this.state.form,
+                [attribute]: this.state.form[attribute].filter(
+                    (item, index) => index !== indexToRemove
+                )
+            }
+        })
+    }
+
+    /**
+     * Add a new item to list
+     */
+    addNewItem = attribute => {
+        this.setState({
+            form: {
+                ...this.state.form,
+                [attribute]: [...this.state.form[attribute], {}]
+            }
+        })
+    }
+
+    /**
      *
      * Get the embedded fields
      *
@@ -430,9 +509,11 @@ class AddResource extends React.Component {
      *
      */
     getEmbeddedFields = () =>
-        this.state.resource.fields.filter(field =>
-            ['HasOneEmbedded', 'HasManyEmbedded'].includes(field.type)
-        )
+        this.state.resource.fields
+            .filter(field =>
+                ['HasOneEmbedded', 'HasManyEmbedded'].includes(field.type)
+            )
+            .sort(field => field.type === 'HasOneEmbedded')
 
     /**
      *
@@ -556,113 +637,136 @@ class AddResource extends React.Component {
                         </div>
 
                         {embeddableFields.map((embeddableField, index) => {
-                            const formFields = embeddableField.fields
+                            if (embeddableField.type === 'HasOneEmbedded') {
+                                const formFields = embeddableField.fields
+
+                                return (
+                                    <div key={index} className="mt-8">
+                                        <h3 className="font-thin text-2xl">
+                                            {embeddableField.name}
+                                        </h3>
+
+                                        <div className="w-full mt-6 bg-white rounded-lg">
+                                            {formFields.map((field, index) => {
+                                                const Field = this.getField(
+                                                    field.component
+                                                )
+
+                                                return Field ? (
+                                                    <div
+                                                        key={index}
+                                                        className="w-full border-b flex items-center border-grey-light py-6 px-12"
+                                                    >
+                                                        <label className="w-1/4 text-lg font-thin text-grey-dark">
+                                                            {field.name}
+                                                        </label>
+
+                                                        <div className="w-2/4 flex flex-col">
+                                                            <Field
+                                                                {...field}
+                                                                className="w-full"
+                                                                id={
+                                                                    field.attribute
+                                                                }
+                                                                name={
+                                                                    field.attribute
+                                                                }
+                                                                placeholder={
+                                                                    field.name
+                                                                }
+                                                                handler={e =>
+                                                                    this.handleChange(
+                                                                        e,
+                                                                        embeddableField.attribute
+                                                                    )
+                                                                }
+                                                                dataTestId={`field-${
+                                                                    embeddableField.attribute
+                                                                }-${
+                                                                    field.attribute
+                                                                }`}
+                                                                value={
+                                                                    form[
+                                                                        embeddableField
+                                                                            .attribute
+                                                                    ] &&
+                                                                    form[
+                                                                        embeddableField
+                                                                            .attribute
+                                                                    ][
+                                                                        field
+                                                                            .attribute
+                                                                    ]
+                                                                }
+                                                                checked={
+                                                                    form[
+                                                                        embeddableField
+                                                                            .attribute
+                                                                    ] &&
+                                                                    form[
+                                                                        embeddableField
+                                                                            .attribute
+                                                                    ][
+                                                                        field
+                                                                            .attribute
+                                                                    ]
+                                                                }
+                                                                dateOptions={{
+                                                                    enableTime:
+                                                                        field.enableTime
+                                                                }}
+                                                                error={
+                                                                    errors[
+                                                                        embeddableField
+                                                                            .attribute
+                                                                    ] &&
+                                                                    errors[
+                                                                        embeddableField
+                                                                            .attribute
+                                                                    ][
+                                                                        field
+                                                                            .attribute
+                                                                    ]
+                                                                }
+                                                                options={
+                                                                    field.options
+                                                                }
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                ) : null
+                                            })}
+                                        </div>
+                                    </div>
+                                )
+                            }
 
                             return (
-                                <div key={index} className="mt-8">
-                                    <h3 className="font-thin text-2xl">
-                                        {embeddableField.name}
-                                    </h3>
-
-                                    <div className="w-full mt-6 bg-white rounded-lg">
-                                        {formFields.map((field, index) => {
-                                            const Field = this.getField(
-                                                field.component
-                                            )
-
-                                            return Field ? (
-                                                <div
-                                                    key={index}
-                                                    className="w-full border-b flex items-center border-grey-light py-6 px-12"
-                                                >
-                                                    <label className="w-1/4 text-lg font-thin text-grey-dark">
-                                                        {field.name}
-                                                    </label>
-
-                                                    <div className="w-2/4 flex flex-col">
-                                                        <Field
-                                                            {...field}
-                                                            className="w-full"
-                                                            id={field.attribute}
-                                                            name={
-                                                                field.attribute
-                                                            }
-                                                            placeholder={
-                                                                field.name
-                                                            }
-                                                            handler={e =>
-                                                                this.handleChange(
-                                                                    e,
-                                                                    embeddableField.attribute
-                                                                )
-                                                            }
-                                                            dataTestId={`field-${
-                                                                embeddableField.attribute
-                                                            }-${
-                                                                field.attribute
-                                                            }`}
-                                                            value={
-                                                                form[
-                                                                    embeddableField
-                                                                        .attribute
-                                                                ] &&
-                                                                form[
-                                                                    embeddableField
-                                                                        .attribute
-                                                                ][
-                                                                    field
-                                                                        .attribute
-                                                                ]
-                                                            }
-                                                            checked={
-                                                                form[
-                                                                    embeddableField
-                                                                        .attribute
-                                                                ] &&
-                                                                form[
-                                                                    embeddableField
-                                                                        .attribute
-                                                                ][
-                                                                    field
-                                                                        .attribute
-                                                                ]
-                                                            }
-                                                            dateOptions={{
-                                                                enableTime:
-                                                                    field.enableTime
-                                                            }}
-                                                            error={
-                                                                errors[
-                                                                    embeddableField
-                                                                        .attribute
-                                                                ] &&
-                                                                errors[
-                                                                    embeddableField
-                                                                        .attribute
-                                                                ][
-                                                                    field
-                                                                        .attribute
-                                                                ]
-                                                            }
-                                                            options={
-                                                                field.options
-                                                            }
-                                                        />
-                                                    </div>
-                                                </div>
-                                            ) : null
-                                        })}
-                                    </div>
-                                </div>
+                                <HasManyEmbedded
+                                    key={index}
+                                    editing={editing}
+                                    {...embeddableField}
+                                    handleChange={this.handleChange}
+                                    value={form[embeddableField.attribute]}
+                                    errors={errors[embeddableField.attribute]}
+                                    addNewItem={() =>
+                                        this.addNewItem(
+                                            embeddableField.attribute
+                                        )
+                                    }
+                                    removeItem={indexToRemove =>
+                                        this.removeItem(
+                                            embeddableField.attribute,
+                                            indexToRemove
+                                        )
+                                    }
+                                />
                             )
                         })}
 
                         <div
                             className={classnames(
-                                'p-8 flex justify-end bg-grey-lighter shadow',
-                                {
-                                    'mt-8': embeddableFields.length === 0
-                                }
+                                'p-8 flex justify-end bg-grey-lighter shadow'
                             )}
                         >
                             <Button

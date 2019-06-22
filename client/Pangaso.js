@@ -132,13 +132,40 @@ export class Pangaso {
                                                 error.message
                                         })
                                     } else {
-                                        responseErrors[resourceError] = {}
+                                        if (
+                                            resourceErrors[resourceError]
+                                                .length &&
+                                            resourceErrors[resourceError]
+                                                .length > 0 &&
+                                            Array.isArray(
+                                                resourceErrors[resourceError][0]
+                                            )
+                                        ) {
+                                            responseErrors[resourceError] = []
 
-                                        errors.forEach(error => {
-                                            responseErrors[resourceError][
-                                                error.field
-                                            ] = error.message
-                                        })
+                                            resourceErrors[
+                                                resourceError
+                                            ].forEach(error => {
+                                                const formattedErrors = {}
+
+                                                error.forEach(e => {
+                                                    formattedErrors[e.field] =
+                                                        e.message
+                                                })
+
+                                                responseErrors[
+                                                    resourceError
+                                                ].push(formattedErrors)
+                                            })
+                                        } else {
+                                            responseErrors[resourceError] = {}
+
+                                            errors.forEach(error => {
+                                                responseErrors[resourceError][
+                                                    error.field
+                                                ] = error.message
+                                            })
+                                        }
                                     }
                                 }
                             }

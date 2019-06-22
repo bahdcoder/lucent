@@ -214,11 +214,13 @@ class ResourceController {
             }
         )
 
-        let dataWithComputed = [
-            ...data.data
-        ]
+        let dataWithComputed = [...data.data]
 
-        dataWithComputed = await this.resolveComputedFields(req, dataWithComputed, relatedResource)
+        dataWithComputed = await this.resolveComputedFields(
+            req,
+            dataWithComputed,
+            relatedResource
+        )
 
         return res.json({
             ...data,
@@ -268,9 +270,12 @@ class ResourceController {
         )
 
         if (record) {
-            record = await this.resolveComputedFields(req, record, relatedResource)
+            record = await this.resolveComputedFields(
+                req,
+                record,
+                relatedResource
+            )
         }
-
 
         return res.json(record || null)
     }
@@ -471,17 +476,21 @@ class ResourceController {
      *
      * @return {Array/Object}
      */
-    public async resolveComputedFields(req: Express.Request, data: any, resource?: IResource) {
+    public async resolveComputedFields(
+        req: Express.Request,
+        data: any,
+        resource?: IResource
+    ) {
         const computedFields = (resource || req.pangaso.resource)
             .fields()
             .filter((field: IField) => field.computed)
 
         // make a real copy of the data so we do not mutate
-        const results = Array.isArray(data) ? [
-            ...data
-        ] : {
-            ...data
-        }
+        const results = Array.isArray(data)
+            ? [...data]
+            : {
+                  ...data
+              }
 
         // first we'll check if it's an array or an object
         if (Array.isArray(results)) {

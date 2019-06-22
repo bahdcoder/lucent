@@ -50,7 +50,7 @@ var CreateResource = /** @class */ (function () {
      */
     CreateResource.handle = function (req, res, next) {
         return __awaiter(this, void 0, void 0, function () {
-            var resource, data, messages, rules, errors, topLevelRules, _a, _b, _i, attribute, rule, nestedErrors_1, topLevelErrors_1;
+            var resource, data, messages, rules, errors, topLevelRules, _loop_1, _a, _b, _i, attribute, topLevelErrors_1;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
@@ -60,43 +60,87 @@ var CreateResource = /** @class */ (function () {
                         rules = CreateResource.buildValidationRules(resource);
                         errors = {};
                         topLevelRules = {};
+                        _loop_1 = function (attribute) {
+                            var rule, _a, _b, _i, embeddedDataIndex, embeddedData, nestedErrors_1, nestedErrors_2;
+                            return __generator(this, function (_c) {
+                                switch (_c.label) {
+                                    case 0:
+                                        if (!rules.hasOwnProperty(attribute)) return [3 /*break*/, 11];
+                                        rule = rules[attribute];
+                                        if (!(typeof rule === 'string')) return [3 /*break*/, 1];
+                                        topLevelRules[attribute] = rule;
+                                        return [3 /*break*/, 11];
+                                    case 1:
+                                        if (!(resource
+                                            .fields()
+                                            .find(function (field) { return field.attribute === attribute; }).type === 'HasManyEmbedded')) return [3 /*break*/, 8];
+                                        errors[attribute] = [];
+                                        _a = [];
+                                        for (_b in data[attribute])
+                                            _a.push(_b);
+                                        _i = 0;
+                                        _c.label = 2;
+                                    case 2:
+                                        if (!(_i < _a.length)) return [3 /*break*/, 7];
+                                        embeddedDataIndex = _a[_i];
+                                        if (!data[attribute].hasOwnProperty(embeddedDataIndex)) return [3 /*break*/, 6];
+                                        embeddedData = data[attribute][embeddedDataIndex];
+                                        _c.label = 3;
+                                    case 3:
+                                        _c.trys.push([3, 5, , 6]);
+                                        return [4 /*yield*/, Indicative.validateAll(embeddedData, rule, messages)];
+                                    case 4:
+                                        _c.sent();
+                                        errors[attribute].push([]);
+                                        return [3 /*break*/, 6];
+                                    case 5:
+                                        nestedErrors_1 = _c.sent();
+                                        errors[attribute].push(nestedErrors_1);
+                                        return [3 /*break*/, 6];
+                                    case 6:
+                                        _i++;
+                                        return [3 /*break*/, 2];
+                                    case 7: return [3 /*break*/, 11];
+                                    case 8:
+                                        _c.trys.push([8, 10, , 11]);
+                                        return [4 /*yield*/, Indicative.validateAll(data[attribute], rule, messages)];
+                                    case 9:
+                                        _c.sent();
+                                        return [3 /*break*/, 11];
+                                    case 10:
+                                        nestedErrors_2 = _c.sent();
+                                        errors[attribute] = nestedErrors_2;
+                                        return [3 /*break*/, 11];
+                                    case 11: return [2 /*return*/];
+                                }
+                            });
+                        };
                         _a = [];
                         for (_b in rules)
                             _a.push(_b);
                         _i = 0;
                         _c.label = 1;
                     case 1:
-                        if (!(_i < _a.length)) return [3 /*break*/, 6];
+                        if (!(_i < _a.length)) return [3 /*break*/, 4];
                         attribute = _a[_i];
-                        if (!rules.hasOwnProperty(attribute)) return [3 /*break*/, 5];
-                        rule = rules[attribute];
-                        if (!(typeof rule === 'string')) return [3 /*break*/, 2];
-                        topLevelRules[attribute] = rule;
-                        return [3 /*break*/, 5];
+                        return [5 /*yield**/, _loop_1(attribute)];
                     case 2:
-                        _c.trys.push([2, 4, , 5]);
-                        return [4 /*yield*/, Indicative.validateAll(data[attribute], rule, messages)];
-                    case 3:
                         _c.sent();
-                        return [3 /*break*/, 5];
-                    case 4:
-                        nestedErrors_1 = _c.sent();
-                        errors[attribute] = nestedErrors_1;
-                        return [3 /*break*/, 5];
-                    case 5:
+                        _c.label = 3;
+                    case 3:
                         _i++;
                         return [3 /*break*/, 1];
-                    case 6:
-                        _c.trys.push([6, 8, , 9]);
+                    case 4:
+                        _c.trys.push([4, 6, , 7]);
                         return [4 /*yield*/, Indicative.validateAll(data, topLevelRules, messages)];
-                    case 7:
+                    case 5:
                         _c.sent();
-                        return [3 /*break*/, 9];
-                    case 8:
+                        return [3 /*break*/, 7];
+                    case 6:
                         topLevelErrors_1 = _c.sent();
                         errors.topLevelErrors = topLevelErrors_1;
-                        return [3 /*break*/, 9];
-                    case 9:
+                        return [3 /*break*/, 7];
+                    case 7:
                         if (Object.keys(errors).length === 0) {
                             return [2 /*return*/, next()];
                         }
@@ -120,9 +164,9 @@ var CreateResource = /** @class */ (function () {
         var rules = {};
         resource
             .fields()
-            .filter(function (field) { return field.type !== 'ID'; })
+            .filter(function (field) { return field.type !== 'ID' && !field.computed; })
             .forEach(function (field) {
-            if (field.type === 'HasOneEmbedded') {
+            if (['HasManyEmbedded', 'HasOneEmbedded'].includes(field.type)) {
                 rules[field.attribute] = {};
                 field.fields &&
                     field.fields.forEach(function (embeddedField) {
@@ -131,7 +175,8 @@ var CreateResource = /** @class */ (function () {
                         }
                     });
             }
-            if (field.creationRules) {
+            if (field.creationRules &&
+                !['HasManyEmbedded', 'HasOneEmbedded'].includes(field.type)) {
                 rules[field.attribute] = field.creationRules;
             }
         });

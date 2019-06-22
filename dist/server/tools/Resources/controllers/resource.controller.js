@@ -514,7 +514,8 @@ var ResourceController = /** @class */ (function () {
                 computedFields = (resource || req.pangaso.resource)
                     .fields()
                     .filter(function (field) { return field.computed; });
-                results = Array.isArray(data) ? data.slice() : __assign({}, data);
+                results = Array.isArray(data)
+                    ? data.slice() : __assign({}, data);
                 // first we'll check if it's an array or an object
                 if (Array.isArray(results)) {
                     // yep, it's a collection of documents

@@ -34,14 +34,49 @@ class CreateResource {
                 if (typeof rule === 'string') {
                     topLevelRules[attribute] = rule
                 } else {
-                    try {
-                        await Indicative.validateAll(
-                            data[attribute],
-                            rule,
-                            messages
-                        )
-                    } catch (nestedErrors) {
-                        errors[attribute] = nestedErrors
+                    // We need to know if it's a HasOneEmbedded field
+
+                    if (
+                        resource
+                            .fields()
+                            .find(
+                                (field: IField) => field.attribute === attribute
+                            ).type === 'HasManyEmbedded'
+                    ) {
+                        errors[attribute] = []
+
+                        for (const embeddedDataIndex in data[attribute]) {
+                            if (
+                                data[attribute].hasOwnProperty(
+                                    embeddedDataIndex
+                                )
+                            ) {
+                                const embeddedData =
+                                    data[attribute][embeddedDataIndex]
+
+                                try {
+                                    await Indicative.validateAll(
+                                        embeddedData,
+                                        rule,
+                                        messages
+                                    )
+
+                                    errors[attribute].push([])
+                                } catch (nestedErrors) {
+                                    errors[attribute].push(nestedErrors)
+                                }
+                            }
+                        }
+                    } else {
+                        try {
+                            await Indicative.validateAll(
+                                data[attribute],
+                                rule,
+                                messages
+                            )
+                        } catch (nestedErrors) {
+                            errors[attribute] = nestedErrors
+                        }
                     }
                 }
             }
@@ -76,9 +111,11 @@ class CreateResource {
 
         resource
             .fields()
-            .filter((field: IField) => field.type !== 'ID')
+            .filter((field: IField) => field.type !== 'ID' && !field.computed)
             .forEach((field: IField) => {
-                if (field.type === 'HasOneEmbedded') {
+                if (
+                    ['HasManyEmbedded', 'HasOneEmbedded'].includes(field.type)
+                ) {
                     rules[field.attribute] = {}
                     field.fields &&
                         field.fields.forEach((embeddedField: IField) => {
@@ -90,7 +127,10 @@ class CreateResource {
                         })
                 }
 
-                if (field.creationRules) {
+                if (
+                    field.creationRules &&
+                    !['HasManyEmbedded', 'HasOneEmbedded'].includes(field.type)
+                ) {
                     rules[field.attribute] = field.creationRules
                 }
             })

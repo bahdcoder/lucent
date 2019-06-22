@@ -34,3 +34,5 @@ var Resource_1 = require("./Resource");
 exports.Resource = Resource_1.BaseResource;
 var HasOneEmbedded_1 = require("./fields/HasOneEmbedded");
 exports.HasOneEmbedded = HasOneEmbedded_1.HasOneEmbedded;
+var HasManyEmbedded_1 = require("./fields/HasManyEmbedded");
+exports.HasManyEmbedded = HasManyEmbedded_1.HasManyEmbedded;
