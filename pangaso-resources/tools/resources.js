@@ -2262,6 +2262,27 @@ function (_React$Component) {
       });
     });
 
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "renderDetailField", function (embeddableField, field, embeddableFieldData, index) {
+      var DetailField = _this.getDetailField(field.detail);
+
+      return DetailField ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        key: index,
+        className: classnames__WEBPACK_IMPORTED_MODULE_9___default()('w-full py-4 flex items-center', {
+          'border-b border-grey-light ': index !== embeddableField.fields.length - 1
+        })
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
+        className: "w-1/4 text-lg font-thin text-grey-dark"
+      }, field.name), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: "w-2/4 flex flex-col text-grey-darkest leading-normal tracking-normal"
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(DetailField, {
+        dateFormat: field.dateFormat,
+        checked: embeddableFieldData[field.attribute],
+        content: embeddableFieldData[field.attribute],
+        options: field.options,
+        dataTestId: "detail-".concat(embeddableField.attribute, "-").concat(field.attribute)
+      }))) : null;
+    });
+
     return _this;
   }
 
@@ -2401,29 +2422,17 @@ function (_React$Component) {
           className: "w-full mt-12"
         }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h3", {
           className: "font-thin text-2xl mb-2"
-        }, embeddableField.name), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        }, embeddableField.name), embeddableField.type === 'HasManyEmbedded' && (data[embeddableField.attribute] || []).map(function (fieldData, fieldDataIndex) {
+          return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+            key: fieldDataIndex,
+            className: "mt-6 bg-white rounded-lg w-full py-4 px-8"
+          }, embeddableField.fields.map(function (field, fieldIndex) {
+            return _this4.renderDetailField(embeddableField, field, fieldData || {}, fieldIndex);
+          }));
+        }), embeddableField.type === 'HasOneEmbedded' && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
           className: "mt-6 bg-white rounded-lg w-full py-4 px-8"
         }, embeddableField.fields.map(function (field, index) {
-          var embeddableFieldData = data[embeddableField.attribute] || {};
-
-          var DetailField = _this4.getDetailField(field.detail);
-
-          return DetailField ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-            key: index,
-            className: classnames__WEBPACK_IMPORTED_MODULE_9___default()('w-full py-4 flex items-center', {
-              'border-b border-grey-light ': index !== embeddableField.fields.length - 1
-            })
-          }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
-            className: "w-1/4 text-lg font-thin text-grey-dark"
-          }, field.name), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-            className: "w-2/4 flex flex-col text-grey-darkest leading-normal tracking-normal"
-          }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(DetailField, {
-            dateFormat: field.dateFormat,
-            checked: embeddableFieldData[field.attribute],
-            content: embeddableFieldData[field.attribute],
-            options: field.options,
-            dataTestId: "detail-".concat(embeddableField.attribute, "-").concat(field.attribute)
-          }))) : null;
+          return _this4.renderDetailField(embeddableField, field, data[embeddableField.attribute] || {}, index);
         })));
       }), Object.keys(data).length > 0 && hasOneFields.map(function (hasOneField, index) {
         return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_HasOne__WEBPACK_IMPORTED_MODULE_10__["default"], {

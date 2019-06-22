@@ -204,10 +204,13 @@ class AddResource extends React.Component {
 
     /**
      * Get a string of all has many embedded fields
-     * 
+     *
      * @return {Array}
      */
-    getHasManyEmbeddedFields = () => this.state.resource.fields.filter(field => field.type === 'HasManyEmbedded').map(field => field.attribute)
+    getHasManyEmbeddedFields = () =>
+        this.state.resource.fields
+            .filter(field => field.type === 'HasManyEmbedded')
+            .map(field => field.attribute)
 
     /**
      *
@@ -374,12 +377,12 @@ class AddResource extends React.Component {
                 },
                 errors: {
                     ...this.state.errors,
-                    [event.attribute]: this.state.errors[event.attribute] ? this.state.errors[event.attribute].map(
-                        item => ({
-                            ...item,
-                            [event.name]: null
-                        })
-                    ) : []
+                    [event.attribute]: this.state.errors[event.attribute]
+                        ? this.state.errors[event.attribute].map(item => ({
+                              ...item,
+                              [event.name]: null
+                          }))
+                        : []
                 }
             })
         }

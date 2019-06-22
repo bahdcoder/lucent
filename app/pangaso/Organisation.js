@@ -243,9 +243,12 @@ class Organisation extends Resource {
                     .createWithRules('required')
             ]),
             HasManyEmbedded.make('Branch').withFields([
-                File.make('Logo').hideOnIndex(),
                 Text.make('City').createWithRules('required'),
-                Text.make('State').createWithRules('required')
+                Text.make('State').createWithRules('required'),
+                Select.make('Country')
+                    .asCombobox()
+                    .withOptions(countries)
+                    .createWithRules('required')
             ]),
             HasMany.make('Contacts')
                 .searchable()
