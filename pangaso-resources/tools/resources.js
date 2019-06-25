@@ -1573,7 +1573,7 @@ function (_React$Component) {
           error: errors[field.attribute],
           placeholder: field.type === 'Select' ? "Select a ".concat(field.name) : field.name,
           handler: function handler() {
-            return _this4.handleChange(arguments.length <= 0 ? undefined : arguments[0], arguments.length <= 1 ? undefined : arguments[1], field);
+            return _this4.handleChange(arguments.length <= 0 ? undefined : arguments[0], arguments.length <= 1 ? undefined : arguments[1]);
           },
           parentRecord: record,
           parentResource: resource

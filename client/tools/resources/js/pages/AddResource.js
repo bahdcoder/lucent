@@ -626,8 +626,7 @@ class AddResource extends React.Component {
                                                 handler={(...all) =>
                                                     this.handleChange(
                                                         all[0],
-                                                        all[1],
-                                                        field
+                                                        all[1]
                                                     )
                                                 }
                                                 parentRecord={record}
