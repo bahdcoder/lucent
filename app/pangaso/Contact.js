@@ -11,11 +11,18 @@ const {
     HasOneEmbedded
 } = require(process.env.CI_ENVIRONMENT ? '../dist/server/main' : 'pangaso')
 
+const ContactRole = require('./Filters/ContactRole')
+const SendWelcomeEmailAction = require('./Actions/SendWelcomeEmail')
+
 const Bcrypt = require('bcryptjs')
 
 class Contact extends Resource {
     displayValue() {
         return 'firstName'
+    }
+
+    filters() {
+        return [new ContactRole()]
     }
 
     fields() {
@@ -69,6 +76,10 @@ class Contact extends Resource {
             File.make('Avatar').hideOnIndex(),
             HasOne.make('Organisation').searchable()
         ]
+    }
+
+    actions() {
+        return [new SendWelcomeEmailAction()]
     }
 
     async beforeSave(data) {

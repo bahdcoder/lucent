@@ -1,7 +1,7 @@
 import { v4 } from 'uuid'
 import * as Express from 'express'
 import { ObjectID, FilterQuery } from 'mongodb'
-import { IResource, IField } from '../../../index.d'
+import { IResource, IField, IFilter } from '../../../index.d'
 
 class ResourceController {
     /**
@@ -120,7 +120,7 @@ class ResourceController {
         const data = await req.pangaso.database.fetch(
             req.pangaso.resource.collection(),
             {
-                limit: req.pangaso.resource.perPage(),
+                limit: req.query.per_page || req.pangaso.resource.perPage(),
                 page: req.query.page || 1
             },
             filter
@@ -128,6 +128,21 @@ class ResourceController {
 
         return res.json(data)
     }
+
+    getCustomFilters = (req: Express.Request, resource: IResource) =>
+        resource
+            .filters()
+            .map((filter: IFilter) =>
+                (req.query.filters || {})[filter.attribute()]
+                    ? (builder: any) =>
+                          filter.apply(
+                              req,
+                              builder,
+                              (req.query.filters || {})[filter.attribute()]
+                          )
+                    : false
+            )
+            .filter(Boolean)
 
     /**
      *
@@ -146,10 +161,11 @@ class ResourceController {
         const data = await req.pangaso.database.fetch(
             req.pangaso.resource.collection(),
             {
-                limit: req.pangaso.resource.perPage(),
+                limit: req.query.per_page || req.pangaso.resource.perPage(),
                 page: req.query.page || 1
             },
-            filter
+            filter,
+            this.getCustomFilters(req, req.pangaso.resource)
         )
 
         this.resolveComputedFields(req, data.data)
@@ -201,7 +217,7 @@ class ResourceController {
         const data = await req.pangaso.database.fetch(
             relatedResource.collection(),
             {
-                limit: relatedResource.perPage(),
+                limit: req.query.per_page || relatedResource.perPage(),
                 page: req.query.page || 1
             },
             {
@@ -211,7 +227,8 @@ class ResourceController {
                     )
                 },
                 ...filter
-            }
+            },
+            this.getCustomFilters(req, relatedResource)
         )
 
         let dataWithComputed = [...data.data]
@@ -264,10 +281,16 @@ class ResourceController {
             (r: IResource) => r.name() === relatedField.resource
         )
 
-        let record = await req.pangaso.database.find(
-            relatedResource.collection(),
-            parentRecord[relatedField.attribute]
-        )
+        let record = null
+
+        if (parentRecord[relatedField.attribute]) {
+            record = await req.pangaso.database.find(
+                relatedResource.collection(),
+                parentRecord[relatedField.attribute]
+            )
+        }
+
+        // Leannon
 
         if (record) {
             record = await this.resolveComputedFields(

@@ -60,7 +60,7 @@ export declare class Database {
      * @return {Promise}
      *
      */
-    fetch(collectionName: string, params?: any, filter?: any): Promise<any>;
+    fetch(collectionName: string, params?: any, filter?: any, applyCustomFilters?: Array<Function>): Promise<any>;
     /**
      * Fetch all matching records by a bunch of ids
      *

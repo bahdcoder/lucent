@@ -48,7 +48,7 @@ export declare class Action {
      * @return {Action}
      *
      */
-    destructive(destructive?: boolean): this;
+    destructive(): this;
     /**
      *
      * Define an alternate name for this action

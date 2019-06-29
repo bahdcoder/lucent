@@ -64,7 +64,19 @@ ${error}`)
  *
  */
 const getResourcePath = resourceName =>
-    Path.resolve(process.cwd(), 'pangaso', `${resourceName}.js`)
+    Path.resolve(process.cwd(), 'Pangaso', `${resourceName}.js`)
+
+/**
+ *
+ * Get the string path to a resource
+ *
+ * @param {string} filterName
+ *
+ * @return {string}
+ *
+ */
+const getFiltersPath = filterName =>
+    Path.resolve(process.cwd(), 'Pangaso', 'Filters', `${filterName}.js`)
 
 /**
  *
@@ -83,7 +95,26 @@ const resourceExists = resourceName => {
     }
 }
 
+/**
+ *
+ * Check if a filter exists
+ *
+ * @param {string} filterName
+ *
+ * @return {boolean}
+ *
+ */
+const filterExists = filterName => {
+    try {
+        return !!Fs.readFileSync(getFiltersPath(filterName))
+    } catch (e) {
+        return false
+    }
+}
+
 module.exports = {
+    filterExists,
+    getFiltersPath,
     resourceExists,
     getStubContent,
     getResourcePath,

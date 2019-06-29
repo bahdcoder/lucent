@@ -62,6 +62,7 @@ declare class ResourceController {
      *
      */
     search: (req: Express.Request, res: Express.Response) => Promise<import("express-serve-static-core").Response>;
+    getCustomFilters: (req: Express.Request, resource: IResource) => (false | ((builder: any) => any))[];
     /**
      *
      * Fetch data from specific resource collection

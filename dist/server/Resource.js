@@ -106,6 +106,15 @@ var BaseResource = /** @class */ (function () {
         return [];
     };
     /**
+     * Get all filters for a resource
+     *
+     * @return {Array}
+     *
+     */
+    BaseResource.prototype.filters = function () {
+        return [];
+    };
+    /**
      * Get the schema for this class
      *
      * @return {string}
@@ -197,11 +206,21 @@ var BaseResource = /** @class */ (function () {
      *
      * Define the items per page
      *
-     * @return {void}
+     * @return {integer}
      *
      */
     BaseResource.prototype.perPage = function () {
         return 10;
+    };
+    /**
+     *
+     * Define the items per page options
+     *
+     * @return {array}
+     *
+     */
+    BaseResource.prototype.perPageOptions = function () {
+        return [10, 25, 50, 100];
     };
     /**
      *
@@ -220,12 +239,14 @@ var BaseResource = /** @class */ (function () {
             primaryKey: this.primaryKey(),
             collection: this.collection(),
             displayValue: this.displayValue(),
+            perPageOptions: this.perPageOptions(),
             authorizedToView: this.authorizedToView(),
             nonComputedFields: this.nonComputedFields(),
             authorizedToCreate: this.authorizedToCreate(),
             authorizedToUpdate: this.authorizedToUpdate(),
             authorizedToDelete: this.authorizedToDelete(),
-            actions: this.actions().map(function (action) { return action.serialize(); })
+            actions: this.actions().map(function (action) { return action.serialize(); }),
+            filters: this.filters().map(function (filter) { return filter.serialize(); })
         };
     };
     return BaseResource;

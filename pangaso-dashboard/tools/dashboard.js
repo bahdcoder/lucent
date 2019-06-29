@@ -593,8 +593,7 @@
   Licensed under the MIT License (MIT), see
   http://jedwatson.github.io/classnames
 */
-                /* global define */
-
+                    /* global define */
                 ;(function() {
                     'use strict'
 

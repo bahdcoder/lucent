@@ -5,9 +5,12 @@ const {
     Resource,
     HasOneEmbedded,
     Select,
+    Boolean,
     HasMany,
     HasManyEmbedded
 } = require(process.env.CI_ENVIRONMENT ? '../dist/server/main' : 'pangaso')
+
+const TaxCompliantOrganisation = require('./Filters/TaxCompliantOrganisation')
 
 const countries = [
     'Afghanistan',
@@ -221,6 +224,10 @@ class Organisation extends Resource {
         return 'name'
     }
 
+    filters() {
+        return [new TaxCompliantOrganisation()]
+    }
+
     fields() {
         return [
             ID.make('ID'),
@@ -230,6 +237,7 @@ class Organisation extends Resource {
             Text.make('Email')
                 .createWithRules('required|email')
                 .searchable(),
+            Boolean.make('Tax Compliant', 'paidTaxes'),
             Text.make('Phone')
                 .createWithRules('required')
                 .searchable(),

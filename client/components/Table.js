@@ -4,6 +4,7 @@ import Paginate from 'react-paginate'
 
 // components
 import Svg from './Svg'
+import Filters from './Filters'
 import Checkbox from './Checkbox'
 
 const Table = ({
@@ -11,17 +12,23 @@ const Table = ({
     resource,
     page = 1,
     total = 1,
+    perPage,
+    filters,
     rows = [],
     selectAll,
+    resetFilters,
     headers = [],
     toggleSelect,
     onPageChange,
     selected = [],
+    filtersActive,
     triggerRunAction,
     setSelectedAction,
     viewChildResource,
     triggerMultiDelete,
-    selectedAction = ''
+    selectedAction = '',
+    handlePerPageChange,
+    handleFilterChange
 }) => {
     /**
      *
@@ -30,7 +37,7 @@ const Table = ({
      * @var {Number}
      *
      */
-    const pageCount = Math.ceil(total / resource.perPage)
+    const pageCount = Math.ceil(total / perPage)
 
     /**
      *
@@ -39,7 +46,7 @@ const Table = ({
      * @return {Number}
      *
      */
-    const currentPageStart = resource.perPage * page - resource.perPage + 1
+    const currentPageStart = perPage * page - perPage + 1
 
     /**
      *
@@ -49,9 +56,9 @@ const Table = ({
      *
      */
     const currentPageEnd =
-        Math.round(total - currentPageStart) <= resource.perPage
+        Math.round(total - currentPageStart) <= perPage
             ? total
-            : currentPageStart + resource.perPage - 1
+            : currentPageStart + perPage - 1
 
     return (
         <div className="w-full bg-white rounded-t-lg shadow mt-4">
@@ -126,6 +133,17 @@ const Table = ({
                             />
                         </div>
                     )}
+                    <div className="flex items-center justify-center pr-6">
+                        <Filters
+                            perPage={perPage}
+                            filters={filters}
+                            resource={resource}
+                            resetFilters={resetFilters}
+                            filtersActive={filtersActive}
+                            handleFilterChange={handleFilterChange}
+                            handlePerPageChange={handlePerPageChange}
+                        />
+                    </div>
                 </div>
             </div>
 

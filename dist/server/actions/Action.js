@@ -92,9 +92,8 @@ var Action = /** @class */ (function () {
      * @return {Action}
      *
      */
-    Action.prototype.destructive = function (destructive) {
-        if (destructive === void 0) { destructive = true; }
-        this.isDestructive = destructive;
+    Action.prototype.destructive = function () {
+        this.isDestructive = true;
         return this;
     };
     /**

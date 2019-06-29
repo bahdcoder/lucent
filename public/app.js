@@ -285,6 +285,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Form_BooleanField__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/Form/BooleanField */ "./client/components/Form/BooleanField.js");
 /* harmony import */ var _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/Form/TextareaField */ "./client/components/Form/TextareaField.js");
 /* harmony import */ var _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/Form/PasswordField */ "./client/components/Form/PasswordField.js");
+/* harmony import */ var _components_Filter_Select__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/Filter/Select */ "./client/components/Filter/Select.js");
+/* harmony import */ var _components_Filter_Boolean__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/Filter/Boolean */ "./client/components/Filter/Boolean.js");
 
 
 
@@ -321,6 +323,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+ // filters
 
 
 
@@ -417,6 +422,10 @@ function () {
       _this3.components[key] = component;
     });
 
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "filter", function (key, filter) {
+      _this3.filters[key] = filter;
+    });
+
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(this, "detail", function (key, detail) {
       _this3.details[key] = detail;
     });
@@ -443,6 +452,13 @@ function () {
      */
 
     this.components = {};
+    /**
+     *
+     * Initialize global filters registry
+     *
+     */
+
+    this.filters = {};
     /**
      *
      * Initialize booting callbacks for all plugins/tools
@@ -592,6 +608,13 @@ function () {
     this.component('component-select', _components_Select__WEBPACK_IMPORTED_MODULE_16__["default"]);
     this.component('component-checkbox', _components_Checkbox__WEBPACK_IMPORTED_MODULE_18__["default"]);
     this.component('component-combobox', _components_Combobox__WEBPACK_IMPORTED_MODULE_17__["default"]);
+    /**
+     *
+     * Here we'll register filters to the filter registry
+     */
+
+    this.filter('filter-select', _components_Filter_Select__WEBPACK_IMPORTED_MODULE_36__["default"]);
+    this.filter('filter-boolean', _components_Filter_Boolean__WEBPACK_IMPORTED_MODULE_37__["default"]);
   }
   /**
    *
@@ -1464,6 +1487,207 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./client/components/Filter/Boolean.js":
+/*!*********************************************!*\
+  !*** ./client/components/Filter/Boolean.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js");
+/* harmony import */ var _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Checkbox */ "./client/components/Checkbox.js");
+
+
+
+
+
+
+var BooleanFilter = function BooleanFilter(_ref) {
+  var _handler = _ref.handler,
+      options = _ref.options,
+      name = _ref.name,
+      value = _ref.value,
+      rest = _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_2___default()(_ref, ["handler", "options", "name", "value"]);
+
+  return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_3___default.a.Fragment, null, options.map(function (option) {
+    return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+      className: "w-full",
+      key: option.value
+    }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+      className: "mt-2"
+    }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, rest, {
+      label: option.label,
+      value: option.value,
+      id: "".concat(name, "-").concat(option.value),
+      name: "".concat(name, "-").concat(option.value),
+      checked: value.includes(option.value),
+      handler: function handler() {
+        return _handler({
+          name: name,
+          value: value.includes(option.value) ? value.filter(function (v) {
+            return v !== option.value;
+          }) : [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(value), [option.value])
+        });
+      }
+    }))));
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (BooleanFilter);
+
+/***/ }),
+
+/***/ "./client/components/Filter/Select.js":
+/*!********************************************!*\
+  !*** ./client/components/Filter/Select.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js");
+/* harmony import */ var _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Select__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Select */ "./client/components/Select.js");
+
+
+
+
+
+var SelectFilter = function SelectFilter(_ref) {
+  var _handler = _ref.handler,
+      name = _ref.name,
+      rest = _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1___default()(_ref, ["handler", "name"]);
+
+  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_Select__WEBPACK_IMPORTED_MODULE_3__["default"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, rest, {
+    placeholder: "--------",
+    handler: function handler(event) {
+      return _handler({
+        name: name,
+        value: event.target.value
+      });
+    }
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SelectFilter);
+
+/***/ }),
+
+/***/ "./client/components/Filters.js":
+/*!**************************************!*\
+  !*** ./client/components/Filters.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Svg */ "./client/components/Svg.js");
+/* harmony import */ var _Select__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Select */ "./client/components/Select.js");
+
+ // components
+
+
+
+
+var Filters = function Filters(_ref) {
+  var resource = _ref.resource,
+      perPage = _ref.perPage,
+      resetFilters = _ref.resetFilters,
+      _ref$filters = _ref.filters,
+      filters = _ref$filters === void 0 ? {} : _ref$filters,
+      filtersActive = _ref.filtersActive,
+      handlePerPageChange = _ref.handlePerPageChange,
+      handleFilterChange = _ref.handleFilterChange;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
+      dropDownOpen = _useState2[0],
+      setDropDownOpen = _useState2[1];
+
+  var perPageOptions = (resource.perPageOptions || []).map(function (option) {
+    return {
+      label: option,
+      value: option
+    };
+  });
+
+  var renderFilter = function renderFilter(filter) {
+    var Field = Pangaso.filters[filter.component];
+    return Field ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+      className: "text-sm uppercase tracking-wide text-80 bg-grey-lighter p-3"
+    }, filter.name), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "p-3"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Field, {
+      className: "w-full my-0",
+      name: filter.attribute,
+      options: filter.options,
+      handler: handleFilterChange,
+      value: filters[filter.attribute]
+    }))) : null;
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "relative"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    onClick: function onClick() {
+      return setDropDownOpen(!dropDownOpen);
+    },
+    className: "px-4 bg-grey-lighter border rounded flex w-full items-center py-2 cursor-pointer"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Svg__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    icon: "filter",
+    className: "text-grey cursor-pointer"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Svg__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    icon: "caret",
+    fill: "#b8c2cc",
+    className: "ml-2"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "ml-2 inline-block font-bold"
+  }, filtersActive ? 'ON' : 'OFF')), dropDownOpen && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "absolute pin-r shadow-lg w-64 border border-grey bg-white mt-3 z-50 rounded-lg"
+  }, filtersActive && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+    onClick: resetFilters,
+    className: "text-sm uppercase border-b border-grey tracking-wide text-80 bg-grey-lighter p-3 cursor-pointer"
+  }, "Reset Filters"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+    className: "text-sm uppercase tracking-wide text-80 bg-grey-lighter p-3"
+  }, "Per Page"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "p-2"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Select__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "w-full my-0",
+    options: perPageOptions,
+    value: perPage,
+    handler: function handler(event) {
+      return handlePerPageChange(event.target.value);
+    }
+  })), resource.filters.map(function (filter, index) {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, {
+      key: "".concat(filter.attribute, "-").concat(index)
+    }, renderFilter(filter));
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Filters);
+
+/***/ }),
+
 /***/ "./client/components/Form/BooleanField.js":
 /*!************************************************!*\
   !*** ./client/components/Form/BooleanField.js ***!
@@ -1862,7 +2086,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Svg = function Svg(_ref) {
-  var _ref$icon = _ref.icon,
+  var fill = _ref.fill,
+      _ref$icon = _ref.icon,
       icon = _ref$icon === void 0 ? 'eye' : _ref$icon,
       _ref$width = _ref.width,
       width = _ref$width === void 0 ? 20 : _ref$width,
@@ -1870,7 +2095,7 @@ var Svg = function Svg(_ref) {
       height = _ref$height === void 0 ? 20 : _ref$height,
       className = _ref.className,
       dataTestId = _ref.dataTestId,
-      rest = _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1___default()(_ref, ["icon", "width", "height", "className", "dataTestId"]);
+      rest = _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1___default()(_ref, ["fill", "icon", "width", "height", "className", "dataTestId"]);
 
   var icons = {
     eye: react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("svg", _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, rest, {
@@ -1885,6 +2110,38 @@ var Svg = function Svg(_ref) {
     }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("path", {
       d: "M16.56 13.66a8 8 0 0 1-11.32 0L.3 8.7a1 1 0 0 1 0-1.42l4.95-4.95a8 8 0 0 1 11.32 0l4.95 4.95a1 1 0 0 1 0 1.42l-4.95 4.95-.01.01zm-9.9-1.42a6 6 0 0 0 8.48 0L19.38 8l-4.24-4.24a6 6 0 0 0-8.48 0L2.4 8l4.25 4.24h.01zM10.9 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
     })),
+    filter: react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("svg", _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, rest, {
+      width: width,
+      height: height,
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 20 20",
+      "aria-labelledby": "filter",
+      role: "presentation",
+      className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('fill-current', className)
+    }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("path", {
+      fillRule: "nonzero",
+      d: "M.293 5.707A1 1 0 0 1 0 4.999V1A1 1 0 0 1 1 0h18a1 1 0 0 1 1 1v4a1 1 0 0 1-.293.707L13 12.413v2.585a1 1 0 0 1-.293.708l-4 4c-.63.629-1.707.183-1.707-.708v-6.585L.293 5.707zM2 2v2.585l6.707 6.707a1 1 0 0 1 .293.707v4.585l2-2V12a1 1 0 0 1 .293-.707L18 4.585V2H2z"
+    })),
+    caret: react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("svg", _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, rest, {
+      width: "10",
+      height: "6",
+      version: "1.1",
+      viewBox: "0 0 10 6",
+      className: className,
+      xmlns: "http://www.w3.org/2000/svg",
+      xmlnsXlink: "http://www.w3.org/1999/xlink"
+    }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("g", {
+      stroke: "none",
+      strokeWidth: 1,
+      fill: "none",
+      fillRule: "evenodd"
+    }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("g", {
+      fill: fill,
+      transform: "translate(-385.000000, -573.000000)",
+      fillRule: "nonzero"
+    }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("path", {
+      d: "M393.292893,573.292893 C393.683418,572.902369 394.316582,572.902369 394.707107,573.292893 C395.097631,573.683418 395.097631,574.316582 394.707107,574.707107 L390.707107,578.707107 C390.316582,579.097631 389.683418,579.097631 389.292893,578.707107 L385.292893,574.707107 C384.902369,574.316582 384.902369,573.683418 385.292893,573.292893 C385.683418,572.902369 386.316582,572.902369 386.707107,573.292893 L390,576.585786 L393.292893,573.292893 Z"
+    })))),
     pencil: react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("svg", _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, rest, {
       width: width,
       height: height,
@@ -2156,10 +2413,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-paginate */ "./node_modules/react-paginate/dist/index.js");
 /* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Svg */ "./client/components/Svg.js");
-/* harmony import */ var _Checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Checkbox */ "./client/components/Checkbox.js");
+/* harmony import */ var _Filters__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Filters */ "./client/components/Filters.js");
+/* harmony import */ var _Checkbox__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Checkbox */ "./client/components/Checkbox.js");
 
 
  // components
+
 
 
 
@@ -2171,21 +2430,27 @@ var Table = function Table(_ref) {
       page = _ref$page === void 0 ? 1 : _ref$page,
       _ref$total = _ref.total,
       total = _ref$total === void 0 ? 1 : _ref$total,
+      perPage = _ref.perPage,
+      filters = _ref.filters,
       _ref$rows = _ref.rows,
       rows = _ref$rows === void 0 ? [] : _ref$rows,
       selectAll = _ref.selectAll,
+      resetFilters = _ref.resetFilters,
       _ref$headers = _ref.headers,
       headers = _ref$headers === void 0 ? [] : _ref$headers,
       toggleSelect = _ref.toggleSelect,
       onPageChange = _ref.onPageChange,
       _ref$selected = _ref.selected,
       selected = _ref$selected === void 0 ? [] : _ref$selected,
+      filtersActive = _ref.filtersActive,
       triggerRunAction = _ref.triggerRunAction,
       setSelectedAction = _ref.setSelectedAction,
       viewChildResource = _ref.viewChildResource,
       triggerMultiDelete = _ref.triggerMultiDelete,
       _ref$selectedAction = _ref.selectedAction,
-      selectedAction = _ref$selectedAction === void 0 ? '' : _ref$selectedAction;
+      selectedAction = _ref$selectedAction === void 0 ? '' : _ref$selectedAction,
+      handlePerPageChange = _ref.handlePerPageChange,
+      handleFilterChange = _ref.handleFilterChange;
 
   /**
    *
@@ -2194,7 +2459,7 @@ var Table = function Table(_ref) {
    * @var {Number}
    *
    */
-  var pageCount = Math.ceil(total / resource.perPage);
+  var pageCount = Math.ceil(total / perPage);
   /**
    *
    * Get the starting value of the current page
@@ -2203,7 +2468,7 @@ var Table = function Table(_ref) {
    *
    */
 
-  var currentPageStart = resource.perPage * page - resource.perPage + 1;
+  var currentPageStart = perPage * page - perPage + 1;
   /**
    *
    * Get the ending value of the current page
@@ -2212,14 +2477,14 @@ var Table = function Table(_ref) {
    *
    */
 
-  var currentPageEnd = Math.round(total - currentPageStart) <= resource.perPage ? total : currentPageStart + resource.perPage - 1;
+  var currentPageEnd = Math.round(total - currentPageStart) <= perPage ? total : currentPageStart + perPage - 1;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full bg-white rounded-t-lg shadow mt-4"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "h-16 flex justify-between items-center"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-20 flex justify-center items-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Checkbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
     id: "selectAll",
     handler: selectAll,
     checked: selected.length === rows.length
@@ -2265,6 +2530,16 @@ var Table = function Table(_ref) {
     icon: "trash",
     onClick: triggerMultiDelete,
     className: "text-grey hover:text-indigo-dark"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-center pr-6"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Filters__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    perPage: perPage,
+    filters: filters,
+    resource: resource,
+    resetFilters: resetFilters,
+    filtersActive: filtersActive,
+    handleFilterChange: handleFilterChange,
+    handlePerPageChange: handlePerPageChange
   })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "w-full",
     cellSpacing: "0",
@@ -2288,7 +2563,7 @@ var Table = function Table(_ref) {
       className: "trans-30 border-b border-grey-light hover:bg-grey-lighter"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
       className: "text-left flex justify-center items-center w-20 h-14"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Checkbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
       value: row[resource.primaryKey],
       handler: function handler() {
         return toggleSelect(row);

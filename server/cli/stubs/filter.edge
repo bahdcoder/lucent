@@ -1,0 +1,20 @@
+const { ID, Filter } = require('pangaso')
+
+class {{ filterName }} extends Filter {
+    /**
+     *
+     * Apply the filter to the given query.
+     *
+     * @param {object} request express request object
+     * @param {object} builder mongodb builder cursor
+     * @param {mixed} value selected filter value from frontend
+     *
+     * @return {object}
+     *
+     */
+    apply(request, builder, value) {
+        return builder
+    }
+}
+
+module.exports = {{ filterName }}

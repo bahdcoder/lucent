@@ -53,6 +53,13 @@ export declare class BaseResource implements IResource {
      */
     actions(): never[];
     /**
+     * Get all filters for a resource
+     *
+     * @return {Array}
+     *
+     */
+    filters(): never[];
+    /**
      * Get the schema for this class
      *
      * @return {string}
@@ -120,10 +127,18 @@ export declare class BaseResource implements IResource {
      *
      * Define the items per page
      *
-     * @return {void}
+     * @return {integer}
      *
      */
     perPage(): number;
+    /**
+     *
+     * Define the items per page options
+     *
+     * @return {array}
+     *
+     */
+    perPageOptions(): number[];
     /**
      *
      * A resource can be serialized
@@ -140,11 +155,13 @@ export declare class BaseResource implements IResource {
         primaryKey: string;
         collection: string;
         displayValue: string;
+        perPageOptions: number[];
         authorizedToView: boolean;
         nonComputedFields: never[];
         authorizedToCreate: boolean;
         authorizedToUpdate: boolean;
         authorizedToDelete: boolean;
         actions: any[];
+        filters: object[];
     };
 }

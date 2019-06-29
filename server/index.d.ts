@@ -9,6 +9,21 @@ export interface IFieldMeta {
 
 /**
  *
+ * The filter interface
+ *
+ */
+export interface IFilter {
+    name: () => string
+    options: () => Array<any>
+    attribute: () => string
+    component: () => string
+    serialize: () => object
+    default: () => any
+    apply: (request: Express.Request, builder: any, value: any) => any
+}
+
+/**
+ *
  * The field interface
  *
  */
@@ -49,6 +64,7 @@ export interface IResource {
     slug(): string
     title(): string
     serialize(): Object
+    filters(): Array<IFilter>
     authorizedToCreate?(): boolean
     authorizedToView?(): boolean
     authorizedToUpdate?(): boolean

@@ -1674,27 +1674,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
-/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var throttle_debounce__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! throttle-debounce */ "./node_modules/throttle-debounce/dist/index.esm.js");
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js");
+/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var throttle_debounce__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! throttle-debounce */ "./node_modules/throttle-debounce/dist/index.esm.js");
+
 
 
 
@@ -1713,26 +1716,27 @@ __webpack_require__.r(__webpack_exports__);
 var Resource =
 /*#__PURE__*/
 function (_React$Component) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_8___default()(Resource, _React$Component);
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_9___default()(Resource, _React$Component);
 
   function Resource() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, Resource);
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4___default()(this, Resource);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5___default()(this, (_getPrototypeOf2 = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default()(Resource)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default()(this, (_getPrototypeOf2 = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default()(Resource)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "state", {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "state", {
       data: {
         total: 0,
         data: []
       },
+      filters: _this.getDefaultFilters(),
       selected: [],
       isFetching: true,
       selectedAction: {},
@@ -1741,6 +1745,7 @@ function (_React$Component) {
       currentlyDeleting: '',
       resource: _this.getCurrentResource(),
       page: _this.getQueryParams().page || 1,
+      perPage: _this.getQueryParams().per_page || _this.getCurrentResource().perPage,
       query: _this.getQueryParams().query || ''
       /**
        *
@@ -1750,18 +1755,19 @@ function (_React$Component) {
 
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "params", function () {
-      return query_string__WEBPACK_IMPORTED_MODULE_12___default.a.parse(_this.props.location.search);
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "params", function () {
+      return query_string__WEBPACK_IMPORTED_MODULE_13___default.a.parse(_this.props.location.search);
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "paramsString", function () {
-      return query_string__WEBPACK_IMPORTED_MODULE_12___default.a.stringify({
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "paramsString", function () {
+      return query_string__WEBPACK_IMPORTED_MODULE_13___default.a.stringify({
         page: _this.state.page || 1,
-        query: _this.state.query || ''
+        query: _this.state.query || '',
+        per_page: _this.state.perPage || 10
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "triggerMultiDelete", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "triggerMultiDelete", function () {
       var currentlyDeleting = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       return _this.setState({
         currentlyDeleting: currentlyDeleting,
@@ -1769,13 +1775,13 @@ function (_React$Component) {
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "triggerRunAction", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "triggerRunAction", function () {
       return _this.setState({
         runningAction: !_this.state.runningAction
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "updateWindowLocation", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "updateWindowLocation", function () {
       var _this$props = _this.props,
           resource = _this$props.resource,
           history = _this$props.history,
@@ -1783,7 +1789,47 @@ function (_React$Component) {
       !resource && history.push("".concat(location.pathname, "?").concat(_this.paramsString()));
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "fetchData", Object(throttle_debounce__WEBPACK_IMPORTED_MODULE_13__["debounce"])(500, function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "handlePerPageChange", function (perPage) {
+      _this.setState({
+        perPage: perPage
+      }, function () {
+        return _this.fetchData();
+      });
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "handleFilterChange", function (event) {
+      _this.setState({
+        filters: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_3___default()({}, _this.state.filters, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()({}, event.name, event.value))
+      }, function () {
+        return _this.fetchData();
+      });
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "resetFilters", function () {
+      _this.setState({
+        isFetching: true,
+        filters: _this.getDefaultFilters()
+      }, _this.fetchData);
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "filtersActive", function () {
+      return !(JSON.stringify(_this.state.filters) === JSON.stringify(_this.getDefaultFilters()));
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "buildFilters", function () {
+      var filters = {};
+
+      for (var key in _this.state.filters) {
+        if (_this.state.filters.hasOwnProperty(key)) {
+          var filter = _this.state.filters[key];
+          filters["filters[".concat(key, "]")] = filter;
+        }
+      }
+
+      return filters;
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "fetchData", Object(throttle_debounce__WEBPACK_IMPORTED_MODULE_14__["debounce"])(500, function () {
       _this.updateWindowLocation();
 
       var _this$props2 = _this.props,
@@ -1792,8 +1838,13 @@ function (_React$Component) {
           parentResource = _this$props2.parentResource,
           field = _this$props2.field;
       var url = resource ? "/resources/".concat(parentResource.slug, "/").concat(parentRecord[parentResource.primaryKey], "/has-many/").concat(field.attribute) : "resources/".concat(_this.props.match.params.resource);
-      url = "".concat(url, "?").concat(_this.paramsString());
-      Pangaso.request().get(url).then(function (_ref) {
+      Pangaso.request().get(url, {
+        params: _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_3___default()({
+          page: _this.state.page,
+          query: _this.state.query,
+          per_page: _this.state.perPage
+        }, _this.buildFilters())
+      }).then(function (_ref) {
         var data = _ref.data;
 
         _this.setState({
@@ -1803,7 +1854,7 @@ function (_React$Component) {
       });
     }));
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "handlePageChange", function (_ref2) {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "handlePageChange", function (_ref2) {
       var selected = _ref2.selected;
       var _this$props3 = _this.props,
           history = _this$props3.history,
@@ -1828,7 +1879,7 @@ function (_React$Component) {
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "handleQueryChange", function (event) {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "handleQueryChange", function (event) {
       _this.setState({
         isFetching: true,
         query: event.target.value
@@ -1839,7 +1890,7 @@ function (_React$Component) {
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "search", Object(throttle_debounce__WEBPACK_IMPORTED_MODULE_13__["debounce"])(500, function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "search", Object(throttle_debounce__WEBPACK_IMPORTED_MODULE_14__["debounce"])(500, function () {
       var resource = _this.props.resource;
       var _this$state = _this.state,
           query = _this$state.query,
@@ -1852,7 +1903,7 @@ function (_React$Component) {
       });
     }));
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "setSelectedAction", function (event) {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "setSelectedAction", function (event) {
       var selectedAction = _this.state.resource.actions.find(function (action) {
         return action.id === event.target.value;
       });
@@ -1864,7 +1915,7 @@ function (_React$Component) {
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "delete", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "delete", function () {
       Pangaso.request()["delete"]("/resources/".concat(_this.state.resource.slug), {
         data: {
           resources: _this.state.selected.length > 0 ? _this.state.selected : [_this.state.currentlyDeleting]
@@ -1883,7 +1934,7 @@ function (_React$Component) {
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "selectAll", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "selectAll", function () {
       _this.setState({
         selected: _this.state.selected.length === _this.state.data.data.length ? [] : _this.state.data.data.map(function (item) {
           return item[_this.state.resource.primaryKey];
@@ -1891,7 +1942,7 @@ function (_React$Component) {
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "runAction", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "runAction", function () {
       Pangaso.request().post("/resources/".concat(_this.state.resource.slug, "/run-action"), {
         resources: _this.state.selected,
         action: _this.state.selectedAction.id
@@ -1921,13 +1972,13 @@ function (_React$Component) {
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "getIndexFields", function () {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "getIndexFields", function () {
       return _this.state.resource.fields.filter(function (field) {
         return !field.hideOnIndexPage;
       });
     });
 
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7___default()(_this), "toggleSelect", function (item) {
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_8___default()(_this), "toggleSelect", function (item) {
       var primaryKey = _this.state.resource.primaryKey;
 
       _this.setState({
@@ -1940,10 +1991,10 @@ function (_React$Component) {
     return _this;
   }
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default()(Resource, [{
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_5___default()(Resource, [{
     key: "getQueryParams",
     value: function getQueryParams() {
-      return query_string__WEBPACK_IMPORTED_MODULE_12___default.a.parse(this.props.location.search);
+      return query_string__WEBPACK_IMPORTED_MODULE_13___default.a.parse(this.props.location.search);
     }
     /**
      *
@@ -2006,6 +2057,15 @@ function (_React$Component) {
      */
 
   }, {
+    key: "getDefaultFilters",
+    value: function getDefaultFilters() {
+      var filters = {};
+      this.getCurrentResource().filters.forEach(function (filter) {
+        filters[filter.attribute] = filter["default"];
+      });
+      return filters;
+    }
+  }, {
     key: "componentWillReceiveProps",
 
     /**
@@ -2045,52 +2105,60 @@ function (_React$Component) {
           data = _this$state2.data,
           page = _this$state2.page,
           query = _this$state2.query,
+          filters = _this$state2.filters,
+          perPage = _this$state2.perPage,
           resource = _this$state2.resource,
           selected = _this$state2.selected,
           runningAction = _this$state2.runningAction,
           multiDeleting = _this$state2.multiDeleting,
           selectedAction = _this$state2.selectedAction;
-      return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_10___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("h1", {
+      return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_11___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("h1", {
         "data-testid": "resource-title-".concat(resource.slug),
-        className: classnames__WEBPACK_IMPORTED_MODULE_11___default()('font-thin mb-2', {
+        className: classnames__WEBPACK_IMPORTED_MODULE_12___default()('font-thin mb-2', {
           'text-2xl': this.props.resource,
           'text-3xl': !this.props.resource
         })
-      }, resource.title), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+      }, resource.title), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: "flex justify-between items-center"
-      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
         className: "w-1/5 flex items-center"
-      }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Svg, {
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Svg, {
         icon: "lens",
         className: "absolute ml-3 z-5 text-grey"
-      }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("input", {
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("input", {
         type: "text",
         value: query,
         placeholder: "Search",
         onChange: this.handleQueryChange,
         className: "w-full text-grey-darkest my-3 h-10 pr-3 pl-10 rounded-lg shadow focus:outline-none focus:border-indigo focus:border-2"
-      })), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Button, {
+      })), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Button, {
         link: true,
         label: "Create ".concat(resource.name),
         to: "/resources/".concat(resource.slug, "/new"),
         dataTestId: "create-resource-".concat(resource.slug)
-      })), this.state.isFetching ? react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Loader, null) : react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Table, {
+      })), this.state.isFetching ? react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Loader, null) : react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Table, {
         page: page,
         Link: Link,
         rows: data.data,
+        filters: filters,
         total: data.total,
         resource: resource,
         selected: selected,
         selectAll: this.selectAll,
+        perPage: parseInt(perPage),
         headers: this.getIndexFields(),
         selectedAction: selectedAction,
         toggleSelect: this.toggleSelect,
+        resetFilters: this.resetFilters,
+        filtersActive: this.filtersActive(),
         onPageChange: this.handlePageChange,
         viewChildResource: viewChildResource,
         triggerRunAction: this.triggerRunAction,
         setSelectedAction: this.setSelectedAction,
-        triggerMultiDelete: this.triggerMultiDelete
-      }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Modal, {
+        triggerMultiDelete: this.triggerMultiDelete,
+        handleFilterChange: this.handleFilterChange,
+        handlePerPageChange: this.handlePerPageChange
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Modal, {
         open: multiDeleting,
         action: {
           type: 'danger',
@@ -2098,13 +2166,13 @@ function (_React$Component) {
           handler: this["delete"]
         },
         renderContent: function renderContent() {
-          return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("p", {
+          return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("p", {
             className: "text-grey-dark"
           }, "Are you sure you want to delete ".concat(selected.length > 1 || '' ? selected.length : 'this', " resource").concat(selected.length > 1 ? 's' : '', "?"));
         },
         title: "Delete Resource",
         cancel: this.triggerMultiDelete
-      }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(Modal, {
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Modal, {
         open: runningAction,
         action: {
           label: 'Run Action',
@@ -2112,7 +2180,7 @@ function (_React$Component) {
           type: selectedAction.isDestructive ? 'danger' : 'primary'
         },
         renderContent: function renderContent() {
-          return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("p", {
+          return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("p", {
             className: "text-grey-dark"
           }, "Are you sure you want to run this action on ".concat(selected.length, " resource").concat(selected.length > 1 ? 's' : '', "?"));
         },
@@ -2123,7 +2191,7 @@ function (_React$Component) {
   }]);
 
   return Resource;
-}(react__WEBPACK_IMPORTED_MODULE_10___default.a.Component);
+}(react__WEBPACK_IMPORTED_MODULE_11___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Resource);
 

@@ -1,34 +1,29 @@
 #!/usr/bin/env node
 
-const Consola = require('consola')
 const program = require('commander')
-const ChangeCase = require('change-case')
-const {
-    createAndWriteToFile,
-    getStubContent,
-    resourceExists,
-    getResourcePath
-} = require('./helpers')
+const makeFilterCommand = require('./commands/make-filter')
+const makeResourceCommand = require('./commands/make-resource')
 
 program.version('0.1.0').description('Pangaso CLI')
 
 program
+
+    /**
+     *
+     * Define the command for making a resource
+     */
     .command('make:resource <resource-name>')
     .description('Make a new pangaso resource')
-    .action(rn => {
-        const resourceName = ChangeCase.pascalCase(rn)
+    .action(makeResourceCommand)
 
-        if (resourceExists(resourceName)) {
-            return Consola.error(`Resource ${resourceName} already exists.`)
-        }
-
-        const stubContent = getStubContent('resource', {
-            resourceName
-        })
-
-        if (createAndWriteToFile(getResourcePath(resourceName), stubContent)) {
-            Consola.success(`Resource ${resourceName} created succesfully.`)
-        }
-    })
+program
+    /**
+     *
+     * Define command for making a filter
+     *
+     */
+    .command('make:filter <filter-name>')
+    .description('Make a new pangaso filter')
+    .action(makeFilterCommand)
 
 program.parse(process.argv)

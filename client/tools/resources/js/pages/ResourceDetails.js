@@ -298,21 +298,24 @@ class ResourceDetails extends React.Component {
                             {embeddableField.name}
                         </h3>
                         {embeddableField.type === 'HasManyEmbedded' &&
-                            (data[embeddableField.attribute] || []).map((fieldData, fieldDataIndex) => (
-                                <div
-                                    key={fieldDataIndex}
-                                    className="mt-6 bg-white rounded-lg w-full py-4 px-8"
-                                >
-                                    {embeddableField.fields.map((field, fieldIndex) =>
-                                        this.renderDetailField(
-                                            embeddableField,
-                                            field,
-                                            fieldData || {},
-                                            fieldIndex
-                                        )
-                                    )}
-                                </div>
-                            ))}
+                            (data[embeddableField.attribute] || []).map(
+                                (fieldData, fieldDataIndex) => (
+                                    <div
+                                        key={fieldDataIndex}
+                                        className="mt-6 bg-white rounded-lg w-full py-4 px-8"
+                                    >
+                                        {embeddableField.fields.map(
+                                            (field, fieldIndex) =>
+                                                this.renderDetailField(
+                                                    embeddableField,
+                                                    field,
+                                                    fieldData || {},
+                                                    fieldIndex
+                                                )
+                                        )}
+                                    </div>
+                                )
+                            )}
                         {embeddableField.type === 'HasOneEmbedded' && (
                             <div className="mt-6 bg-white rounded-lg w-full py-4 px-8">
                                 {embeddableField.fields.map((field, index) =>

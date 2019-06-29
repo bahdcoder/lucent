@@ -99,7 +99,7 @@ var ResourceController = /** @class */ (function () {
                     case 0:
                         filter = this.buildFilter(req);
                         return [4 /*yield*/, req.pangaso.database.fetch(req.pangaso.resource.collection(), {
-                                limit: req.pangaso.resource.perPage(),
+                                limit: req.query.per_page || req.pangaso.resource.perPage(),
                                 page: req.query.page || 1
                             }, filter)];
                     case 1:
@@ -108,6 +108,18 @@ var ResourceController = /** @class */ (function () {
                 }
             });
         }); };
+        this.getCustomFilters = function (req, resource) {
+            return resource
+                .filters()
+                .map(function (filter) {
+                return (req.query.filters || {})[filter.attribute()]
+                    ? function (builder) {
+                        return filter.apply(req, builder, (req.query.filters || {})[filter.attribute()]);
+                    }
+                    : false;
+            })
+                .filter(Boolean);
+        };
         /**
          *
          * Fetch data from specific resource collection
@@ -126,9 +138,9 @@ var ResourceController = /** @class */ (function () {
                     case 0:
                         filter = this.buildFilter(req);
                         return [4 /*yield*/, req.pangaso.database.fetch(req.pangaso.resource.collection(), {
-                                limit: req.pangaso.resource.perPage(),
+                                limit: req.query.per_page || req.pangaso.resource.perPage(),
                                 page: req.query.page || 1
-                            }, filter)];
+                            }, filter, this.getCustomFilters(req, req.pangaso.resource))];
                     case 1:
                         data = _a.sent();
                         this.resolveComputedFields(req, data.data);
@@ -165,11 +177,11 @@ var ResourceController = /** @class */ (function () {
                         relatedResource = req.pangaso.resources.find(function (r) { return r.title() === relatedField.resource; });
                         filter = this.buildFilter(req, relatedResource);
                         return [4 /*yield*/, req.pangaso.database.fetch(relatedResource.collection(), {
-                                limit: relatedResource.perPage(),
+                                limit: req.query.per_page || relatedResource.perPage(),
                                 page: req.query.page || 1
                             }, __assign({ _id: {
                                     $in: (resource[relatedField.attribute] || []).map(function (primaryKey) { return new mongodb_1.ObjectID(primaryKey); })
-                                } }, filter))];
+                                } }, filter), this.getCustomFilters(req, relatedResource))];
                     case 2:
                         data = _a.sent();
                         dataWithComputed = data.data.slice();
@@ -207,15 +219,19 @@ var ResourceController = /** @class */ (function () {
                             .fields()
                             .find(function (field) { return field.attribute === req.params.relation; });
                         relatedResource = req.pangaso.resources.find(function (r) { return r.name() === relatedField.resource; });
+                        record = null;
+                        if (!parentRecord[relatedField.attribute]) return [3 /*break*/, 3];
                         return [4 /*yield*/, req.pangaso.database.find(relatedResource.collection(), parentRecord[relatedField.attribute])];
                     case 2:
                         record = _a.sent();
-                        if (!record) return [3 /*break*/, 4];
-                        return [4 /*yield*/, this.resolveComputedFields(req, record, relatedResource)];
+                        _a.label = 3;
                     case 3:
+                        if (!record) return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.resolveComputedFields(req, record, relatedResource)];
+                    case 4:
                         record = _a.sent();
-                        _a.label = 4;
-                    case 4: return [2 /*return*/, res.json(record || null)];
+                        _a.label = 5;
+                    case 5: return [2 /*return*/, res.json(record || null)];
                 }
             });
         }); };

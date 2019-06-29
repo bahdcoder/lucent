@@ -37,6 +37,10 @@ import BooleanField from './components/Form/BooleanField'
 import TextareaField from './components/Form/TextareaField'
 import PasswordField from './components/Form/PasswordField'
 
+// filters
+import SelectFilter from './components/Filter/Select'
+import BooleanFilter from './components/Filter/Boolean'
+
 class Form {}
 
 export class Pangaso {
@@ -68,6 +72,13 @@ export class Pangaso {
          *
          */
         this.components = {}
+
+        /**
+         *
+         * Initialize global filters registry
+         *
+         */
+        this.filters = {}
 
         /**
          *
@@ -234,6 +245,13 @@ export class Pangaso {
         this.component('component-select', Select)
         this.component('component-checkbox', Checkbox)
         this.component('component-combobox', Combobox)
+
+        /**
+         *
+         * Here we'll register filters to the filter registry
+         */
+        this.filter('filter-select', SelectFilter)
+        this.filter('filter-boolean', BooleanFilter)
     }
 
     /**
@@ -407,6 +425,21 @@ export class Pangaso {
      */
     component = (key, component) => {
         this.components[key] = component
+    }
+
+    /**
+     *
+     * Register global filters
+     *
+     * @param {string} key
+     *
+     * @param {React.SFC} filter
+     *
+     * @return {void}
+     *
+     */
+    filter = (key, filter) => {
+        this.filters[key] = filter
     }
 
     /**

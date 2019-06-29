@@ -84,7 +84,8 @@ export class Database {
     public async fetch(
         collectionName: string,
         params: any = {},
-        filter: any = {}
+        filter: any = {},
+        applyCustomFilters: Array<Function> = []
     ): Promise<any> {
         //  TODO: figure out how to get count and data in one query.
 
@@ -93,15 +94,30 @@ export class Database {
 
         let builder = collection.find(filter)
 
+        const getCountBuilder = () => {
+            let builder = collection.find(filter)
+
+            applyCustomFilters.forEach((customFilter: Function) => {
+                builder = customFilter(builder)
+            })
+
+            return builder
+        }
+
+        // We'll loop through all custom filters and call their apply functions
+        applyCustomFilters.forEach((customFilter: Function) => {
+            builder = customFilter(builder)
+        })
+
         if (params.limit && params.page) {
             builder = builder
-                .skip(params.limit * (params.page - 1))
-                .limit(params.limit)
+                .skip(parseInt(params.limit) * (params.page - 1))
+                .limit(parseInt(params.limit))
         }
 
         return {
             // @ts-ignore
-            total: await collection.find(filter).count(),
+            total: await getCountBuilder().count(),
 
             // @ts-ignore
             data: await builder.toArray()

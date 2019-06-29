@@ -9,6 +9,7 @@ class Resource extends React.Component {
             total: 0,
             data: []
         },
+        filters: this.getDefaultFilters(),
         selected: [],
         isFetching: true,
         selectedAction: {},
@@ -17,6 +18,8 @@ class Resource extends React.Component {
         currentlyDeleting: '',
         resource: this.getCurrentResource(),
         page: this.getQueryParams().page || 1,
+        perPage:
+            this.getQueryParams().per_page || this.getCurrentResource().perPage,
         query: this.getQueryParams().query || ''
     }
 
@@ -48,7 +51,8 @@ class Resource extends React.Component {
     paramsString = () =>
         QueryString.stringify({
             page: this.state.page || 1,
-            query: this.state.query || ''
+            query: this.state.query || '',
+            per_page: this.state.perPage || 10
         })
 
     /**
@@ -108,6 +112,74 @@ class Resource extends React.Component {
 
     /**
      *
+     * Update perPage value and refresh rows
+     *
+     * @return {null}
+     */
+    handlePerPageChange = perPage => {
+        this.setState({ perPage }, () => this.fetchData())
+    }
+
+    /**
+     *
+     * Update filter in state
+     *
+     * @return {null}
+     */
+    handleFilterChange = event => {
+        this.setState(
+            {
+                filters: {
+                    ...this.state.filters,
+                    [event.name]: event.value
+                }
+            },
+            () => this.fetchData()
+        )
+    }
+
+    getDefaultFilters() {
+        const filters = {}
+
+        this.getCurrentResource().filters.forEach(filter => {
+            filters[filter.attribute] = filter.default
+        })
+
+        return filters
+    }
+
+    resetFilters = () => {
+        this.setState(
+            {
+                isFetching: true,
+                filters: this.getDefaultFilters()
+            },
+            this.fetchData
+        )
+    }
+
+    filtersActive = () =>
+        !(
+            JSON.stringify(this.state.filters) ===
+            JSON.stringify(this.getDefaultFilters())
+        )
+
+    buildFilters = () => {
+        const filters = {}
+
+        for (const key in this.state.filters) {
+            if (this.state.filters.hasOwnProperty(key)) {
+                const filter = this.state.filters[key]
+
+                filters[`filters[${key}]`] = filter
+            }
+        }
+
+        return filters
+    }
+
+    /**
+     *
      * Fetch the data for a specific resource
      *
      */
@@ -121,10 +193,15 @@ class Resource extends React.Component {
               }/has-many/${field.attribute}`
             : `resources/${this.props.match.params.resource}`
 
-        url = `${url}?${this.paramsString()}`
-
         Pangaso.request()
-            .get(url)
+            .get(url, {
+                params: {
+                    page: this.state.page,
+                    query: this.state.query,
+                    per_page: this.state.perPage,
+                    ...this.buildFilters()
+                }
+            })
             .then(({ data }) => {
                 this.setState({
                     data,
@@ -365,6 +442,8 @@ class Resource extends React.Component {
             data,
             page,
             query,
+            filters,
+            perPage,
             resource,
             selected,
             runningAction,
@@ -414,18 +493,24 @@ class Resource extends React.Component {
                         page={page}
                         Link={Link}
                         rows={data.data}
+                        filters={filters}
                         total={data.total}
                         resource={resource}
                         selected={selected}
                         selectAll={this.selectAll}
+                        perPage={parseInt(perPage)}
                         headers={this.getIndexFields()}
                         selectedAction={selectedAction}
                         toggleSelect={this.toggleSelect}
+                        resetFilters={this.resetFilters}
+                        filtersActive={this.filtersActive()}
                         onPageChange={this.handlePageChange}
                         viewChildResource={viewChildResource}
                         triggerRunAction={this.triggerRunAction}
                         setSelectedAction={this.setSelectedAction}
                         triggerMultiDelete={this.triggerMultiDelete}
+                        handleFilterChange={this.handleFilterChange}
+                        handlePerPageChange={this.handlePerPageChange}
                     />
                 )}
                 <Modal

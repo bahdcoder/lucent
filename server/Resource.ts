@@ -1,4 +1,4 @@
-import { IResource, IField } from './index.d'
+import { IResource, IField, IFilter } from './index.d'
 import * as Pluralize from 'pluralize'
 
 export class BaseResource implements IResource {
@@ -72,6 +72,16 @@ export class BaseResource implements IResource {
      *
      */
     public actions() {
+        return []
+    }
+
+    /**
+     * Get all filters for a resource
+     *
+     * @return {Array}
+     *
+     */
+    public filters() {
         return []
     }
 
@@ -167,11 +177,22 @@ export class BaseResource implements IResource {
      *
      * Define the items per page
      *
-     * @return {void}
+     * @return {integer}
      *
      */
     public perPage() {
         return 10
+    }
+
+    /**
+     *
+     * Define the items per page options
+     *
+     * @return {array}
+     *
+     */
+    public perPageOptions() {
+        return [10, 25, 50, 100]
     }
 
     /**
@@ -191,12 +212,14 @@ export class BaseResource implements IResource {
             primaryKey: this.primaryKey(),
             collection: this.collection(),
             displayValue: this.displayValue(),
+            perPageOptions: this.perPageOptions(),
             authorizedToView: this.authorizedToView(),
             nonComputedFields: this.nonComputedFields(),
             authorizedToCreate: this.authorizedToCreate(),
             authorizedToUpdate: this.authorizedToUpdate(),
             authorizedToDelete: this.authorizedToDelete(),
-            actions: this.actions().map((action: any) => action.serialize())
+            actions: this.actions().map((action: any) => action.serialize()),
+            filters: this.filters().map((filter: IFilter) => filter.serialize())
         }
     }
 }

@@ -122,23 +122,35 @@ var Database = /** @class */ (function () {
      * @return {Promise}
      *
      */
-    Database.prototype.fetch = function (collectionName, params, filter) {
+    Database.prototype.fetch = function (collectionName, params, filter, applyCustomFilters) {
         if (params === void 0) { params = {}; }
         if (filter === void 0) { filter = {}; }
+        if (applyCustomFilters === void 0) { applyCustomFilters = []; }
         return __awaiter(this, void 0, void 0, function () {
-            var collection, builder, _a;
+            var collection, builder, getCountBuilder, _a;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         collection = this.get().collection(collectionName);
                         builder = collection.find(filter);
+                        getCountBuilder = function () {
+                            var builder = collection.find(filter);
+                            applyCustomFilters.forEach(function (customFilter) {
+                                builder = customFilter(builder);
+                            });
+                            return builder;
+                        };
+                        // We'll loop through all custom filters and call their apply functions
+                        applyCustomFilters.forEach(function (customFilter) {
+                            builder = customFilter(builder);
+                        });
                         if (params.limit && params.page) {
                             builder = builder
-                                .skip(params.limit * (params.page - 1))
-                                .limit(params.limit);
+                                .skip(parseInt(params.limit) * (params.page - 1))
+                                .limit(parseInt(params.limit));
                         }
                         _a = {};
-                        return [4 /*yield*/, collection.find(filter).count()];
+                        return [4 /*yield*/, getCountBuilder().count()];
                     case 1:
                         // @ts-ignore
                         _a.total = _b.sent();

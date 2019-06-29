@@ -2,6 +2,7 @@ import React from 'react'
 import classnames from 'classnames'
 
 const Svg = ({
+    fill,
     icon = 'eye',
     width = 20,
     height = 20,
@@ -23,6 +24,47 @@ const Svg = ({
                 className={classnames('fill-current', className)}
             >
                 <path d="M16.56 13.66a8 8 0 0 1-11.32 0L.3 8.7a1 1 0 0 1 0-1.42l4.95-4.95a8 8 0 0 1 11.32 0l4.95 4.95a1 1 0 0 1 0 1.42l-4.95 4.95-.01.01zm-9.9-1.42a6 6 0 0 0 8.48 0L19.38 8l-4.24-4.24a6 6 0 0 0-8.48 0L2.4 8l4.25 4.24h.01zM10.9 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+            </svg>
+        ),
+
+        filter: (
+            <svg
+                {...rest}
+                width={width}
+                height={height}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                aria-labelledby="filter"
+                role="presentation"
+                className={classnames('fill-current', className)}
+            >
+                <path
+                    fillRule="nonzero"
+                    d="M.293 5.707A1 1 0 0 1 0 4.999V1A1 1 0 0 1 1 0h18a1 1 0 0 1 1 1v4a1 1 0 0 1-.293.707L13 12.413v2.585a1 1 0 0 1-.293.708l-4 4c-.63.629-1.707.183-1.707-.708v-6.585L.293 5.707zM2 2v2.585l6.707 6.707a1 1 0 0 1 .293.707v4.585l2-2V12a1 1 0 0 1 .293-.707L18 4.585V2H2z"
+                />
+            </svg>
+        ),
+
+        caret: (
+            <svg
+                {...rest}
+                width="10"
+                height="6"
+                version="1.1"
+                viewBox="0 0 10 6"
+                className={className}
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+            >
+                <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                    <g
+                        fill={fill}
+                        transform="translate(-385.000000, -573.000000)"
+                        fillRule="nonzero"
+                    >
+                        <path d="M393.292893,573.292893 C393.683418,572.902369 394.316582,572.902369 394.707107,573.292893 C395.097631,573.683418 395.097631,574.316582 394.707107,574.707107 L390.707107,578.707107 C390.316582,579.097631 389.683418,579.097631 389.292893,578.707107 L385.292893,574.707107 C384.902369,574.316582 384.902369,573.683418 385.292893,573.292893 C385.683418,572.902369 386.316582,572.902369 386.707107,573.292893 L390,576.585786 L393.292893,573.292893 Z" />
+                    </g>
+                </g>
             </svg>
         ),
 

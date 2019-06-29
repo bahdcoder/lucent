@@ -60,8 +60,8 @@ export class Action {
      * @return {Action}
      *
      */
-    public destructive(destructive: boolean = true) {
-        this.isDestructive = destructive
+    public destructive() {
+        this.isDestructive = true
 
         return this
     }
