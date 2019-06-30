@@ -285,8 +285,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Form_BooleanField__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/Form/BooleanField */ "./client/components/Form/BooleanField.js");
 /* harmony import */ var _components_Form_TextareaField__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/Form/TextareaField */ "./client/components/Form/TextareaField.js");
 /* harmony import */ var _components_Form_PasswordField__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/Form/PasswordField */ "./client/components/Form/PasswordField.js");
-/* harmony import */ var _components_Filter_Select__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/Filter/Select */ "./client/components/Filter/Select.js");
-/* harmony import */ var _components_Filter_Boolean__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/Filter/Boolean */ "./client/components/Filter/Boolean.js");
+/* harmony import */ var _components_Filter_Date__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/Filter/Date */ "./client/components/Filter/Date.js");
+/* harmony import */ var _components_Filter_Select__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/Filter/Select */ "./client/components/Filter/Select.js");
+/* harmony import */ var _components_Filter_Boolean__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./components/Filter/Boolean */ "./client/components/Filter/Boolean.js");
 
 
 
@@ -326,6 +327,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // filters
+
 
 
 
@@ -613,8 +615,9 @@ function () {
      * Here we'll register filters to the filter registry
      */
 
-    this.filter('filter-select', _components_Filter_Select__WEBPACK_IMPORTED_MODULE_36__["default"]);
-    this.filter('filter-boolean', _components_Filter_Boolean__WEBPACK_IMPORTED_MODULE_37__["default"]);
+    this.filter('filter-date', _components_Filter_Date__WEBPACK_IMPORTED_MODULE_36__["default"]);
+    this.filter('filter-select', _components_Filter_Select__WEBPACK_IMPORTED_MODULE_37__["default"]);
+    this.filter('filter-boolean', _components_Filter_Boolean__WEBPACK_IMPORTED_MODULE_38__["default"]);
   }
   /**
    *
@@ -1051,6 +1054,65 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_9___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Combobox);
+
+/***/ }),
+
+/***/ "./client/components/Date.js":
+/*!***********************************!*\
+  !*** ./client/components/Date.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var date_fns_format__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! date-fns/format */ "./node_modules/date-fns/format/index.js");
+/* harmony import */ var date_fns_format__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(date_fns_format__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_flatpickr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-flatpickr */ "./node_modules/react-flatpickr/build/index.js");
+/* harmony import */ var react_flatpickr__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_flatpickr__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var flatpickr_dist_themes_material_green_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flatpickr/dist/themes/material_green.css */ "./node_modules/flatpickr/dist/themes/material_green.css");
+/* harmony import */ var flatpickr_dist_themes_material_green_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flatpickr_dist_themes_material_green_css__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+
+
+
+var DatePicker = function DatePicker(_ref) {
+  var _ref$handler = _ref.handler,
+      handler = _ref$handler === void 0 ? function () {} : _ref$handler,
+      _ref$name = _ref.name,
+      name = _ref$name === void 0 ? '' : _ref$name,
+      className = _ref.className,
+      dateOptions = _ref.dateOptions,
+      error = _ref.error,
+      dateFormat = _ref.dateFormat,
+      _ref$enableTime = _ref.enableTime,
+      enableTime = _ref$enableTime === void 0 ? false : _ref$enableTime;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_flatpickr__WEBPACK_IMPORTED_MODULE_3___default.a, {
+    options: dateOptions,
+    onChange: function onChange(date) {
+      return handler({
+        name: name,
+        date: date_fns_format__WEBPACK_IMPORTED_MODULE_2___default()(date[0], dateFormat)
+      });
+    },
+    "data-enable-time": enableTime,
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('text-grey-darkest my-3 h-10 pr-3 pl-10 rounded-lg shadow border focus:outline-none focus:border-2', {
+      'border-grey focus:border-indigo': !error,
+      'border-red focus:border-red': error
+    }, className),
+    readOnly: true
+  }), error && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-xs text-red font-thin"
+  }, error));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (DatePicker);
 
 /***/ }),
 
@@ -1529,11 +1591,11 @@ var BooleanFilter = function BooleanFilter(_ref) {
       value: option.value,
       id: "".concat(name, "-").concat(option.value),
       name: "".concat(name, "-").concat(option.value),
-      checked: value.includes(option.value),
+      checked: (value || []).includes(option.value),
       handler: function handler() {
         return _handler({
           name: name,
-          value: value.includes(option.value) ? value.filter(function (v) {
+          value: (value || []).includes(option.value) ? value.filter(function (v) {
             return v !== option.value;
           }) : [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(value), [option.value])
         });
@@ -1543,6 +1605,29 @@ var BooleanFilter = function BooleanFilter(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (BooleanFilter);
+
+/***/ }),
+
+/***/ "./client/components/Filter/Date.js":
+/*!******************************************!*\
+  !*** ./client/components/Filter/Date.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Date__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Date */ "./client/components/Date.js");
+
+
+
+var DateFilter = function DateFilter(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Date__WEBPACK_IMPORTED_MODULE_1__["default"], props);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (DateFilter);
 
 /***/ }),
 
@@ -1641,7 +1726,8 @@ var Filters = function Filters(_ref) {
       name: filter.attribute,
       options: filter.options,
       handler: handleFilterChange,
-      value: filters[filter.attribute]
+      value: filters[filter.attribute],
+      enableTime: filter.enableTime
     }))) : null;
   };
 
@@ -1726,51 +1812,14 @@ var Boolean = function Boolean(_ref) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
-/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js");
-/* harmony import */ var _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_flatpickr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-flatpickr */ "./node_modules/react-flatpickr/build/index.js");
-/* harmony import */ var react_flatpickr__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_flatpickr__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var flatpickr_dist_themes_material_green_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flatpickr/dist/themes/material_green.css */ "./node_modules/flatpickr/dist/themes/material_green.css");
-/* harmony import */ var flatpickr_dist_themes_material_green_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flatpickr_dist_themes_material_green_css__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Date__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Date */ "./client/components/Date.js");
 
 
 
-
-
-
-
-var DateField = function DateField(_ref) {
-  var _ref$handler = _ref.handler,
-      handler = _ref$handler === void 0 ? function () {} : _ref$handler,
-      _ref$name = _ref.name,
-      name = _ref$name === void 0 ? '' : _ref$name,
-      className = _ref.className,
-      dateOptions = _ref.dateOptions,
-      error = _ref.error,
-      rest = _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1___default()(_ref, ["handler", "name", "className", "dateOptions", "error"]);
-
-  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_flatpickr__WEBPACK_IMPORTED_MODULE_4___default.a, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({
-    onChange: function onChange(date) {
-      return handler({
-        name: name,
-        date: date[0]
-      });
-    },
-    options: dateOptions,
-    className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('text-grey-darkest my-3 h-10 pr-3 pl-10 rounded-lg shadow border focus:outline-none focus:border-2', {
-      'border-grey focus:border-indigo': !error,
-      'border-red focus:border-red': error
-    }, className),
-    readOnly: true
-  }, rest)), error && react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
-    className: "text-xs text-red font-thin"
-  }, error));
+var DateField = function DateField(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Date__WEBPACK_IMPORTED_MODULE_1__["default"], props);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (DateField);

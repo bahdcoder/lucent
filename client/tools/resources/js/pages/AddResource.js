@@ -219,11 +219,10 @@ class AddResource extends React.Component {
      *
      */
     getFormData = async () => {
-        const { form } = this.state
+        const { form, resource } = this.state
 
         const preparedForm = {}
         const staleFiles = []
-        const hasManyFields = this.getHasManyEmbeddedFields()
 
         for (const attribute of Object.keys(form)) {
             const field = form[attribute]
@@ -268,6 +267,10 @@ class AddResource extends React.Component {
                 const path = await this.uploadFile(attribute, field)
 
                 preparedForm[attribute] = path
+            } else if (field instanceof Date) {
+                const { dateFormat } = resource.fields.find(f => f.attribute === attribute)
+
+                preparedForm[attribute] = format(field, dateFormat)
             } else {
                 preparedForm[attribute] = field
             }

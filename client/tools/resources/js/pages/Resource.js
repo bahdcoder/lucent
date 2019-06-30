@@ -256,10 +256,16 @@ class Resource extends React.Component {
                 {
                     page: 1,
                     query: '',
+                    selected: [],
                     isFetching: true,
+                    runningAction: false,
+                    multiDeleting: false,
+                    currentlyDeleting: '',
                     resource: this.getCurrentResource(
                         nextProps.match.params.resource
-                    )
+                    ),
+                    filters: this.getDefaultFilters(),
+                    perPage: this.getQueryParams().per_page || this.getCurrentResource().perPage,
                 },
                 () => this.fetchData()
             )

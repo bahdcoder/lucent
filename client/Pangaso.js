@@ -38,6 +38,7 @@ import TextareaField from './components/Form/TextareaField'
 import PasswordField from './components/Form/PasswordField'
 
 // filters
+import DateFilter from './components/Filter/Date'
 import SelectFilter from './components/Filter/Select'
 import BooleanFilter from './components/Filter/Boolean'
 
@@ -250,6 +251,7 @@ export class Pangaso {
          *
          * Here we'll register filters to the filter registry
          */
+        this.filter('filter-date', DateFilter)
         this.filter('filter-select', SelectFilter)
         this.filter('filter-boolean', BooleanFilter)
     }

@@ -12,11 +12,11 @@ const BooleanFilter = ({ handler, options, name, value, ...rest }) => (
                         value={option.value}
                         id={`${name}-${option.value}`}
                         name={`${name}-${option.value}`}
-                        checked={value.includes(option.value)}
+                        checked={(value || []).includes(option.value)}
                         handler={() =>
                             handler({
                                 name,
-                                value: value.includes(option.value)
+                                value: (value || []).includes(option.value)
                                     ? value.filter(v => v !== option.value)
                                     : [...value, option.value]
                             })

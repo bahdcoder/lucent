@@ -7,12 +7,14 @@ const {
     Num,
     Select,
     Password,
+    Date: DateField,
     Textarea,
     HasOneEmbedded
 } = require(process.env.CI_ENVIRONMENT ? '../dist/server/main' : 'pangaso')
 
 const ContactRole = require('./Filters/ContactRole')
 const SendWelcomeEmailAction = require('./Actions/SendWelcomeEmail')
+const ContactEmployedAfter = require('./Filters/ContactEmployedAfter')
 
 const Bcrypt = require('bcryptjs')
 
@@ -22,7 +24,7 @@ class Contact extends Resource {
     }
 
     filters() {
-        return [new ContactRole()]
+        return [new ContactRole(), new ContactEmployedAfter()]
     }
 
     fields() {
@@ -52,6 +54,8 @@ class Contact extends Resource {
             Text.make('Full Name').computedWith(
                 document => `${document.firstName} ${document.lastName}`
             ),
+            DateField.make('Employed On').withTime()
+                .createWithRules('required'),
             Text.make('Last Name')
                 .createWithRules('required|max:40')
                 .searchable()

@@ -36,6 +36,7 @@ const Filters = ({
                         options={filter.options}
                         handler={handleFilterChange}
                         value={filters[filter.attribute]}
+                        enableTime={filter.enableTime}
                     />
                 </div>
             </React.Fragment>

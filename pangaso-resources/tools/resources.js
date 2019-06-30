@@ -1106,114 +1106,138 @@ function (_React$Component) {
     _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_5___default()(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default.a.mark(function _callee2() {
-      var form, preparedForm, staleFiles, hasManyFields, _i, _Object$keys, attribute, field, _i2, _Object$keys2, nestedAttribute, nestedField, path, _path;
+      var _this$state, form, resource, preparedForm, staleFiles, _loop, _i, _Object$keys;
 
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default.a.wrap(function _callee2$(_context2) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default.a.wrap(function _callee2$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              form = _this.state.form;
+              _this$state = _this.state, form = _this$state.form, resource = _this$state.resource;
               preparedForm = {};
               staleFiles = [];
-              hasManyFields = _this.getHasManyEmbeddedFields();
+              _loop =
+              /*#__PURE__*/
+              _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default.a.mark(function _loop() {
+                var attribute, field, _i2, _Object$keys2, nestedAttribute, nestedField, path, _path, _resource$fields$find, dateFormat;
+
+                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default.a.wrap(function _loop$(_context2) {
+                  while (1) {
+                    switch (_context2.prev = _context2.next) {
+                      case 0:
+                        attribute = _Object$keys[_i];
+                        field = form[attribute];
+
+                        if (!(field && _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2___default()(field) === 'object' && !(field instanceof Blob) && !Array.isArray(field))) {
+                          _context2.next = 22;
+                          break;
+                        }
+
+                        preparedForm[attribute] = {};
+                        _i2 = 0, _Object$keys2 = Object.keys(field);
+
+                      case 5:
+                        if (!(_i2 < _Object$keys2.length)) {
+                          _context2.next = 20;
+                          break;
+                        }
+
+                        nestedAttribute = _Object$keys2[_i2];
+                        nestedField = field[nestedAttribute];
+
+                        if (!(nestedField instanceof Blob)) {
+                          _context2.next = 16;
+                          break;
+                        }
+
+                        if (_this.state.preparedForm[attribute][nestedAttribute]) {
+                          staleFiles.push(_this.state.preparedForm[attribute][nestedAttribute]);
+                        }
+
+                        _context2.next = 12;
+                        return _this.uploadFile(nestedAttribute, nestedField);
+
+                      case 12:
+                        path = _context2.sent;
+                        preparedForm[attribute][nestedAttribute] = path;
+                        _context2.next = 17;
+                        break;
+
+                      case 16:
+                        preparedForm[attribute][nestedAttribute] = nestedField;
+
+                      case 17:
+                        _i2++;
+                        _context2.next = 5;
+                        break;
+
+                      case 20:
+                        _context2.next = 31;
+                        break;
+
+                      case 22:
+                        if (!(field instanceof Blob)) {
+                          _context2.next = 30;
+                          break;
+                        }
+
+                        if (_this.state.preparedForm[attribute]) {
+                          staleFiles.push(_this.state.preparedForm[attribute]);
+                        }
+
+                        _context2.next = 26;
+                        return _this.uploadFile(attribute, field);
+
+                      case 26:
+                        _path = _context2.sent;
+                        preparedForm[attribute] = _path;
+                        _context2.next = 31;
+                        break;
+
+                      case 30:
+                        if (field instanceof Date) {
+                          _resource$fields$find = resource.fields.find(function (f) {
+                            return f.attribute === attribute;
+                          }), dateFormat = _resource$fields$find.dateFormat;
+                          preparedForm[attribute] = date_fns_format__WEBPACK_IMPORTED_MODULE_15___default()(field, dateFormat);
+                        } else {
+                          preparedForm[attribute] = field;
+                        }
+
+                      case 31:
+                      case "end":
+                        return _context2.stop();
+                    }
+                  }
+                }, _loop);
+              });
               _i = 0, _Object$keys = Object.keys(form);
 
             case 5:
               if (!(_i < _Object$keys.length)) {
-                _context2.next = 40;
+                _context3.next = 10;
                 break;
               }
 
-              attribute = _Object$keys[_i];
-              field = form[attribute];
+              return _context3.delegateYield(_loop(), "t0", 7);
 
-              if (!(field && _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2___default()(field) === 'object' && !(field instanceof Blob) && !Array.isArray(field))) {
-                _context2.next = 28;
-                break;
-              }
-
-              preparedForm[attribute] = {};
-              _i2 = 0, _Object$keys2 = Object.keys(field);
-
-            case 11:
-              if (!(_i2 < _Object$keys2.length)) {
-                _context2.next = 26;
-                break;
-              }
-
-              nestedAttribute = _Object$keys2[_i2];
-              nestedField = field[nestedAttribute];
-
-              if (!(nestedField instanceof Blob)) {
-                _context2.next = 22;
-                break;
-              }
-
-              if (_this.state.preparedForm[attribute][nestedAttribute]) {
-                staleFiles.push(_this.state.preparedForm[attribute][nestedAttribute]);
-              }
-
-              _context2.next = 18;
-              return _this.uploadFile(nestedAttribute, nestedField);
-
-            case 18:
-              path = _context2.sent;
-              preparedForm[attribute][nestedAttribute] = path;
-              _context2.next = 23;
-              break;
-
-            case 22:
-              preparedForm[attribute][nestedAttribute] = nestedField;
-
-            case 23:
-              _i2++;
-              _context2.next = 11;
-              break;
-
-            case 26:
-              _context2.next = 37;
-              break;
-
-            case 28:
-              if (!(field instanceof Blob)) {
-                _context2.next = 36;
-                break;
-              }
-
-              if (_this.state.preparedForm[attribute]) {
-                staleFiles.push(_this.state.preparedForm[attribute]);
-              }
-
-              _context2.next = 32;
-              return _this.uploadFile(attribute, field);
-
-            case 32:
-              _path = _context2.sent;
-              preparedForm[attribute] = _path;
-              _context2.next = 37;
-              break;
-
-            case 36:
-              preparedForm[attribute] = field;
-
-            case 37:
+            case 7:
               _i++;
-              _context2.next = 5;
+              _context3.next = 5;
               break;
 
-            case 40:
+            case 10:
               _this.setState({
                 preparedForm: preparedForm,
                 staleFiles: staleFiles
               });
 
-              return _context2.abrupt("return", _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_3___default()({}, preparedForm, {
+              return _context3.abrupt("return", _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_3___default()({}, preparedForm, {
                 staleFiles: staleFiles
               }));
 
-            case 42:
+            case 12:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
       }, _callee2);
@@ -1227,23 +1251,23 @@ function (_React$Component) {
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default.a.mark(function _callee3(attribute, file) {
         var form, _ref5, data;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default.a.wrap(function _callee3$(_context3) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default.a.wrap(function _callee3$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
                 form = new FormData();
                 form.append('file', file);
-                _context3.next = 4;
+                _context4.next = 4;
                 return Pangaso.request().post("/resources/".concat(_this.state.resource.slug, "/upload-file"), form);
 
               case 4:
-                _ref5 = _context3.sent;
+                _ref5 = _context4.sent;
                 data = _ref5.data;
-                return _context3.abrupt("return", data);
+                return _context4.abrupt("return", data);
 
               case 7:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
         }, _callee3);
@@ -1260,21 +1284,21 @@ function (_React$Component) {
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default.a.mark(function _callee4() {
       var redirect,
-          _args4 = arguments;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default.a.wrap(function _callee4$(_context4) {
+          _args5 = arguments;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default.a.wrap(function _callee4$(_context5) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context5.prev = _context5.next) {
             case 0:
-              redirect = _args4.length > 0 && _args4[0] !== undefined ? _args4[0] : true;
-              _context4.t0 = Pangaso.request();
-              _context4.t1 = "resources/".concat(_this.state.resource.slug, "/").concat(_this.props.match.params.primaryKey);
-              _context4.next = 5;
+              redirect = _args5.length > 0 && _args5[0] !== undefined ? _args5[0] : true;
+              _context5.t0 = Pangaso.request();
+              _context5.t1 = "resources/".concat(_this.state.resource.slug, "/").concat(_this.props.match.params.primaryKey);
+              _context5.next = 5;
               return _this.getFormData();
 
             case 5:
-              _context4.t2 = _context4.sent;
+              _context5.t2 = _context5.sent;
 
-              _context4.t3 = function () {
+              _context5.t3 = function () {
                 Pangaso.success("".concat(_this.state.resource.name, " updated !"));
 
                 if (redirect) {
@@ -1282,7 +1306,7 @@ function (_React$Component) {
                 }
               };
 
-              _context4.t4 = function (_ref7) {
+              _context5.t4 = function (_ref7) {
                 var response = _ref7.response;
 
                 if (response.status === 422) {
@@ -1292,11 +1316,11 @@ function (_React$Component) {
                 }
               };
 
-              _context4.t0.put.call(_context4.t0, _context4.t1, _context4.t2).then(_context4.t3)["catch"](_context4.t4);
+              _context5.t0.put.call(_context5.t0, _context5.t1, _context5.t2).then(_context5.t3)["catch"](_context5.t4);
 
             case 9:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
         }
       }, _callee4);
@@ -1533,12 +1557,12 @@ function (_React$Component) {
 
       var Button = Pangaso.components['component-button'];
       var Loader = Pangaso.components['component-loader'];
-      var _this$state = this.state,
-          editing = _this$state.editing,
-          errors = _this$state.errors,
-          form = _this$state.form,
-          resource = _this$state.resource,
-          record = _this$state.record;
+      var _this$state2 = this.state,
+          editing = _this$state2.editing,
+          errors = _this$state2.errors,
+          form = _this$state2.form,
+          resource = _this$state2.resource,
+          record = _this$state2.record;
       var embeddableFields = this.getEmbeddedFields();
       var formFields = editing ? this.getUpdateFields() : this.getCreationFields(); // Only render the form once the form has been populated
 
@@ -2083,8 +2107,14 @@ function (_React$Component) {
         this.setState({
           page: 1,
           query: '',
+          selected: [],
           isFetching: true,
-          resource: this.getCurrentResource(nextProps.match.params.resource)
+          runningAction: false,
+          multiDeleting: false,
+          currentlyDeleting: '',
+          resource: this.getCurrentResource(nextProps.match.params.resource),
+          filters: this.getDefaultFilters(),
+          perPage: this.getQueryParams().per_page || this.getCurrentResource().perPage
         }, function () {
           return _this2.fetchData();
         });
