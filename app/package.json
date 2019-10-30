@@ -10,7 +10,7 @@
     "consola": "^2.6.0",
     "express": "^4.16.4",
     "faker": "^4.1.0",
-    "mongoose": "^5.5.1",
+    "mongoose": "^5.7.5",
     "nodemon": "^1.18.11"
   },
   "scripts": {
