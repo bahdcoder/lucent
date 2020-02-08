@@ -1,0 +1,7 @@
+server/
+resources/
+app/
+__tests__/
+cypress/
+client/
+das

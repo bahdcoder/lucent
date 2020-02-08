@@ -20,20 +20,26 @@ class TailwindExtractor {
     }
 }
 
-mix.react('client/index.js', 'public/app.js')
-    .react('client/tools/resources/js/index.js', 'resources/tools/resources.js')
-    .react('client/tools/dashboard/js/index.js', 'dashboard/tools/dashboard.js')
-    .postCss('client/styles/main.css', 'public/app.css', [
+mix.react('client/index.js', 'src/client/public/js/app.js')
+    .react(
+        'client/tools/resources/js/index.js',
+        'src/client/tools/js/resources.js'
+    )
+    .react(
+        'client/tools/dashboard/js/index.js',
+        'src/client/tools/js/dashboard.js'
+    )
+    .postCss('client/styles/main.css', 'src/client/public/css/app.css', [
         require('tailwindcss')
     ])
     .postCss(
         'client/tools/resources/styles/index.css',
-        'resources/tools/resources.css',
+        'src/client/tools/css/resources.css',
         [require('tailwindcss')]
     )
     .postCss(
         'client/tools/dashboard/styles/index.css',
-        'dashboard/tools/dashboard.css',
+        'src/client/tools/css/dashboard.css',
         [require('tailwindcss')]
     )
 

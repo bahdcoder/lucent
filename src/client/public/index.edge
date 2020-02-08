@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lucent</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/client/public/css/app.css">
+    <link rel="stylesheet" href="/src/client/public/css/custom.css">
+    @each(tool in tools)
+        @each(style in tool.styles)
+            <link rel="stylesheet" href="/{{ style.path }}">
+        @endeach
+    @endeach
+</head>
+<body class="font-sans text-gray-700 bg-gray-200 font-thin">
+    <div id="app"></div>
+
+    <script src="/src/client/public/js/app.js"></script>
+    @each(tool in tools)
+        @each(script in tool.scripts)
+            <script src="/{{ script.path }}"></script>
+        @endeach
+    @endeach
+    <script>
+        Lucent.boot('{{{ resources }}}')
+    </script>
+</body>
+</html>
