@@ -18,8 +18,8 @@ export class Resources extends Tool {
          *
          */
         app.use(
-            '/pangaso-resources',
-            Express.static(Root.resolve('pangaso-resources'))
+            '/resources',
+            Express.static(Root.resolve('resources'))
         )
 
         /**
@@ -30,8 +30,8 @@ export class Resources extends Tool {
          *
          */
         app.use(
-            '/pangaso-storage',
-            Express.static(`${process.cwd()}/pangaso-storage`)
+            '/storage',
+            Express.static(`${process.cwd()}/storage`)
         )
 
         /**
@@ -53,13 +53,13 @@ export class Resources extends Tool {
          * Define the js for this tool
          *
          */
-        this.js('resources', 'pangaso-resources/tools/resources.js')
+        this.js('resources', 'resources/tools/resources.js')
 
         /**
          *
          * Define the css for this tool
          *
          */
-        this.css('resources', 'pangaso-resources/tools/resources.css')
+        this.css('resources', 'resources/tools/resources.css')
     }
 }

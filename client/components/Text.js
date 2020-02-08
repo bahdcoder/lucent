@@ -20,11 +20,11 @@ const Text = ({
         <React.Fragment>
             <Component
                 className={classnames(
-                    'border text-grey-darkest my-3 px-5 rounded-lg shadow focus:outline-none focus:border-2',
+                    'border text-gray-600 my-3 px-5 rounded focus:outline-none',
                     {
                         'h-10': !textarea,
-                        'border-grey focus:border-indigo': !error,
-                        'border-red focus:border-red': error
+                        'border-gray-300 focus:border-gray-400': !error,
+                        'border-red-500 focus:border-red-500': error
                     },
                     className
                 )}
@@ -40,7 +40,7 @@ const Text = ({
             {error && (
                 <span
                     data-testid={`${dataTestId}-error`}
-                    className="text-xs text-red font-thin"
+                    className="text-xs text-red-600 font-light"
                 >
                     {error}
                 </span>

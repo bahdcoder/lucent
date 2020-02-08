@@ -17,7 +17,7 @@ class ResourceController {
      */
     public async index(req: Express.Request, res: Express.Response) {
         return res.json(
-            req.pangaso.resources
+            req.lucent.resources
                 .map((resource: IResource) => resource.serialize())
                 .filter((resource: IResource) => resource.authorizedToView)
         )
@@ -35,8 +35,8 @@ class ResourceController {
      *
      */
     public show = async (req: Express.Request, res: Express.Response) => {
-        let resource = await req.pangaso.database.find(
-            req.pangaso.resource.collection(),
+        let resource = await req.lucent.database.find(
+            req.lucent.resource.collection(),
             req.params.resource
         )
 
@@ -63,8 +63,8 @@ class ResourceController {
      *
      */
     public async fetchAll(req: Express.Request, res: Express.Response) {
-        const data = await req.pangaso.database.fetchAll(
-            req.pangaso.resource.collection()
+        const data = await req.lucent.database.fetchAll(
+            req.lucent.resource.collection()
         )
 
         return res.json(data)
@@ -89,12 +89,12 @@ class ResourceController {
                 $or: []
             }
 
-            const searchableFields = (resource || req.pangaso.resource)
+            const searchableFields = (resource || req.lucent.resource)
                 .fields()
                 .filter((field: IField) => field.isSearchable)
 
             searchableFields.forEach((field: IField) => {
-                filter.$or.push({
+                (filter.$or || []).push({
                     [field.attribute]: new RegExp(req.query.query, 'i')
                 })
             })
@@ -117,10 +117,10 @@ class ResourceController {
     public search = async (req: Express.Request, res: Express.Response) => {
         const filter = this.buildFilter(req)
 
-        const data = await req.pangaso.database.fetch(
-            req.pangaso.resource.collection(),
+        const data = await req.lucent.database.fetch(
+            req.lucent.resource.collection(),
             {
-                limit: req.query.per_page || req.pangaso.resource.perPage(),
+                limit: req.query.per_page || req.lucent.resource.perPage(),
                 page: req.query.page || 1
             },
             filter
@@ -158,14 +158,14 @@ class ResourceController {
     public fetch = async (req: Express.Request, res: Express.Response) => {
         const filter = this.buildFilter(req)
 
-        const data = await req.pangaso.database.fetch(
-            req.pangaso.resource.collection(),
+        const data = await req.lucent.database.fetch(
+            req.lucent.resource.collection(),
             {
-                limit: req.query.per_page || req.pangaso.resource.perPage(),
+                limit: req.query.per_page || req.lucent.resource.perPage(),
                 page: req.query.page || 1
             },
             filter,
-            this.getCustomFilters(req, req.pangaso.resource)
+            this.getCustomFilters(req, req.lucent.resource)
         )
 
         this.resolveComputedFields(req, data.data)
@@ -189,8 +189,8 @@ class ResourceController {
         res: Express.Response
     ) => {
         // we need the resource
-        const resource = await req.pangaso.database.find(
-            req.pangaso.resource.collection(),
+        const resource = await req.lucent.database.find(
+            req.lucent.resource.collection(),
             req.params.resource
         )
 
@@ -202,19 +202,19 @@ class ResourceController {
 
         // using the resource, let's find it's related field
 
-        const relatedField = req.pangaso.resource
+        const relatedField = req.lucent.resource
             .fields()
             .find((field: IField) => field.attribute === req.params.relation)
 
         // using the found field, let's find the related resource
 
-        const relatedResource = req.pangaso.resources.find(
+        const relatedResource = req.lucent.resources.find(
             (r: IResource) => r.title() === relatedField.resource
         )
 
         const filter = this.buildFilter(req, relatedResource)
 
-        const data = await req.pangaso.database.fetch(
+        const data = await req.lucent.database.fetch(
             relatedResource.collection(),
             {
                 limit: req.query.per_page || relatedResource.perPage(),
@@ -261,8 +261,8 @@ class ResourceController {
         res: Express.Response
     ) => {
         // we need the resource
-        const parentRecord = await req.pangaso.database.find(
-            req.pangaso.resource.collection(),
+        const parentRecord = await req.lucent.database.find(
+            req.lucent.resource.collection(),
             req.params.resource
         )
 
@@ -273,18 +273,18 @@ class ResourceController {
         }
 
         // using the resource, let's find it's related resource
-        const relatedField = req.pangaso.resource
+        const relatedField = req.lucent.resource
             .fields()
             .find((field: IField) => field.attribute === req.params.relation)
 
-        const relatedResource = req.pangaso.resources.find(
+        const relatedResource = req.lucent.resources.find(
             (r: IResource) => r.name() === relatedField.resource
         )
 
         let record = null
 
         if (parentRecord[relatedField.attribute]) {
-            record = await req.pangaso.database.find(
+            record = await req.lucent.database.find(
                 relatedResource.collection(),
                 parentRecord[relatedField.attribute]
             )
@@ -315,10 +315,10 @@ class ResourceController {
      *
      */
     public async store(req: Express.Request, res: Express.Response) {
-        const data = await req.pangaso.resource.beforeSave(req.body)
+        const data = await req.lucent.resource.beforeSave(req.body)
 
-        const resource = await req.pangaso.database.insert(
-            req.pangaso.resource.collection(),
+        const resource = await req.lucent.database.insert(
+            req.lucent.resource.collection(),
             data
         )
 
@@ -346,18 +346,18 @@ class ResourceController {
         if (req.files && req.files.file) {
             const file: any = req.files.file
             /**
-             * TODO: Make sure the `pangaso-storage` folder is customizable
+             * TODO: Make sure the `storage` folder is customizable
              *  Also, there should be multiple drivers support for file
              * uploads and storage
              *
              */
-            const path = `${process.cwd()}/pangaso-storage/${id}.${file.name
+            const path = `${process.cwd()}/storage/${id}.${file.name
                 .split('.')
                 .pop()}`
 
             file.mv(path, () => {
                 return res.json(
-                    `/pangaso-storage/${id}.${file.name.split('.').pop()}`
+                    `/storage/${id}.${file.name.split('.').pop()}`
                 )
             })
         }
@@ -375,12 +375,12 @@ class ResourceController {
      *
      */
     public async update(req: Express.Request, res: Express.Response) {
-        // const data = await req.pangaso.resource.beforeUpdate(req.body)
+        // const data = await req.lucent.resource.beforeUpdate(req.body)
 
         const data = req.body
 
-        const { value: parentRecord } = await req.pangaso.database.update(
-            req.pangaso.resource.collection(),
+        const { value: parentRecord } = await req.lucent.database.update(
+            req.lucent.resource.collection(),
             req.params.resource,
             data
         )
@@ -412,7 +412,7 @@ class ResourceController {
          * Find the specific action object we are running
          *
          */
-        const action = req.pangaso.resource
+        const action = req.lucent.resource
             .actions()
             .find((a: any) => a.id === actionId)
 
@@ -421,8 +421,8 @@ class ResourceController {
          * Fetch a collection of all selected resources
          *
          */
-        const collection = await req.pangaso.database.fetchByIds(
-            req.pangaso.resource.collection(),
+        const collection = await req.lucent.database.fetchByIds(
+            req.lucent.resource.collection(),
             resources
         )
 
@@ -434,9 +434,9 @@ class ResourceController {
          *
          */
         await action.handle(
-            req.pangaso.database
+            req.lucent.database
                 .get()
-                .collection(req.pangaso.resource.collection()),
+                .collection(req.lucent.resource.collection()),
             req,
             collection.map((item: any) => ({
                 ...item,
@@ -448,7 +448,7 @@ class ResourceController {
          *
          * Resolve and return the message for this action.
          * This could come from the action definition,
-         * or a default message from pangaso.
+         * or a default message from lucent.
          * TODO: Do this.
          *
          */
@@ -467,8 +467,8 @@ class ResourceController {
      *
      */
     public async delete(req: Express.Request, res: Express.Response) {
-        const data = await req.pangaso.database.destroy(
-            req.pangaso.resource.collection(),
+        const data = await req.lucent.database.destroy(
+            req.lucent.resource.collection(),
             req.body.resources
         )
 
@@ -487,7 +487,7 @@ class ResourceController {
      *
      */
     public async clear(req: Express.Request, res: Express.Response) {
-        await req.pangaso.database.clear(req.params.slug)
+        await req.lucent.database.clear(req.params.slug)
 
         return res.json({})
     }
@@ -504,7 +504,7 @@ class ResourceController {
         data: any,
         resource?: IResource
     ) {
-        const computedFields = (resource || req.pangaso.resource)
+        const computedFields = (resource || req.lucent.resource)
             .fields()
             .filter((field: IField) => field.computed)
 

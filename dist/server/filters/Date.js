@@ -46,7 +46,7 @@ var DateFilter = /** @class */ (function (_super) {
      * @return {Date}
      */
     DateFilter.prototype.default = function () {
-        return new Date;
+        return new Date();
     };
     /**
      * Define this date format used by the date picker
@@ -65,12 +65,12 @@ var DateFilter = /** @class */ (function (_super) {
         return false;
     };
     /**
- * Serialize the filter for the frontend
- *
- * @return {object}
- */
+     * Serialize the filter for the frontend
+     *
+     * @return {object}
+     */
     DateFilter.prototype.serialize = function () {
-        return __assign({}, this, { name: this.name(), default: this.default(), options: this.options(), attribute: this.attribute(), component: this.component(), dateFormat: this.dateFormat(), enableTime: this.withTime() });
+        return __assign(__assign({}, this), { name: this.name(), default: this.default(), options: this.options(), attribute: this.attribute(), component: this.component(), dateFormat: this.dateFormat(), enableTime: this.withTime() });
     };
     return DateFilter;
 }(Filter_1.Filter));

@@ -8,7 +8,7 @@ import Resource from '../pages/Resource'
  */
 const HasMany = props => {
     const getCurrentResource = () =>
-        Pangaso.resources.find(
+    Lucent.resources.find(
             resource => resource.title === props.field.resource
         )
 

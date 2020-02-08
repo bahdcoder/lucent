@@ -38,7 +38,7 @@ const File = ({ table = false, content, dataTestId }) => {
     return (
         <a
             className={classnames({
-                'no-underline text-indigo hover:text-indigo-light': !FileContent
+                'font-light text-gray-700 no-underline text-indigo hover:text-indigo-light': !FileContent
             })}
             href={content}
             target="_blank"

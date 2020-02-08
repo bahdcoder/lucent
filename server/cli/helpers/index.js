@@ -64,7 +64,7 @@ ${error}`)
  *
  */
 const getResourcePath = resourceName =>
-    Path.resolve(process.cwd(), 'Pangaso', `${resourceName}.js`)
+    Path.resolve(process.cwd(), 'Lucent', `${resourceName}.js`)
 
 /**
  *
@@ -76,7 +76,7 @@ const getResourcePath = resourceName =>
  *
  */
 const getFiltersPath = filterName =>
-    Path.resolve(process.cwd(), 'Pangaso', 'Filters', `${filterName}.js`)
+    Path.resolve(process.cwd(), 'Lucent', 'Filters', `${filterName}.js`)
 
 /**
  *

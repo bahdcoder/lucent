@@ -13,7 +13,7 @@ const {
 module.exports = fn => {
     const filterName = ChangeCase.pascalCase(fn)
 
-    Fs.mkdirSync(Path.resolve(process.cwd(), 'Pangaso', 'Filters'), {
+    Fs.mkdirSync(Path.resolve(process.cwd(), 'Lucent', 'Filters'), {
         recursive: true
     })
 

@@ -9,7 +9,7 @@ class HasManyField extends React.Component {
         const { editing } = this.props
 
         if (editing) {
-            Pangaso
+            Lucent
         }
     }
 
@@ -20,7 +20,7 @@ class HasManyField extends React.Component {
      *
      */
     getCurrentResource() {
-        return Pangaso.resources.find(
+        return Lucent.resources.find(
             resource => resource.title === this.props.field.resource
         )
     }
@@ -32,7 +32,7 @@ class HasManyField extends React.Component {
      */
     render() {
         const { value, resource, ...rest } = this.props
-        const Combobox = Pangaso.components['component-combobox']
+        const Combobox = Lucent.components['component-combobox']
 
         return (
             <React.Fragment>

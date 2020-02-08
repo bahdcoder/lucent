@@ -4,94 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pangaso</title>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700" rel="stylesheet">
-    <link rel="stylesheet" href="/pangaso-assets/app.css">
-    <style>
-        .ReactModal__Overlay {
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .ReactModal__Overlay--after-open{
-            opacity: 1;
-        }
-
-        .ReactModal__Overlay--before-close{
-            opacity: 0;
-        }
-    </style>
-
-    <style>
-        span.flatpickr-weekday {
-            background: #6574cd !important;
-            color: #fff !important;
-        }
-        .flatpickr-weekdays, .flatpickr-months .flatpickr-month {
-            background: #6574cd !important;
-        }
-
-        ..flatpickr-day:hover { 
-            background-color: #dae1e7 !important;
-        }
-
-        .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange, .flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange, .flatpickr-day.selected:focus, .flatpickr-day.startRange:focus, .flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover, .flatpickr-day.selected.prevMonthDay, .flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay, .flatpickr-day.endRange.nextMonthDay {
-            background: #6574cd !important;
-            border-color:  #6574cd !important;
-        }
-    </style>
-
-    <style>
-        /* border text-grey-darkest my-3 px-5 rounded-lg shadow focus:outline-none focus:border-2 h-10 border-grey focus:border-indigo w-full */
-        .multi-select .dropdown .dropdown-heading {
-            color: #3d4852 !important;
-            height: 2.5rem !important;
-            border-width: 1px !important;
-            border-radius: .5rem !important;
-            border-color: #b8c2cc !important;
-            padding-left: 1.25rem !important;
-            padding-right: 1.25rem !important;
-            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1) !important;
-        }
-        .multi-select .dropdown .dropdown-content .select-panel div input {
-            color: #3d4852 !important;
-            height: 2.5rem !important;
-            border-width: 1px !important;
-            border-radius: .5rem !important;
-            border-color: #b8c2cc !important;
-            padding-left: 1.25rem !important;
-            padding-right: 1.25rem !important;
-        }
-    </style>
-
-    <style>
-        .fade-enter {
-            opacity: 0;
-            z-index: 1;
-        }
-        .fade-enter.fade-enter-active {
-            opacity: 1;
-            transition: opacity 500ms ease-in;
-        }
-    </style>
-
+    <title>Lucent</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/app.css">
+    <link rel="stylesheet" href="/public/custom.css">
     @each(tool in tools)
         @each(style in tool.styles)
             <link rel="stylesheet" href="/{{ style.path }}">
         @endeach
     @endeach
 </head>
-<body class="font-serif text-grey-darkest bg-grey-lighter">
+<body class="font-sans text-gray-700 bg-gray-200 font-thin">
     <div id="app"></div>
 
-    <script src="/pangaso-assets/app.js"></script>
+    <script src="/public/app.js"></script>
     @each(tool in tools)
         @each(script in tool.scripts)
             <script src="/{{ script.path }}"></script>
         @endeach
     @endeach
     <script>
-        Pangaso.boot('{{{ resources }}}')
+        Lucent.boot('{{{ resources }}}')
     </script>
 </body>
 </html>

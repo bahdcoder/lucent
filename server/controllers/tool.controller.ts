@@ -14,7 +14,7 @@ class ToolController {
      *
      */
     public async index(req: Express.Request, res: Express.Response) {
-        return res.json(req.pangaso.tools)
+        return res.json(req.lucent.tools)
     }
 }
 

@@ -19,17 +19,15 @@ router.get('/api/tools', Tool.index)
  * Handle all the assets for the dashboard.
  *
  */
-router.get(
-    '*',
-    (req: Express.Request, res: Express.Response): void =>
-        res.render('index', {
-            tools: req.pangaso.tools,
-            resources: JSON.stringify(
-                req.pangaso.resources.map((resource: IResource) =>
-                    resource.serialize()
-                )
+router.get('*', (req: Express.Request, res: Express.Response): void =>
+    res.render('index', {
+        tools: req.lucent.tools,
+        resources: JSON.stringify(
+            req.lucent.resources.map((resource: IResource) =>
+                resource.serialize()
             )
-        })
+        )
+    })
 )
 
 export default router

@@ -124,7 +124,7 @@ class AddResource extends React.Component {
      *
      */
     getCurrentResource(slug = this.props.match.params.resource) {
-        return Pangaso.resources.find(resource => resource.slug === slug)
+        return Lucent.resources.find(resource => resource.slug === slug)
     }
 
     /**
@@ -133,7 +133,7 @@ class AddResource extends React.Component {
      *
      */
     fetchEditingResource() {
-        Pangaso.request()
+        Lucent.request()
             .get(
                 `/resources/${this.state.resource.slug}/${
                     this.props.match.params.primaryKey
@@ -161,7 +161,7 @@ class AddResource extends React.Component {
              *
              */
             .catch(() => {
-                Pangaso.error('Failed fetching resource.')
+                Lucent.error('Failed fetching resource.')
 
                 this.props.history.push(
                     `/resources/${this.state.resource.slug}`
@@ -177,13 +177,13 @@ class AddResource extends React.Component {
      *
      */
     postResource = async (redirect = true) => {
-        Pangaso.request()
+        Lucent.request()
             .post(
                 `resources/${this.state.resource.slug}`,
                 await this.getFormData()
             )
             .then(() => {
-                Pangaso.success(`${this.state.resource.name} created !`)
+                Lucent.success(`${this.state.resource.name} created !`)
 
                 if (redirect) {
                     return this.props.history.push(
@@ -292,7 +292,7 @@ class AddResource extends React.Component {
 
         form.append('file', file)
 
-        const { data } = await Pangaso.request().post(
+        const { data } = await Lucent.request().post(
             `/resources/${this.state.resource.slug}/upload-file`,
             form
         )
@@ -308,7 +308,7 @@ class AddResource extends React.Component {
      *
      */
     updateResource = async (redirect = true) => {
-        Pangaso.request()
+        Lucent.request()
             .put(
                 `resources/${this.state.resource.slug}/${
                     this.props.match.params.primaryKey
@@ -316,7 +316,7 @@ class AddResource extends React.Component {
                 await this.getFormData()
             )
             .then(() => {
-                Pangaso.success(`${this.state.resource.name} updated !`)
+                Lucent.success(`${this.state.resource.name} updated !`)
 
                 if (redirect) {
                     return this.props.history.push(
@@ -560,7 +560,7 @@ class AddResource extends React.Component {
      *
      * Get a field from the component registry
      */
-    getField = component => Pangaso.fields[component]
+    getField = component => Lucent.fields[component]
 
     /**
      *
@@ -568,8 +568,8 @@ class AddResource extends React.Component {
      *
      */
     render() {
-        const Button = Pangaso.components['component-button']
-        const Loader = Pangaso.components['component-loader']
+        const Button = Lucent.components['component-button']
+        const Loader = Lucent.components['component-loader']
         const { editing, errors, form, resource, record } = this.state
 
         const embeddableFields = this.getEmbeddedFields()
@@ -595,9 +595,9 @@ class AddResource extends React.Component {
                                 return Field ? (
                                     <div
                                         key={index}
-                                        className="w-full border-b flex items-center border-grey-light py-6 px-12"
+                                        className="w-full border-b flex items-center border-gray-200 py-6 px-12"
                                     >
-                                        <label className="w-1/4 text-lg font-thin text-grey-dark">
+                                        <label className="w-1/4 text-lg font-thin text-gray-700">
                                             {field.name}
                                         </label>
 

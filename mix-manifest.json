@@ -1,8 +1,8 @@
 {
-    "/pangaso-dashboard/tools/dashboard.js": "/pangaso-dashboard/tools/dashboard.js",
-    "/pangaso-resources/tools/resources.js": "/pangaso-resources/tools/resources.js",
+    "/dashboard/tools/dashboard.js": "/dashboard/tools/dashboard.js",
     "/public/app.js": "/public/app.js",
     "/public/app.css": "/public/app.css",
-    "/pangaso-resources/tools/resources.css": "/pangaso-resources/tools/resources.css",
-    "/pangaso-dashboard/tools/dashboard.css": "/pangaso-dashboard/tools/dashboard.css"
+    "/resources/tools/resources.css": "/resources/tools/resources.css",
+    "/dashboard/tools/dashboard.css": "/dashboard/tools/dashboard.css",
+    "/resources/tools/resources.js": "/resources/tools/resources.js"
 }

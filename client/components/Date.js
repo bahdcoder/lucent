@@ -18,7 +18,9 @@ const DatePicker = ({
     <React.Fragment>
         <FlatPickr
             options={dateOptions}
-            onChange={date => handler({ name, date: format(date[0], dateFormat) })}
+            onChange={date =>
+                handler({ name, date: format(date[0], dateFormat) })
+            }
             data-enable-time={enableTime}
             className={classnames(
                 'text-grey-darkest my-3 h-10 pr-3 pl-10 rounded-lg shadow border focus:outline-none focus:border-2',
@@ -30,7 +32,7 @@ const DatePicker = ({
             )}
             readOnly
         />
-        {error && <span className="text-xs text-red font-thin">{error}</span>}
+        {error && <span className="text-xs text-red font-light">{error}</span>}
     </React.Fragment>
 )
 

@@ -7,6 +7,7 @@ const Checkbox = ({
     handler,
     value,
     name,
+    disabled,
     dataTestId
 }) => (
     <React.Fragment>
@@ -18,6 +19,7 @@ const Checkbox = ({
             checked={checked}
             onChange={handler}
             className="checkbox"
+            disabled={disabled}
             data-testid={dataTestId}
         />
         <label htmlFor={id}>{label}</label>

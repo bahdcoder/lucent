@@ -60,14 +60,14 @@ export declare class Tool implements ITools {
     static(path: string): void;
     /**
      *
-     * Add scripts to pangaso
+     * Add scripts to Lucent
      *
      * @return {void}
      *
      */
     js(name: string, path: string): this;
     /**
-     * Add styles to pangaso
+     * Add styles to Lucent
      *
      * @return {void}
      *

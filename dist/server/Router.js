@@ -16,8 +16,8 @@ router.get('/api/tools', tool_controller_1.Tool.index);
  */
 router.get('*', function (req, res) {
     return res.render('index', {
-        tools: req.pangaso.tools,
-        resources: JSON.stringify(req.pangaso.resources.map(function (resource) {
+        tools: req.lucent.tools,
+        resources: JSON.stringify(req.lucent.resources.map(function (resource) {
             return resource.serialize();
         }))
     });

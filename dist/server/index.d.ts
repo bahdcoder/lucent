@@ -1,6 +1,6 @@
 import * as Express from 'express';
 import { ITools } from './index.d';
-export declare class Pangaso {
+export declare class Lucent {
     /**
      * The path for all resources
      *
@@ -10,7 +10,7 @@ export declare class Pangaso {
     private resourcesPath;
     /**
      *
-     * Define scripts for pangaso
+     * Define scripts for Lucent
      *
      * @type {array}
      *
@@ -18,7 +18,7 @@ export declare class Pangaso {
     private static scripts;
     /**
      *
-     * Define styles for pangaso
+     * Define styles for Lucent
      *
      * @type {array}
      *
@@ -34,7 +34,7 @@ export declare class Pangaso {
     private mongoClient;
     /**
      *
-     * Defines the port on which pangaso should run on
+     * Defines the port on which Lucent should run on
      *
      * @type {number}
      *
@@ -59,7 +59,7 @@ export declare class Pangaso {
     /**
      *
      * Define the default tools that come
-     * with pangaso
+     * with Lucent
      *
      * @type {Array}
      *
@@ -67,14 +67,14 @@ export declare class Pangaso {
     private tools;
     /**
      *
-     * The express instance for pangaso
+     * The express instance for Lucent
      *
      * @type {Express.Application}
      *
      */
     private expressInstance;
     /**
-     * Define the pangaso router
+     * Define the Lucent router
      *
      * @type {Router}
      *
@@ -82,14 +82,14 @@ export declare class Pangaso {
     private router;
     /**
      *
-     * Pangaso resources
+     * Lucent resources
      *
      * @type {Array}
      *
      */
     private resources;
     /**
-     * Determine if pangaso has already been initialized
+     * Determine if Lucent has already been initialized
      *
      * @type {Boolean}
      *
@@ -105,7 +105,7 @@ export declare class Pangaso {
     private database;
     /**
      *
-     * Initialize Pangaso
+     * Initialize Lucent
      *
      */
     constructor();
@@ -116,7 +116,7 @@ export declare class Pangaso {
      * @param uri set the database uri and database name
      * @param database set the database uri and database name
      *
-     * @return {Pangaso}
+     * @return {Lucent}
      *
      */
     mongo(uri: string, database: string): this;
@@ -137,22 +137,22 @@ export declare class Pangaso {
     private getUserResource;
     /**
      *
-     * Make the pangaso middleware
+     * Make the Lucent middleware
      *
      * @return {Function}
      *
      */
-    make(): (req: Express.Request, res: Express.Response, next: Express.NextFunction) => void;
+    make(): (req: Express.Request<import("express-serve-static-core").ParamsDictionary>, res: Express.Response, next: Express.NextFunction) => void;
     /**
      *
-     * Return the pangaso router
+     * Return the Lucent router
      *
      * @return {Express.Router}
      *
      */
     routes(): Express.Router;
     /**
-     * Register the static assets for pangaso
+     * Register the static assets for Lucent
      *
      * @return {void}
      *
@@ -162,21 +162,21 @@ export declare class Pangaso {
      *
      * Set the port
      *
-     * @return {Pangaso}
+     * @return {Lucent}
      *
      */
     onPort(port: number): this;
     /**
      *
-     * Define the tools to be added to Pangaso
+     * Define the tools to be added to Lucent
      *
-     * @return {Pangaso}
+     * @return {Lucent}
      *
      */
-    withTools(tools: ITools[]): Pangaso;
+    withTools(tools: ITools[]): Lucent;
     /**
      *
-     * Boot all tools for pangaso
+     * Boot all tools for Lucent
      *
      * @return {void}
      *
@@ -190,17 +190,17 @@ export declare class Pangaso {
      */
     start(): this | undefined;
     /**
-     * Add scripts to pangaso
+     * Add scripts to Lucent
      *
      * @return {void}
      *
      */
-    static script(name: string, path: string): Pangaso;
+    static script(name: string, path: string): Lucent;
     /**
-     * Add styles to pangaso
+     * Add styles to Lucent
      *
      * @return {void}
      *
      */
-    static style(name: string, path: string): Pangaso;
+    static style(name: string, path: string): Lucent;
 }

@@ -15,23 +15,20 @@ export class Dashboard extends Tool {
          * Register path as a source for static files
          *
          */
-        app.use(
-            '/pangaso-dashboard',
-            Express.static(Root.resolve('pangaso-dashboard'))
-        )
+        app.use('/dashboard', Express.static(Root.resolve('dashboard')))
 
         /**
          *
          * Define the js for this tool
          *
          */
-        this.js('resources', 'pangaso-dashboard/tools/dashboard.js')
+        this.js('resources', 'dashboard/tools/dashboard.js')
 
         /**
          *
          * Define the css for this tool
          *
          */
-        this.css('resources', 'pangaso-dashboard/tools/dashboard.css')
+        this.css('resources', 'dashboard/tools/dashboard.css')
     }
 }

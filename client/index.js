@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 
 import { Main } from './Main'
-import Pangaso from './Pangaso'
+import Lucent from './Lucent'
 
-window.Pangaso = Pangaso
+window.Lucent = Lucent
 
 const app = document.getElementById('app')
 

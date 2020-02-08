@@ -61,13 +61,16 @@ const Table = ({
             : currentPageStart + perPage - 1
 
     return (
-        <div className="w-full bg-white rounded-t-lg shadow mt-4">
+        <div className="w-full bg-white rounded-t shadow mt-4">
             <div className="h-16 flex justify-between items-center">
                 <div className="w-20 flex justify-center items-center">
                     <Checkbox
                         id="selectAll"
                         handler={selectAll}
-                        checked={selected.length === rows.length}
+                        disabled={rows.length === 0}
+                        checked={
+                            selected.length === rows.length && rows.length !== 0
+                        }
                     />
                 </div>
 
@@ -75,9 +78,9 @@ const Table = ({
                     {resource.actions.length > 0 && selected.length > 0 && (
                         <React.Fragment>
                             <select
-                                value={selectedAction.id}
                                 onChange={setSelectedAction}
-                                className="bg-white focus:outline-none text-grey-darkest my-3 border border-grey h-10 px-3 rounded-lg shadow focus:outline-none focus:border-indigo focus:border-2 w-2/4"
+                                value={selectedAction.id || ''}
+                                className="bg-white focus:outline-none text-gray-700 my-2 border border-gray-300 h-10 px-3 rounded-sm focus:outline-none focus:border-gray-400 focus:border-2 w-2/4"
                             >
                                 <option value="">Select an action</option>
                                 {resource.actions.map(action => (
@@ -90,11 +93,13 @@ const Table = ({
                             <button
                                 type="button"
                                 onClick={triggerRunAction}
+                                disabled={!selectedAction.id}
                                 className={classnames(
-                                    'ml-3 focus:outline-none cursor-pointer trans-30 h-10 flex items-center justify-center rounded-lg px-3',
+                                    'ml-3 focus:outline-none cursor-pointer trans-30 h-10 flex items-center justify-center rounded px-3',
                                     {
-                                        'bg-indigo hover:bg-indigo-dark': selectedAction,
-                                        'bg-indigo-lighter cursor-not-allowed': !selectedAction
+                                        'bg-gray-900 hover:bg-gray-700':
+                                            selectedAction.id,
+                                        'bg-gray-200 cursor-not-allowed': !selectedAction.id
                                     }
                                 )}
                             >
@@ -129,7 +134,7 @@ const Table = ({
                             <Svg
                                 icon="trash"
                                 onClick={triggerMultiDelete}
-                                className="text-grey hover:text-indigo-dark"
+                                className="text-gray-800"
                             />
                         </div>
                     )}
@@ -149,7 +154,7 @@ const Table = ({
 
             <table className="w-full" cellSpacing="0" cellPadding="0">
                 <thead className="w-full">
-                    <tr className="bg-grey-lighter w-full font-bold text-xs text-left uppercase border-b-2 tracking-wide align-middle">
+                    <tr className="bg-gray-200 w-full font-bold text-xs text-left uppercase border-b-2 tracking-wide align-middle">
                         <React.Fragment>
                             <th className="py-3 w-20 px-0" />
                             {headers.map((field, index) => (
@@ -166,7 +171,7 @@ const Table = ({
                     {rows.map((row, index) => (
                         <tr
                             key={row[resource.primaryKey]}
-                            className="trans-30 border-b border-grey-light hover:bg-grey-lighter"
+                            className="transition duration-150 ease-in-out border-b border-gray-200 hover:bg-gray-200"
                         >
                             <React.Fragment>
                                 <td className="text-left flex justify-center items-center w-20 h-14">
@@ -183,12 +188,12 @@ const Table = ({
                                 </td>
                                 {headers.map((field, index) => {
                                     const DetailField =
-                                        Pangaso.details[field.detail]
+                                        Lucent.details[field.detail]
 
                                     return DetailField ? (
                                         <td
-                                            className="text-left h-14"
                                             key={index}
+                                            className="text-left h-14"
                                         >
                                             <DetailField
                                                 table
@@ -205,7 +210,7 @@ const Table = ({
                                             <Svg
                                                 icon="eye"
                                                 dataTestId={`view-resource-${index}`}
-                                                className="trans-30 text-grey cursor-pointer hover:text-indigo-dark"
+                                                className="trans-30 cursor-pointer text-gray-500 hover:text-gray-700"
                                                 onClick={() =>
                                                     viewChildResource(
                                                         resource,
@@ -220,7 +225,7 @@ const Table = ({
                                                 }/${
                                                     row[resource.primaryKey]
                                                 }/details`}
-                                                className="trans-30 text-grey cursor-pointer hover:text-indigo-dark"
+                                                className="trans-30 cursor-pointer text-gray-500 hover:text-gray-700"
                                             >
                                                 <Svg
                                                     icon="eye"
@@ -232,14 +237,14 @@ const Table = ({
                                             to={`/resources/${resource.slug}/${
                                                 row[resource.primaryKey]
                                             }/edit`}
-                                            className="trans-30 text-grey ml-3 cursor-pointer hover:text-indigo-dark"
+                                            className="trans-30 text-gray-500 hover:text-gray-700 ml-3 cursor-pointer"
                                         >
                                             <Svg icon="pencil" />
                                         </Link>
 
                                         <Svg
                                             icon="trash"
-                                            className="ml-3 text-grey hover:text-indigo-dark"
+                                            className="ml-3 text-gray-500 hover:text-gray-700"
                                             onClick={() =>
                                                 triggerMultiDelete(
                                                     row[resource.primaryKey]
@@ -254,9 +259,9 @@ const Table = ({
                     {rows.length === 0 && (
                         <tr className="my-12">
                             <td
-                                className="text-center py-12 text-indigo text-lg"
-                                data-testid="no-items-match-criteria"
                                 colSpan={headers.length + 2}
+                                data-testid="no-items-match-criteria"
+                                className="text-center py-12 uppercase text-sm font-medium tracking-widest"
                             >
                                 No items match your criteria
                             </td>
@@ -265,7 +270,7 @@ const Table = ({
                 </tbody>
             </table>
 
-            <div className="flex text-grey-dark w-full justify-between rounded-b-lg pr-6 bg-grey-lighter shadow">
+            <div className="flex w-full justify-between rounded-b pr-6 bg-gray-200 shadow">
                 <Paginate
                     nextLabel={'»'}
                     breakLabel={'...'}

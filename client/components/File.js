@@ -33,7 +33,6 @@ class File extends React.Component {
             <React.Fragment>
                 <div className="flex items-center">
                     <Button
-                        className="w-1/5"
                         label={'Choose File'}
                         handler={() => this.file.current.click()}
                     />
@@ -61,7 +60,7 @@ class File extends React.Component {
                 {error && (
                     <span
                         data-testid={`${dataTestId}-error`}
-                        className="text-xs mt-3 text-red font-thin"
+                        className="text-xs mt-3 text-red-600 font-light"
                     >
                         {error}
                     </span>

@@ -32,16 +32,19 @@ const getFakeContact = data => ({
 
 const items = Array.from({ length: 100 })
 
-items.forEach(() => {
+for (let index = 0; index < items.length; index++) {
     Axios.post(
-        `http://localhost:5044/api/resources/organisations`,
+        `http://localhost:3004/api/resources/organisations`,
         getFakeOrg()
-    )
-})
+    ).catch(({ response }) => console.log(response.data.resourceErrors))
+}
 
-items.forEach(() => {
-    Axios.post(`http://localhost:5044/api/resources/contacts`, getFakeContact())
-})
+for (let index = 0; index < items.length; index++) {
+    Axios.post(
+        `http://localhost:3004/api/resources/contacts`,
+        getFakeContact()
+    ).catch(({ response }) => console.log(response.data.resourceErrors))
+}
 
-// Axios.delete('http://localhost:5044/api/resources/contacts/clear')
-// Axios.delete('http://localhost:5044/api/resources/organisations/clear')
+// Axios.delete('http://localhost:3004/api/resources/contacts/clear')
+// Axios.delete('http://localhost:3004/api/resources/organisations/clear')

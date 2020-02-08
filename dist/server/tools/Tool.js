@@ -1,4 +1,11 @@
 "use strict";
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var Express = require("express");
 var ChangeCase = require("change-case");
@@ -74,23 +81,23 @@ var Tool = /** @class */ (function () {
     };
     /**
      *
-     * Add scripts to pangaso
+     * Add scripts to Lucent
      *
      * @return {void}
      *
      */
     Tool.prototype.js = function (name, path) {
-        this.scripts = this.scripts.concat([{ name: name, path: path }]);
+        this.scripts = __spreadArrays(this.scripts, [{ name: name, path: path }]);
         return this;
     };
     /**
-     * Add styles to pangaso
+     * Add styles to Lucent
      *
      * @return {void}
      *
      */
     Tool.prototype.css = function (name, path) {
-        this.styles = this.styles.concat([{ name: name, path: path }]);
+        this.styles = __spreadArrays(this.styles, [{ name: name, path: path }]);
         return this;
     };
     return Tool;

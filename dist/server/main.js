@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var ID_1 = require("./fields/ID");
 exports.ID = ID_1.ID;
 var index_1 = require("./index");
-exports.Pangaso = index_1.Pangaso;
+exports.Lucent = index_1.Lucent;
 var Tool_1 = require("./tools/Tool");
 exports.Tool = Tool_1.Tool;
 var Text_1 = require("./fields/Text");

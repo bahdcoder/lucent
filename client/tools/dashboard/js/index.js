@@ -1,7 +1,7 @@
 import Dashboard from './pages/Dashboard'
 import Sidebar from './components/Sidebar'
 
-Pangaso.booting(({ route, sidebar }) => {
+Lucent.booting(({ route, sidebar }) => {
     /**
      *
      * Define the sidebar items

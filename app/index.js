@@ -1,15 +1,15 @@
-const { Pangaso } = require(process.env.CI_ENVIRONMENT
+const { Lucent } = require(process.env.CI_ENVIRONMENT
     ? '../dist/server/main'
-    : 'pangaso')
+    : 'lucent-admin')
 
-process.env.MONGO_URL = 'mongodb://localhost/pangaso'
+process.env.MONGO_URL = 'mongodb://localhost/lucent-admin'
 
-new Pangaso()
+new Lucent()
     .onPort(process.env.PORT || 3004)
     .withTools([])
     .mongo(
         process.env.MONGO_URL ||
             'mongodb://pangaso:pangaso1@ds149596.mlab.com:49596/pangaso',
-        process.env.DATABASE || 'pangaso'
+        process.env.DATABASE || 'lucent-admin'
     )
     .start()

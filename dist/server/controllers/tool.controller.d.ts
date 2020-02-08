@@ -11,7 +11,7 @@ declare class ToolController {
      * @return {Express.Response}
      *
      */
-    index(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
+    index(req: Express.Request, res: Express.Response): Promise<Express.Response>;
 }
 export declare const Tool: ToolController;
 export {};

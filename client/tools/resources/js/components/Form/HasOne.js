@@ -16,7 +16,7 @@ class HasOneField extends React.Component {
         const { resource } = this.state
 
         !field.isSearchable &&
-            Pangaso.request()
+        Lucent.request()
                 .get(`/resources/${resource.slug}/all`)
                 .then(({ data }) => {
                     this.setState({
@@ -33,7 +33,7 @@ class HasOneField extends React.Component {
      *
      */
     getResource() {
-        return Pangaso.resources.find(
+        return Lucent.resources.find(
             resource => resource.name === this.props.field.resource
         )
     }
@@ -58,8 +58,8 @@ class HasOneField extends React.Component {
      *
      */
     render() {
-        const Select = Pangaso.components['component-select']
-        const Combobox = Pangaso.components['component-combobox']
+        const Select = Lucent.components['component-select']
+        const Combobox = Lucent.components['component-combobox']
 
         if (this.props.field.isSearchable) {
             const { resource } = this.state

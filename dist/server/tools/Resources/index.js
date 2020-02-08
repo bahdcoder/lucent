@@ -35,7 +35,7 @@ var Resources = /** @class */ (function (_super) {
          * Register path as a source for static files
          *
          */
-        app.use('/pangaso-resources', Express.static(Root.resolve('pangaso-resources')));
+        app.use('/resources', Express.static(Root.resolve('resources')));
         /**
          *
          * Register storage path as a source for static files.
@@ -43,7 +43,7 @@ var Resources = /** @class */ (function (_super) {
          * folder defined by user.
          *
          */
-        app.use('/pangaso-storage', Express.static(process.cwd() + "/pangaso-storage"));
+        app.use('/storage', Express.static(process.cwd() + "/storage"));
         /**
          *
          * Define the file upload middleware
@@ -61,13 +61,13 @@ var Resources = /** @class */ (function (_super) {
          * Define the js for this tool
          *
          */
-        this.js('resources', 'pangaso-resources/tools/resources.js');
+        this.js('resources', 'resources/tools/resources.js');
         /**
          *
          * Define the css for this tool
          *
          */
-        this.css('resources', 'pangaso-resources/tools/resources.css');
+        this.css('resources', 'resources/tools/resources.css');
     };
     return Resources;
 }(Tool_1.Tool));

@@ -20,10 +20,10 @@ const Select = ({
             onChange={handler}
             data-testid={dataTestId}
             className={classnames(
-                'bg-white focus:outline-none text-grey-darkest my-3 border h-10 px-3 rounded-lg shadow focus:outline-none focus:border-2',
+                'bg-white focus:outline-none text-gray-700 my-3 border h-10 px-3 rounded-sm focus:outline-none',
                 {
-                    'border-grey focus:border-indigo': !error,
-                    'border-red focus:border-red': error
+                    'border-gray-300 focus:border-gray-400': !error,
+                    'border-red-600 focus:border-red-600': error
                 },
                 className
             )}
@@ -39,7 +39,7 @@ const Select = ({
         {error && (
             <span
                 data-testid={`${dataTestId}-error`}
-                className="text-xs text-red font-thin"
+                className="text-xs text-red-600 font-light"
             >
                 {error}
             </span>

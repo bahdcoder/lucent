@@ -2,7 +2,7 @@ import React from 'react'
 import BaseMultiSelect from '@khanacademy/react-multi-select'
 
 const ItemRenderer = ({ option, checked, onClick }) => {
-    const Checkbox = Pangaso.components['component-checkbox']
+    const Checkbox = Lucent.components['component-checkbox']
 
     return (
         <span>

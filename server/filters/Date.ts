@@ -18,12 +18,12 @@ export class DateFilter extends Filter {
      * @return {Date}
      */
     public default(): Date {
-        return new Date
+        return new Date()
     }
 
     /**
      * Define this date format used by the date picker
-     * 
+     *
      * @return {String}
      */
     public dateFormat(): String {
@@ -32,14 +32,14 @@ export class DateFilter extends Filter {
 
     /**
      * Define if this filter date picker should have time
-     * 
+     *
      * @return {Boolean}
      */
     public withTime(): Boolean {
         return false
     }
 
-        /**
+    /**
      * Serialize the filter for the frontend
      *
      * @return {object}

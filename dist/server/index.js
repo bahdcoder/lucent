@@ -1,4 +1,11 @@
 "use strict";
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var Fs = require("fs");
 var Path = require("path");
@@ -11,20 +18,20 @@ var BodyParser = require("body-parser");
 var Dashboard_1 = require("./tools/Dashboard");
 var Resources_1 = require("./tools/Resources");
 var Database_1 = require("./Database");
-var Pangaso = /** @class */ (function () {
+var Lucent = /** @class */ (function () {
     /**
      *
-     * Initialize Pangaso
+     * Initialize Lucent
      *
      */
-    function Pangaso() {
+    function Lucent() {
         /**
          * The path for all resources
          *
          * @type {String}
          *
          */
-        this.resourcesPath = process.cwd() + "/pangaso";
+        this.resourcesPath = process.cwd() + "/lucent";
         /**
          *
          * Define the client
@@ -35,7 +42,7 @@ var Pangaso = /** @class */ (function () {
         this.mongoClient = null;
         /**
          *
-         * Defines the port on which pangaso should run on
+         * Defines the port on which Lucent should run on
          *
          * @type {number}
          *
@@ -60,14 +67,14 @@ var Pangaso = /** @class */ (function () {
         /**
          *
          * Define the default tools that come
-         * with pangaso
+         * with Lucent
          *
          * @type {Array}
          *
          */
         this.tools = [new Dashboard_1.Dashboard(), new Resources_1.Resources()];
         /**
-         * Define the pangaso router
+         * Define the Lucent router
          *
          * @type {Router}
          *
@@ -75,14 +82,14 @@ var Pangaso = /** @class */ (function () {
         this.router = Router_1.default;
         /**
          *
-         * Pangaso resources
+         * Lucent resources
          *
          * @type {Array}
          *
          */
         this.resources = [];
         /**
-         * Determine if pangaso has already been initialized
+         * Determine if Lucent has already been initialized
          *
          * @type {Boolean}
          *
@@ -110,7 +117,7 @@ var Pangaso = /** @class */ (function () {
         this.expressInstance.use(BodyParser.json());
         /**
          *
-         * Make the pangaso application
+         * Make the Lucent application
          *
          */
         this.expressInstance.use(this.make());
@@ -122,12 +129,15 @@ var Pangaso = /** @class */ (function () {
      * @param uri set the database uri and database name
      * @param database set the database uri and database name
      *
-     * @return {Pangaso}
+     * @return {Lucent}
      *
      */
-    Pangaso.prototype.mongo = function (uri, database) {
+    Lucent.prototype.mongo = function (uri, database) {
         this.databaseName = database;
-        this.mongoClient = new mongodb_1.MongoClient(uri, { useNewUrlParser: true });
+        this.mongoClient = new mongodb_1.MongoClient(uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
         return this;
     };
     /**
@@ -137,7 +147,7 @@ var Pangaso = /** @class */ (function () {
      * @return {void}
      *
      */
-    Pangaso.prototype.loadResources = function () {
+    Lucent.prototype.loadResources = function () {
         var _this = this;
         if (this.initialized)
             return;
@@ -194,12 +204,12 @@ var Pangaso = /** @class */ (function () {
      * @return {IResource}
      *
      */
-    Pangaso.prototype.getUserResource = function () {
+    Lucent.prototype.getUserResource = function () {
         /**
          *
          * Find a resource called UserResource. This is for
          * cases when authentication is added to
-         * the pangaso dashboard.
+         * the Lucent dashboard.
          *
          */
         var resource = this.resources.find(function (resource) {
@@ -221,16 +231,16 @@ var Pangaso = /** @class */ (function () {
     };
     /**
      *
-     * Make the pangaso middleware
+     * Make the Lucent middleware
      *
      * @return {Function}
      *
      */
-    Pangaso.prototype.make = function () {
+    Lucent.prototype.make = function () {
         var _this = this;
         return function (req, res, next) {
             _this.loadResources();
-            req.pangaso = {
+            req.lucent = {
                 tools: _this.tools,
                 router: _this.router,
                 database: _this.database,
@@ -242,53 +252,53 @@ var Pangaso = /** @class */ (function () {
     };
     /**
      *
-     * Return the pangaso router
+     * Return the Lucent router
      *
      * @return {Express.Router}
      *
      */
-    Pangaso.prototype.routes = function () {
+    Lucent.prototype.routes = function () {
         return this.router;
     };
     /**
-     * Register the static assets for pangaso
+     * Register the static assets for Lucent
      *
      * @return {void}
      *
      */
-    Pangaso.prototype.assets = function () {
+    Lucent.prototype.assets = function () {
         return Express.static(Path.resolve(__dirname, Root.path, 'public'));
     };
     /**
      *
      * Set the port
      *
-     * @return {Pangaso}
+     * @return {Lucent}
      *
      */
-    Pangaso.prototype.onPort = function (port) {
+    Lucent.prototype.onPort = function (port) {
         this.port = port;
         return this;
     };
     /**
      *
-     * Define the tools to be added to Pangaso
+     * Define the tools to be added to Lucent
      *
-     * @return {Pangaso}
+     * @return {Lucent}
      *
      */
-    Pangaso.prototype.withTools = function (tools) {
-        this.tools = this.tools.concat(tools);
+    Lucent.prototype.withTools = function (tools) {
+        this.tools = __spreadArrays(this.tools, tools);
         return this;
     };
     /**
      *
-     * Boot all tools for pangaso
+     * Boot all tools for Lucent
      *
      * @return {void}
      *
      */
-    Pangaso.prototype.bootTools = function () {
+    Lucent.prototype.bootTools = function () {
         var _this = this;
         this.tools.forEach(function (tool) { return tool.boot(_this.expressInstance); });
     };
@@ -298,7 +308,7 @@ var Pangaso = /** @class */ (function () {
      * @return {void}
      *
      */
-    Pangaso.prototype.start = function () {
+    Lucent.prototype.start = function () {
         var _this = this;
         if (!this.mongoClient) {
             return this;
@@ -309,7 +319,7 @@ var Pangaso = /** @class */ (function () {
         /**
          *
          *
-         * Register all the tools for pangaso
+         * Register all the tools for Lucent
          *
          *
          */
@@ -319,7 +329,7 @@ var Pangaso = /** @class */ (function () {
          * Register the assets for project
          *
          */
-        this.expressInstance.use('/pangaso-assets', this.assets());
+        this.expressInstance.use('/public', this.assets());
         /**
          *
          * Register the edge templating engine
@@ -355,7 +365,7 @@ var Pangaso = /** @class */ (function () {
             //@ts-ignore
             _this.database.set(_this.mongoClient.db(_this.databaseName));
             _this.expressInstance.listen(_this.port, function () {
-                console.log("Pangaso running on port http://localhost:" + _this.port);
+                console.log("Lucent running on port http://localhost:" + _this.port);
             });
         })
             /**
@@ -369,41 +379,41 @@ var Pangaso = /** @class */ (function () {
         });
     };
     /**
-     * Add scripts to pangaso
+     * Add scripts to Lucent
      *
      * @return {void}
      *
      */
-    Pangaso.script = function (name, path) {
-        Pangaso.scripts = Pangaso.scripts.concat([{ name: name, path: path }]);
-        return new Pangaso();
+    Lucent.script = function (name, path) {
+        Lucent.scripts = __spreadArrays(Lucent.scripts, [{ name: name, path: path }]);
+        return new Lucent();
     };
     /**
-     * Add styles to pangaso
+     * Add styles to Lucent
      *
      * @return {void}
      *
      */
-    Pangaso.style = function (name, path) {
-        Pangaso.styles = Pangaso.styles.concat([{ name: name, path: path }]);
-        return new Pangaso();
+    Lucent.style = function (name, path) {
+        Lucent.styles = __spreadArrays(Lucent.styles, [{ name: name, path: path }]);
+        return new Lucent();
     };
     /**
      *
-     * Define scripts for pangaso
+     * Define scripts for Lucent
      *
      * @type {array}
      *
      */
-    Pangaso.scripts = [];
+    Lucent.scripts = [];
     /**
      *
-     * Define styles for pangaso
+     * Define styles for Lucent
      *
      * @type {array}
      *
      */
-    Pangaso.styles = [];
-    return Pangaso;
+    Lucent.styles = [];
+    return Lucent;
 }());
-exports.Pangaso = Pangaso;
+exports.Lucent = Lucent;

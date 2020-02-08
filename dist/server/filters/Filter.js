@@ -77,7 +77,7 @@ var Filter = /** @class */ (function () {
      * @return {object}
      */
     Filter.prototype.serialize = function () {
-        return __assign({}, this, { name: this.name(), default: this.default(), options: this.options(), attribute: this.attribute(), component: this.component() });
+        return __assign(__assign({}, this), { name: this.name(), default: this.default(), options: this.options(), attribute: this.attribute(), component: this.component() });
     };
     return Filter;
 }());

@@ -72,7 +72,7 @@ class Resource extends React.Component {
     getCurrentResource(slug = this.props.match.params.resource) {
         return (
             this.props.resource ||
-            Pangaso.resources.find(resource => resource.slug === slug)
+            Lucent.resources.find(resource => resource.slug === slug)
         )
     }
 
@@ -193,7 +193,7 @@ class Resource extends React.Component {
               }/has-many/${field.attribute}`
             : `resources/${this.props.match.params.resource}`
 
-        Pangaso.request()
+            Lucent.request()
             .get(url, {
                 params: {
                     page: this.state.page,
@@ -298,7 +298,7 @@ class Resource extends React.Component {
 
         history.push(`${location.pathname}`)
 
-        Pangaso.request()
+        Lucent.request()
             .get(`/resources/${resource.slug}/search?query=${query}`)
             .then(({ data }) => {})
     })
@@ -310,15 +310,13 @@ class Resource extends React.Component {
      * @param {React.SyntheticEvent} event
      *
      */
-    setSelectedAction = event => {
+    setSelectedAction = (event = null) => {
         const selectedAction = this.state.resource.actions.find(
-            action => action.id === event.target.value
+            action => action.id === ((event || {}).target || {}).value
         )
 
-        if (!selectedAction) return
-
         this.setState({
-            selectedAction
+            selectedAction: selectedAction || {}
         })
     }
 
@@ -327,7 +325,7 @@ class Resource extends React.Component {
      *
      */
     delete = () => {
-        Pangaso.request()
+        Lucent.request()
             .delete(`/resources/${this.state.resource.slug}`, {
                 data: {
                     resources:
@@ -347,7 +345,7 @@ class Resource extends React.Component {
                     () => this.fetchData()
                 )
 
-                Pangaso.success(
+                Lucent.success(
                     `${this.state.resource.name}${
                         this.state.selected.length > 1 ? 's' : ''
                     } deleted !`
@@ -378,7 +376,7 @@ class Resource extends React.Component {
      *
      */
     runAction = () => {
-        Pangaso.request()
+        Lucent.request()
             .post(`/resources/${this.state.resource.slug}/run-action`, {
                 resources: this.state.selected,
                 action: this.state.selectedAction.id
@@ -402,7 +400,7 @@ class Resource extends React.Component {
                     () => this.fetchData()
                 )
 
-                Pangaso.success('Action run !')
+                Lucent.success('Action run !')
             })
 
             .catch(() => {
@@ -439,11 +437,11 @@ class Resource extends React.Component {
 
     render() {
         const { Link, viewChildResource } = this.props
-        const Svg = Pangaso.components['component-svg']
-        const Modal = Pangaso.components['component-modal']
-        const Table = Pangaso.components['component-table']
-        const Button = Pangaso.components['component-button']
-        const Loader = Pangaso.components['component-loader']
+        const Svg = Lucent.components['component-svg']
+        const Modal = Lucent.components['component-modal']
+        const Table = Lucent.components['component-table']
+        const Button = Lucent.components['component-button']
+        const Loader = Lucent.components['component-loader']
         const {
             data,
             page,
@@ -459,34 +457,34 @@ class Resource extends React.Component {
 
         return (
             <React.Fragment>
-                <h1
+                <h3
                     data-testid={`resource-title-${resource.slug}`}
-                    className={classnames('font-thin mb-2', {
+                    className={classnames('font-thin text-gray-700 mb-2', {
                         'text-2xl': this.props.resource,
                         'text-3xl': !this.props.resource
                     })}
                 >
                     {resource.title}
-                </h1>
+                </h3>
 
                 <div className="flex justify-between items-center">
-                    <div className="w-1/5 flex items-center">
+                    <div className="w-1/4 flex items-center">
                         <Svg
                             icon="lens"
-                            className="absolute ml-3 z-5 text-grey"
+                            className="absolute ml-5 z-5 text-gray-600"
                         />
                         <input
                             type="text"
                             value={query}
                             placeholder="Search"
                             onChange={this.handleQueryChange}
-                            className="w-full text-grey-darkest my-3 h-10 pr-3 pl-10 rounded-lg shadow focus:outline-none focus:border-indigo focus:border-2"
+                            className="w-full text-grey-darkest my-3 pr-5 pl-12 py-3 rounded-full border focus:outline-none border-gray-300 focus:border-gray-400"
                         />
                     </div>
 
                     <Button
                         link
-                        label={`Create ${resource.name}`}
+                        label={`Create new`}
                         to={`/resources/${resource.slug}/new`}
                         dataTestId={`create-resource-${resource.slug}`}
                     />
@@ -555,7 +553,11 @@ class Resource extends React.Component {
                         </p>
                     )}
                     title={selectedAction.name}
-                    cancel={this.triggerRunAction}
+                    cancel={() => {
+                        this.setSelectedAction(null)
+
+                        this.triggerRunAction()
+                    }}
                 />
             </React.Fragment>
         )

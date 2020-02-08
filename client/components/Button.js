@@ -19,10 +19,10 @@ const Button = ({
             onClick={handler}
             data-testid={dataTestId}
             className={classnames(
-                'trans-30 no-underline text-white rounded-lg px-8 h-9 flex items-center focus:outline-none',
+                'transition duration-150 ease-in-out no-underline uppercase font-medium tracking-widest text-sm text-white rounded-sm px-6 py-2 flex items-center focus:outline-none',
                 {
-                    'bg-indigo hover:bg-indigo-dark': type === 'primary',
-                    'bg-red-light hover:bg-red-dark': type === 'danger'
+                    'bg-gray-800 hover:bg-gray-700': type === 'primary',
+                    'bg-red-500': type === 'danger'
                 },
                 className
             )}

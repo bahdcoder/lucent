@@ -45,7 +45,7 @@ class ResourceDetails extends React.Component {
     }
 
     fetch(primaryKey, push = true) {
-        Pangaso.request()
+        Lucent.request()
             .get(`/resources/${this.state.resource.slug}/${primaryKey}`)
             .then(({ data }) => {
                 this.setState(
@@ -76,7 +76,7 @@ class ResourceDetails extends React.Component {
      *
      */
     getCurrentResource(slug = this.props.match.params.resource) {
-        return Pangaso.resources.find(resource => resource.slug === slug)
+        return Lucent.resources.find(resource => resource.slug === slug)
     }
 
     /**
@@ -96,7 +96,7 @@ class ResourceDetails extends React.Component {
      */
     delete = () => {
         const { data, resource } = this.state
-        Pangaso.request()
+        Lucent.request()
             .delete(`/resources/${resource.slug}`, {
                 data: {
                     resources: [data[resource.primaryKey]]
@@ -105,7 +105,7 @@ class ResourceDetails extends React.Component {
             .then(() => {
                 this.props.history.push(`/resources/${resource.slug}`)
 
-                Pangaso.success(`${resource.name} deleted !`)
+                Lucent.success(`${resource.name} deleted !`)
             })
     }
 
@@ -116,7 +116,7 @@ class ResourceDetails extends React.Component {
      * @return {React.Component}
      *
      */
-    getDetailField = detail => Pangaso.details[detail]
+    getDetailField = detail => Lucent.details[detail]
 
     /**
      *
@@ -222,8 +222,8 @@ class ResourceDetails extends React.Component {
         const { Link } = this.props
         const { resource, data, deleting } = this.state
 
-        const Modal = Pangaso.components['component-modal']
-        const Button = Pangaso.components['component-button']
+        const Modal = Lucent.components['component-modal']
+        const Button = Lucent.components['component-button']
 
         const fields = this.getDetailFields()
         const hasOneFields = this.getHasOneFields()

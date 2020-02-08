@@ -13,7 +13,7 @@ declare class ResourceController {
      * @return {Express.Response}
      *
      */
-    index(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
+    index(req: Express.Request, res: Express.Response): Promise<Express.Response>;
     /**
      *
      * Get a single record of a resource
@@ -25,7 +25,7 @@ declare class ResourceController {
      * @return {Express.Response}
      *
      */
-    show: (req: Express.Request, res: Express.Response) => Promise<import("express-serve-static-core").Response>;
+    show: (req: Express.Request<import("express-serve-static-core").ParamsDictionary>, res: Express.Response) => Promise<Express.Response>;
     /**
      *
      * Fetch all data from specific resource collection
@@ -37,7 +37,7 @@ declare class ResourceController {
      * @return {Express.Response}
      *
      */
-    fetchAll(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
+    fetchAll(req: Express.Request, res: Express.Response): Promise<Express.Response>;
     /**
      *
      * Build the filter based on query params
@@ -61,8 +61,8 @@ declare class ResourceController {
      * @return {Express.Response}
      *
      */
-    search: (req: Express.Request, res: Express.Response) => Promise<import("express-serve-static-core").Response>;
-    getCustomFilters: (req: Express.Request, resource: IResource) => (false | ((builder: any) => any))[];
+    search: (req: Express.Request<import("express-serve-static-core").ParamsDictionary>, res: Express.Response) => Promise<Express.Response>;
+    getCustomFilters: (req: Express.Request<import("express-serve-static-core").ParamsDictionary>, resource: IResource) => (false | ((builder: any) => any))[];
     /**
      *
      * Fetch data from specific resource collection
@@ -74,7 +74,7 @@ declare class ResourceController {
      * @return {Express.Response}
      *
      */
-    fetch: (req: Express.Request, res: Express.Response) => Promise<import("express-serve-static-core").Response>;
+    fetch: (req: Express.Request<import("express-serve-static-core").ParamsDictionary>, res: Express.Response) => Promise<Express.Response>;
     /**
      *
      * Fetch records for a has many relationship
@@ -86,7 +86,7 @@ declare class ResourceController {
      * @return {Express.Response}
      *
      */
-    fetchHasMany: (req: Express.Request, res: Express.Response) => Promise<import("express-serve-static-core").Response>;
+    fetchHasMany: (req: Express.Request<import("express-serve-static-core").ParamsDictionary>, res: Express.Response) => Promise<Express.Response>;
     /**
      *
      * Fetch a record for a has one relationship
@@ -98,7 +98,7 @@ declare class ResourceController {
      * @return {Express.Response}
      *
      */
-    fetchHasOne: (req: Express.Request, res: Express.Response) => Promise<import("express-serve-static-core").Response>;
+    fetchHasOne: (req: Express.Request<import("express-serve-static-core").ParamsDictionary>, res: Express.Response) => Promise<Express.Response>;
     /**
      *
      * Store record for a specific resource collection
@@ -110,7 +110,7 @@ declare class ResourceController {
      * @return {Express.Response}
      *
      */
-    store(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
+    store(req: Express.Request, res: Express.Response): Promise<Express.Response>;
     /**
      *
      * Upload a file for a collection
@@ -139,7 +139,7 @@ declare class ResourceController {
      * @return {Express.Response}
      *
      */
-    update(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
+    update(req: Express.Request, res: Express.Response): Promise<Express.Response>;
     /**
      *
      * Run a resource action on a selected list of resources.
@@ -151,7 +151,7 @@ declare class ResourceController {
      * @return {Express.Response}
      *
      */
-    action(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
+    action(req: Express.Request, res: Express.Response): Promise<Express.Response>;
     /**
      *
      * Delete a resource from specific resource collection
@@ -163,7 +163,7 @@ declare class ResourceController {
      * @return {Express.Response}
      *
      */
-    delete(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
+    delete(req: Express.Request, res: Express.Response): Promise<Express.Response>;
     /**
      *
      * Clear all records from specific resource collection
@@ -175,7 +175,7 @@ declare class ResourceController {
      * @return {Express.Response}
      *
      */
-    clear(req: Express.Request, res: Express.Response): Promise<import("express-serve-static-core").Response>;
+    clear(req: Express.Request, res: Express.Response): Promise<Express.Response>;
     /**
      *
      * This method resolves all computed fields for a resource

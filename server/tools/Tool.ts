@@ -82,7 +82,7 @@ export class Tool implements ITools {
 
     /**
      *
-     * Add scripts to pangaso
+     * Add scripts to Lucent
      *
      * @return {void}
      *
@@ -94,7 +94,7 @@ export class Tool implements ITools {
     }
 
     /**
-     * Add styles to pangaso
+     * Add styles to Lucent
      *
      * @return {void}
      *

@@ -20,11 +20,11 @@ class SetResource {
             return next()
         }
 
-        const resource = req.pangaso.resources.find(
+        const resource = req.lucent.resources.find(
             (r: IResource) => r.slug() === req.params.slug
         )
 
-        req.pangaso.resource = resource
+        req.lucent.resource = resource
 
         return next()
     }

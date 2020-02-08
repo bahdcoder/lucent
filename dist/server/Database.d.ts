@@ -101,7 +101,7 @@ export declare class Database {
      * @return {Promise}
      *
      */
-    insert(collection: string, data: object): Promise<import("mongodb").InsertOneWriteOpResult>;
+    insert(collection: string, data: object): Promise<import("mongodb").InsertOneWriteOpResult<any>>;
     /**
      *
      * Update an existing resource in collection

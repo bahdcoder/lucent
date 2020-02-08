@@ -1,11 +1,11 @@
 {
-  "name": "pangaso",
+  "name": "lucent-admin",
   "version": "1.0.0",
   "main": "dist/server/main.js",
   "types": "dist/server/index.d.ts",
   "license": "MIT",
   "bin": {
-    "pangaso": "server/cli/index.js"
+    "lucent": "server/cli/index.js"
   },
   "scripts": {
     "build:server": "tsc --p server/tsconfig.json",
@@ -16,7 +16,7 @@
     "watch": "yarn dev -- --watch",
     "test:unit": "jest --verbose",
     "test:e2e": "cypress run --record --key 6214b15d-0117-4a31-adc0-70c9dbf744e7",
-    "prettier": "prettier --write './**/*.{js,ts,tsx,css}'",
+    "prettier": "prettier --write './**/*.{js,ts,css}'",
     "start-dev-server": "cd app && npm start",
     "test": "yarn test:unit && start-server-and-test start-dev-server http://localhost:5044 test:e2e"
   },
@@ -41,19 +41,19 @@
     "glob-all": "^3.1.0",
     "jest": "^24.7.1",
     "laravel-mix": "^4.0.15",
-    "laravel-mix-tailwind": "^0.1.0",
     "mini-css-extract-plugin": "^0.5.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss": "^7.0.14",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.16.4",
     "purgecss-webpack-plugin": "^1.4.0",
+    "react-router-transition": "^2.0.0",
     "react-testing-library": "^7.0.0",
     "resolve-url-loader": "2.3.1",
     "sass": "^1.18.0",
     "sass-loader": "7.*",
     "start-server-and-test": "^1.9.0",
-    "tailwindcss": "^0.7.4",
+    "tailwindcss": "^1.2.0",
     "typescript": "^3.4.3",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "vue-template-compiler": "^2.6.10",

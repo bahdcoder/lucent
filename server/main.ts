@@ -1,5 +1,5 @@
 export { ID } from './fields/ID'
-export { Pangaso } from './index'
+export { Lucent } from './index'
 export { Tool } from './tools/Tool'
 export { Text } from './fields/Text'
 export { Date } from './fields/Date'

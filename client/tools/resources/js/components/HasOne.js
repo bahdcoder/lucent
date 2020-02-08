@@ -16,7 +16,7 @@ class HasOne extends React.Component {
     componentDidMount() {
         const { field, parentResource, parentRecord } = this.props
 
-        Pangaso.request()
+        Lucent.request()
             .get(
                 `/resources/${parentResource.slug}/${
                     parentRecord[parentResource.primaryKey]
@@ -36,7 +36,7 @@ class HasOne extends React.Component {
      *
      */
     getCurrentResource() {
-        return Pangaso.resources.find(
+        return Lucent.resources.find(
             resource => resource.name === this.props.field.resource
         )
     }
@@ -62,8 +62,8 @@ class HasOne extends React.Component {
 
         const resourceFields = this.getDetailFields()
 
-        const Loader = Pangaso.components['component-loader']
-        const Button = Pangaso.components['component-button']
+        const Loader = Lucent.components['component-loader']
+        const Button = Lucent.components['component-button']
 
         const resourceWasFound = data && Object.keys(data).length > 0
 
@@ -98,7 +98,7 @@ class HasOne extends React.Component {
                             {resourceWasFound &&
                                 resourceFields.map((field, index) => {
                                     const DetailField =
-                                        Pangaso.details[field.detail]
+                                    Lucent.details[field.detail]
 
                                     return DetailField ? (
                                         <div

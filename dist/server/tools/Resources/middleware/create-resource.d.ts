@@ -10,7 +10,7 @@ declare class CreateResource {
      * @param {Express.Response} res
      *
      */
-    static handle(req: Express.Request, res: Express.Response, next: Express.NextFunction): Promise<void | import("express-serve-static-core").Response>;
+    static handle(req: Express.Request, res: Express.Response, next: Express.NextFunction): Promise<void | Express.Response>;
     /**
      *
      * Loop through all fields for a resource and build validation rules

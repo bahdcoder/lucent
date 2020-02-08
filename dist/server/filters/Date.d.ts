@@ -27,10 +27,10 @@ export declare class DateFilter extends Filter {
      */
     withTime(): Boolean;
     /**
- * Serialize the filter for the frontend
- *
- * @return {object}
- */
+     * Serialize the filter for the frontend
+     *
+     * @return {object}
+     */
     serialize(): this & {
         name: string;
         default: Date;

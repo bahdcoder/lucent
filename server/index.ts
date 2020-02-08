@@ -2,7 +2,7 @@ import * as Fs from 'fs'
 import * as Path from 'path'
 import * as Express from 'express'
 import * as Edge from 'express-edge'
-import PangasoRouter from './Router'
+import LucentRouter from './Router'
 import * as Root from 'app-root-path'
 import { MongoClient } from 'mongodb'
 import * as BodyParser from 'body-parser'
@@ -11,18 +11,18 @@ import { Resources } from './tools/Resources'
 import { Connection, Database } from './Database'
 import { IResource, ITools, IAsset } from './index.d'
 
-export class Pangaso {
+export class Lucent {
     /**
      * The path for all resources
      *
      * @type {String}
      *
      */
-    private resourcesPath: string = `${process.cwd()}/pangaso`
+    private resourcesPath: string = `${process.cwd()}/lucent`
 
     /**
      *
-     * Define scripts for pangaso
+     * Define scripts for Lucent
      *
      * @type {array}
      *
@@ -31,7 +31,7 @@ export class Pangaso {
 
     /**
      *
-     * Define styles for pangaso
+     * Define styles for Lucent
      *
      * @type {array}
      *
@@ -49,7 +49,7 @@ export class Pangaso {
 
     /**
      *
-     * Defines the port on which pangaso should run on
+     * Defines the port on which Lucent should run on
      *
      * @type {number}
      *
@@ -77,7 +77,7 @@ export class Pangaso {
     /**
      *
      * Define the default tools that come
-     * with pangaso
+     * with Lucent
      *
      * @type {Array}
      *
@@ -86,7 +86,7 @@ export class Pangaso {
 
     /**
      *
-     * The express instance for pangaso
+     * The express instance for Lucent
      *
      * @type {Express.Application}
      *
@@ -94,16 +94,16 @@ export class Pangaso {
     private expressInstance: Express.Application
 
     /**
-     * Define the pangaso router
+     * Define the Lucent router
      *
      * @type {Router}
      *
      */
-    private router: Express.Router = PangasoRouter
+    private router: Express.Router = LucentRouter
 
     /**
      *
-     * Pangaso resources
+     * Lucent resources
      *
      * @type {Array}
      *
@@ -111,7 +111,7 @@ export class Pangaso {
     private resources: IResource[] = []
 
     /**
-     * Determine if pangaso has already been initialized
+     * Determine if Lucent has already been initialized
      *
      * @type {Boolean}
      *
@@ -129,7 +129,7 @@ export class Pangaso {
 
     /**
      *
-     * Initialize Pangaso
+     * Initialize Lucent
      *
      */
     public constructor() {
@@ -149,7 +149,7 @@ export class Pangaso {
 
         /**
          *
-         * Make the pangaso application
+         * Make the Lucent application
          *
          */
         this.expressInstance.use(this.make())
@@ -162,13 +162,16 @@ export class Pangaso {
      * @param uri set the database uri and database name
      * @param database set the database uri and database name
      *
-     * @return {Pangaso}
+     * @return {Lucent}
      *
      */
     public mongo(uri: string, database: string) {
         this.databaseName = database
 
-        this.mongoClient = new MongoClient(uri, { useNewUrlParser: true })
+        this.mongoClient = new MongoClient(uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
 
         return this
     }
@@ -248,7 +251,7 @@ export class Pangaso {
          *
          * Find a resource called UserResource. This is for
          * cases when authentication is added to
-         * the pangaso dashboard.
+         * the Lucent dashboard.
          *
          */
         const resource: any = this.resources.find((resource: IResource) => {
@@ -274,7 +277,7 @@ export class Pangaso {
 
     /**
      *
-     * Make the pangaso middleware
+     * Make the Lucent middleware
      *
      * @return {Function}
      *
@@ -287,7 +290,7 @@ export class Pangaso {
         ): void => {
             this.loadResources()
 
-            req.pangaso = {
+            req.lucent = {
                 tools: this.tools,
                 router: this.router,
                 database: this.database,
@@ -301,7 +304,7 @@ export class Pangaso {
 
     /**
      *
-     * Return the pangaso router
+     * Return the Lucent router
      *
      * @return {Express.Router}
      *
@@ -311,7 +314,7 @@ export class Pangaso {
     }
 
     /**
-     * Register the static assets for pangaso
+     * Register the static assets for Lucent
      *
      * @return {void}
      *
@@ -324,7 +327,7 @@ export class Pangaso {
      *
      * Set the port
      *
-     * @return {Pangaso}
+     * @return {Lucent}
      *
      */
     public onPort(port: number) {
@@ -335,12 +338,12 @@ export class Pangaso {
 
     /**
      *
-     * Define the tools to be added to Pangaso
+     * Define the tools to be added to Lucent
      *
-     * @return {Pangaso}
+     * @return {Lucent}
      *
      */
-    public withTools(tools: ITools[]): Pangaso {
+    public withTools(tools: ITools[]): Lucent {
         this.tools = [...this.tools, ...tools]
 
         return this
@@ -348,7 +351,7 @@ export class Pangaso {
 
     /**
      *
-     * Boot all tools for pangaso
+     * Boot all tools for Lucent
      *
      * @return {void}
      *
@@ -375,7 +378,7 @@ export class Pangaso {
         /**
          *
          *
-         * Register all the tools for pangaso
+         * Register all the tools for Lucent
          *
          *
          */
@@ -386,7 +389,7 @@ export class Pangaso {
          * Register the assets for project
          *
          */
-        this.expressInstance.use('/pangaso-assets', this.assets())
+        this.expressInstance.use('/public', this.assets())
 
         /**
          *
@@ -431,7 +434,7 @@ export class Pangaso {
 
                 this.expressInstance.listen(this.port, () => {
                     console.log(
-                        `Pangaso running on port http://localhost:${this.port}`
+                        `Lucent running on port http://localhost:${this.port}`
                     )
                 })
             })
@@ -447,26 +450,26 @@ export class Pangaso {
     }
 
     /**
-     * Add scripts to pangaso
+     * Add scripts to Lucent
      *
      * @return {void}
      *
      */
-    public static script(name: string, path: string): Pangaso {
-        Pangaso.scripts = [...Pangaso.scripts, { name, path }]
+    public static script(name: string, path: string): Lucent {
+        Lucent.scripts = [...Lucent.scripts, { name, path }]
 
-        return new Pangaso()
+        return new Lucent()
     }
 
     /**
-     * Add styles to pangaso
+     * Add styles to Lucent
      *
      * @return {void}
      *
      */
-    public static style(name: string, path: string): Pangaso {
-        Pangaso.styles = [...Pangaso.styles, { name, path }]
+    public static style(name: string, path: string): Lucent {
+        Lucent.styles = [...Lucent.styles, { name, path }]
 
-        return new Pangaso()
+        return new Lucent()
     }
 }

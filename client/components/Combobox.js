@@ -3,7 +3,7 @@ import Text from './Text'
 import { debounce } from 'throttle-debounce'
 
 const RenderSelected = ({ resource, selected, removeItem, loadMore }) => {
-    const Svg = Pangaso.components['component-svg']
+    const Svg = Lucent.components['component-svg']
 
     return (
         <div className="w-full flex flex-wrap">
@@ -76,7 +76,7 @@ class Combobox extends React.Component {
         } = this.props
 
         if (editing && multiple) {
-            Pangaso.request()
+            Lucent.request()
                 .get(
                     `/resources/${parentResource.slug}/${
                         parentRecord[parentResource.primaryKey]
@@ -90,7 +90,7 @@ class Combobox extends React.Component {
         }
 
         if (editing && !multiple) {
-            Pangaso.request()
+            Lucent.request()
                 .get(
                     `/resources/${parentResource.slug}/${
                         parentRecord[parentResource.primaryKey]
@@ -124,7 +124,7 @@ class Combobox extends React.Component {
     search = debounce(500, query => {
         const { resource } = this.props
 
-        Pangaso.request()
+        Lucent.request()
             .get(`/resources/${resource.slug}/search?query=${query}`)
             .then(({ data }) => {
                 this.setState({

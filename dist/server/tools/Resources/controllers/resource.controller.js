@@ -11,10 +11,11 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -45,6 +46,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var uuid_1 = require("uuid");
 var mongodb_1 = require("mongodb");
@@ -66,7 +74,7 @@ var ResourceController = /** @class */ (function () {
             var resource;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, req.pangaso.database.find(req.pangaso.resource.collection(), req.params.resource)];
+                    case 0: return [4 /*yield*/, req.lucent.database.find(req.lucent.resource.collection(), req.params.resource)];
                     case 1:
                         resource = _a.sent();
                         if (!resource) {
@@ -98,8 +106,8 @@ var ResourceController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         filter = this.buildFilter(req);
-                        return [4 /*yield*/, req.pangaso.database.fetch(req.pangaso.resource.collection(), {
-                                limit: req.query.per_page || req.pangaso.resource.perPage(),
+                        return [4 /*yield*/, req.lucent.database.fetch(req.lucent.resource.collection(), {
+                                limit: req.query.per_page || req.lucent.resource.perPage(),
                                 page: req.query.page || 1
                             }, filter)];
                     case 1:
@@ -137,10 +145,10 @@ var ResourceController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         filter = this.buildFilter(req);
-                        return [4 /*yield*/, req.pangaso.database.fetch(req.pangaso.resource.collection(), {
-                                limit: req.query.per_page || req.pangaso.resource.perPage(),
+                        return [4 /*yield*/, req.lucent.database.fetch(req.lucent.resource.collection(), {
+                                limit: req.query.per_page || req.lucent.resource.perPage(),
                                 page: req.query.page || 1
-                            }, filter, this.getCustomFilters(req, req.pangaso.resource))];
+                            }, filter, this.getCustomFilters(req, req.lucent.resource))];
                     case 1:
                         data = _a.sent();
                         this.resolveComputedFields(req, data.data);
@@ -163,7 +171,7 @@ var ResourceController = /** @class */ (function () {
             var resource, relatedField, relatedResource, filter, data, dataWithComputed;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, req.pangaso.database.find(req.pangaso.resource.collection(), req.params.resource)];
+                    case 0: return [4 /*yield*/, req.lucent.database.find(req.lucent.resource.collection(), req.params.resource)];
                     case 1:
                         resource = _a.sent();
                         if (!resource) {
@@ -171,12 +179,12 @@ var ResourceController = /** @class */ (function () {
                                     message: 'Resource not found.'
                                 })];
                         }
-                        relatedField = req.pangaso.resource
+                        relatedField = req.lucent.resource
                             .fields()
                             .find(function (field) { return field.attribute === req.params.relation; });
-                        relatedResource = req.pangaso.resources.find(function (r) { return r.title() === relatedField.resource; });
+                        relatedResource = req.lucent.resources.find(function (r) { return r.title() === relatedField.resource; });
                         filter = this.buildFilter(req, relatedResource);
-                        return [4 /*yield*/, req.pangaso.database.fetch(relatedResource.collection(), {
+                        return [4 /*yield*/, req.lucent.database.fetch(relatedResource.collection(), {
                                 limit: req.query.per_page || relatedResource.perPage(),
                                 page: req.query.page || 1
                             }, __assign({ _id: {
@@ -184,11 +192,11 @@ var ResourceController = /** @class */ (function () {
                                 } }, filter), this.getCustomFilters(req, relatedResource))];
                     case 2:
                         data = _a.sent();
-                        dataWithComputed = data.data.slice();
+                        dataWithComputed = __spreadArrays(data.data);
                         return [4 /*yield*/, this.resolveComputedFields(req, dataWithComputed, relatedResource)];
                     case 3:
                         dataWithComputed = _a.sent();
-                        return [2 /*return*/, res.json(__assign({}, data, { data: dataWithComputed }))];
+                        return [2 /*return*/, res.json(__assign(__assign({}, data), { data: dataWithComputed }))];
                 }
             });
         }); };
@@ -207,7 +215,7 @@ var ResourceController = /** @class */ (function () {
             var parentRecord, relatedField, relatedResource, record;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, req.pangaso.database.find(req.pangaso.resource.collection(), req.params.resource)];
+                    case 0: return [4 /*yield*/, req.lucent.database.find(req.lucent.resource.collection(), req.params.resource)];
                     case 1:
                         parentRecord = _a.sent();
                         if (!parentRecord) {
@@ -215,13 +223,13 @@ var ResourceController = /** @class */ (function () {
                                     message: 'Resource not found.'
                                 })];
                         }
-                        relatedField = req.pangaso.resource
+                        relatedField = req.lucent.resource
                             .fields()
                             .find(function (field) { return field.attribute === req.params.relation; });
-                        relatedResource = req.pangaso.resources.find(function (r) { return r.name() === relatedField.resource; });
+                        relatedResource = req.lucent.resources.find(function (r) { return r.name() === relatedField.resource; });
                         record = null;
                         if (!parentRecord[relatedField.attribute]) return [3 /*break*/, 3];
-                        return [4 /*yield*/, req.pangaso.database.find(relatedResource.collection(), parentRecord[relatedField.attribute])];
+                        return [4 /*yield*/, req.lucent.database.find(relatedResource.collection(), parentRecord[relatedField.attribute])];
                     case 2:
                         record = _a.sent();
                         _a.label = 3;
@@ -250,7 +258,7 @@ var ResourceController = /** @class */ (function () {
     ResourceController.prototype.index = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, res.json(req.pangaso.resources
+                return [2 /*return*/, res.json(req.lucent.resources
                         .map(function (resource) { return resource.serialize(); })
                         .filter(function (resource) { return resource.authorizedToView; }))];
             });
@@ -272,7 +280,7 @@ var ResourceController = /** @class */ (function () {
             var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, req.pangaso.database.fetchAll(req.pangaso.resource.collection())];
+                    case 0: return [4 /*yield*/, req.lucent.database.fetchAll(req.lucent.resource.collection())];
                     case 1:
                         data = _a.sent();
                         return [2 /*return*/, res.json(data)];
@@ -297,12 +305,12 @@ var ResourceController = /** @class */ (function () {
             filter = {
                 $or: []
             };
-            var searchableFields = (resource || req.pangaso.resource)
+            var searchableFields = (resource || req.lucent.resource)
                 .fields()
                 .filter(function (field) { return field.isSearchable; });
             searchableFields.forEach(function (field) {
                 var _a;
-                filter.$or.push((_a = {},
+                (filter.$or || []).push((_a = {},
                     _a[field.attribute] = new RegExp(req.query.query, 'i'),
                     _a));
             });
@@ -325,10 +333,10 @@ var ResourceController = /** @class */ (function () {
             var data, resource;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, req.pangaso.resource.beforeSave(req.body)];
+                    case 0: return [4 /*yield*/, req.lucent.resource.beforeSave(req.body)];
                     case 1:
                         data = _a.sent();
-                        return [4 /*yield*/, req.pangaso.database.insert(req.pangaso.resource.collection(), data)];
+                        return [4 /*yield*/, req.lucent.database.insert(req.lucent.resource.collection(), data)];
                     case 2:
                         resource = _a.sent();
                         return [2 /*return*/, res.json(resource)];
@@ -359,11 +367,11 @@ var ResourceController = /** @class */ (function () {
                 id = uuid_1.v4();
                 if (req.files && req.files.file) {
                     file_1 = req.files.file;
-                    path = process.cwd() + "/pangaso-storage/" + id + "." + file_1.name
+                    path = process.cwd() + "/storage/" + id + "." + file_1.name
                         .split('.')
                         .pop();
                     file_1.mv(path, function () {
-                        return res.json("/pangaso-storage/" + id + "." + file_1.name.split('.').pop());
+                        return res.json("/storage/" + id + "." + file_1.name.split('.').pop());
                     });
                 }
                 return [2 /*return*/];
@@ -388,7 +396,7 @@ var ResourceController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         data = req.body;
-                        return [4 /*yield*/, req.pangaso.database.update(req.pangaso.resource.collection(), req.params.resource, data)];
+                        return [4 /*yield*/, req.lucent.database.update(req.lucent.resource.collection(), req.params.resource, data)];
                     case 1:
                         parentRecord = (_a.sent()).value;
                         return [2 /*return*/, res.json(parentRecord)];
@@ -414,10 +422,10 @@ var ResourceController = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         _a = req.body, actionId = _a.action, resources = _a.resources;
-                        action = req.pangaso.resource
+                        action = req.lucent.resource
                             .actions()
                             .find(function (a) { return a.id === actionId; });
-                        return [4 /*yield*/, req.pangaso.database.fetchByIds(req.pangaso.resource.collection(), resources)
+                        return [4 /*yield*/, req.lucent.database.fetchByIds(req.lucent.resource.collection(), resources)
                             /**
                              *
                              * Run the handle method on the action, passing in
@@ -435,14 +443,14 @@ var ResourceController = /** @class */ (function () {
                          * and collection of models
                          *
                          */
-                        return [4 /*yield*/, action.handle(req.pangaso.database
+                        return [4 /*yield*/, action.handle(req.lucent.database
                                 .get()
-                                .collection(req.pangaso.resource.collection()), req, collection.map(function (item) { return (__assign({}, item, { _id: new mongodb_1.ObjectID(item._id) })); }))
+                                .collection(req.lucent.resource.collection()), req, collection.map(function (item) { return (__assign(__assign({}, item), { _id: new mongodb_1.ObjectID(item._id) })); }))
                             /**
                              *
                              * Resolve and return the message for this action.
                              * This could come from the action definition,
-                             * or a default message from pangaso.
+                             * or a default message from lucent.
                              * TODO: Do this.
                              *
                              */
@@ -460,7 +468,7 @@ var ResourceController = /** @class */ (function () {
                          *
                          * Resolve and return the message for this action.
                          * This could come from the action definition,
-                         * or a default message from pangaso.
+                         * or a default message from lucent.
                          * TODO: Do this.
                          *
                          */
@@ -485,7 +493,7 @@ var ResourceController = /** @class */ (function () {
             var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, req.pangaso.database.destroy(req.pangaso.resource.collection(), req.body.resources)];
+                    case 0: return [4 /*yield*/, req.lucent.database.destroy(req.lucent.resource.collection(), req.body.resources)];
                     case 1:
                         data = _a.sent();
                         return [2 /*return*/, res.json(data)];
@@ -508,7 +516,7 @@ var ResourceController = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, req.pangaso.database.clear(req.params.slug)];
+                    case 0: return [4 /*yield*/, req.lucent.database.clear(req.params.slug)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/, res.json({})];
@@ -527,11 +535,11 @@ var ResourceController = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             var computedFields, results;
             return __generator(this, function (_a) {
-                computedFields = (resource || req.pangaso.resource)
+                computedFields = (resource || req.lucent.resource)
                     .fields()
                     .filter(function (field) { return field.computed; });
                 results = Array.isArray(data)
-                    ? data.slice() : __assign({}, data);
+                    ? __spreadArrays(data) : __assign({}, data);
                 // first we'll check if it's an array or an object
                 if (Array.isArray(results)) {
                     // yep, it's a collection of documents

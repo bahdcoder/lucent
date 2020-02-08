@@ -17,7 +17,7 @@ class CreateResource {
         res: Express.Response,
         next: Express.NextFunction
     ) {
-        const { resource } = req.pangaso
+        const { resource } = req.lucent
 
         const data = req.body
 

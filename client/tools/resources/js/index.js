@@ -5,7 +5,7 @@ import HasOneField from './components/Form/HasOne'
 import HasManyField from './components/Form/HasMany'
 import ResourceDetails from './pages/ResourceDetails'
 
-Pangaso.booting(({ route, sidebar, field }) => {
+Lucent.booting(({ route, sidebar, field }) => {
     /**
      *
      * Define the sidebar items

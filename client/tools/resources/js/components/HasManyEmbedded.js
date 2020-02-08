@@ -44,7 +44,7 @@ class HasManyEmbedded extends React.Component {
      *
      * Get a field from the component registry
      */
-    getField = component => Pangaso.fields[component]
+    getField = component => Lucent.fields[component]
 
     render() {
         const {
@@ -58,7 +58,7 @@ class HasManyEmbedded extends React.Component {
             handleChange
         } = this.props
 
-        const Button = Pangaso.components['component-button']
+        const Button = Lucent.components['component-button']
 
         return (
             <React.Fragment>
