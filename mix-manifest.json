@@ -1,8 +1,8 @@
 {
     "/src/client/public/js/app.js": "/src/client/public/js/app.js",
     "/src/client/public/css/app.css": "/src/client/public/css/app.css",
-    "/src/client/tools/css/resources.css": "/src/client/tools/css/resources.css",
-    "/src/client/tools/css/dashboard.css": "/src/client/tools/css/dashboard.css",
-    "/src/client/tools/js/dashboard.js": "/src/client/tools/js/dashboard.js",
-    "/src/client/tools/js/resources.js": "/src/client/tools/js/resources.js"
+    "/src/client/tools/resources/resources.css": "/src/client/tools/resources/resources.css",
+    "/src/client/tools/dashboard/dashboard.css": "/src/client/tools/dashboard/dashboard.css",
+    "/src/client/tools/dashboard/dashboard.js": "/src/client/tools/dashboard/dashboard.js",
+    "/src/client/tools/resources/resources.js": "/src/client/tools/resources/resources.js"
 }

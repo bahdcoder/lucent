@@ -18,8 +18,8 @@ export class Resources extends Tool {
          *
          */
         app.use(
-            '/resources',
-            Express.static(Root.resolve('resources'))
+            '/src/client/tools/resources',
+            Express.static(Root.resolve('src/client/tools/resources'))
         )
 
         /**
@@ -53,13 +53,13 @@ export class Resources extends Tool {
          * Define the js for this tool
          *
          */
-        this.js('resources', 'resources/tools/resources.js')
+        this.js('resources', 'src/client/tools/resources/resources.js')
 
         /**
          *
          * Define the css for this tool
          *
          */
-        this.css('resources', 'resources/tools/resources.css')
+        this.css('resources', 'src/client/tools/resources/resources.css')
     }
 }

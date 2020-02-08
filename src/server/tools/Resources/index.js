@@ -35,7 +35,7 @@ var Resources = /** @class */ (function (_super) {
          * Register path as a source for static files
          *
          */
-        app.use('/resources', Express.static(Root.resolve('resources')));
+        app.use('/src/client/tools/resources', Express.static(Root.resolve('src/client/tools/resources')));
         /**
          *
          * Register storage path as a source for static files.
@@ -61,13 +61,13 @@ var Resources = /** @class */ (function (_super) {
          * Define the js for this tool
          *
          */
-        this.js('resources', 'resources/tools/resources.js');
+        this.js('resources', 'src/client/tools/resources/resources.js');
         /**
          *
          * Define the css for this tool
          *
          */
-        this.css('resources', 'resources/tools/resources.css');
+        this.css('resources', 'src/client/tools/resources/resources.css');
     };
     return Resources;
 }(Tool_1.Tool));

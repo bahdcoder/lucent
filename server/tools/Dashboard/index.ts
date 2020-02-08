@@ -15,20 +15,20 @@ export class Dashboard extends Tool {
          * Register path as a source for static files
          *
          */
-        app.use('/dashboard', Express.static(Root.resolve('dashboard')))
+        app.use('/src/client/tools/dashboard', Express.static(Root.resolve('src/client/tools/dashboard')))
 
         /**
          *
          * Define the js for this tool
          *
          */
-        this.js('resources', 'dashboard/tools/dashboard.js')
+        this.js('dashboard', 'src/client/tools/dashboard/dashboard.js')
 
         /**
          *
          * Define the css for this tool
          *
          */
-        this.css('resources', 'dashboard/tools/dashboard.css')
+        this.css('dashboard', 'src/client/tools/dashboard/dashboard.css')
     }
 }
