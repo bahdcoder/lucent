@@ -42,7 +42,7 @@ export class BaseResource implements IResource {
      * @return {Array}
      *
      */
-    public fields() {
+    public fields(): IField[] {
         return []
     }
 
@@ -62,6 +62,14 @@ export class BaseResource implements IResource {
      */
     public displayValue() {
         return ''
+    }
+
+    /**
+     *
+     * Determine if this resource should be shown in the navigation or not
+     */
+    public availableForNavigation() {
+        return true
     }
 
     /**
@@ -155,7 +163,7 @@ export class BaseResource implements IResource {
      *
      * @return {Promise}
      */
-    public async beforeSave(data: object): Promise<any> {
+    public async beforeInsert(data: object): Promise<any> {
         return Promise.resolve(data)
     }
 
@@ -196,6 +204,14 @@ export class BaseResource implements IResource {
     }
 
     /**
+     * These would be the permissions available to
+     * this resource.
+     */
+    public permissions(): string[] {
+        return []
+    }
+
+    /**
      *
      * A resource can be serialized
      *
@@ -211,6 +227,7 @@ export class BaseResource implements IResource {
             perPage: this.perPage(),
             primaryKey: this.primaryKey(),
             collection: this.collection(),
+            permissions: this.permissions(),
             displayValue: this.displayValue(),
             perPageOptions: this.perPageOptions(),
             authorizedToView: this.authorizedToView(),
@@ -218,6 +235,7 @@ export class BaseResource implements IResource {
             authorizedToCreate: this.authorizedToCreate(),
             authorizedToUpdate: this.authorizedToUpdate(),
             authorizedToDelete: this.authorizedToDelete(),
+            displayInNavigation: this.availableForNavigation(),
             actions: this.actions().map((action: any) => action.serialize()),
             filters: this.filters().map((filter: IFilter) => filter.serialize())
         }

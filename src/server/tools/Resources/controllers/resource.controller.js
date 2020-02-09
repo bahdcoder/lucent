@@ -308,12 +308,17 @@ var ResourceController = /** @class */ (function () {
             var searchableFields = (resource || req.lucent.resource)
                 .fields()
                 .filter(function (field) { return field.isSearchable; });
-            searchableFields.forEach(function (field) {
-                var _a;
-                (filter.$or || []).push((_a = {},
-                    _a[field.attribute] = new RegExp(req.query.query, 'i'),
-                    _a));
-            });
+            if (searchableFields.length === 0) {
+                filter = {};
+            }
+            else {
+                searchableFields.forEach(function (field) {
+                    var _a;
+                    (filter.$or || []).push((_a = {},
+                        _a[field.attribute] = new RegExp(req.query.query, 'i'),
+                        _a));
+                });
+            }
         }
         return filter;
     };
@@ -333,7 +338,7 @@ var ResourceController = /** @class */ (function () {
             var data, resource;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, req.lucent.resource.beforeSave(req.body)];
+                    case 0: return [4 /*yield*/, req.lucent.resource.beforeInsert(req.body)];
                     case 1:
                         data = _a.sent();
                         return [4 /*yield*/, req.lucent.database.insert(req.lucent.resource.collection(), data)];

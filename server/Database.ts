@@ -36,6 +36,13 @@ export class Database {
         this.db = db
     }
 
+    public findOneWhere(collection: string, query: object) {
+        // @ts-ignore
+        return this.get()
+            .collection(collection)
+            .findOne(query)
+    }
+
     /**
      * Fetch a single record from a collection
      *
@@ -51,6 +58,23 @@ export class Database {
         return this.get()
             .collection(collection)
             .findOne({ _id: new ObjectID(primaryKey) })
+    }
+
+        /**
+     * Fetch a single record from a collection
+     *
+     * @param {string} collection
+     *
+     * @param {string} primaryKey
+     *
+     * @return {Promise}
+     *
+     */
+    public async findAll(collection: string, primaryKeys: Array<string>) {
+        // @ts-ignore
+        return this.get()
+            .collection(collection)
+            .find({ _id: { $in: primaryKeys.map(key => new ObjectID(key)) } }).toArray()
     }
 
     /**

@@ -95,6 +95,7 @@ export declare class Lucent {
      *
      */
     private initialized;
+    private jwtSecret;
     /**
      *
      * Define the database connection
@@ -120,6 +121,13 @@ export declare class Lucent {
      *
      */
     mongo(uri: string, database: string): this;
+    setJwtSecret(jwtSecret: string): this;
+    /**
+     *
+     * We'll loop through all resources, and for each,
+     * we'll sync the permissions into the database.
+     */
+    private syncPermissions;
     /**
      *
      * Load all resources from the resources path

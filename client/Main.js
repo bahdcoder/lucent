@@ -1,8 +1,9 @@
 import React from 'react'
 import Lucent from './Lucent'
+import Loader from './components/Loader'
 import { Route, Link, withRouter, Switch } from 'react-router-dom'
 
-export class Main extends React.Component {
+class Main extends React.Component {
     /**
      *
      * Define component state
@@ -10,7 +11,11 @@ export class Main extends React.Component {
      */
     state = {
         routes: [],
-        sidebarItems: []
+        user: null,
+        booted: false,
+        sidebarItems: [],
+        loadingAuth: true,
+        authToken: localStorage.getItem('authToken')
     }
 
     /**
@@ -20,6 +25,66 @@ export class Main extends React.Component {
      */
     componentDidMount() {
         Lucent.setState = this.setState.bind(this)
+        Lucent.getState = (() => this.state).bind(this)
+
+        // check if user is logged in. if not, redirect to the login route
+        this.fetchAuthUser()
+    }
+
+    fetchAuthUser() {
+        if (!this.state.authToken) {
+            this.setState({
+                loadingAuth: false
+            })
+
+            return
+        }
+        // check if user is in local storage
+
+        Lucent.request().get('/auth/me')
+            .then(({ data }) => {
+                this.setState({
+                    loadingAuth: false,
+                    user: data
+                })
+
+                if (['/auth/login'].includes(this.props.history.location.pathname)) {
+                    this.props.history.push('/')
+                }
+            })
+            .catch(() => {
+                this.setState({
+                    loadingAuth: false,
+                    authToken: ''
+                })
+
+                localStorage.removeItem('authToken')
+
+                this.props.history.push('/auth/login')
+            })
+    }
+
+    renderRouteWithSwitch = () => {
+        return (
+            <Route
+                render={({ location }) => (
+                    <Switch location={location}>
+                        {this.state.routes.map(
+                            ({ path, component: Component }, index) => (
+                                <Route
+                                    exact
+                                    key={index}
+                                    path={path}
+                                    render={props => (
+                                        <Component {...props} Link={Link} />
+                                    )}
+                                />
+                            )
+                        )}
+                    </Switch>
+                )}
+            />
+        )
     }
 
     /**
@@ -30,6 +95,15 @@ export class Main extends React.Component {
      *
      */
     render() {
+        if (!this.state.booted || this.state.loadingAuth) return <Loader />
+
+        if (!this.state.user || !this.state.authToken)
+            return (
+                <div className="flex w-full">
+                    {this.renderRouteWithSwitch()}
+                </div>
+            )
+
         return (
             <React.Fragment>
                 <div className="flex">
@@ -68,42 +142,19 @@ export class Main extends React.Component {
 
                             <div className="flex items-center">
                                 <img
+                                    alt="logged in user avatar"
                                     className="rounded-full w-10 h-10"
-                                    src="https://www.gravatar.com/avatar/24aa5f3c4b87e7e2d003fbf8b68aad7a?d=https%3A%2F%2Fui-avatars.com%2Fapi%2FFrantz%2BKati"
-                                    alt=""
+                                    src={`https://api.adorable.io/avatars/80/${this.state.user.email}.png`}
                                 />
                                 <span className="font-light text-gray-700 inline-block ml-3">
-                                    Frantz Kati
+                                    {this.state.user.name}
                                 </span>
                             </div>
                         </div>
                         {/** Loop through all registered tools and display them here. */}
-                        <Route
-                            render={({ location }) => (
-                                <div className="p-16">
-                                    <Switch location={location}>
-                                        {this.state.routes.map(
-                                            (
-                                                { path, component: Component },
-                                                index
-                                            ) => (
-                                                <Route
-                                                    exact
-                                                    key={index}
-                                                    path={path}
-                                                    render={props => (
-                                                        <Component
-                                                            {...props}
-                                                            Link={Link}
-                                                        />
-                                                    )}
-                                                />
-                                            )
-                                        )}
-                                    </Switch>
-                                </div>
-                            )}
-                        />
+                        <div className="p-16">
+                            {this.renderRouteWithSwitch()}
+                        </div>
                         {/** By default, Lucent will come with two tools: Dashboard & Resources tools  */}
                     </div>
                 </div>
@@ -111,3 +162,5 @@ export class Main extends React.Component {
         )
     }
 }
+
+export default withRouter(Main)

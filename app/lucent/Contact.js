@@ -87,7 +87,7 @@ class Contact extends Resource {
         return [new SendWelcomeEmailAction()]
     }
 
-    async beforeSave(data) {
+    async beforeInsert(data) {
         return {
             ...data,
             password: data.password ? Bcrypt.hashSync(data.password) : null

@@ -81,10 +81,32 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./client/styles/main.css":
+/*!********************************!*\
+  !*** ./client/styles/main.css ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./client/tools/dashboard/styles/index.css":
+/*!*************************************************!*\
+  !*** ./client/tools/dashboard/styles/index.css ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
 
 /***/ "./client/tools/resources/js/components/Form/HasMany.js":
 /*!**************************************************************!*\
@@ -788,8 +810,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Sidebar = function Sidebar(_ref) {
-  var Link = _ref.Link,
-      location = _ref.location;
+  var Link = _ref.Link;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full px-6 py-6 border-t border-gray-700"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -798,7 +819,9 @@ var Sidebar = function Sidebar(_ref) {
     className: "text-sm text-gray-600 tracking-widest"
   }, "RESOURCES")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex flex-col mt-3 text-white"
-  }, Lucent.resources.map(function (resource) {
+  }, Lucent.resources.filter(function (resource) {
+    return resource.displayInNavigation;
+  }).map(function (resource) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Link, {
       key: resource.slug,
       to: "/resources/".concat(resource.slug),
@@ -2575,6 +2598,28 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_8___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (ResourceDetails);
+
+/***/ }),
+
+/***/ "./client/tools/resources/styles/index.css":
+/*!*************************************************!*\
+  !*** ./client/tools/resources/styles/index.css ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./client/tools/user-permissions/styles/index.css":
+/*!********************************************************!*\
+  !*** ./client/tools/user-permissions/styles/index.css ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -45506,14 +45551,18 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ 1:
-/*!**************************************************!*\
-  !*** multi ./client/tools/resources/js/index.js ***!
-  \**************************************************/
+/***/ 0:
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./client/tools/resources/js/index.js ./client/tools/resources/styles/index.css ./client/tools/dashboard/styles/index.css ./client/tools/user-permissions/styles/index.css ./client/styles/main.css ***!
+  \****************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/bahdcoder/Projects/Lucent/client/tools/resources/js/index.js */"./client/tools/resources/js/index.js");
+__webpack_require__(/*! /Users/bahdcoder/Projects/Lucent/client/tools/resources/js/index.js */"./client/tools/resources/js/index.js");
+__webpack_require__(/*! /Users/bahdcoder/Projects/Lucent/client/tools/resources/styles/index.css */"./client/tools/resources/styles/index.css");
+__webpack_require__(/*! /Users/bahdcoder/Projects/Lucent/client/tools/dashboard/styles/index.css */"./client/tools/dashboard/styles/index.css");
+__webpack_require__(/*! /Users/bahdcoder/Projects/Lucent/client/tools/user-permissions/styles/index.css */"./client/tools/user-permissions/styles/index.css");
+module.exports = __webpack_require__(/*! /Users/bahdcoder/Projects/Lucent/client/styles/main.css */"./client/styles/main.css");
 
 
 /***/ })

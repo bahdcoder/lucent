@@ -7,6 +7,8 @@ declare namespace Express {
             userResource: any
             resource?: any
             tools: any
+            user?: any
+            jwtSecret: string
         }
     }
 

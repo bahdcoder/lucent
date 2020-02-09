@@ -42,7 +42,7 @@ var HasOne = /** @class */ (function (_super) {
          * @type {String}
          *
          */
-        _this.resource = null;
+        _this.resource = undefined;
         _this.name = name;
         _this.attribute = attribute || ChangeCase.camelCase(_this.name);
         _this.resource = resource || ChangeCase.pascalCase(_this.attribute);

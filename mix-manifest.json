@@ -1,8 +1,10 @@
 {
     "/src/client/public/js/app.js": "/src/client/public/js/app.js",
-    "/src/client/public/css/app.css": "/src/client/public/css/app.css",
+    "/src/client/tools/dashboard/dashboard.js": "/src/client/tools/dashboard/dashboard.js",
+    "/src/client/tools/resources/resources.js": "/src/client/tools/resources/resources.js",
     "/src/client/tools/resources/resources.css": "/src/client/tools/resources/resources.css",
     "/src/client/tools/dashboard/dashboard.css": "/src/client/tools/dashboard/dashboard.css",
-    "/src/client/tools/dashboard/dashboard.js": "/src/client/tools/dashboard/dashboard.js",
-    "/src/client/tools/resources/resources.js": "/src/client/tools/resources/resources.js"
+    "/src/client/tools/user-permissions/user-permissions.css": "/src/client/tools/user-permissions/user-permissions.css",
+    "/src/client/public/css/app.css": "/src/client/public/css/app.css",
+    "/src/client/tools/user-permissions/user-permissions.js": "/src/client/tools/user-permissions/user-permissions.js"
 }

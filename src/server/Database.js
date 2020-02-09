@@ -72,6 +72,12 @@ var Database = /** @class */ (function () {
     Database.prototype.set = function (db) {
         this.db = db;
     };
+    Database.prototype.findOneWhere = function (collection, query) {
+        // @ts-ignore
+        return this.get()
+            .collection(collection)
+            .findOne(query);
+    };
     /**
      * Fetch a single record from a collection
      *
@@ -89,6 +95,26 @@ var Database = /** @class */ (function () {
                 return [2 /*return*/, this.get()
                         .collection(collection)
                         .findOne({ _id: new mongodb_1.ObjectID(primaryKey) })];
+            });
+        });
+    };
+    /**
+ * Fetch a single record from a collection
+ *
+ * @param {string} collection
+ *
+ * @param {string} primaryKey
+ *
+ * @return {Promise}
+ *
+ */
+    Database.prototype.findAll = function (collection, primaryKeys) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                // @ts-ignore
+                return [2 /*return*/, this.get()
+                        .collection(collection)
+                        .find({ _id: { $in: primaryKeys.map(function (key) { return new mongodb_1.ObjectID(key); }) } }).toArray()];
             });
         });
     };

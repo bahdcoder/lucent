@@ -14,7 +14,7 @@ export declare class HasOne extends Field {
      * @type {String}
      *
      */
-    resource: string | null;
+    resource: string | undefined;
     /**
      *
      * Initialize a HasOne instance

@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -215,9 +215,9 @@ function () {
         duration: 4000,
         theme: 'bubble',
         position: 'bottom-right',
-        className: classnames__WEBPACK_IMPORTED_MODULE_6___default()('shadow-lg rounded-lg text-white px-8 py-2', {
-          'bg-green': options.type === 'success',
-          'bg-red': options.type === 'error'
+        className: classnames__WEBPACK_IMPORTED_MODULE_6___default()('shadow-lg rounded-lg text-white font-light px-8 py-2', {
+          'bg-green-500': options.type === 'success',
+          'bg-red-500': options.type === 'error'
         })
       }, options));
     });
@@ -249,6 +249,10 @@ function () {
           sidebar: _this.sidebar.bind(_this),
           component: _this.component.bind(_this)
         });
+      });
+
+      _this3.setState({
+        booted: true
       });
     });
 
@@ -416,6 +420,16 @@ function () {
 
       return Promise.reject(error);
     });
+    this.instance.interceptors.request.use(function (config) {
+      var state = _this3.getState();
+
+      config.headers = {
+        token: state.authToken
+      };
+      return config;
+    }, function (e) {
+      return Promise.reject(e);
+    });
     /**
      *
      * Here we'll register a bunch of fields that come
@@ -536,12 +550,11 @@ function () {
 /*!************************!*\
   !*** ./client/Main.js ***!
   \************************/
-/*! exports provided: Main */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Main", function() { return Main; });
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
@@ -561,7 +574,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _Lucent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Lucent */ "./client/Lucent.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Loader */ "./client/components/Loader.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
 
 
 
@@ -593,7 +609,35 @@ function (_React$Component) {
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "state", {
       routes: [],
-      sidebarItems: []
+      user: null,
+      booted: false,
+      sidebarItems: [],
+      loadingAuth: true,
+      authToken: localStorage.getItem('authToken')
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "renderRouteWithSwitch", function () {
+      return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__["Route"], {
+        render: function render(_ref) {
+          var location = _ref.location;
+          return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__["Switch"], {
+            location: location
+          }, _this.state.routes.map(function (_ref2, index) {
+            var path = _ref2.path,
+                Component = _ref2.component;
+            return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__["Route"], {
+              exact: true,
+              key: index,
+              path: path,
+              render: function render(props) {
+                return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Component, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, props, {
+                  Link: react_router_dom__WEBPACK_IMPORTED_MODULE_11__["Link"]
+                }));
+              }
+            });
+          }));
+        }
+      });
     });
 
     return _this;
@@ -608,8 +652,55 @@ function (_React$Component) {
      *
      */
     value: function componentDidMount() {
+      var _this2 = this;
+
       _Lucent__WEBPACK_IMPORTED_MODULE_9__["default"].setState = this.setState.bind(this);
+
+      _Lucent__WEBPACK_IMPORTED_MODULE_9__["default"].getState = function () {
+        return _this2.state;
+      }.bind(this); // check if user is logged in. if not, redirect to the login route
+
+
+      this.fetchAuthUser();
     }
+  }, {
+    key: "fetchAuthUser",
+    value: function fetchAuthUser() {
+      var _this3 = this;
+
+      if (!this.state.authToken) {
+        this.setState({
+          loadingAuth: false
+        });
+        return;
+      } // check if user is in local storage
+
+
+      _Lucent__WEBPACK_IMPORTED_MODULE_9__["default"].request().get('/auth/me').then(function (_ref3) {
+        var data = _ref3.data;
+
+        _this3.setState({
+          loadingAuth: false,
+          user: data
+        });
+
+        if (['/auth/login'].includes(_this3.props.history.location.pathname)) {
+          _this3.props.history.push('/');
+        }
+      })["catch"](function () {
+        _this3.setState({
+          loadingAuth: false,
+          authToken: ''
+        });
+
+        localStorage.removeItem('authToken');
+
+        _this3.props.history.push('/auth/login');
+      });
+    }
+  }, {
+    key: "render",
+
     /**
      *
      * Render the main component
@@ -617,12 +708,11 @@ function (_React$Component) {
      * @return {JSX}
      *
      */
-
-  }, {
-    key: "render",
     value: function render() {
-      var _this2 = this;
-
+      if (!this.state.booted || this.state.loadingAuth) return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_Loader__WEBPACK_IMPORTED_MODULE_10__["default"], null);
+      if (!this.state.user || !this.state.authToken) return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: "flex w-full"
+      }, this.renderRouteWithSwitch());
       return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_8___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "flex"
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
@@ -632,9 +722,9 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "w-full text-white bg-gray-900 h-16 flex items-center px-6 text-lg"
       }, "Lucent Admin"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_8___default.a.Fragment, null, this.state.sidebarItems.map(function (SidebarItem, index) {
-        var SidebarItemWithRouter = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_10__["withRouter"])(SidebarItem);
+        var SidebarItemWithRouter = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_11__["withRouter"])(SidebarItem);
         return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(SidebarItemWithRouter, {
-          Link: react_router_dom__WEBPACK_IMPORTED_MODULE_10__["Link"],
+          Link: react_router_dom__WEBPACK_IMPORTED_MODULE_11__["Link"],
           key: index
         });
       })))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
@@ -648,39 +738,21 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "flex items-center"
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("img", {
+        alt: "logged in user avatar",
         className: "rounded-full w-10 h-10",
-        src: "https://www.gravatar.com/avatar/24aa5f3c4b87e7e2d003fbf8b68aad7a?d=https%3A%2F%2Fui-avatars.com%2Fapi%2FFrantz%2BKati",
-        alt: ""
+        src: "https://api.adorable.io/avatars/80/".concat(this.state.user.email, ".png")
       }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
         className: "font-light text-gray-700 inline-block ml-3"
-      }, "Frantz Kati"))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__["Route"], {
-        render: function render(_ref) {
-          var location = _ref.location;
-          return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-            className: "p-16"
-          }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__["Switch"], {
-            location: location
-          }, _this2.state.routes.map(function (_ref2, index) {
-            var path = _ref2.path,
-                Component = _ref2.component;
-            return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__["Route"], {
-              exact: true,
-              key: index,
-              path: path,
-              render: function render(props) {
-                return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(Component, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, props, {
-                  Link: react_router_dom__WEBPACK_IMPORTED_MODULE_10__["Link"]
-                }));
-              }
-            });
-          })));
-        }
-      }))));
+      }, this.state.user.name))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: "p-16"
+      }, this.renderRouteWithSwitch()))));
     }
   }]);
 
   return Main;
 }(react__WEBPACK_IMPORTED_MODULE_8___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_11__["withRouter"])(Main));
 
 /***/ }),
 
@@ -2793,40 +2865,7 @@ __webpack_require__.r(__webpack_exports__);
 
 window.Lucent = _Lucent__WEBPACK_IMPORTED_MODULE_4__["default"];
 var app = document.getElementById('app');
-react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Main__WEBPACK_IMPORTED_MODULE_3__["Main"], null)), app);
-
-/***/ }),
-
-/***/ "./client/styles/main.css":
-/*!********************************!*\
-  !*** ./client/styles/main.css ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./client/tools/dashboard/styles/index.css":
-/*!*************************************************!*\
-  !*** ./client/tools/dashboard/styles/index.css ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./client/tools/resources/styles/index.css":
-/*!*************************************************!*\
-  !*** ./client/tools/resources/styles/index.css ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Main__WEBPACK_IMPORTED_MODULE_3__["default"], null)), app);
 
 /***/ }),
 
@@ -5113,7 +5152,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 /***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/flatpickr/dist/themes/material_green.css":
 /*!***********************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ref--8-1!./node_modules/postcss-loader/src??ref--8-2!./node_modules/flatpickr/dist/themes/material_green.css ***!
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--9-1!./node_modules/postcss-loader/src??ref--9-2!./node_modules/flatpickr/dist/themes/material_green.css ***!
   \***********************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -9405,7 +9444,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../css-loader/dist/cjs.js??ref--8-1!../../../postcss-loader/src??ref--8-2!./material_green.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/flatpickr/dist/themes/material_green.css");
+var content = __webpack_require__(/*! !../../../css-loader/dist/cjs.js??ref--9-1!../../../postcss-loader/src??ref--9-2!./material_green.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/flatpickr/dist/themes/material_green.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -52507,17 +52546,14 @@ module.exports = function(originalModule) {
 
 /***/ }),
 
-/***/ 0:
-/*!********************************************************************************************************************************************!*\
-  !*** multi ./client/index.js ./client/styles/main.css ./client/tools/resources/styles/index.css ./client/tools/dashboard/styles/index.css ***!
-  \********************************************************************************************************************************************/
+/***/ 3:
+/*!*******************************!*\
+  !*** multi ./client/index.js ***!
+  \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/bahdcoder/Projects/Lucent/client/index.js */"./client/index.js");
-__webpack_require__(/*! /Users/bahdcoder/Projects/Lucent/client/styles/main.css */"./client/styles/main.css");
-__webpack_require__(/*! /Users/bahdcoder/Projects/Lucent/client/tools/resources/styles/index.css */"./client/tools/resources/styles/index.css");
-module.exports = __webpack_require__(/*! /Users/bahdcoder/Projects/Lucent/client/tools/dashboard/styles/index.css */"./client/tools/dashboard/styles/index.css");
+module.exports = __webpack_require__(/*! /Users/bahdcoder/Projects/Lucent/client/index.js */"./client/index.js");
 
 
 /***/ })

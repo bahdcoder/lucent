@@ -42,7 +42,7 @@ var HasMany = /** @class */ (function (_super) {
          * @type {String}
          *
          */
-        _this.resource = null;
+        _this.resource = undefined;
         _this.name = name;
         _this.resource = resource || name;
         _this.attribute = attribute || ChangeCase.camelCase(_this.name);

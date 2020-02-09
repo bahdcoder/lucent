@@ -64,7 +64,9 @@ export interface IResource {
     slug(): string
     title(): string
     serialize(): Object
-    filters(): Array<IFilter>
+    collection(): string
+    filters: () => Array<IFilter>
+    permissions: () => Array<String>
     authorizedToCreate?(): boolean
     authorizedToView?(): boolean
     authorizedToUpdate?(): boolean

@@ -20,28 +20,46 @@ class TailwindExtractor {
     }
 }
 
-mix.react('client/index.js', 'src/client/public/js/app.js')
+mix
+
+    /* Resource tool */
     .react(
         'client/tools/resources/js/index.js',
         'src/client/tools/resources/resources.js'
     )
-    .react(
-        'client/tools/dashboard/js/index.js',
-        'src/client/tools/dashboard/dashboard.js'
-    )
-    .postCss('client/styles/main.css', 'src/client/public/css/app.css', [
-        require('tailwindcss')
-    ])
     .postCss(
         'client/tools/resources/styles/index.css',
         'src/client/tools/resources/resources.css',
         [require('tailwindcss')]
+    )
+
+    /* Dashboard tool */
+    .react(
+        'client/tools/dashboard/js/index.js',
+        'src/client/tools/dashboard/dashboard.js'
     )
     .postCss(
         'client/tools/dashboard/styles/index.css',
         'src/client/tools/dashboard/dashboard.css',
         [require('tailwindcss')]
     )
+
+    /* user permissions tool */
+    .react(
+        'client/tools/user-permissions/js/index.js',
+        'src/client/tools/user-permissions/user-permissions.js'
+    )
+    .postCss(
+        'client/tools/user-permissions/styles/index.css',
+        'src/client/tools/user-permissions/user-permissions.css',
+        [require('tailwindcss')]
+    )
+
+    // global css and js
+    .react('client/index.js', 'src/client/public/js/app.js')
+    .postCss('client/styles/main.css', 'src/client/public/css/app.css', [
+        require('tailwindcss')
+    ])
 
 if (mix.inProduction()) {
     mix.webpackConfig({

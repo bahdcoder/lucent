@@ -98,6 +98,13 @@ var BaseResource = /** @class */ (function () {
     };
     /**
      *
+     * Determine if this resource should be shown in the navigation or not
+     */
+    BaseResource.prototype.availableForNavigation = function () {
+        return true;
+    };
+    /**
+     *
      * Get all actions for this resource
      *
      * @return {Array}
@@ -179,7 +186,7 @@ var BaseResource = /** @class */ (function () {
      *
      * @return {Promise}
      */
-    BaseResource.prototype.beforeSave = function (data) {
+    BaseResource.prototype.beforeInsert = function (data) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, Promise.resolve(data)];
@@ -224,6 +231,13 @@ var BaseResource = /** @class */ (function () {
         return [10, 25, 50, 100];
     };
     /**
+     * These would be the permissions available to
+     * this resource.
+     */
+    BaseResource.prototype.permissions = function () {
+        return [];
+    };
+    /**
      *
      * A resource can be serialized
      *
@@ -239,6 +253,7 @@ var BaseResource = /** @class */ (function () {
             perPage: this.perPage(),
             primaryKey: this.primaryKey(),
             collection: this.collection(),
+            permissions: this.permissions(),
             displayValue: this.displayValue(),
             perPageOptions: this.perPageOptions(),
             authorizedToView: this.authorizedToView(),
@@ -246,6 +261,7 @@ var BaseResource = /** @class */ (function () {
             authorizedToCreate: this.authorizedToCreate(),
             authorizedToUpdate: this.authorizedToUpdate(),
             authorizedToDelete: this.authorizedToDelete(),
+            displayInNavigation: this.availableForNavigation(),
             actions: this.actions().map(function (action) { return action.serialize(); }),
             filters: this.filters().map(function (filter) { return filter.serialize(); })
         };

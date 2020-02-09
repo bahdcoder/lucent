@@ -10,6 +10,10 @@ import { Dashboard } from './tools/Dashboard'
 import { Resources } from './tools/Resources'
 import { Connection, Database } from './Database'
 import { IResource, ITools, IAsset } from './index.d'
+import { UserPermissions } from './tools/UserPermissions'
+import { User } from './tools/UserPermissions/Resources/User'
+import { Role } from './tools/UserPermissions/Resources/Role'
+import { Permission } from './tools/UserPermissions/Resources/Permission'
 
 export class Lucent {
     /**
@@ -82,7 +86,11 @@ export class Lucent {
      * @type {Array}
      *
      */
-    private tools: ITools[] = [new Dashboard(), new Resources()]
+    private tools: ITools[] = [
+        new Dashboard(),
+        new Resources(),
+        new UserPermissions()
+    ]
 
     /**
      *
@@ -108,7 +116,7 @@ export class Lucent {
      * @type {Array}
      *
      */
-    private resources: IResource[] = []
+    private resources: IResource[] = [new User(), new Role(), new Permission()]
 
     /**
      * Determine if Lucent has already been initialized
@@ -117,6 +125,8 @@ export class Lucent {
      *
      */
     private initialized: boolean = false
+
+    private jwtSecret: string = process.env.JWT_SECRET || 'TEMPORAL_JWT_SECRET'
 
     /**
      *
@@ -174,6 +184,125 @@ export class Lucent {
         })
 
         return this
+    }
+
+    public setJwtSecret(jwtSecret: string) {
+        this.jwtSecret = jwtSecret
+
+        return this
+    }
+
+    /**
+     *
+     * We'll loop through all resources, and for each,
+     * we'll sync the permissions into the database.
+     */
+    private async syncPermissions() {
+        // @ts-ignore
+        const permissionResource: IResource = this.resources.find(
+            (resource: IResource) => resource.name() === 'Permission'
+        )
+        // @ts-ignore
+        const roleResource: IResource = this.resources.find(
+            (resource: IResource) => resource.name() === 'Role'
+        )
+
+        // Persist all the permissions that are available
+        for (let index = 0; index < this.resources.length; index++) {
+            const resource: IResource = this.resources[index]
+
+            const permissions = resource.permissions()
+
+            for (let index = 0; index < permissions.length; index++) {
+                const permission = permissions[index]
+
+                // @ts-ignore
+                const permissionInDatabase = await this.database
+                    .get()
+                    .collection(permissionResource.collection())
+                    .findOne({
+                        slug: permission
+                    })
+
+                if (!permissionInDatabase) {
+                    // @ts-ignore
+                    await this.database
+                        .get()
+                        .collection(permissionResource.collection())
+                        .insertOne({
+                            slug: permission
+                        })
+                }
+            }
+        }
+
+        // clean up all the permissions that have been deleted by the user
+        // @ts-ignore
+        const permissionsInDatabase = await this.database.fetchAll(
+            permissionResource.collection()
+        )
+
+        const permissionsToBeDeleted: any = []
+        let flattenedPermissions: any = []
+
+        this.resources.forEach(resource => {
+            flattenedPermissions = flattenedPermissions.concat(
+                resource.permissions()
+            )
+        })
+
+        for (let index = 0; index < permissionsInDatabase.length; index++) {
+            const permission = permissionsInDatabase[index]
+
+            if (!flattenedPermissions.includes(permission.slug)) {
+                permissionsToBeDeleted.push(permission._id)
+            }
+        }
+
+        // we have all the permissions we want to delete.
+        // first, we'll find all the roles these permissiosn have been attached to
+        // then we'll update the roles.
+        // finally, we'll delete the permissions.
+        for (let index = 0; index < permissionsToBeDeleted.length; index++) {
+            const permission = permissionsToBeDeleted[index]
+
+            // @ts-ignore
+            const rolesWithPermission = await this.database
+                .get()
+                .collection(roleResource.collection())
+                .find({
+                    permissions: permission.toString()
+                })
+                .toArray()
+
+            // run update on these found roles
+            for (let index = 0; index < rolesWithPermission.length; index++) {
+                const role = rolesWithPermission[index]
+
+                // @ts-ignore
+                await this.database
+                    .get()
+                    .collection(roleResource.collection())
+                    .updateOne(
+                        {
+                            _id: role._id.toString()
+                        },
+                        {
+                            $set: {
+                                permissions: role.permissions.filter(
+                                    (p: string) => p !== permission.toString()
+                                )
+                            }
+                        }
+                    )
+            }
+        }
+
+        // @ts-ignore
+        await this.database.destroy(
+            permissionResource.collection(),
+            permissionsToBeDeleted
+        )
     }
 
     /**
@@ -295,6 +424,7 @@ export class Lucent {
                 router: this.router,
                 database: this.database,
                 resources: this.resources,
+                jwtSecret: this.jwtSecret,
                 userResource: this.getUserResource()
             }
 
@@ -320,7 +450,9 @@ export class Lucent {
      *
      */
     public assets() {
-        return Express.static(Path.resolve(__dirname, Root.path, 'public'))
+        return Express.static(
+            Path.resolve(__dirname, Root.path, 'src/client/public')
+        )
     }
 
     /**
@@ -389,7 +521,7 @@ export class Lucent {
          * Register the assets for project
          *
          */
-        this.expressInstance.use('/public', this.assets())
+        this.expressInstance.use('/src/client/public', this.assets())
 
         /**
          *
@@ -405,7 +537,7 @@ export class Lucent {
          */
         this.expressInstance.set(
             'views',
-            Path.resolve(__dirname, Root.path, 'public')
+            Path.resolve(__dirname, Root.path, 'src/client/public')
         )
 
         /**
@@ -428,9 +560,11 @@ export class Lucent {
              * express server
              *
              */
-            .then(() => {
+            .then(async () => {
                 //@ts-ignore
                 this.database.set(this.mongoClient.db(this.databaseName))
+
+                await this.syncPermissions()
 
                 this.expressInstance.listen(this.port, () => {
                     console.log(

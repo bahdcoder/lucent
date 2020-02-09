@@ -1,7 +1,8 @@
 import { Field } from './Field'
+import { IField } from '../index.d'
 import * as ChangeCase from 'change-case'
 
-export class HasMany extends Field {
+export class HasMany extends Field implements IField {
     /**
      * Define a type for this field
      *
@@ -17,7 +18,7 @@ export class HasMany extends Field {
      * @type {String}
      *
      */
-    public resource: string | null = null
+    public resource: string | undefined = undefined
 
     /**
      *

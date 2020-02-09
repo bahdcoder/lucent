@@ -1,5 +1,6 @@
 import { Field } from './Field';
-export declare class HasMany extends Field {
+import { IField } from '../index.d';
+export declare class HasMany extends Field implements IField {
     /**
      * Define a type for this field
      *
@@ -14,7 +15,7 @@ export declare class HasMany extends Field {
      * @type {String}
      *
      */
-    resource: string | null;
+    resource: string | undefined;
     /**
      *
      * Initialize a HasMany instance

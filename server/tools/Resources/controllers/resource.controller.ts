@@ -93,11 +93,15 @@ class ResourceController {
                 .fields()
                 .filter((field: IField) => field.isSearchable)
 
-            searchableFields.forEach((field: IField) => {
-                (filter.$or || []).push({
-                    [field.attribute]: new RegExp(req.query.query, 'i')
+            if (searchableFields.length === 0) {
+                filter = {}
+            } else {
+                searchableFields.forEach((field: IField) => {
+                    (filter.$or || []).push({
+                        [field.attribute]: new RegExp(req.query.query, 'i')
+                    })
                 })
-            })
+            }
         }
 
         return filter
@@ -315,7 +319,7 @@ class ResourceController {
      *
      */
     public async store(req: Express.Request, res: Express.Response) {
-        const data = await req.lucent.resource.beforeSave(req.body)
+        const data = await req.lucent.resource.beforeInsert(req.body)
 
         const resource = await req.lucent.database.insert(
             req.lucent.resource.collection(),

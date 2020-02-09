@@ -17,7 +17,7 @@ export class HasOne extends Field {
      * @type {String}
      *
      */
-    public resource: string | null = null
+    public resource: string | undefined = undefined
 
     /**
      *

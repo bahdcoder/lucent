@@ -1,4 +1,4 @@
-import { IResource } from './index.d';
+import { IResource, IField } from './index.d';
 export declare class BaseResource implements IResource {
     /**
      *
@@ -31,19 +31,24 @@ export declare class BaseResource implements IResource {
      * @return {Array}
      *
      */
-    fields(): never[];
+    fields(): IField[];
     /**
      * Get all non computed fields for this resource
      *
      * @return {Array}
      */
-    nonComputedFields(): never[];
+    nonComputedFields(): IField[];
     /**
      *
      * Get the value to be used to display this resource
      *
      */
     displayValue(): string;
+    /**
+     *
+     * Determine if this resource should be shown in the navigation or not
+     */
+    availableForNavigation(): boolean;
     /**
      *
      * Get all actions for this resource
@@ -111,7 +116,7 @@ export declare class BaseResource implements IResource {
      *
      * @return {Promise}
      */
-    beforeSave(data: object): Promise<any>;
+    beforeInsert(data: object): Promise<any>;
     /**
      * Define a hook for modifying the resource data before it is updated.
      * It received the data to be updated, and is expected to
@@ -140,6 +145,11 @@ export declare class BaseResource implements IResource {
      */
     perPageOptions(): number[];
     /**
+     * These would be the permissions available to
+     * this resource.
+     */
+    permissions(): string[];
+    /**
      *
      * A resource can be serialized
      *
@@ -150,17 +160,19 @@ export declare class BaseResource implements IResource {
         name: string;
         slug: string;
         title: string;
-        fields: never[];
+        fields: IField[];
         perPage: number;
         primaryKey: string;
         collection: string;
+        permissions: string[];
         displayValue: string;
         perPageOptions: number[];
         authorizedToView: boolean;
-        nonComputedFields: never[];
+        nonComputedFields: IField[];
         authorizedToCreate: boolean;
         authorizedToUpdate: boolean;
         authorizedToDelete: boolean;
+        displayInNavigation: boolean;
         actions: any[];
         filters: object[];
     };

@@ -16,6 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Tool_1 = require("../Tool");
 var Express = require("express");
 var Root = require("app-root-path");
+var Router_1 = require("./Router");
 var UserPermissions = /** @class */ (function (_super) {
     __extends(UserPermissions, _super);
     function UserPermissions() {
@@ -33,19 +34,20 @@ var UserPermissions = /** @class */ (function (_super) {
          * Register path as a source for static files
          *
          */
-        app.use('/dashboard', Express.static(Root.resolve('dashboard')));
+        app.use('/src/client/tools/user-permissions', Express.static(Root.resolve('src/client/tools/user-permissions')));
+        app.use(Router_1.default);
         /**
          *
          * Define the js for this tool
          *
          */
-        this.js('resources', 'dashboard/tools/dashboard.js');
+        this.js('user-permissions', 'src/client/tools/user-permissions/user-permissions.js');
         /**
          *
          * Define the css for this tool
          *
          */
-        this.css('resources', 'dashboard/tools/dashboard.css');
+        this.css('user-permissions', 'src/client/tools/user-permissions/user-permissions.css');
     };
     return UserPermissions;
 }(Tool_1.Tool));
