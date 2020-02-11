@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -37,17 +48,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Bcrypt = require("bcryptjs");
-var Jwt = require("jsonwebtoken");
 var AuthController = /** @class */ (function () {
     function AuthController() {
     }
     AuthController.prototype.login = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var userResource, user, token;
+            var userResource, roleResource, permissionResource, user, role, permissions, permissionsForRole;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         userResource = request.lucent.resources.find(function (resource) { return resource.name() === 'User'; });
+                        roleResource = request.lucent.resources.find(function (resource) { return resource.name() === 'Role'; });
+                        permissionResource = request.lucent.resources.find(function (resource) { return resource.name() === 'Permission'; });
                         return [4 /*yield*/, request.lucent.database.findOneWhere(userResource.collection(), {
                                 email: request.body.email
                             })];
@@ -61,17 +73,23 @@ var AuthController = /** @class */ (function () {
                             return [2 /*return*/, response.status(400).json({
                                     email: ['These credentials do not match our records.']
                                 })];
-                        token = Jwt.sign({
-                            exp: Math.floor(Date.now() / 1000) +
-                                (request.body.rememberMe ? 168 : 60) * 60,
-                            data: {
-                                _id: user._id
-                            }
-                        }, request.lucent.jwtSecret);
-                        return [2 /*return*/, response.json({
-                                user: user,
-                                token: token,
-                            })];
+                        return [4 /*yield*/, request.lucent.database.find(roleResource.collection(), user.role)];
+                    case 2:
+                        role = _a.sent();
+                        permissions = {};
+                        if (!role) return [3 /*break*/, 4];
+                        return [4 /*yield*/, request.lucent.database.findAll(permissionResource.collection(), role.permissions)];
+                    case 3:
+                        permissionsForRole = _a.sent();
+                        permissionsForRole.forEach(function (permission) {
+                            // @ts-ignore
+                            permissions[permission.slug] = true;
+                        });
+                        _a.label = 4;
+                    case 4:
+                        // @ts-ignore
+                        request.session.user = __assign(__assign({}, user), { permissions: permissions });
+                        return [2 /*return*/, response.json([])];
                 }
             });
         });
@@ -83,6 +101,18 @@ var AuthController = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, response.json(request.lucent.user)];
+            });
+        });
+    };
+    /**
+     * Delete the current user's session
+     */
+    AuthController.prototype.logout = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                // @ts-ignore
+                request.session.user = null;
+                return [2 /*return*/, response.json([])];
             });
         });
     };

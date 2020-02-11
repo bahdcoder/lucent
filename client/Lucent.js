@@ -197,16 +197,6 @@ export class Lucent {
             }
         )
 
-        this.instance.interceptors.request.use((config) => {
-            const state = this.getState()
-
-            config.headers = {
-                token: state.authToken
-            }
-
-            return config
-        }, (e) => Promise.reject(e))
-
         /**
          *
          * Here we'll register a bunch of fields that come
@@ -291,10 +281,13 @@ export class Lucent {
             duration: 4000,
             theme: 'bubble',
             position: 'bottom-right',
-            className: classnames('shadow-lg rounded-lg text-white font-light px-8 py-2', {
-                'bg-green-500': options.type === 'success',
-                'bg-red-500': options.type === 'error'
-            }),
+            className: classnames(
+                'shadow-lg rounded-lg text-white font-light px-8 py-2',
+                {
+                    'bg-green-500': options.type === 'success',
+                    'bg-red-500': options.type === 'error'
+                }
+            ),
             ...options
         })
     }
@@ -359,7 +352,7 @@ export class Lucent {
      * @return {void}
      *
      */
-    boot = resources => {
+    boot = (resources, user) => {
         this.resources = JSON.parse(resources)
 
         let _this = this
@@ -374,7 +367,8 @@ export class Lucent {
         )
 
         this.setState({
-            booted: true
+            booted: true,
+            user: user ? JSON.parse(user) : null
         })
     }
 

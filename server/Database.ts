@@ -60,7 +60,7 @@ export class Database {
             .findOne({ _id: new ObjectID(primaryKey) })
     }
 
-        /**
+    /**
      * Fetch a single record from a collection
      *
      * @param {string} collection
@@ -74,7 +74,8 @@ export class Database {
         // @ts-ignore
         return this.get()
             .collection(collection)
-            .find({ _id: { $in: primaryKeys.map(key => new ObjectID(key)) } }).toArray()
+            .find({ _id: { $in: primaryKeys.map(key => new ObjectID(key)) } })
+            .toArray()
     }
 
     /**

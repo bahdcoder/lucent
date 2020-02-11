@@ -6,25 +6,6 @@ import { IResource, IField, IFilter } from '../../../index.d'
 class ResourceController {
     /**
      *
-     * Get a list of all resources
-     *
-     * @param {Express.Request} req
-     *
-     * @param {Express.Response} res
-     *
-     * @return {Express.Response}
-     *
-     */
-    public async index(req: Express.Request, res: Express.Response) {
-        return res.json(
-            req.lucent.resources
-                .map((resource: IResource) => resource.serialize())
-                .filter((resource: IResource) => resource.authorizedToView)
-        )
-    }
-
-    /**
-     *
      * Get a single record of a resource
      *
      * @param {Express.Request} req

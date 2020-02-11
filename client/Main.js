@@ -1,6 +1,8 @@
 import React from 'react'
 import Lucent from './Lucent'
+import Svg from './components/Svg'
 import Loader from './components/Loader'
+import OutsideClickHandler from 'react-outside-click-handler'
 import { Route, Link, withRouter, Switch } from 'react-router-dom'
 
 class Main extends React.Component {
@@ -14,8 +16,7 @@ class Main extends React.Component {
         user: null,
         booted: false,
         sidebarItems: [],
-        loadingAuth: true,
-        authToken: localStorage.getItem('authToken')
+        dropdownOpen: false
     }
 
     /**
@@ -26,43 +27,10 @@ class Main extends React.Component {
     componentDidMount() {
         Lucent.setState = this.setState.bind(this)
         Lucent.getState = (() => this.state).bind(this)
-
-        // check if user is logged in. if not, redirect to the login route
-        this.fetchAuthUser()
     }
 
-    fetchAuthUser() {
-        if (!this.state.authToken) {
-            this.setState({
-                loadingAuth: false
-            })
-
-            return
-        }
-        // check if user is in local storage
-
-        Lucent.request().get('/auth/me')
-            .then(({ data }) => {
-                this.setState({
-                    loadingAuth: false,
-                    user: data
-                })
-
-                if (['/auth/login'].includes(this.props.history.location.pathname)) {
-                    this.props.history.push('/')
-                }
-            })
-            .catch(() => {
-                this.setState({
-                    loadingAuth: false,
-                    authToken: ''
-                })
-
-                localStorage.removeItem('authToken')
-
-                this.props.history.push('/auth/login')
-            })
-    }
+    toggleDropdown = () =>
+        this.setState({ dropdownOpen: !this.state.dropdownOpen })
 
     renderRouteWithSwitch = () => {
         return (
@@ -87,6 +55,14 @@ class Main extends React.Component {
         )
     }
 
+    handleLogout = () => {
+        Lucent.request()
+            .post('/auth/logout')
+            .then(() => {
+                window.location.href = '/auth/login'
+            })
+    }
+
     /**
      *
      * Render the main component
@@ -95,9 +71,9 @@ class Main extends React.Component {
      *
      */
     render() {
-        if (!this.state.booted || this.state.loadingAuth) return <Loader />
+        if (!this.state.booted) return <Loader />
 
-        if (!this.state.user || !this.state.authToken)
+        if (!this.state.user)
             return (
                 <div className="flex w-full">
                     {this.renderRouteWithSwitch()}
@@ -107,8 +83,8 @@ class Main extends React.Component {
         return (
             <React.Fragment>
                 <div className="flex">
-                    <div className="w-72 flex min-h-screen">
-                        <div className="bg-gray-800 w-full">
+                    <div className="w-72 flex bg-gray-800 min-h-screen">
+                        <div className="w-full">
                             <div className="w-full text-white bg-gray-900 h-16 flex items-center px-6 text-lg">
                                 Lucent Admin
                             </div>
@@ -140,15 +116,45 @@ class Main extends React.Component {
                                 className="block w-1/4 py-2 pl-12 pr-4 bg-gray-200 rounded-full border border-transparent focus:bg-white focus:border-gray-300 focus:outline-none"
                             />
 
-                            <div className="flex items-center">
+                            <div className="flex items-center relative">
                                 <img
                                     alt="logged in user avatar"
-                                    className="rounded-full w-10 h-10"
+                                    className="rounded-full w-8 h-8"
                                     src={`https://api.adorable.io/avatars/80/${this.state.user.email}.png`}
                                 />
-                                <span className="font-light text-gray-700 inline-block ml-3">
-                                    {this.state.user.name}
+                                <span
+                                    onClick={this.toggleDropdown}
+                                    className="flex items-center font-light text-gray-700 inline-block ml-3 cursor-pointer"
+                                >
+                                    <span className="mr-1">
+                                        {this.state.user.name}
+                                    </span>
+
+                                    <Svg icon="caret" />
                                 </span>
+
+                                {this.state.dropdownOpen && (
+                                    <OutsideClickHandler
+                                        onOutsideClick={this.toggleDropdown}
+                                    >
+                                        <div
+                                            className="w-72 bg-white absolute shadow border rounded-lg border-gray-400 transition duration-150 ease-in-out"
+                                            style={{
+                                                top: '40px',
+                                                right: '5px'
+                                            }}
+                                        >
+                                            <nav className="flex flex-col my-3">
+                                                <span
+                                                    onClick={this.handleLogout}
+                                                    className="w-full hover:bg-gray-200 text-gray-700 py-2 px-4 cursor-pointer transition duration-150 ease-in-out"
+                                                >
+                                                    Logout
+                                                </span>
+                                            </nav>
+                                        </div>
+                                    </OutsideClickHandler>
+                                )}
                             </div>
                         </div>
                         {/** Loop through all registered tools and display them here. */}

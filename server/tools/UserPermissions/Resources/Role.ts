@@ -11,7 +11,7 @@ export class Role extends BaseResource {
     public fields() {
         return [
             ID.make('ID'),
-            Text.make('Name').createWithRules('required'),
+            Text.make('Name').createWithRules('required').searchable(),
             HasMany.make('Permissions').createWithRules('required')
         ]
     }

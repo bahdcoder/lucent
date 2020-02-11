@@ -10,6 +10,16 @@ class AuthController {
             (resource: IResource) => resource.name() === 'User'
         )
 
+        // @ts-ignore
+        const roleResource: IResource = request.lucent.resources.find(
+            (resource: IResource) => resource.name() === 'Role'
+        )
+
+        // @ts-ignore
+        const permissionResource: IResource = request.lucent.resources.find(
+            (resource: IResource) => resource.name() === 'Permission'
+        )
+
         const user = await request.lucent.database.findOneWhere(
             userResource.collection(),
             {
@@ -27,22 +37,31 @@ class AuthController {
                 email: ['These credentials do not match our records.']
             })
 
-        const token = Jwt.sign(
-            {
-                exp:
-                    Math.floor(Date.now() / 1000) +
-                    (request.body.rememberMe ? 168 : 60) * 60,
-                data: {
-                    _id: user._id
-                }
-            },
-            request.lucent.jwtSecret
+        const role = await request.lucent.database.find(
+            roleResource.collection(),
+            user.role
         )
+        let permissions = {}
 
-        return response.json({
-            user,
-            token,
-        })
+        if (role) {
+            const permissionsForRole = await request.lucent.database.findAll(
+                permissionResource.collection(),
+                role.permissions
+            )
+
+            permissionsForRole.forEach((permission: any) => {
+                // @ts-ignore
+                permissions[permission.slug] = true
+            })
+        }
+
+        // @ts-ignore
+        request.session.user = {
+            ...user,
+            permissions
+        }
+
+        return response.json([])
     }
 
     /**
@@ -50,6 +69,16 @@ class AuthController {
      */
     public async me(request: Express.Request, response: Express.Response) {
         return response.json(request.lucent.user)
+    }
+
+    /**
+     * Delete the current user's session
+     */
+    public async logout(request: Express.Request, response: Express.Response) {
+        // @ts-ignore
+        request.session.user = null
+
+        return response.json([])
     }
 }
 

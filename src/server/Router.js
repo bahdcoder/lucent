@@ -9,6 +9,9 @@ var router = Express.Router();
  *
  */
 router.get('/api/tools', tool_controller_1.Tool.index);
+var auth = function (req, res, next) {
+    return next();
+};
 /**
  *
  * Handle all the assets for the dashboard.
@@ -17,9 +20,14 @@ router.get('/api/tools', tool_controller_1.Tool.index);
 router.get('*', function (req, res) {
     return res.render('index', {
         tools: req.lucent.tools,
-        resources: JSON.stringify(req.lucent.resources.map(function (resource) {
-            return resource.serialize();
-        }))
+        // @ts-ignore
+        resources: req.session.user
+            ? JSON.stringify(req.lucent.resources.map(function (resource) {
+                // @ts-ignore
+                return resource.serialize(req.session.user);
+            }))
+            : [],
+        user: req.session ? JSON.stringify(req.session.user) : null
     });
 });
 exports.default = router;

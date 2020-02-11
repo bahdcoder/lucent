@@ -45,14 +45,17 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Fs = require("fs");
 var Path = require("path");
+var Redis = require("redis");
 var Express = require("express");
 var Edge = require("express-edge");
 var Router_1 = require("./Router");
 var Root = require("app-root-path");
 var mongodb_1 = require("mongodb");
 var BodyParser = require("body-parser");
+var ConnectRedis = require("connect-redis");
 var Dashboard_1 = require("./tools/Dashboard");
 var Resources_1 = require("./tools/Resources");
+var ExpressSession = require("express-session");
 var Database_1 = require("./Database");
 var UserPermissions_1 = require("./tools/UserPermissions");
 var User_1 = require("./tools/UserPermissions/Resources/User");
@@ -166,6 +169,12 @@ var Lucent = /** @class */ (function () {
          *
          */
         this.expressInstance.use(this.make());
+        var RedisStore = ConnectRedis(ExpressSession);
+        this.expressInstance.use(ExpressSession({
+            store: new RedisStore({ client: Redis.createClient({}) }),
+            secret: process.env.SESSION_KEY || 'TEMPORAL_SESSION_KEY',
+            resave: false
+        }));
     }
     /**
      *

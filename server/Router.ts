@@ -14,6 +14,14 @@ const router = Express.Router()
  */
 router.get('/api/tools', Tool.index)
 
+const auth = (
+    req: Express.Request,
+    res: Express.Response,
+    next: Express.NextFunction
+) => {
+    return next()
+}
+
 /**
  *
  * Handle all the assets for the dashboard.
@@ -22,11 +30,16 @@ router.get('/api/tools', Tool.index)
 router.get('*', (req: Express.Request, res: Express.Response): void =>
     res.render('index', {
         tools: req.lucent.tools,
-        resources: JSON.stringify(
-            req.lucent.resources.map((resource: IResource) =>
-                resource.serialize()
-            )
-        )
+        // @ts-ignore
+        resources: req.session.user
+            ? JSON.stringify(
+                  req.lucent.resources.map((resource: IResource) =>
+                      // @ts-ignore
+                      resource.serialize(req.session.user)
+                  )
+              )
+            : [],
+        user: req.session ? JSON.stringify(req.session.user) : null
     })
 )
 

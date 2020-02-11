@@ -2,7 +2,11 @@ import * as Express from 'express'
 import * as Jwt from 'jsonwebtoken'
 import { IResource } from '../../../index.d'
 
-export default async (request: Express.Request, response: Express.Response, next: Express.NextFunction) => {
+export default async (
+    request: Express.Request,
+    response: Express.Response,
+    next: Express.NextFunction
+) => {
     const token = request.get('token')
 
     // @ts-ignore
@@ -20,28 +24,42 @@ export default async (request: Express.Request, response: Express.Response, next
         (resource: IResource) => resource.name() === 'Permission'
     )
 
-    if (! token) return response.status(400).json({
-        message: 'Unauthorized.'
-    })
+    if (!token)
+        return response.status(400).json({
+            message: 'Unauthorized.'
+        })
 
     try {
-        const { data } = Jwt.verify(token, request.lucent.jwtSecret) as { data: { _id: string } }
+        const { data } = Jwt.verify(token, request.lucent.jwtSecret) as {
+            data: { _id: string }
+        }
 
-        if (! data._id) return response.status(400).json({
-            message: 'Unauthorized.'
-        })
+        if (!data._id)
+            return response.status(400).json({
+                message: 'Unauthorized.'
+            })
 
-        const user = await request.lucent.database.find(userResource.collection(), data._id)
+        const user = await request.lucent.database.find(
+            userResource.collection(),
+            data._id
+        )
 
-        if (! user) return response.status(400).json({
-            message: 'Unauthorized.'
-        })
+        if (!user)
+            return response.status(400).json({
+                message: 'Unauthorized.'
+            })
 
-        const role = await request.lucent.database.find(roleResource.collection(), user.role)
+        const role = await request.lucent.database.find(
+            roleResource.collection(),
+            user.role
+        )
         let permissions = {}
 
         if (role) {
-            const permissionsForRole = await request.lucent.database.findAll(permissionResource.collection(), role.permissions)
+            const permissionsForRole = await request.lucent.database.findAll(
+                permissionResource.collection(),
+                role.permissions
+            )
 
             permissionsForRole.forEach((permission: any) => {
                 // @ts-ignore

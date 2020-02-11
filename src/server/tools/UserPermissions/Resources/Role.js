@@ -28,7 +28,7 @@ var Role = /** @class */ (function (_super) {
     Role.prototype.fields = function () {
         return [
             ID_1.ID.make('ID'),
-            Text_1.Text.make('Name').createWithRules('required'),
+            Text_1.Text.make('Name').createWithRules('required').searchable(),
             HasMany_1.HasMany.make('Permissions').createWithRules('required')
         ];
     };

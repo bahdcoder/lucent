@@ -14,8 +14,8 @@ export class User extends BaseResource {
     public fields() {
         return [
             ID.make('ID'),
-            Text.make('Name').createWithRules('required'),
-            Text.make('Email', 'email').createWithRules('required'),
+            Text.make('Name').createWithRules('required').searchable(),
+            Text.make('Email', 'email').createWithRules('required').searchable(),
             Password.make('Password').createWithRules('required|min:8').hideWhenUpdating(),
             HasOne.make('Role').createWithRules('required'),
             Boolean.make('Active', 'activated')

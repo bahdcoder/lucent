@@ -1,4 +1,4 @@
-import { IResource, IField, IFilter } from './index.d'
+import { IResource, IField, IFilter, IUser } from './index.d'
 import * as Pluralize from 'pluralize'
 
 export class BaseResource implements IResource {
@@ -109,7 +109,7 @@ export class BaseResource implements IResource {
      * @return {Boolean}
      *
      */
-    public authorizedToCreate(): boolean {
+    public authorizedToCreate(user: IUser) {
         return true
     }
 
@@ -119,7 +119,7 @@ export class BaseResource implements IResource {
      * @return {Boolean}
      *
      */
-    public authorizedToView(): boolean {
+    public authorizedToView(user: IUser) {
         return true
     }
 
@@ -140,7 +140,7 @@ export class BaseResource implements IResource {
      * @return {Boolean}
      *
      */
-    public authorizedToUpdate(): boolean {
+    public authorizedToUpdate(user: IUser) {
         return true
     }
 
@@ -150,7 +150,7 @@ export class BaseResource implements IResource {
      * @return {Boolean}
      *
      */
-    public authorizedToDelete(): boolean {
+    public authorizedToDelete(user: IUser) {
         return true
     }
 
@@ -218,7 +218,7 @@ export class BaseResource implements IResource {
      * @return {Array|Object}
      *
      */
-    public serialize() {
+    public serialize(user: IUser) {
         return {
             name: this.name(),
             slug: this.slug(),
@@ -230,11 +230,11 @@ export class BaseResource implements IResource {
             permissions: this.permissions(),
             displayValue: this.displayValue(),
             perPageOptions: this.perPageOptions(),
-            authorizedToView: this.authorizedToView(),
             nonComputedFields: this.nonComputedFields(),
-            authorizedToCreate: this.authorizedToCreate(),
-            authorizedToUpdate: this.authorizedToUpdate(),
-            authorizedToDelete: this.authorizedToDelete(),
+            authorizedToView: this.authorizedToView(user),
+            authorizedToCreate: this.authorizedToCreate(user),
+            authorizedToUpdate: this.authorizedToUpdate(user),
+            authorizedToDelete: this.authorizedToDelete(user),
             displayInNavigation: this.availableForNavigation(),
             actions: this.actions().map((action: any) => action.serialize()),
             filters: this.filters().map((filter: IFilter) => filter.serialize())

@@ -246,26 +246,6 @@ var ResourceController = /** @class */ (function () {
     }
     /**
      *
-     * Get a list of all resources
-     *
-     * @param {Express.Request} req
-     *
-     * @param {Express.Response} res
-     *
-     * @return {Express.Response}
-     *
-     */
-    ResourceController.prototype.index = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/, res.json(req.lucent.resources
-                        .map(function (resource) { return resource.serialize(); })
-                        .filter(function (resource) { return resource.authorizedToView; }))];
-            });
-        });
-    };
-    /**
-     *
      * Fetch all data from specific resource collection
      *
      * @param {Express.Request} req

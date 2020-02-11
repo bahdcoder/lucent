@@ -99,22 +99,23 @@ var Database = /** @class */ (function () {
         });
     };
     /**
- * Fetch a single record from a collection
- *
- * @param {string} collection
- *
- * @param {string} primaryKey
- *
- * @return {Promise}
- *
- */
+     * Fetch a single record from a collection
+     *
+     * @param {string} collection
+     *
+     * @param {string} primaryKey
+     *
+     * @return {Promise}
+     *
+     */
     Database.prototype.findAll = function (collection, primaryKeys) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 // @ts-ignore
                 return [2 /*return*/, this.get()
                         .collection(collection)
-                        .find({ _id: { $in: primaryKeys.map(function (key) { return new mongodb_1.ObjectID(key); }) } }).toArray()];
+                        .find({ _id: { $in: primaryKeys.map(function (key) { return new mongodb_1.ObjectID(key); }) } })
+                        .toArray()];
             });
         });
     };

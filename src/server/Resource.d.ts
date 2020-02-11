@@ -1,4 +1,4 @@
-import { IResource, IField } from './index.d';
+import { IResource, IField, IUser } from './index.d';
 export declare class BaseResource implements IResource {
     /**
      *
@@ -77,14 +77,14 @@ export declare class BaseResource implements IResource {
      * @return {Boolean}
      *
      */
-    authorizedToCreate(): boolean;
+    authorizedToCreate(user: IUser): boolean;
     /**
      * Determine if current user is authorized to view this resource
      *
      * @return {Boolean}
      *
      */
-    authorizedToView(): boolean;
+    authorizedToView(user: IUser): boolean;
     /**
      *
      * Return the slug for this resource
@@ -99,14 +99,14 @@ export declare class BaseResource implements IResource {
      * @return {Boolean}
      *
      */
-    authorizedToUpdate(): boolean;
+    authorizedToUpdate(user: IUser): boolean;
     /**
      * Determine if current user is authorized to delete this resource
      *
      * @return {Boolean}
      *
      */
-    authorizedToDelete(): boolean;
+    authorizedToDelete(user: IUser): boolean;
     /**
      * Define a hook for modifying this field before it is saved.
      * It receives the data to be saved, and is expected to
@@ -156,7 +156,7 @@ export declare class BaseResource implements IResource {
      * @return {Array|Object}
      *
      */
-    serialize(): {
+    serialize(user: IUser): {
         name: string;
         slug: string;
         title: string;
@@ -167,8 +167,8 @@ export declare class BaseResource implements IResource {
         permissions: string[];
         displayValue: string;
         perPageOptions: number[];
-        authorizedToView: boolean;
         nonComputedFields: IField[];
+        authorizedToView: boolean;
         authorizedToCreate: boolean;
         authorizedToUpdate: boolean;
         authorizedToDelete: boolean;

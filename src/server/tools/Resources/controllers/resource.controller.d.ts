@@ -4,18 +4,6 @@ import { IResource } from '../../../index.d';
 declare class ResourceController {
     /**
      *
-     * Get a list of all resources
-     *
-     * @param {Express.Request} req
-     *
-     * @param {Express.Response} res
-     *
-     * @return {Express.Response}
-     *
-     */
-    index(req: Express.Request, res: Express.Response): Promise<Express.Response>;
-    /**
-     *
      * Get a single record of a resource
      *
      * @param {Express.Request} req

@@ -41,15 +41,15 @@ export declare class Database {
      */
     find(collection: string, primaryKey: string): Promise<any>;
     /**
- * Fetch a single record from a collection
- *
- * @param {string} collection
- *
- * @param {string} primaryKey
- *
- * @return {Promise}
- *
- */
+     * Fetch a single record from a collection
+     *
+     * @param {string} collection
+     *
+     * @param {string} primaryKey
+     *
+     * @return {Promise}
+     *
+     */
     findAll(collection: string, primaryKeys: Array<string>): Promise<any[]>;
     /**
      * Fetch all data from a collection

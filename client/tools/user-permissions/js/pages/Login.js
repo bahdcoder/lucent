@@ -4,8 +4,7 @@ class Login extends React.Component {
     state = {
         email: '',
         password: '',
-        errors: {
-        }
+        errors: {}
     }
 
     handleChange = event => {
@@ -22,15 +21,8 @@ class Login extends React.Component {
                 email: this.state.email,
                 password: this.state.password
             })
-            .then(({ data }) => {
-                localStorage.setItem('authToken', data.token)
-
-                Lucent.setState({
-                    user: data.user,
-                    authToken: data.token
-                })
-
-                this.props.history.push('/')
+            .then(() => {
+                window.location.href = '/'
             })
             .catch(({ response }) => {
                 this.setState({

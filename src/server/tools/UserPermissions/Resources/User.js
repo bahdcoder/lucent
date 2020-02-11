@@ -78,8 +78,8 @@ var User = /** @class */ (function (_super) {
     User.prototype.fields = function () {
         return [
             ID_1.ID.make('ID'),
-            Text_1.Text.make('Name').createWithRules('required'),
-            Text_1.Text.make('Email', 'email').createWithRules('required'),
+            Text_1.Text.make('Name').createWithRules('required').searchable(),
+            Text_1.Text.make('Email', 'email').createWithRules('required').searchable(),
             Password_1.Password.make('Password').createWithRules('required|min:8').hideWhenUpdating(),
             HasOne_1.HasOne.make('Role').createWithRules('required'),
             Boolean_1.Boolean.make('Active', 'activated')

@@ -23,13 +23,6 @@ const AsyncWrapper = (Fn: Function) => (
 
 /**
  *
- * Define the api resources
- *
- */
-router.get('/api/resources', AsyncWrapper(Resource.index))
-
-/**
- *
  * Define the route for fetching all database records for a specific resource
  *
  */

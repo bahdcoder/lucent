@@ -52,6 +52,13 @@ export interface StartOptions {
     startCallback?: Function
 }
 
+export interface IUser {
+    name: string
+    email: string
+    password: string
+    permissions?: Object
+}
+
 /**
  *
  * The resource interface
@@ -63,14 +70,14 @@ export interface IResource {
     schema?(): any
     slug(): string
     title(): string
-    serialize(): Object
+    serialize(user: IUser): Object
     collection(): string
     filters: () => Array<IFilter>
     permissions: () => Array<String>
-    authorizedToCreate?(): boolean
-    authorizedToView?(): boolean
-    authorizedToUpdate?(): boolean
-    authorizedToDelete?(): boolean
+    authorizedToCreate?(user: IUser): boolean
+    authorizedToView?(user: IUser): boolean
+    authorizedToUpdate?(user: IUser): boolean
+    authorizedToDelete?(user: IUser): boolean
 }
 
 export interface ITools {

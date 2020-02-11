@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import OuterClickHandler from 'react-outside-click-handler'
 
 // components
 import Svg from './Svg'
@@ -55,38 +56,46 @@ const Filters = ({
                     {filtersActive ? 'ON' : 'OFF'}
                 </span>
             </span>
-            {dropDownOpen && (
-                <div className="absolute right-0 shadow-lg w-64 border border-grey bg-white mt-3 z-50 rounded-lg">
-                    {filtersActive && (
-                        <h3
-                            onClick={resetFilters}
-                            className="text-sm uppercase font-bold tracking-widest text-gray-700 bg-gray-200 p-3 cursor-pointer"
-                        >
-                            Reset Filters
+            
+                {dropDownOpen && (
+                    <OuterClickHandler
+                    onOutsideClick={() => setDropDownOpen(!dropDownOpen)}
+                >
+                    <div className="absolute right-0 shadow-lg w-64 border border-grey bg-white mt-3 z-50 rounded-lg">
+                        {filtersActive && (
+                            <h3
+                                onClick={resetFilters}
+                                className="text-sm uppercase font-bold tracking-widest text-gray-700 bg-gray-200 p-3 cursor-pointer"
+                            >
+                                Reset Filters
+                            </h3>
+                        )}
+                        <h3 className="text-sm uppercase tracking-wider font-bold text-gray-700 text-80 bg-gray-200 p-3">
+                            Per Page
                         </h3>
-                    )}
-                    <h3 className="text-sm uppercase tracking-wider font-bold text-gray-700 text-80 bg-gray-200 p-3">
-                        Per Page
-                    </h3>
 
-                    <div className="p-2">
-                        <Select
-                            className="w-full my-0"
-                            options={perPageOptions}
-                            value={perPage}
-                            handler={event =>
-                                handlePerPageChange(event.target.value)
-                            }
-                        />
+                        <div className="p-2">
+                            <Select
+                                className="w-full my-0"
+                                options={perPageOptions}
+                                value={perPage}
+                                handler={event =>
+                                    handlePerPageChange(event.target.value)
+                                }
+                            />
+                        </div>
+
+                        {resource.filters.map((filter, index) => (
+                            <React.Fragment
+                                key={`${filter.attribute}-${index}`}
+                            >
+                                {renderFilter(filter)}
+                            </React.Fragment>
+                        ))}
                     </div>
-
-                    {resource.filters.map((filter, index) => (
-                        <React.Fragment key={`${filter.attribute}-${index}`}>
-                            {renderFilter(filter)}
-                        </React.Fragment>
-                    ))}
-                </div>
-            )}
+                    </OuterClickHandler>
+                )}
+            
         </div>
     )
 }

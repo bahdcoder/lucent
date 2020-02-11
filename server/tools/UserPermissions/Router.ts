@@ -22,6 +22,8 @@ const AsyncWrapper = (Fn: Function) => (
 
 router.post('/api/auth/login', Auth.login)
 
+router.post('/api/auth/logout', Auth.logout)
+
 router.get('/api/auth/me', authMiddleware, Auth.me)
 
 export default router

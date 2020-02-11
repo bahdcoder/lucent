@@ -18,12 +18,6 @@ var router = Express.Router();
 var AsyncWrapper = function (Fn) { return function (req, res, next) { return Fn(req, res, next).catch(next); }; };
 /**
  *
- * Define the api resources
- *
- */
-router.get('/api/resources', AsyncWrapper(resource_controller_1.Resource.index));
-/**
- *
  * Define the route for fetching all database records for a specific resource
  *
  */

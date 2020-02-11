@@ -1,13 +1,16 @@
 import * as Fs from 'fs'
 import * as Path from 'path'
+import * as Redis from 'redis'
 import * as Express from 'express'
 import * as Edge from 'express-edge'
 import LucentRouter from './Router'
 import * as Root from 'app-root-path'
 import { MongoClient } from 'mongodb'
 import * as BodyParser from 'body-parser'
+import * as ConnectRedis from 'connect-redis'
 import { Dashboard } from './tools/Dashboard'
 import { Resources } from './tools/Resources'
+import * as ExpressSession from 'express-session'
 import { Connection, Database } from './Database'
 import { IResource, ITools, IAsset } from './index.d'
 import { UserPermissions } from './tools/UserPermissions'
@@ -163,6 +166,16 @@ export class Lucent {
          *
          */
         this.expressInstance.use(this.make())
+
+        const RedisStore = ConnectRedis(ExpressSession)
+
+        this.expressInstance.use(
+            ExpressSession({
+                store: new RedisStore({ client: Redis.createClient({}) }),
+                secret: process.env.SESSION_KEY || 'TEMPORAL_SESSION_KEY',
+                resave: false
+            })
+        )
     }
 
     /**

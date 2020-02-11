@@ -141,7 +141,6 @@ __webpack_require__.r(__webpack_exports__);
 
 Lucent.booting(function (_ref) {
   var sidebar = _ref.sidebar,
-      component = _ref.component,
       route = _ref.route;
 
   /**
@@ -150,7 +149,6 @@ Lucent.booting(function (_ref) {
    *
    */
   sidebar(_components_Sidebar__WEBPACK_IMPORTED_MODULE_0__["default"]);
-  component('user-permissions-login', _pages_Login__WEBPACK_IMPORTED_MODULE_1__["default"]);
   route('/auth/login', _pages_Login__WEBPACK_IMPORTED_MODULE_1__["default"]);
 });
 
@@ -223,17 +221,10 @@ function (_React$Component) {
       Lucent.request().post('/auth/login', {
         email: _this.state.email,
         password: _this.state.password
-      }).then(function (_ref) {
-        var data = _ref.data;
-        localStorage.setItem('authToken', data.token);
-        Lucent.setState({
-          user: data.user,
-          authToken: data.token
-        });
-
-        _this.props.history.push('/');
-      })["catch"](function (_ref2) {
-        var response = _ref2.response;
+      }).then(function () {
+        window.location.href = '/';
+      })["catch"](function (_ref) {
+        var response = _ref.response;
 
         _this.setState({
           errors: response.data

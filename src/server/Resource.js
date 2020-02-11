@@ -137,7 +137,7 @@ var BaseResource = /** @class */ (function () {
      * @return {Boolean}
      *
      */
-    BaseResource.prototype.authorizedToCreate = function () {
+    BaseResource.prototype.authorizedToCreate = function (user) {
         return true;
     };
     /**
@@ -146,7 +146,7 @@ var BaseResource = /** @class */ (function () {
      * @return {Boolean}
      *
      */
-    BaseResource.prototype.authorizedToView = function () {
+    BaseResource.prototype.authorizedToView = function (user) {
         return true;
     };
     /**
@@ -165,7 +165,7 @@ var BaseResource = /** @class */ (function () {
      * @return {Boolean}
      *
      */
-    BaseResource.prototype.authorizedToUpdate = function () {
+    BaseResource.prototype.authorizedToUpdate = function (user) {
         return true;
     };
     /**
@@ -174,7 +174,7 @@ var BaseResource = /** @class */ (function () {
      * @return {Boolean}
      *
      */
-    BaseResource.prototype.authorizedToDelete = function () {
+    BaseResource.prototype.authorizedToDelete = function (user) {
         return true;
     };
     /**
@@ -244,7 +244,7 @@ var BaseResource = /** @class */ (function () {
      * @return {Array|Object}
      *
      */
-    BaseResource.prototype.serialize = function () {
+    BaseResource.prototype.serialize = function (user) {
         return {
             name: this.name(),
             slug: this.slug(),
@@ -256,11 +256,11 @@ var BaseResource = /** @class */ (function () {
             permissions: this.permissions(),
             displayValue: this.displayValue(),
             perPageOptions: this.perPageOptions(),
-            authorizedToView: this.authorizedToView(),
             nonComputedFields: this.nonComputedFields(),
-            authorizedToCreate: this.authorizedToCreate(),
-            authorizedToUpdate: this.authorizedToUpdate(),
-            authorizedToDelete: this.authorizedToDelete(),
+            authorizedToView: this.authorizedToView(user),
+            authorizedToCreate: this.authorizedToCreate(user),
+            authorizedToUpdate: this.authorizedToUpdate(user),
+            authorizedToDelete: this.authorizedToDelete(user),
             displayInNavigation: this.availableForNavigation(),
             actions: this.actions().map(function (action) { return action.serialize(); }),
             filters: this.filters().map(function (filter) { return filter.serialize(); })
