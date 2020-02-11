@@ -173,7 +173,8 @@ export class Lucent {
             ExpressSession({
                 store: new RedisStore({ client: Redis.createClient({}) }),
                 secret: process.env.SESSION_KEY || 'TEMPORAL_SESSION_KEY',
-                resave: false
+                saveUninitialized: false,
+                resave: false,
             })
         )
     }
@@ -464,7 +465,7 @@ export class Lucent {
      */
     public assets() {
         return Express.static(
-            Path.resolve(__dirname, Root.path, 'src/client/public')
+            Root.resolve('src/client/public')
         )
     }
 

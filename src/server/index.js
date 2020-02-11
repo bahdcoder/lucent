@@ -173,7 +173,8 @@ var Lucent = /** @class */ (function () {
         this.expressInstance.use(ExpressSession({
             store: new RedisStore({ client: Redis.createClient({}) }),
             secret: process.env.SESSION_KEY || 'TEMPORAL_SESSION_KEY',
-            resave: false
+            saveUninitialized: false,
+            resave: false,
         }));
     }
     /**
@@ -457,7 +458,7 @@ var Lucent = /** @class */ (function () {
      *
      */
     Lucent.prototype.assets = function () {
-        return Express.static(Path.resolve(__dirname, Root.path, 'src/client/public'));
+        return Express.static(Root.resolve('src/client/public'));
     };
     /**
      *
