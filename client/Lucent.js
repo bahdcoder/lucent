@@ -352,8 +352,12 @@ export class Lucent {
      * @return {void}
      *
      */
-    boot = (resources, user) => {
-        this.resources = JSON.parse(resources)
+    boot = (stringifiedResources, stringifiedUser) => {
+        let user = null
+        try {
+            this.resources = JSON.parse(stringifiedResources)
+            user = JSON.parse(stringifiedUser)
+        } catch (e) {}
 
         let _this = this
 
@@ -368,7 +372,7 @@ export class Lucent {
 
         this.setState({
             booted: true,
-            user: user ? JSON.parse(user) : null
+            user: user || null
         })
     }
 

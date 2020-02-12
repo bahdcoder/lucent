@@ -38,9 +38,9 @@ class Login extends React.Component {
 
         return (
             <div className="w-full h-screen flex justify-center items-center">
-                <div className="w-96 bg-white rounded-lg shadow px-6 py-4 -mt-48">
-                    <h2 className="text-center my-3 font-semibold uppercase text-3xl tracking-widest">
-                        Lucent
+                <div className="w-1/4 bg-white rounded-lg shadow px-8 py-4 -mt-48">
+                    <h2 className="text-center my-5 font-semibold uppercase text-lg tracking-widest">
+                        Lucent Admin
                     </h2>
                     <form onSubmit={this.login}>
                         <div className="flex flex-col">

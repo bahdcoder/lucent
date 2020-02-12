@@ -42,7 +42,7 @@ router.get('*', (req: Express.Request, res: Express.Response): void => {
                   )
               )
             : [],
-        user: req.session ? JSON.stringify(req.session.user) : null
+        user: req.session ? JSON.stringify(req.session.user) : ''
     })
 
     res.send(fileContent)

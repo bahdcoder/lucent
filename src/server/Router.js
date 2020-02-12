@@ -31,7 +31,7 @@ router.get('*', function (req, res) {
                 return resource.serialize(req.session.user);
             }))
             : [],
-        user: req.session ? JSON.stringify(req.session.user) : null
+        user: req.session ? JSON.stringify(req.session.user) : ''
     });
     res.send(fileContent);
 });
