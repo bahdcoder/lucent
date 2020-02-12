@@ -1,5 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var Fs = require("fs");
+var Path = require("path");
+var Edge = require("edge.js");
 var Express = require("express");
 var tool_controller_1 = require("./controllers/tool.controller");
 var router = Express.Router();
@@ -18,7 +21,8 @@ var auth = function (req, res, next) {
  *
  */
 router.get('*', function (req, res) {
-    return res.render('index', {
+    var template = Fs.readFileSync(Path.join(__dirname, '..', '/client/public/index.edge')).toString();
+    var fileContent = Edge.renderString(template, {
         tools: req.lucent.tools,
         // @ts-ignore
         resources: req.session.user
@@ -29,5 +33,6 @@ router.get('*', function (req, res) {
             : [],
         user: req.session ? JSON.stringify(req.session.user) : null
     });
+    res.send(fileContent);
 });
 exports.default = router;

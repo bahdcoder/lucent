@@ -1,4 +1,5 @@
-import * as path from 'path'
+import * as Fs from 'fs'
+import * as Path from 'path'
 import * as Edge from 'edge.js'
 import * as Express from 'express'
 import * as Root from 'app-root-path'
@@ -27,8 +28,10 @@ const auth = (
  * Handle all the assets for the dashboard.
  *
  */
-router.get('*', (req: Express.Request, res: Express.Response): void =>
-    res.render('index', {
+router.get('*', (req: Express.Request, res: Express.Response): void => {
+    const template = Fs.readFileSync(Path.join(__dirname, '..', '/client/public/index.edge')).toString()
+
+    const fileContent = Edge.renderString(template, {
         tools: req.lucent.tools,
         // @ts-ignore
         resources: req.session.user
@@ -41,6 +44,8 @@ router.get('*', (req: Express.Request, res: Express.Response): void =>
             : [],
         user: req.session ? JSON.stringify(req.session.user) : null
     })
-)
+
+    res.send(fileContent)
+})
 
 export default router

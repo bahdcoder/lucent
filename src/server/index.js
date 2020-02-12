@@ -47,7 +47,6 @@ var Fs = require("fs");
 var Path = require("path");
 var Redis = require("redis");
 var Express = require("express");
-var Edge = require("express-edge");
 var Router_1 = require("./Router");
 var Root = require("app-root-path");
 var mongodb_1 = require("mongodb");
@@ -523,12 +522,6 @@ var Lucent = /** @class */ (function () {
          *
          */
         this.registerAssets();
-        /**
-         *
-         * Register the edge templating engine
-         *
-         */
-        this.expressInstance.use(Edge);
         /**
          *
          * Set the root path for views

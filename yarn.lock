@@ -4036,13 +4036,6 @@ expect@^24.9.0:
     jest-message-util "^24.9.0"
     jest-regex-util "^24.9.0"
 
-express-edge@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/express-edge/-/express-edge-1.0.0.tgz#9007d9884e787e6c348246d003f5e52fd09527cc"
-  integrity sha512-EG1LP7XzEYOnSDKFEYHc5Z1vjO2nYVhO9LuUpZdku0RFp94hAnJDbvUTKqAMWLB22/WfLYzoKT6BpZ8pi4V3yQ==
-  dependencies:
-    edge.js "^1.1.4"
-
 express-fileupload@^1.1.4:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/express-fileupload/-/express-fileupload-1.1.6.tgz#0ac2659ad8c1128c92c8580fd6e15b8b15343db0"

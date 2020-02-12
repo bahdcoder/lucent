@@ -2,7 +2,6 @@ import * as Fs from 'fs'
 import * as Path from 'path'
 import * as Redis from 'redis'
 import * as Express from 'express'
-import * as Edge from 'express-edge'
 import LucentRouter from './Router'
 import * as Root from 'app-root-path'
 import { MongoClient } from 'mongodb'
@@ -549,13 +548,6 @@ export class Lucent {
          *
          */
         this.registerAssets()
-
-        /**
-         *
-         * Register the edge templating engine
-         *
-         */
-        this.expressInstance.use(Edge)
 
         /**
          *
