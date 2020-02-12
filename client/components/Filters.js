@@ -56,9 +56,9 @@ const Filters = ({
                     {filtersActive ? 'ON' : 'OFF'}
                 </span>
             </span>
-            
-                {dropDownOpen && (
-                    <OuterClickHandler
+
+            {dropDownOpen && (
+                <OuterClickHandler
                     onOutsideClick={() => setDropDownOpen(!dropDownOpen)}
                 >
                     <div className="absolute right-0 shadow-lg w-64 border border-grey bg-white mt-3 z-50 rounded-lg">
@@ -93,9 +93,8 @@ const Filters = ({
                             </React.Fragment>
                         ))}
                     </div>
-                    </OuterClickHandler>
-                )}
-            
+                </OuterClickHandler>
+            )}
         </div>
     )
 }

@@ -1,3 +1,4 @@
+import * as Path from 'path'
 import { Tool } from '../Tool'
 import * as Express from 'express'
 import * as Root from 'app-root-path'
@@ -12,6 +13,7 @@ export class UserPermissions extends Tool {
      *
      */
     public boot(app: Express.Application) {
+        super.boot(app)
         /**
          *
          * Register path as a source for static files
@@ -30,8 +32,14 @@ export class UserPermissions extends Tool {
          *
          */
         this.js(
-            'user-permissions',
-            'src/client/tools/user-permissions/user-permissions.js'
+            '/lucent/user-permissions/user-permissions.js',
+            Path.join(
+                __dirname,
+                '..',
+                '..',
+                '..',
+                '/client/tools/user-permissions/user-permissions.js'
+            )
         )
 
         /**
@@ -40,8 +48,14 @@ export class UserPermissions extends Tool {
          *
          */
         this.css(
-            'user-permissions',
-            'src/client/tools/user-permissions/user-permissions.css'
+            '/lucent/user-permissions/user-permissions.css',
+            Path.join(
+                __dirname,
+                '..',
+                '..',
+                '..',
+                '/client/tools/user-permissions/user-permissions.css'
+            )
         )
     }
 }

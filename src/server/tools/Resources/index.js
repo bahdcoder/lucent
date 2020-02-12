@@ -13,10 +13,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+var Path = require("path");
 var Router_1 = require("./Router");
 var Tool_1 = require("../Tool");
-var Express = require("express");
-var Root = require("app-root-path");
 var FileUpload = require("express-fileupload");
 var Resources = /** @class */ (function (_super) {
     __extends(Resources, _super);
@@ -30,12 +29,7 @@ var Resources = /** @class */ (function (_super) {
      *
      */
     Resources.prototype.boot = function (app) {
-        /**
-         *
-         * Register path as a source for static files
-         *
-         */
-        app.use('/src/client/tools/resources', Express.static(Root.resolve('src/client/tools/resources')));
+        _super.prototype.boot.call(this, app);
         /**
          *
          * Register storage path as a source for static files.
@@ -43,7 +37,11 @@ var Resources = /** @class */ (function (_super) {
          * folder defined by user.
          *
          */
-        app.use('/storage', Express.static(process.cwd() + "/storage"));
+        app.get('/storage/*', function (request, response) {
+            return response.sendFile(
+            // @ts-ignore
+            Path.dirname(require.main.filename) + "/" + request.path);
+        });
         /**
          *
          * Define the file upload middleware
@@ -61,13 +59,13 @@ var Resources = /** @class */ (function (_super) {
          * Define the js for this tool
          *
          */
-        this.js('resources', 'src/client/tools/resources/resources.js');
+        this.js('/lucent/resources/resources.js', Path.join(__dirname, '..', '..', '..', '/client/tools/resources/resources.js'));
         /**
          *
          * Define the css for this tool
          *
          */
-        this.css('resources', 'src/client/tools/resources/resources.css');
+        this.css('/lucent/resources/resources.css', Path.join(__dirname, '..', '..', '..', '/client/tools/resources/resources.css'));
     };
     return Resources;
 }(Tool_1.Tool));

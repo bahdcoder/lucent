@@ -65,7 +65,11 @@ if (mix.inProduction()) {
     mix.webpackConfig({
         plugins: [
             new PurgecssPlugin({
-                paths: glob.sync([path.join(__dirname, 'client/**/*.js'), path.join(__dirname, 'src/client/public/*.edge'), path.join(__dirname, 'src/client/public/css/custom.css')]),
+                paths: glob.sync([
+                    path.join(__dirname, 'client/**/*.js'),
+                    path.join(__dirname, 'src/client/public/*.edge'),
+                    path.join(__dirname, 'src/client/public/css/custom.css')
+                ]),
                 extractors: [
                     {
                         extractor: TailwindExtractor,

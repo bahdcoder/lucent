@@ -174,7 +174,7 @@ export class Lucent {
                 store: new RedisStore({ client: Redis.createClient({}) }),
                 secret: process.env.SESSION_KEY || 'TEMPORAL_SESSION_KEY',
                 saveUninitialized: false,
-                resave: false,
+                resave: false
             })
         )
     }
@@ -458,18 +458,6 @@ export class Lucent {
     }
 
     /**
-     * Register the static assets for Lucent
-     *
-     * @return {void}
-     *
-     */
-    public assets() {
-        return Express.static(
-            Root.resolve('src/client/public')
-        )
-    }
-
-    /**
      *
      * Set the port
      *
@@ -506,6 +494,31 @@ export class Lucent {
         this.tools.forEach((tool: ITools) => tool.boot(this.expressInstance))
     }
 
+    public registerAssets() {
+        this.expressInstance.get(
+            '/lucent/public/css/custom.css',
+            (request: Express.Request, response: Express.Response) =>
+                response.sendFile(
+                    Path.join(__dirname, '..', '/client/public/css/custom.css')
+                )
+        )
+
+        this.expressInstance.get(
+            '/lucent/public/css/app.css',
+            (request: Express.Request, response: Express.Response) =>
+                response.sendFile(
+                    Path.join(__dirname, '..', '/client/public/css/app.css')
+                )
+        )
+        this.expressInstance.get(
+            '/lucent/public/js/app.js',
+            (request: Express.Request, response: Express.Response) =>
+                response.sendFile(
+                    Path.join(__dirname, '..', '/client/public/js/app.js')
+                )
+        )
+    }
+
     /**
      * Start the express server
      *
@@ -535,7 +548,7 @@ export class Lucent {
          * Register the assets for project
          *
          */
-        this.expressInstance.use('/src/client/public', this.assets())
+        this.registerAssets()
 
         /**
          *
@@ -595,29 +608,5 @@ export class Lucent {
             .catch(error => {
                 console.error(error)
             })
-    }
-
-    /**
-     * Add scripts to Lucent
-     *
-     * @return {void}
-     *
-     */
-    public static script(name: string, path: string): Lucent {
-        Lucent.scripts = [...Lucent.scripts, { name, path }]
-
-        return new Lucent()
-    }
-
-    /**
-     * Add styles to Lucent
-     *
-     * @return {void}
-     *
-     */
-    public static style(name: string, path: string): Lucent {
-        Lucent.styles = [...Lucent.styles, { name, path }]
-
-        return new Lucent()
     }
 }

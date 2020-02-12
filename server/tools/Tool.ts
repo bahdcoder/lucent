@@ -1,3 +1,4 @@
+import * as Path from 'path'
 import * as Express from 'express'
 import * as ChangeCase from 'change-case'
 import { ITools, IAsset } from '../index.d'
@@ -87,8 +88,16 @@ export class Tool implements ITools {
      * @return {void}
      *
      */
-    public js(name: string, path: string) {
-        this.scripts = [...this.scripts, { name, path }]
+    public js(path: string, src: string) {
+        if (!this.app) return this
+
+        this.scripts = [...this.scripts, { path, src }]
+
+        this.app.get(
+            path,
+            (request: Express.Request, response: Express.Response) =>
+                response.sendFile(src)
+        )
 
         return this
     }
@@ -99,8 +108,16 @@ export class Tool implements ITools {
      * @return {void}
      *
      */
-    public css(name: string, path: string) {
-        this.styles = [...this.styles, { name, path }]
+    public css(path: string, src: string) {
+        if (!this.app) return this
+
+        this.styles = [...this.styles, { path, src }]
+
+        this.app.get(
+            path,
+            (request: Express.Request, response: Express.Response) =>
+                response.sendFile(src)
+        )
 
         return this
     }

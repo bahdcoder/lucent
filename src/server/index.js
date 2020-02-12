@@ -174,7 +174,7 @@ var Lucent = /** @class */ (function () {
             store: new RedisStore({ client: Redis.createClient({}) }),
             secret: process.env.SESSION_KEY || 'TEMPORAL_SESSION_KEY',
             saveUninitialized: false,
-            resave: false,
+            resave: false
         }));
     }
     /**
@@ -452,15 +452,6 @@ var Lucent = /** @class */ (function () {
         return this.router;
     };
     /**
-     * Register the static assets for Lucent
-     *
-     * @return {void}
-     *
-     */
-    Lucent.prototype.assets = function () {
-        return Express.static(Root.resolve('src/client/public'));
-    };
-    /**
      *
      * Set the port
      *
@@ -493,6 +484,17 @@ var Lucent = /** @class */ (function () {
         var _this = this;
         this.tools.forEach(function (tool) { return tool.boot(_this.expressInstance); });
     };
+    Lucent.prototype.registerAssets = function () {
+        this.expressInstance.get('/lucent/public/css/custom.css', function (request, response) {
+            return response.sendFile(Path.join(__dirname, '..', '/client/public/css/custom.css'));
+        });
+        this.expressInstance.get('/lucent/public/css/app.css', function (request, response) {
+            return response.sendFile(Path.join(__dirname, '..', '/client/public/css/app.css'));
+        });
+        this.expressInstance.get('/lucent/public/js/app.js', function (request, response) {
+            return response.sendFile(Path.join(__dirname, '..', '/client/public/js/app.js'));
+        });
+    };
     /**
      * Start the express server
      *
@@ -520,7 +522,7 @@ var Lucent = /** @class */ (function () {
          * Register the assets for project
          *
          */
-        this.expressInstance.use('/src/client/public', this.assets());
+        this.registerAssets();
         /**
          *
          * Register the edge templating engine
@@ -578,26 +580,6 @@ var Lucent = /** @class */ (function () {
             .catch(function (error) {
             console.error(error);
         });
-    };
-    /**
-     * Add scripts to Lucent
-     *
-     * @return {void}
-     *
-     */
-    Lucent.script = function (name, path) {
-        Lucent.scripts = __spreadArrays(Lucent.scripts, [{ name: name, path: path }]);
-        return new Lucent();
-    };
-    /**
-     * Add styles to Lucent
-     *
-     * @return {void}
-     *
-     */
-    Lucent.style = function (name, path) {
-        Lucent.styles = __spreadArrays(Lucent.styles, [{ name: name, path: path }]);
-        return new Lucent();
     };
     /**
      *

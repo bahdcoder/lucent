@@ -86,8 +86,13 @@ var Tool = /** @class */ (function () {
      * @return {void}
      *
      */
-    Tool.prototype.js = function (name, path) {
-        this.scripts = __spreadArrays(this.scripts, [{ name: name, path: path }]);
+    Tool.prototype.js = function (path, src) {
+        if (!this.app)
+            return this;
+        this.scripts = __spreadArrays(this.scripts, [{ path: path, src: src }]);
+        this.app.get(path, function (request, response) {
+            return response.sendFile(src);
+        });
         return this;
     };
     /**
@@ -96,8 +101,13 @@ var Tool = /** @class */ (function () {
      * @return {void}
      *
      */
-    Tool.prototype.css = function (name, path) {
-        this.styles = __spreadArrays(this.styles, [{ name: name, path: path }]);
+    Tool.prototype.css = function (path, src) {
+        if (!this.app)
+            return this;
+        this.styles = __spreadArrays(this.styles, [{ path: path, src: src }]);
+        this.app.get(path, function (request, response) {
+            return response.sendFile(src);
+        });
         return this;
     };
     return Tool;

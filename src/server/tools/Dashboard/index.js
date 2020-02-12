@@ -13,9 +13,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+var Path = require("path");
 var Tool_1 = require("../Tool");
-var Express = require("express");
-var Root = require("app-root-path");
 var Dashboard = /** @class */ (function (_super) {
     __extends(Dashboard, _super);
     function Dashboard() {
@@ -28,24 +27,19 @@ var Dashboard = /** @class */ (function (_super) {
      *
      */
     Dashboard.prototype.boot = function (app) {
-        /**
-         *
-         * Register path as a source for static files
-         *
-         */
-        app.use('/src/client/tools/dashboard', Express.static(Root.resolve('src/client/tools/dashboard')));
+        _super.prototype.boot.call(this, app);
         /**
          *
          * Define the js for this tool
          *
          */
-        this.js('dashboard', 'src/client/tools/dashboard/dashboard.js');
+        this.js('/lucent/dashboard/dashboard.js', Path.join(__dirname, '..', '..', '..', '/client/tools/dashboard/dashboard.js'));
         /**
          *
          * Define the css for this tool
          *
          */
-        this.css('dashboard', 'src/client/tools/dashboard/dashboard.css');
+        this.css('/lucent/dashboard/dashboard.css', Path.join(__dirname, '..', '..', '..', '/client/tools/dashboard/dashboard.css'));
     };
     return Dashboard;
 }(Tool_1.Tool));

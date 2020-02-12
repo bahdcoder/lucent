@@ -65,12 +65,12 @@ export declare class Tool implements ITools {
      * @return {void}
      *
      */
-    js(name: string, path: string): this;
+    js(path: string, src: string): this;
     /**
      * Add styles to Lucent
      *
      * @return {void}
      *
      */
-    css(name: string, path: string): this;
+    css(path: string, src: string): this;
 }

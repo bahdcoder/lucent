@@ -160,13 +160,6 @@ export declare class Lucent {
      */
     routes(): Express.Router;
     /**
-     * Register the static assets for Lucent
-     *
-     * @return {void}
-     *
-     */
-    assets(): import("express-serve-static-core").Handler;
-    /**
      *
      * Set the port
      *
@@ -190,6 +183,7 @@ export declare class Lucent {
      *
      */
     bootTools(): void;
+    registerAssets(): void;
     /**
      * Start the express server
      *
@@ -197,18 +191,4 @@ export declare class Lucent {
      *
      */
     start(): this | undefined;
-    /**
-     * Add scripts to Lucent
-     *
-     * @return {void}
-     *
-     */
-    static script(name: string, path: string): Lucent;
-    /**
-     * Add styles to Lucent
-     *
-     * @return {void}
-     *
-     */
-    static style(name: string, path: string): Lucent;
 }

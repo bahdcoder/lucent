@@ -6,22 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Lucent</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/src/client/public/css/app.css">
-    <link rel="stylesheet" href="/src/client/public/css/custom.css">
+    <link rel="stylesheet" href="/lucent/public/css/app.css">
+    <link rel="stylesheet" href="/lucent/public/css/custom.css">
     <link rel="stylesheet" href="https://unpkg.com/toastedjs/dist/toasted.min.css">
     @each(tool in tools)
         @each(style in tool.styles)
-            <link rel="stylesheet" href="/{{ style.path }}">
+            <link rel="stylesheet" href="{{ style.path }}">
         @endeach
     @endeach
 </head>
 <body class="font-sans text-gray-700 bg-gray-200 font-thin">
     <div id="app"></div>
 
-    <script src="/src/client/public/js/app.js"></script>
+    <script src="/lucent/public/js/app.js"></script>
     @each(tool in tools)
         @each(script in tool.scripts)
-            <script src="/{{ script.path }}"></script>
+            <script src="{{ script.path }}"></script>
         @endeach
     @endeach
     <script>

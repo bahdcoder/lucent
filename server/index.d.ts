@@ -87,6 +87,6 @@ export interface ITools {
 }
 
 export interface IAsset {
-    name: string
     path: string
+    src: string
 }

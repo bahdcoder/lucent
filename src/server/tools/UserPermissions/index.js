@@ -13,6 +13,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+var Path = require("path");
 var Tool_1 = require("../Tool");
 var Express = require("express");
 var Root = require("app-root-path");
@@ -29,6 +30,7 @@ var UserPermissions = /** @class */ (function (_super) {
      *
      */
     UserPermissions.prototype.boot = function (app) {
+        _super.prototype.boot.call(this, app);
         /**
          *
          * Register path as a source for static files
@@ -41,13 +43,13 @@ var UserPermissions = /** @class */ (function (_super) {
          * Define the js for this tool
          *
          */
-        this.js('user-permissions', 'src/client/tools/user-permissions/user-permissions.js');
+        this.js('/lucent/user-permissions/user-permissions.js', Path.join(__dirname, '..', '..', '..', '/client/tools/user-permissions/user-permissions.js'));
         /**
          *
          * Define the css for this tool
          *
          */
-        this.css('user-permissions', 'src/client/tools/user-permissions/user-permissions.css');
+        this.css('/lucent/user-permissions/user-permissions.css', Path.join(__dirname, '..', '..', '..', '/client/tools/user-permissions/user-permissions.css'));
     };
     return UserPermissions;
 }(Tool_1.Tool));

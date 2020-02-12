@@ -1,3 +1,4 @@
+import * as Path from 'path'
 import Router from './Router'
 import { Tool } from '../Tool'
 import * as Express from 'express'
@@ -12,15 +13,7 @@ export class Resources extends Tool {
      *
      */
     public boot(app: Express.Application) {
-        /**
-         *
-         * Register path as a source for static files
-         *
-         */
-        app.use(
-            '/src/client/tools/resources',
-            Express.static(Root.resolve('src/client/tools/resources'))
-        )
+        super.boot(app)
 
         /**
          *
@@ -29,9 +22,14 @@ export class Resources extends Tool {
          * folder defined by user.
          *
          */
-        app.use(
-            '/storage',
-            Express.static(`${process.cwd()}/storage`)
+        app.get(
+            '/storage/*',
+            (request: Express.Request, response: Express.Response) => {
+                return response.sendFile(
+                    // @ts-ignore
+                    `${Path.dirname(require.main.filename)}/${request.path}`
+                )
+            }
         )
 
         /**
@@ -53,13 +51,13 @@ export class Resources extends Tool {
          * Define the js for this tool
          *
          */
-        this.js('resources', 'src/client/tools/resources/resources.js')
+        this.js('/lucent/resources/resources.js', Path.join(__dirname, '..', '..', '..', '/client/tools/resources/resources.js'))
 
         /**
          *
          * Define the css for this tool
          *
          */
-        this.css('resources', 'src/client/tools/resources/resources.css')
+        this.css('/lucent/resources/resources.css', Path.join(__dirname, '..', '..', '..', '/client/tools/resources/resources.css'))
     }
 }
