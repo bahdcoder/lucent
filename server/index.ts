@@ -199,6 +199,12 @@ export class Lucent {
         return this
     }
 
+    public withResourcesPath(resourcesPath: string) {
+        this.resourcesPath = resourcesPath
+
+        return this
+    }
+
     public setJwtSecret(jwtSecret: string) {
         this.jwtSecret = jwtSecret
 
