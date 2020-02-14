@@ -21,8 +21,11 @@ const AsyncWrapper = (Fn: Function) => (
 ) => Fn(req, res, next).catch(next)
 
 router.post('/api/auth/login', Auth.login)
+router.post('/api/auth/register', Auth.register)
 
 router.post('/api/auth/logout', Auth.logout)
+
+router.get('/api/auth/init', Auth.init)
 
 router.get('/api/auth/me', authMiddleware, Auth.me)
 

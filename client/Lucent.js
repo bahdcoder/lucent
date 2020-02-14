@@ -366,7 +366,8 @@ export class Lucent {
                 route: _this.route.bind(_this),
                 field: _this.field.bind(_this),
                 sidebar: _this.sidebar.bind(_this),
-                component: _this.component.bind(_this)
+                component: _this.component.bind(_this),
+                user: user || null
             })
         )
 

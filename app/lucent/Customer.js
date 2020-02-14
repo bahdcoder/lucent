@@ -1,6 +1,6 @@
 const { ID, Resource } = require('lucent-admin')
 
-class User extends Resource {
+class Customer extends Resource {
     /**
      *
      * Define the fields for this resource
@@ -9,10 +9,8 @@ class User extends Resource {
      *
      */
     fields() {
-        return [
-            ID.make('ID')
-        ]
+        return [ID.make('ID')]
     }
 }
 
-module.exports = User
+module.exports = Customer

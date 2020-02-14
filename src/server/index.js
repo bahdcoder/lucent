@@ -194,6 +194,10 @@ var Lucent = /** @class */ (function () {
         });
         return this;
     };
+    Lucent.prototype.withResourcesPath = function (resourcesPath) {
+        this.resourcesPath = resourcesPath;
+        return this;
+    };
     Lucent.prototype.setJwtSecret = function (jwtSecret) {
         this.jwtSecret = jwtSecret;
         return this;
@@ -202,25 +206,61 @@ var Lucent = /** @class */ (function () {
      *
      * We'll loop through all resources, and for each,
      * we'll sync the permissions into the database.
+     *
+     * We also need to make sure we have the default ADMIN role locked in
+     *
      */
     Lucent.prototype.syncPermissions = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var permissionResource, roleResource, index, resource, permissions, index_1, permission, permissionInDatabase, permissionsInDatabase, permissionsToBeDeleted, flattenedPermissions, index, permission, _loop_1, this_1, index;
+            var permissionResource, roleResource, adminRole, index, resource, permissions, index_1, permission, permissionInDatabase, permissionsInDatabase, permissionsToBeDeleted, flattenedPermissions, index, permission, _loop_1, this_1, index, allPermissions;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         permissionResource = this.resources.find(function (resource) { return resource.name() === 'Permission'; });
                         roleResource = this.resources.find(function (resource) { return resource.name() === 'Role'; });
-                        index = 0;
-                        _a.label = 1;
+                        return [4 /*yield*/, this.database
+                                .get()
+                                .collection(roleResource.collection())
+                                .findOne({
+                                name: 'admin'
+                            })];
                     case 1:
-                        if (!(index < this.resources.length)) return [3 /*break*/, 7];
+                        adminRole = _a.sent();
+                        if (!!adminRole) return [3 /*break*/, 4];
+                        // @ts-ignore
+                        return [4 /*yield*/, this.database
+                                .get()
+                                .collection(roleResource.collection())
+                                .insertOne({
+                                name: 'admin',
+                                permissions: []
+                            })
+                            // @ts-ignore
+                        ];
+                    case 2:
+                        // @ts-ignore
+                        _a.sent();
+                        return [4 /*yield*/, this.database
+                                .get()
+                                .collection(roleResource.collection())
+                                .findOne({
+                                name: 'admin'
+                            })];
+                    case 3:
+                        // @ts-ignore
+                        adminRole = _a.sent();
+                        _a.label = 4;
+                    case 4:
+                        index = 0;
+                        _a.label = 5;
+                    case 5:
+                        if (!(index < this.resources.length)) return [3 /*break*/, 11];
                         resource = this.resources[index];
                         permissions = resource.permissions();
                         index_1 = 0;
-                        _a.label = 2;
-                    case 2:
-                        if (!(index_1 < permissions.length)) return [3 /*break*/, 6];
+                        _a.label = 6;
+                    case 6:
+                        if (!(index_1 < permissions.length)) return [3 /*break*/, 10];
                         permission = permissions[index_1];
                         return [4 /*yield*/, this.database
                                 .get()
@@ -228,9 +268,9 @@ var Lucent = /** @class */ (function () {
                                 .findOne({
                                 slug: permission
                             })];
-                    case 3:
+                    case 7:
                         permissionInDatabase = _a.sent();
-                        if (!!permissionInDatabase) return [3 /*break*/, 5];
+                        if (!!permissionInDatabase) return [3 /*break*/, 9];
                         // @ts-ignore
                         return [4 /*yield*/, this.database
                                 .get()
@@ -238,18 +278,18 @@ var Lucent = /** @class */ (function () {
                                 .insertOne({
                                 slug: permission
                             })];
-                    case 4:
+                    case 8:
                         // @ts-ignore
                         _a.sent();
-                        _a.label = 5;
-                    case 5:
+                        _a.label = 9;
+                    case 9:
                         index_1++;
-                        return [3 /*break*/, 2];
-                    case 6:
+                        return [3 /*break*/, 6];
+                    case 10:
                         index++;
-                        return [3 /*break*/, 1];
-                    case 7: return [4 /*yield*/, this.database.fetchAll(permissionResource.collection())];
-                    case 8:
+                        return [3 /*break*/, 5];
+                    case 11: return [4 /*yield*/, this.database.fetchAll(permissionResource.collection())];
+                    case 12:
                         permissionsInDatabase = _a.sent();
                         permissionsToBeDeleted = [];
                         flattenedPermissions = [];
@@ -288,7 +328,7 @@ var Lucent = /** @class */ (function () {
                                         return [4 /*yield*/, this_1.database
                                                 .get()
                                                 .collection(roleResource.collection())
-                                                .updateOne({
+                                                .findOneAndUpdate({
                                                 _id: role._id.toString()
                                             }, {
                                                 $set: {
@@ -308,20 +348,47 @@ var Lucent = /** @class */ (function () {
                         };
                         this_1 = this;
                         index = 0;
-                        _a.label = 9;
-                    case 9:
-                        if (!(index < permissionsToBeDeleted.length)) return [3 /*break*/, 12];
-                        return [5 /*yield**/, _loop_1(index)];
-                    case 10:
-                        _a.sent();
-                        _a.label = 11;
-                    case 11:
-                        index++;
-                        return [3 /*break*/, 9];
-                    case 12: 
-                    // @ts-ignore
-                    return [4 /*yield*/, this.database.destroy(permissionResource.collection(), permissionsToBeDeleted)];
+                        _a.label = 13;
                     case 13:
+                        if (!(index < permissionsToBeDeleted.length)) return [3 /*break*/, 16];
+                        return [5 /*yield**/, _loop_1(index)];
+                    case 14:
+                        _a.sent();
+                        _a.label = 15;
+                    case 15:
+                        index++;
+                        return [3 /*break*/, 13];
+                    case 16: 
+                    // @ts-ignore
+                    return [4 /*yield*/, this.database.destroy(permissionResource.collection(), permissionsToBeDeleted)
+                        // @ts-ignore
+                    ];
+                    case 17:
+                        // @ts-ignore
+                        _a.sent();
+                        return [4 /*yield*/, this.database
+                                .get()
+                                .collection(permissionResource.collection())
+                                .find({})
+                                .toArray()
+                            // @ts-ignore
+                        ];
+                    case 18:
+                        allPermissions = _a.sent();
+                        // @ts-ignore
+                        return [4 /*yield*/, this.database
+                                .get()
+                                .collection(roleResource.collection())
+                                .findOneAndUpdate({
+                                _id: adminRole._id.toString()
+                            }, {
+                                $set: {
+                                    permissions: allPermissions.map(function (permission) {
+                                        return permission._id.toString();
+                                    })
+                                }
+                            })];
+                    case 19:
                         // @ts-ignore
                         _a.sent();
                         return [2 /*return*/];

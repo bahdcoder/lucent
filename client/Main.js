@@ -3,7 +3,7 @@ import Lucent from './Lucent'
 import Svg from './components/Svg'
 import Loader from './components/Loader'
 import OutsideClickHandler from 'react-outside-click-handler'
-import { Route, Link, withRouter, Switch } from 'react-router-dom'
+import { Route, Link, withRouter, Switch, Redirect } from 'react-router-dom'
 
 class Main extends React.Component {
     /**
@@ -33,6 +33,10 @@ class Main extends React.Component {
         this.setState({ dropdownOpen: !this.state.dropdownOpen })
 
     renderRouteWithSwitch = () => {
+        const NoMatch = () => (
+            <Redirect to={this.state.user ? '/' : '/auth/login'} />
+        )
+
         return (
             <Route
                 render={({ location }) => (
@@ -49,6 +53,7 @@ class Main extends React.Component {
                                 />
                             )
                         )}
+                        <Route component={NoMatch} />
                     </Switch>
                 )}
             />
@@ -79,6 +84,8 @@ class Main extends React.Component {
                     {this.renderRouteWithSwitch()}
                 </div>
             )
+
+        console.log(this.state.user)
 
         return (
             <React.Fragment>

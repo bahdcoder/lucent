@@ -48,9 +48,76 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Bcrypt = require("bcryptjs");
+var Indicative = require("indicative");
 var AuthController = /** @class */ (function () {
     function AuthController() {
     }
+    AuthController.prototype.register = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var errors_1, formattedErrors_1, userResource, roleResource, permissionResource, adminRole, existingAdmin, permissions, permissionsForRole, user;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, Indicative.validateAll(request.body, {
+                                email: 'required|email',
+                                name: 'required',
+                                password: 'required|min:8'
+                            })];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        errors_1 = _a.sent();
+                        formattedErrors_1 = {};
+                        errors_1.forEach(function (error) {
+                            formattedErrors_1[error.field] = error.message;
+                        });
+                        return [2 /*return*/, response.status(400).json(formattedErrors_1)];
+                    case 3:
+                        userResource = request.lucent.resources.find(function (resource) { return resource.name() === 'User'; });
+                        roleResource = request.lucent.resources.find(function (resource) { return resource.name() === 'Role'; });
+                        permissionResource = request.lucent.resources.find(function (resource) { return resource.name() === 'Permission'; });
+                        return [4 /*yield*/, request.lucent.database.findOneWhere(roleResource.collection(), {
+                                name: 'admin'
+                            })];
+                    case 4:
+                        adminRole = _a.sent();
+                        console.log('=========>', adminRole);
+                        return [4 /*yield*/, request.lucent.database.findOneWhere(userResource.collection(), {
+                                role: adminRole._id.toString()
+                            })];
+                    case 5:
+                        existingAdmin = _a.sent();
+                        if (existingAdmin)
+                            return [2 /*return*/, response.status(400).json({
+                                    email: ['An administrator user already exists.']
+                                })];
+                        return [4 /*yield*/, request.lucent.database.insert(userResource.collection(), __assign(__assign({}, request.body), { role: adminRole._id.toString(), password: Bcrypt.hashSync(request.body.password) }))];
+                    case 6:
+                        _a.sent();
+                        permissions = {};
+                        return [4 /*yield*/, request.lucent.database.findAll(permissionResource.collection(), adminRole.permissions)];
+                    case 7:
+                        permissionsForRole = _a.sent();
+                        permissionsForRole.forEach(function (permission) {
+                            // @ts-ignore
+                            permissions[permission.slug] = true;
+                        });
+                        return [4 /*yield*/, request.lucent.database.findOneWhere(userResource.collection(), {
+                                email: request.body.email
+                            })
+                            // @ts-ignore
+                        ];
+                    case 8:
+                        user = _a.sent();
+                        // @ts-ignore
+                        request.session.user = __assign(__assign({}, user), { permissions: permissions });
+                        return [2 /*return*/, response.status(201).json(user)];
+                }
+            });
+        });
+    };
     AuthController.prototype.login = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
             var userResource, roleResource, permissionResource, user, role, permissions, permissionsForRole;
@@ -77,8 +144,9 @@ var AuthController = /** @class */ (function () {
                     case 2:
                         role = _a.sent();
                         permissions = {};
+                        console.log('xxxxxxxx', role);
                         if (!role) return [3 /*break*/, 4];
-                        return [4 /*yield*/, request.lucent.database.findAll(permissionResource.collection(), role.permissions)];
+                        return [4 /*yield*/, request.lucent.database.findAll(permissionResource.collection(), role.permissions || [])];
                     case 3:
                         permissionsForRole = _a.sent();
                         permissionsForRole.forEach(function (permission) {
@@ -90,6 +158,31 @@ var AuthController = /** @class */ (function () {
                         // @ts-ignore
                         request.session.user = __assign(__assign({}, user), { permissions: permissions });
                         return [2 /*return*/, response.json([])];
+                }
+            });
+        });
+    };
+    AuthController.prototype.init = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var userResource, roleResource, adminRole, user;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        userResource = request.lucent.resources.find(function (resource) { return resource.name() === 'User'; });
+                        roleResource = request.lucent.resources.find(function (resource) { return resource.name() === 'Role'; });
+                        return [4 /*yield*/, request.lucent.database.findOneWhere(roleResource.collection(), {
+                                name: 'admin'
+                            })];
+                    case 1:
+                        adminRole = _a.sent();
+                        return [4 /*yield*/, request.lucent.database.findOneWhere(userResource.collection(), {
+                                role: adminRole._id.toString()
+                            })];
+                    case 2:
+                        user = _a.sent();
+                        return [2 /*return*/, response.json({
+                                hasAdmin: !!user
+                            })];
                 }
             });
         });

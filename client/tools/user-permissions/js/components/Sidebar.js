@@ -16,9 +16,6 @@ const Sidebar = ({ Link }) => {
                 <Link className="mt-3" to={`/resources/roles`}>
                     Roles
                 </Link>
-                <Link className="mt-3" to={`/resources/permissions`}>
-                    Permissions
-                </Link>
             </div>
         </div>
     )

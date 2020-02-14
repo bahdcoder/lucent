@@ -28,8 +28,10 @@ const auth = (
  * Handle all the assets for the dashboard.
  *
  */
-router.get('*', (req: Express.Request, res: Express.Response): void => {
-    const template = Fs.readFileSync(Path.join(__dirname, '..', '/client/public/index.edge')).toString()
+router.get('*', async (req: Express.Request, res: Express.Response) => {
+    const template = Fs.readFileSync(
+        Path.join(__dirname, '..', '/client/public/index.edge')
+    ).toString()
 
     const fileContent = Edge.renderString(template, {
         tools: req.lucent.tools,

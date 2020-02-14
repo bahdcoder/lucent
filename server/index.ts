@@ -215,6 +215,9 @@ export class Lucent {
      *
      * We'll loop through all resources, and for each,
      * we'll sync the permissions into the database.
+     *
+     * We also need to make sure we have the default ADMIN role locked in
+     *
      */
     private async syncPermissions() {
         // @ts-ignore
@@ -225,6 +228,34 @@ export class Lucent {
         const roleResource: IResource = this.resources.find(
             (resource: IResource) => resource.name() === 'Role'
         )
+
+        // get or create admin role if not exists
+        // @ts-ignore
+        let adminRole = await this.database
+            .get()
+            .collection(roleResource.collection())
+            .findOne({
+                name: 'admin'
+            })
+
+        if (!adminRole) {
+            // @ts-ignore
+            await this.database
+                .get()
+                .collection(roleResource.collection())
+                .insertOne({
+                    name: 'admin',
+                    permissions: []
+                })
+
+                // @ts-ignore
+            adminRole = await this.database
+            .get()
+            .collection(roleResource.collection())
+            .findOne({
+                name: 'admin'
+            })
+        }
 
         // Persist all the permissions that are available
         for (let index = 0; index < this.resources.length; index++) {
@@ -302,7 +333,7 @@ export class Lucent {
                 await this.database
                     .get()
                     .collection(roleResource.collection())
-                    .updateOne(
+                    .findOneAndUpdate(
                         {
                             _id: role._id.toString()
                         },
@@ -322,6 +353,30 @@ export class Lucent {
             permissionResource.collection(),
             permissionsToBeDeleted
         )
+
+        // @ts-ignore
+        const allPermissions = await this.database
+            .get()
+            .collection(permissionResource.collection())
+            .find({})
+            .toArray()
+
+        // @ts-ignore
+        await this.database
+            .get()
+            .collection(roleResource.collection())
+            .findOneAndUpdate(
+                {
+                    _id: adminRole._id.toString()
+                },
+                {
+                    $set: {
+                        permissions: allPermissions.map(permission =>
+                            permission._id.toString()
+                        )
+                    }
+                }
+            )
     }
 
     /**

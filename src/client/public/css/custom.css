@@ -74,3 +74,41 @@ span.flatpickr-weekday {
     opacity: 1;
     transition: opacity 500ms ease-in;
 }
+
+
+ul.paginator {
+    display: flex;
+    font-weight: bolder;
+    list-style: none;
+}
+
+ul.paginator li.active a {
+    border-width: 3px !important;
+    border-color: #2d3748;
+    transition: all 0.3s;
+    cursor: not-allowed;
+}
+
+ul.paginator li a {
+    width: 4rem;
+    height: 3rem;
+    display: flex;
+    color: #4a5568;
+    font-weight: 300;
+    align-items: center;
+    border-top-width: 0;
+    transition: all 0.3s;
+    border-bottom-width: 0;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+ul.paginator li.disabled a {
+    cursor: not-allowed !important;
+}
+
+ul.paginator li a:focus {
+    outline: none;
+}

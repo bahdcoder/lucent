@@ -72,7 +72,7 @@ if (mix.inProduction()) {
                 ]),
                 extractors: [
                     {
-                        extractor: TailwindExtractor,
+                        extractor: TailwindExxtractor,
                         extensions: ['js']
                     }
                 ]

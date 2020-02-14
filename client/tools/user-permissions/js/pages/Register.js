@@ -2,10 +2,17 @@ import React from 'react'
 
 class Login extends React.Component {
     state = {
+        name: '',
         email: '',
         password: '',
         errors: {},
         initialized: false
+    }
+
+    handleChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
     }
 
     componentDidMount() {
@@ -13,8 +20,8 @@ class Login extends React.Component {
             this.setState({
                 initialized: true
             }, () => {
-                if (! data.hasAdmin) {
-                    this.props.history.push('/auth/register')
+                if (data.hasAdmin) {
+                    this.props.history.push('/auth/login')
                 }
             })
         }).catch(() => {
@@ -24,17 +31,12 @@ class Login extends React.Component {
         })
     }
 
-    handleChange = event => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
-
     login = event => {
         event.preventDefault()
 
         Lucent.request()
-            .post('/auth/login', {
+            .post('/auth/register', {
+                name: this.state.name,
                 email: this.state.email,
                 password: this.state.password
             })
@@ -50,7 +52,6 @@ class Login extends React.Component {
 
     render() {
         const Input = Lucent.components['component-text']
-        const Link = Lucent.components['component-link']
         const Button = Lucent.components['component-button']
         const Loader = Lucent.components['component-loader']
 
@@ -59,10 +60,24 @@ class Login extends React.Component {
         return (
             <div className="w-full h-screen flex justify-center items-center">
                 <div className="w-1/4 bg-white rounded-lg shadow px-8 py-4 -mt-48">
-                    <h2 className="text-center my-5 font-semibold uppercase text-lg tracking-widest">
-                        Lucent Admin
+                    <h2 className="text-center mt-6 font-semibold uppercase tracking-widest">
+                        Welcome to Lucent Admin
                     </h2>
+                    <p className='text-xs text-center w-full flex justify-center mb-8'>Create the default administrator user</p>
                     <form onSubmit={this.login}>
+                        <div className="flex flex-col">
+                            <label className="font-medium" htmlFor="email">
+                                Name
+                            </label>
+                            <Input
+                                name="name"
+                                className="w-full"
+                                placeholder="Full name"
+                                value={this.state.name}
+                                handler={this.handleChange}
+                                error={this.state.errors['name']}
+                            />
+                        </div>
                         <div className="flex flex-col">
                             <label className="font-medium" htmlFor="email">
                                 Email
@@ -91,11 +106,8 @@ class Login extends React.Component {
                             />
                         </div>
 
-                        <div className="flex justify-between my-6">
-                            <Link to="/auth/forgot-password">
-                                Forgot your password?
-                            </Link>
-                            <Button label="Sign in" />
+                        <div className="flex my-6">
+                            <Button label="Get Started" className='w-full justify-center' />
                         </div>
                     </form>
                 </div>

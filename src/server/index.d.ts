@@ -121,11 +121,15 @@ export declare class Lucent {
      *
      */
     mongo(uri: string, database: string): this;
+    withResourcesPath(resourcesPath: string): this;
     setJwtSecret(jwtSecret: string): this;
     /**
      *
      * We'll loop through all resources, and for each,
      * we'll sync the permissions into the database.
+     *
+     * We also need to make sure we have the default ADMIN role locked in
+     *
      */
     private syncPermissions;
     /**
