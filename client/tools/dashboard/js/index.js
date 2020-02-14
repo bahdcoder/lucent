@@ -15,11 +15,4 @@ Lucent.booting(({ route, sidebar, user }) => {
      *
      */
     user && route('/', Dashboard)
-
-    /**
-     *
-     * Define the route for displaying the dashboard
-     *
-     */
-    user && route('/dashboard', Dashboard)
 })

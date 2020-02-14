@@ -105,7 +105,7 @@ __webpack_require__.r(__webpack_exports__);
 var Sidebar = function Sidebar(_ref) {
   var Link = _ref.Link;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Link, {
-    to: "/dashboard",
+    to: "/",
     className: "w-full px-6 py-6 inline-block text-white"
   }, "Dashboard");
 };
@@ -145,13 +145,6 @@ Lucent.booting(function (_ref) {
    */
 
   user && route('/', _pages_Dashboard__WEBPACK_IMPORTED_MODULE_0__["default"]);
-  /**
-   *
-   * Define the route for displaying the dashboard
-   *
-   */
-
-  user && route('/dashboard', _pages_Dashboard__WEBPACK_IMPORTED_MODULE_0__["default"]);
 });
 
 /***/ }),
@@ -198,9 +191,22 @@ function (_React$Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Dashboard, [{
     key: "render",
     value: function render() {
+      var Button = Lucent.components['component-button'];
       return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-        className: ""
-      });
+        className: "max-w-3xl mx-auto"
+      }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "w-full px-8 py-6 bg-white rounded shadow"
+      }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h3", {
+        className: "mt-5 mb-4 text-2xl font-medium uppercase tracking-widest"
+      }, "Welcome to Lucent Admin"), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
+        className: "font-light mb-5"
+      }, "Let's get you started with building your application dashboard in no time."), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(Button, {
+        link: true,
+        external: true,
+        to: "https://google.com",
+        label: "View the docs",
+        className: "mt-12 w-48"
+      })));
     }
   }]);
 

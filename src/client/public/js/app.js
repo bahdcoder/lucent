@@ -270,10 +270,7 @@ function () {
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "route", function (path, component) {
-      _this3.routes.push({
-        path: path,
-        component: component
-      });
+      _this3.routes = _objectSpread({}, _this3.routes, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()({}, path, component));
 
       _this3.setState({
         routes: _this3.routes
@@ -342,7 +339,7 @@ function () {
      *
      */
 
-    this.routes = [];
+    this.routes = {};
     /**
      *
      * Define all detail components
@@ -611,7 +608,7 @@ function (_React$Component) {
     _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, (_getPrototypeOf2 = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(Main)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), "state", {
-      routes: [],
+      routes: {},
       user: null,
       booted: false,
       sidebarItems: [],
@@ -636,9 +633,8 @@ function (_React$Component) {
           var location = _ref.location;
           return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Switch"], {
             location: location
-          }, _this.state.routes.map(function (_ref2, index) {
-            var path = _ref2.path,
-                Component = _ref2.component;
+          }, Object.keys(_this.state.routes).map(function (path, index) {
+            var Component = _this.state.routes[path];
             return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Route"], {
               exact: true,
               key: index,
@@ -785,13 +781,17 @@ var Button = function Button(_ref) {
       label = _ref$label === void 0 ? '' : _ref$label,
       _ref$link = _ref.link,
       link = _ref$link === void 0 ? false : _ref$link,
+      _ref$external = _ref.external,
+      external = _ref$external === void 0 ? false : _ref$external,
       _ref$className = _ref.className,
       className = _ref$className === void 0 ? '' : _ref$className,
       _ref$type = _ref.type,
       type = _ref$type === void 0 ? 'primary' : _ref$type;
-  var ButtonElement = link ? react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"] : 'button';
+  var ButtonElement = link ? external ? 'a' : react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"] : 'button';
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ButtonElement, {
     to: to,
+    href: to,
+    target: "_blank",
     onClick: handler,
     "data-testid": dataTestId,
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('transition duration-150 ease-in-out no-underline uppercase font-medium tracking-widest text-sm text-white rounded-sm px-6 py-2 flex items-center focus:outline-none', {

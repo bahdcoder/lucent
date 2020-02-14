@@ -178,7 +178,9 @@ export declare class Lucent {
      * @return {Lucent}
      *
      */
-    withTools(tools: ITools[]): Lucent;
+    withTools(tools: {
+        [key: string]: ITools;
+    }): Lucent;
     /**
      *
      * Boot all tools for Lucent

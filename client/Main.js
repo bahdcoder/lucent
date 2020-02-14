@@ -12,7 +12,7 @@ class Main extends React.Component {
      *
      */
     state = {
-        routes: [],
+        routes: {},
         user: null,
         booted: false,
         sidebarItems: [],
@@ -41,17 +41,21 @@ class Main extends React.Component {
             <Route
                 render={({ location }) => (
                     <Switch location={location}>
-                        {this.state.routes.map(
-                            ({ path, component: Component }, index) => (
-                                <Route
-                                    exact
-                                    key={index}
-                                    path={path}
-                                    render={props => (
-                                        <Component {...props} Link={Link} />
-                                    )}
-                                />
-                            )
+                        {Object.keys(this.state.routes).map(
+                            (path, index) => {
+                                const Component = this.state.routes[path]
+
+                                return (
+                                    <Route
+                                        exact
+                                        key={index}
+                                        path={path}
+                                        render={props => (
+                                            <Component {...props} Link={Link} />
+                                        )}
+                                    />
+                                )
+                            }
                         )}
                         <Route component={NoMatch} />
                     </Switch>

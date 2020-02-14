@@ -4,18 +4,22 @@ import { Link } from 'react-router-dom'
 
 const Button = ({
     to,
+
     handler,
     dataTestId,
     label = '',
     link = false,
+    external = false,
     className = '',
     type = 'primary'
 }) => {
-    let ButtonElement = link ? Link : 'button'
+    let ButtonElement = link ? external ? 'a' : Link : 'button'
 
     return (
         <ButtonElement
             to={to}
+            href={to}
+            target='_blank'
             onClick={handler}
             data-testid={dataTestId}
             className={classnames(

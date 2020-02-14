@@ -88,11 +88,11 @@ export class Lucent {
      * @type {Array}
      *
      */
-    private tools: ITools[] = [
-        new Dashboard(),
-        new Resources(),
-        new UserPermissions()
-    ]
+    private tools: { [key: string]: ITools } = {
+        'dashboard': new Dashboard(),
+        'resources': new Resources(),
+        'user-permissions':  new UserPermissions()
+    }
 
     /**
      *
@@ -537,8 +537,11 @@ export class Lucent {
      * @return {Lucent}
      *
      */
-    public withTools(tools: ITools[]): Lucent {
-        this.tools = [...this.tools, ...tools]
+    public withTools(tools: { [key: string]: ITools }): Lucent {
+        this.tools = {
+            ...this.tools,
+            ...tools
+        }
 
         return this
     }
@@ -551,7 +554,7 @@ export class Lucent {
      *
      */
     public bootTools() {
-        this.tools.forEach((tool: ITools) => tool.boot(this.expressInstance))
+        Object.keys(this.tools).forEach((tool: string) => this.tools[tool].boot(this.expressInstance))
     }
 
     public registerAssets() {

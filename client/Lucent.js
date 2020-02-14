@@ -93,7 +93,7 @@ export class Lucent {
          * Define all routes
          *
          */
-        this.routes = []
+        this.routes = {}
 
         /**
          *
@@ -406,10 +406,10 @@ export class Lucent {
      *
      */
     route = (path, component) => {
-        this.routes.push({
-            path,
-            component
-        })
+        this.routes = {
+            ...this.routes,
+            [path]: component
+        }
 
         this.setState({ routes: this.routes })
     }
