@@ -764,11 +764,14 @@ function (_React$Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 
@@ -787,18 +790,26 @@ var Button = function Button(_ref) {
       className = _ref$className === void 0 ? '' : _ref$className,
       _ref$type = _ref.type,
       type = _ref$type === void 0 ? 'primary' : _ref$type;
-  var ButtonElement = link ? external ? 'a' : react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"] : 'button';
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ButtonElement, {
-    to: to,
-    href: to,
-    target: "_blank",
+  var ButtonElement = link ? external ? 'a' : react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"] : 'button';
+  var props = {};
+
+  if (link) {
+    if (external) {
+      props.href = to;
+      props.target = '_blank';
+    }
+
+    props.to = to;
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ButtonElement, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, props, {
     onClick: handler,
     "data-testid": dataTestId,
-    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('transition duration-150 ease-in-out no-underline uppercase font-medium tracking-widest text-sm text-white rounded-sm px-6 py-2 flex items-center focus:outline-none', {
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('transition duration-150 ease-in-out no-underline uppercase font-medium tracking-widest text-sm text-white rounded-sm px-6 py-2 flex items-center focus:outline-none', {
       'bg-gray-800 hover:bg-gray-700': type === 'primary',
       'bg-red-500': type === 'danger'
     }, className)
-  }, label);
+  }), label);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Button);
@@ -1193,6 +1204,7 @@ var DatePicker = function DatePicker(_ref) {
       'border-grey focus:border-indigo': !error,
       'border-red focus:border-red': error
     }, className),
+    placeholder: 'Select Date',
     readOnly: true
   }), error && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "text-xs text-red font-light"

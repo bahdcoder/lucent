@@ -155,7 +155,7 @@ export class BaseResource implements IResource {
     }
 
     /**
-     * Define a hook for modifying this field before it is saved.
+     * Define a hook for modifying this field before it is created.
      * It receives the data to be saved, and is expected to
      * return the data, maybe modified.
      *
@@ -164,6 +164,16 @@ export class BaseResource implements IResource {
      * @return {Promise}
      */
     public async beforeInsert(data: object): Promise<any> {
+        return Promise.resolve(data)
+    }
+
+    /**
+     * Define a hook for modifying a field after it is created.
+     * It receives the data from MongoDB driver.
+     *
+     *
+     */
+    public async afterInsert(data: object): Promise<any> {
         return Promise.resolve(data)
     }
 
@@ -178,6 +188,16 @@ export class BaseResource implements IResource {
      *
      */
     public async beforeUpdate(data: object): Promise<any> {
+        return Promise.resolve(data)
+    }
+
+    /**
+     * Define a hook for modifying a field after it is saved.
+     * It receives the data from MongoDB driver.
+     *
+     *
+     */
+    public async afterUpdate(data: object): Promise<any> {
         return Promise.resolve(data)
     }
 

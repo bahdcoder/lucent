@@ -108,7 +108,7 @@ export declare class BaseResource implements IResource {
      */
     authorizedToDelete(user: IUser): boolean;
     /**
-     * Define a hook for modifying this field before it is saved.
+     * Define a hook for modifying this field before it is created.
      * It receives the data to be saved, and is expected to
      * return the data, maybe modified.
      *
@@ -117,6 +117,13 @@ export declare class BaseResource implements IResource {
      * @return {Promise}
      */
     beforeInsert(data: object): Promise<any>;
+    /**
+     * Define a hook for modifying a field after it is created.
+     * It receives the data from MongoDB driver.
+     *
+     *
+     */
+    afterInsert(data: object): Promise<any>;
     /**
      * Define a hook for modifying the resource data before it is updated.
      * It received the data to be updated, and is expected to
@@ -128,6 +135,13 @@ export declare class BaseResource implements IResource {
      *
      */
     beforeUpdate(data: object): Promise<any>;
+    /**
+     * Define a hook for modifying a field after it is saved.
+     * It receives the data from MongoDB driver.
+     *
+     *
+     */
+    afterUpdate(data: object): Promise<any>;
     /**
      *
      * Define the items per page

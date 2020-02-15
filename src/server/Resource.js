@@ -178,7 +178,7 @@ var BaseResource = /** @class */ (function () {
         return true;
     };
     /**
-     * Define a hook for modifying this field before it is saved.
+     * Define a hook for modifying this field before it is created.
      * It receives the data to be saved, and is expected to
      * return the data, maybe modified.
      *
@@ -187,6 +187,19 @@ var BaseResource = /** @class */ (function () {
      * @return {Promise}
      */
     BaseResource.prototype.beforeInsert = function (data) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, Promise.resolve(data)];
+            });
+        });
+    };
+    /**
+     * Define a hook for modifying a field after it is created.
+     * It receives the data from MongoDB driver.
+     *
+     *
+     */
+    BaseResource.prototype.afterInsert = function (data) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, Promise.resolve(data)];
@@ -204,6 +217,19 @@ var BaseResource = /** @class */ (function () {
      *
      */
     BaseResource.prototype.beforeUpdate = function (data) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, Promise.resolve(data)];
+            });
+        });
+    };
+    /**
+     * Define a hook for modifying a field after it is saved.
+     * It receives the data from MongoDB driver.
+     *
+     *
+     */
+    BaseResource.prototype.afterUpdate = function (data) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, Promise.resolve(data)];

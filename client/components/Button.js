@@ -15,11 +15,20 @@ const Button = ({
 }) => {
     let ButtonElement = link ? external ? 'a' : Link : 'button'
 
+    const props = {}
+
+    if (link) {
+        if (external) {
+            props.href = to
+            props.target = '_blank'
+        }
+
+        props.to = to
+    }
+
     return (
         <ButtonElement
-            to={to}
-            href={to}
-            target='_blank'
+            {...props}
             onClick={handler}
             data-testid={dataTestId}
             className={classnames(

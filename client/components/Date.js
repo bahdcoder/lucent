@@ -12,7 +12,7 @@ const DatePicker = ({
     dateOptions,
     error,
     dateFormat,
-    enableTime = false
+    enableTime = false,
     // ...rest
 }) => (
     <React.Fragment>
@@ -30,6 +30,7 @@ const DatePicker = ({
                 },
                 className
             )}
+            placeholder={'Select Date'}
             readOnly
         />
         {error && <span className="text-xs text-red font-light">{error}</span>}

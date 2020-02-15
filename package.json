@@ -1,8 +1,8 @@
 {
   "name": "lucent-admin",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "main": "src/server/main.js",
-  "types": "src/server/index.d.ts",
+  "types": "src/server/main.d.ts",
   "license": "MIT",
   "bin": {
     "lucent": "src/cli/index.js"

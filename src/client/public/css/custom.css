@@ -12,15 +12,15 @@
 }
 
 span.flatpickr-weekday {
-    background: #6574cd !important;
+    background: #4a5568 !important;
     color: #fff !important;
 }
 .flatpickr-weekdays,
 .flatpickr-months .flatpickr-month {
-    background: #6574cd !important;
+    background: #4a5568 !important;
 }
 
-..flatpickr-day:hover {
+.flatpickr-day:hover {
     background-color: #dae1e7 !important;
 }
 
@@ -41,9 +41,13 @@ span.flatpickr-weekday {
 .flatpickr-day.endRange.prevMonthDay,
 .flatpickr-day.selected.nextMonthDay,
 .flatpickr-day.startRange.nextMonthDay,
-.flatpickr-day.endRange.nextMonthDay {
-    background: #6574cd !important;
-    border-color: #6574cd !important;
+.flatpickr-day.endRange.nextMonthDay, .flatpickr-current-month .flatpickr-monthDropdown-months {
+    background: #4a5568 !important;
+    border-color: #4a5568 !important;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover svg, .flatpickr-months .flatpickr-next-month:hover svg {
+    fill: #718096 !important;
 }
 
 .multi-select .dropdown .dropdown-heading {
