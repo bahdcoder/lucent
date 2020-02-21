@@ -315,16 +315,16 @@ var ResourceController = /** @class */ (function () {
      */
     ResourceController.prototype.store = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var data, resource;
+            var request, resource;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, req.lucent.resource.beforeInsert(req)];
                     case 1:
-                        data = _a.sent();
-                        return [4 /*yield*/, req.lucent.database.insert(req.lucent.resource.collection(), data)];
+                        request = _a.sent();
+                        return [4 /*yield*/, req.lucent.database.insert(req.lucent.resource.collection(), request.body)];
                     case 2:
                         resource = _a.sent();
-                        return [4 /*yield*/, req.lucent.resource.afterInsert(req)];
+                        return [4 /*yield*/, req.lucent.resource.afterInsert(request)];
                     case 3:
                         _a.sent();
                         return [2 /*return*/, res.json(resource)];
