@@ -163,8 +163,8 @@ export class BaseResource implements IResource {
      *
      * @return {Promise}
      */
-    public async beforeInsert(data: object): Promise<any> {
-        return Promise.resolve(data)
+    public async beforeInsert(req: Express.Request): Promise<any> {
+        return Promise.resolve(req)
     }
 
     /**
@@ -173,8 +173,8 @@ export class BaseResource implements IResource {
      *
      *
      */
-    public async afterInsert(data: object): Promise<any> {
-        return Promise.resolve(data)
+    public async afterInsert(req: Express.Request): Promise<any> {
+        return Promise.resolve(req)
     }
 
     /**

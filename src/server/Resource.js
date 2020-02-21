@@ -186,10 +186,10 @@ var BaseResource = /** @class */ (function () {
      *
      * @return {Promise}
      */
-    BaseResource.prototype.beforeInsert = function (data) {
+    BaseResource.prototype.beforeInsert = function (req) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, Promise.resolve(data)];
+                return [2 /*return*/, Promise.resolve(req)];
             });
         });
     };
@@ -199,10 +199,10 @@ var BaseResource = /** @class */ (function () {
      *
      *
      */
-    BaseResource.prototype.afterInsert = function (data) {
+    BaseResource.prototype.afterInsert = function (req) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, Promise.resolve(data)];
+                return [2 /*return*/, Promise.resolve(req)];
             });
         });
     };

@@ -116,14 +116,14 @@ export declare class BaseResource implements IResource {
      *
      * @return {Promise}
      */
-    beforeInsert(data: object): Promise<any>;
+    beforeInsert(req: Express.Request): Promise<any>;
     /**
      * Define a hook for modifying a field after it is created.
      * It receives the data from MongoDB driver.
      *
      *
      */
-    afterInsert(data: object): Promise<any>;
+    afterInsert(req: Express.Request): Promise<any>;
     /**
      * Define a hook for modifying the resource data before it is updated.
      * It received the data to be updated, and is expected to

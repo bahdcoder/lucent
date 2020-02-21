@@ -300,12 +300,14 @@ class ResourceController {
      *
      */
     public async store(req: Express.Request, res: Express.Response) {
-        const data = await req.lucent.resource.beforeInsert(req.body)
+        const data = await req.lucent.resource.beforeInsert(req)
 
         const resource = await req.lucent.database.insert(
             req.lucent.resource.collection(),
             data
         )
+
+        await req.lucent.resource.afterInsert(req)
 
         return res.json(resource)
     }
