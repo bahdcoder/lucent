@@ -174,7 +174,9 @@ var Lucent = /** @class */ (function () {
         this.expressInstance.use(this.make());
         var RedisStore = ConnectRedis(ExpressSession);
         this.expressInstance.use(ExpressSession({
-            store: new RedisStore({ client: Redis.createClient({}) }),
+            store: new RedisStore({ client: Redis.createClient({
+                    url: process.env.REDIS_URL || 'redis://127.0.0.1:6379'
+                }) }),
             secret: process.env.SESSION_KEY || 'TEMPORAL_SESSION_KEY',
             saveUninitialized: false,
             resave: false

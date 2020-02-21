@@ -1,6 +1,6 @@
 {
   "name": "lucent-admin",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "main": "src/server/main.js",
   "types": "src/server/main.d.ts",
   "license": "MIT",
