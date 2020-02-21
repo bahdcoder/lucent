@@ -11,7 +11,7 @@ export { Action } from './actions/Action';
 export { Filter } from './filters/Filter';
 export { HasMany } from './fields/HasMany';
 export { Boolean } from './fields/Boolean';
-export { DateFilter } from './Filters/Date';
+export { DateFilter } from './filters/Date';
 export { Textarea } from './fields/Textarea';
 export { Password } from './fields/Password';
 export { BelongsTo } from './fields/BelongsTo';
