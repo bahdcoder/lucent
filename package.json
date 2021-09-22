@@ -105,7 +105,7 @@
     "consola": "^2.7.1",
     "cross-env": "^5.2.0",
     "date-fns": "^1.30.1",
-    "edge.js": "^1.1.4",
+    "edge.js": "^5.3.2",
     "express": "^4.16.4",
     "express-fileupload": "^1.1.4",
     "express-session": "^1.17.0",
